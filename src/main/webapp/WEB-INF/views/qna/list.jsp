@@ -38,6 +38,7 @@
 
 			</tbody>
 		</table>
+		<a href="./add" class="btn btn-primary">ADD</a>
 
 	</div>
 

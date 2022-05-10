@@ -13,4 +13,7 @@ public interface QnaMapper {
 	
 	public int setQnaAdd(QnaVO qnaVO)throws Exception;
 	
+	public int setQnaUpdate(QnaVO qnaVO)throws Exception;
+
+	public int setQnaDelete(QnaVO qnaVO)throws Exception;
 }

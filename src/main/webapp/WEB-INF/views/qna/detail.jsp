@@ -28,5 +28,8 @@
 		<h2>DATE : ${vo.regDate}</h2>
 		<h2>CONTENTS : ${vo.contents}</h2>
 	</div>
+	<a href="./update?num=${vo.num}" class="btn btn-primary">UPDATE</a>
+	<a href="./delete?num=${vo.num}" class="btn btn-primary">DELETE</a>
+	<a href="./list" class="btn btn-primary">리스트</a>
 </body>
 </html>
