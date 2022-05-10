@@ -10,5 +10,7 @@
 		<typeAlias type = "java.lang.Long" alias="Long"/>
 		<typeAlias type = "java.lang.Integer" alias="Integer"/>
 		<typeAlias type="java.util.Map" alias="Map"/>
+		<typeAlias type="com.fd.s1.menu.MenuVO" alias="MenuVO"/>
+		<typeAlias type="com.fd.s1.menu.MenuFileVO" alias="MenuFileVO"/>
 	</typeAliases>
 </configuration>

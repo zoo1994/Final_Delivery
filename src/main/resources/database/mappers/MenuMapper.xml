@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.fd.s1.menu.MenuMapper">
+
+	<delete id="setFileDelete" parameterType="MenuFileVO">
+		DELETE FROM MENUFILE WHERE FILENUM=#{fileNum}
+	</delete>
+
+	<insert id="setFileAdd" parameterType="MenuFileVO">
+ 		INSERT INTO MENUFILE (FILENUM, MENUNUM, FILENAME, ORINAME)
+ 		VALUES(NULL, #{menuNum}, #{fileName}, #{oriName})
+ 	</insert>
+
+   <select id="getList" resultMap="joinResult">
+   		SELECT M.*, MF.* FROM MENU M
+		LEFT OUTER JOIN MENUFILE MF
+		ON(M.MENUNUM=MF.MENUNUM)
+   </select> 
+   
+   <select id="getFileDetail" parameterType="MenuFileVO" resultType="MenuFileVO">
+   		SELECT * FROM MENUFILE WHERE FILENUM=#{fileNum}
+   </select>
+   
+   <resultMap type="menuVO" id="joinResult">
+		<id column="menuNum" property="menuNum"/>
+		<result column="menuName" property="menuName"/>
+		<result column="price" property="price"/>
+		<result column="menuDetail" property="menuDetail"/>
+		<result column="menuSale" property="menuSale" />
+		<result column="category" property="category" />
+		<association property="menuFileVO" javaType="MenuFileVO">
+			<id column="fileNum" property="fileNum"/>
+			<result column="fileName" property="fileName"/>
+ 			<result column="oriName" property="oriName" />
+ 		</association>
+	</resultMap>
+	
+	<insert id="setAdd" parameterType="MenuVO" useGeneratedKeys="true" keyProperty="menuNum">
+		INSERT INTO MENU (MENUNUM, MENUNAME, PRICE, MENUDETAIL, MENUSALE, CATEGORY)
+		VALUES (#{menuNum}, #{menuName}, #{price}, #{menuDetail}, #{menuSale}, #{category})
+	</insert>
+	
+	<update id="setUpdate" parameterType="MenuVO">
+		UPDATE MENU SET MENUNAME=#{menuName}, PRICE=#{price}, MENUDETAIL=#{menuDetail}, MENUSALE=#{menuSale}, CATEGORY=#{category} WHERE MENUNUM=#{menuNum}
+	</update>
+	
+	<select id="getDetail" parameterType="MenuVO" resultMap="joinResult">
+		SELECT * FROM MENU M
+		LEFT OUTER JOIN MENUFILE MF
+		ON(M.MENUNUM=MF.MENUNUM)
+		WHERE M.MENUNUM=#{menuNum}
+	</select>
+	
+	<delete id="setDelete" parameterType="MenuVO">
+		DELETE FROM MENU WHERE MENUNUM=#{menuNum}
+	</delete>
+</mapper>
