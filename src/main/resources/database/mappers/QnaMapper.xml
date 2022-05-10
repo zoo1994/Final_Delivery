@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.fd.s1.board.qna.QnaMapper">
+    	
+    	<select id="getQnaList" resultType="QnaVO">
+    	SELECT * FROM QNA ORDER BY NUM DESC
+    	</select>
+    	<select id="getQnaDetail" parameterType="QnaVO" resultType="QnaVO">
+    	SELECT * FROM QNA WHERE NUM=#{num}
+    	</select>
+		<insert id="setQnaAdd" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
+		INSERT INTO QNA (NUM,ID,LOCATION,KIND,EMAIL,PHONE,TITLE,CONTENTS,REGDATE,REPLY,REF,STEP,DEPTH) 
+		VALUES (#{num},#{id},#{location},#{kind},#{email},#{phone},#{title},#{contents},now(),0,0,0,0)
+		</insert>
+    	<update id="setQnaUpdate" parameterType="QnaVO">
+    	UPDATE QNA SET ID=#{id}, LOCATION=#{location}, KIND=#{kind}, EMAIL=#{email}, PHONE=#{phone}, TITLE=#{title}, CONTENTS=#{contents} 
+    	WHERE NUM=#{num}
+    	</update>
+    	<delete id="setQnaDelete">
+    	DELETE FROM QNA WHERE NUM=#{num}
+    	</delete>
+    	
+    </mapper>
