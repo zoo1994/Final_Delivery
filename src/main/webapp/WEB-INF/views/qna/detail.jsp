@@ -14,19 +14,19 @@
 </head>
 <body>
 	<h1>Question Detail</h1>
-	<div class="container">
-		<h2>NUM : ${vo.num}</h2>
-		<h2>TITLE : ${vo.title}</h2>
-		<h2>ID : ${vo.id}</h2>
-		<h2>지역 : ${vo.location}</h2>
-		<h2>문의종류 : ${vo.kind==1? '위생/청결':''}
+	<div class="container border my-5">
+		<h2 class="my-3" >NUM : ${vo.num}</h2>
+		<h2 class="my-3">TITLE : ${vo.title}</h2>
+		<h2 class="my-3">ID : ${vo.id}</h2>
+		<h2 class="my-3">지역 : ${vo.location}</h2>
+		<h2 class="my-3">문의종류 : ${vo.kind==1? '위생/청결':''}
 		${vo.kind==2? '품질':''}
 		${vo.kind==3? '서비스':''}
 		${vo.kind==4? '기타':''}</h2>
-		<h2>이메일 : ${vo.email}</h2>
-		<h2>연락처 : ${vo.phone}</h2>
-		<h2>DATE : ${vo.regDate}</h2>
-		<h2>CONTENTS : ${vo.contents}</h2>
+		<h2 class="my-3">이메일 : ${vo.email}</h2>
+		<h2 class="my-3">연락처 : ${vo.phone}</h2>
+		<h2 class="my-3">DATE : ${vo.regDate}</h2>
+		<h2 class="my-3">CONTENTS : ${vo.contents}</h2>
 	</div>
 	<a href="./update?num=${vo.num}" class="btn btn-primary">UPDATE</a>
 	<a href="./delete?num=${vo.num}" class="btn btn-primary">DELETE</a>

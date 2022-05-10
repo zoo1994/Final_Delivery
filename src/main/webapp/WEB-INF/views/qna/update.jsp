@@ -24,7 +24,7 @@
 		<form:form modelAttribute="qnaVO" action="./update" method="post"
 			cssStyle="width:60%">
 			<form:hidden path="num" id="num"/>
-			<h1 class="my-5">1:1 문의</h1>
+			<h1 class="my-5">문의 수정</h1>
 			<div class="my-3 row">
 				<label class="col-3">고객명</label>
 				<form:input path="id" id="id" cssClass="col form-control" />
