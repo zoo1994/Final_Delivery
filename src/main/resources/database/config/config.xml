@@ -10,5 +10,8 @@
 		<typeAlias type = "java.lang.Long" alias="Long"/>
 		<typeAlias type = "java.lang.Integer" alias="Integer"/>
 		<typeAlias type="java.util.Map" alias="Map"/>
+		<typeAlias type="com.fd.s1.util.Pager" alias="Pager"/>
+		<typeAlias type="com.fd.s1.board.event.EventVO" alias="EventVO"/>
+		<typeAlias type="com.fd.s1.board.event.EventFilesVO" alias="EventFilesVO"/>
 	</typeAliases>
 </configuration>
