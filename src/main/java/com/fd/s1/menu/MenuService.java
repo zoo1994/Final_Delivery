@@ -33,7 +33,7 @@ public class MenuService {
 		System.out.println("삭제파일이름 : "+menuFileVO.getFileName());
 		int result = menuMapper.setFileDelete(menuFileVO);
 		if(result > 0) {
-			boolean check = fileManager.fileDelete(menuFileVO.getFileName(), "resources/upload/menu/");
+			boolean check = fileManager.remove(menuFileVO.getFileName(), "resources/upload/menu/");
 		}
 		return result;
 	}
@@ -96,7 +96,7 @@ public class MenuService {
 		
 		if(result > 0) {
 			if(file!=null) {
-				boolean check = fileManager.fileDelete(file.getFileName(),"resources/upload/menu/");
+				boolean check = fileManager.remove(file.getFileName(),"resources/upload/menu/");
 			}
 		}
 		
