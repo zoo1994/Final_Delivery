@@ -21,6 +21,38 @@
 			<img alt="" src="../resources/upload/menu/${vo.menuFileVO.fileName}">
 		
 		</div>
+		
+		<div class="row">
+			<h3>영양정보</h3>
+			<table class="table">
+				  <thead>
+				    <tr>
+				    	<th scope="col">영양소</th>
+				    	<th scope="col">중량(g)</th>
+				    	<th scope="col">중량(ml)</th>
+				    	<th scope="col">열량</th>
+				    	<th scope="col">당</th>
+				    	<th scope="col">단백질</th>
+				    	<th scope="col">포화지방</th>
+				    	<th scope="col">나트륨</th>
+				    	<th scope="col">카페인</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">함량</th>
+				      <td>${vo.ingredientVO.weight_g}</td>
+				      <td>${vo.ingredientVO.weight_ml}</td>
+				      <td>${vo.ingredientVO.calory}</td>
+				      <td>${vo.ingredientVO.sugar}</td>
+				      <td>${vo.ingredientVO.protein}</td>
+				      <td>${vo.ingredientVO.fat}</td>
+				      <td>${vo.ingredientVO.sodium}</td>
+				      <td>${vo.ingredientVO.caffeine}</td>
+				    </tr>
+				  </tbody>
+				</table>
+		</div>
 	</div>
 	
 	<a href="./update?menuNum=${vo.menuNum}">update</a>
