@@ -71,6 +71,19 @@ public class MenuController {
 		}
 		System.out.println(file.getOriginalFilename());
 		int result = menuService.setAdd(menuVO, file);
+		if(result > 0) {
+			IngredientVO ingredientVO = new IngredientVO();
+			ingredientVO.setMenuNum(menuVO.getMenuNum());
+			ingredientVO.setWeight_g(menuVO.getIngredientVO().getWeight_g());
+			ingredientVO.setWeight_ml(menuVO.getIngredientVO().getWeight_ml());
+			ingredientVO.setCalory(menuVO.getIngredientVO().getCaffeine());
+			ingredientVO.setSugar(menuVO.getIngredientVO().getSugar());
+			ingredientVO.setProtein(menuVO.getIngredientVO().getProtein());
+			ingredientVO.setFat(menuVO.getIngredientVO().getFat());
+			ingredientVO.setSodium(menuVO.getIngredientVO().getSodium());
+			ingredientVO.setCaffeine(menuVO.getIngredientVO().getCaffeine());
+			result = menuService.setIngredientAdd(ingredientVO);
+		}
 		mv.setViewName("redirect:./list");
 		
 		return mv;
@@ -95,6 +108,19 @@ public class MenuController {
 			return mv;
 		}
 		int result = menuService.setUpdate(menuVO, file);
+		if(result > 0) {
+			IngredientVO ingredientVO = new IngredientVO();
+			ingredientVO.setMenuNum(menuVO.getMenuNum());
+			ingredientVO.setWeight_g(menuVO.getIngredientVO().getWeight_g());
+			ingredientVO.setWeight_ml(menuVO.getIngredientVO().getWeight_ml());
+			ingredientVO.setCalory(menuVO.getIngredientVO().getCaffeine());
+			ingredientVO.setSugar(menuVO.getIngredientVO().getSugar());
+			ingredientVO.setProtein(menuVO.getIngredientVO().getProtein());
+			ingredientVO.setFat(menuVO.getIngredientVO().getFat());
+			ingredientVO.setSodium(menuVO.getIngredientVO().getSodium());
+			ingredientVO.setCaffeine(menuVO.getIngredientVO().getCaffeine());
+			result = menuService.setIngredientUpdate(ingredientVO);
+		}
 		mv.setViewName("redirect:./list");
 		
 		return mv;

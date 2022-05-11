@@ -24,5 +24,8 @@ public interface MenuMapper {
 	
 	public int setDelete(MenuVO menuVO) throws Exception;
 	
+	public int setIngredientAdd(IngredientVO ingredientVO) throws Exception;
+	
+	public int setIngredientUpdate(IngredientVO ingredientVO) throws Exception;
 	
 }

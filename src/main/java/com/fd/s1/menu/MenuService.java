@@ -19,6 +19,14 @@ public class MenuService {
 	@Autowired
 	private FileManager fileManager;
 	
+	public int setIngredientAdd(IngredientVO ingredientVO) throws Exception {
+		return menuMapper.setIngredientAdd(ingredientVO);
+	}
+	
+	public int setIngredientUpdate(IngredientVO ingredientVO) throws Exception {
+		return menuMapper.setIngredientUpdate(ingredientVO);
+	}
+	
 	public int setFileDelete(MenuFileVO menuFileVO) throws Exception {
 		System.out.println("삭제파일번호 : "+menuFileVO.getFileNum());
 		menuFileVO = menuMapper.getFileDetail(menuFileVO);

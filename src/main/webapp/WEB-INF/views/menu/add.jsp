@@ -90,7 +90,37 @@
 					</div>
 				</div>
 				
+
+
+					
+				<table class="table">
+				  <thead>
+				    <tr>
+				    	<th scope="col">중량(g)</th>
+				    	<th scope="col">중량(ml)</th>
+				    	<th scope="col">열량</th>
+				    	<th scope="col">당</th>
+				    	<th scope="col">단백질</th>
+				    	<th scope="col">포화지방</th>
+				    	<th scope="col">나트륨</th>
+				    	<th scope="col">카페인</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td><form:input path="ingredientVO.weight_g"/></td>
+				      <td><form:input path="ingredientVO.weight_ml"/></td>
+				      <td><form:input path="ingredientVO.calory"/></td>
+				      <td><form:input path="ingredientVO.sugar"/></td>
+				      <td><form:input path="ingredientVO.protein"/></td>
+				      <td><form:input path="ingredientVO.fat"/></td>
+				      <td><form:input path="ingredientVO.sodium"/></td>
+				      <td><form:input path="ingredientVO.caffeine"/></td>
+				    </tr>
+				  </tbody>
+				</table>
 				
+		
 				
 			  		
 			    <button type="submit" class="btn btn-primary" id="add">메뉴 추가</button>

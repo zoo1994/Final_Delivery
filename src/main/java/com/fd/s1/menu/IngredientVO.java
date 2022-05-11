@@ -8,10 +8,11 @@ public class IngredientVO {
 	private Integer ingreNum;
 	private Integer menuNum;
 	private String weight_g;
-	private String weight_mg;
+	private String weight_ml;
 	private String calory;
 	private String sugar;
 	private String protein;
+	private String fat;
 	private String sodium;
 	private String caffeine;
 	

@@ -16,4 +16,5 @@ public class MenuVO {
 	private Integer category;
 	
 	private MenuFileVO menuFileVO;
+	private IngredientVO ingredientVO;
 }
