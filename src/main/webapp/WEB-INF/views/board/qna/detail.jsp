@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +28,17 @@
 		<h2 class="my-3">연락처 : ${vo.phone}</h2>
 		<h2 class="my-3">DATE : ${vo.regDate}</h2>
 		<h2 class="my-3">CONTENTS : ${vo.contents}</h2>
+		<div class="border">
+		<c:if test="${not empty vo.filesVOs}">
+		<h1 class="border">첨부파일</h1>
+		<c:forEach items="${vo.filesVOs}" var="f">
+		<div>
+		<a href="../upload/board/qna/${f.fileName}" download>${f.fileName}</a>
+		</div>
+		</c:forEach>
+		</c:if>
+		</div>
+		
 	</div>
 	<a href="./update?num=${vo.num}" class="btn btn-primary">UPDATE</a>
 	<a href="./delete?num=${vo.num}" class="btn btn-primary">DELETE</a>

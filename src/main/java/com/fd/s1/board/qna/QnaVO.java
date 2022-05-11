@@ -1,6 +1,7 @@
 package com.fd.s1.board.qna;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -31,6 +32,6 @@ public class QnaVO {
 	private Long ref;
 	private Long step;
 	private Long depth;
-	
+	private List<QnaFilesVO> filesVOs;
 	
 }
