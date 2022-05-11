@@ -42,6 +42,16 @@
 				    </div>
 				  </div>	
 				  
+				   <div class="mb-3 row">
+				    <label for="staticText" class="col-sm-2 col-form-label">메뉴영문이름</label>
+				    <div class="col-sm-10">
+				    	<form:input path="menuEng" cssClass="form-control" id="menuEng"/>
+					    <div>
+					    	<form:errors path="menuEng"></form:errors>
+					    </div>
+				    </div>
+				  </div>	
+				  
 				  <div class="mb-3 row">
 				    <label for="staticText" class="col-sm-2 col-form-label">가격</label>
 				    <div class="col-sm-10">
@@ -79,6 +89,8 @@
 						<input type="file" name="file" class="form-control" id="file">
 					</div>
 				</div>
+				
+				
 				
 			  		
 			    <button type="submit" class="btn btn-primary" id="add">메뉴 추가</button>

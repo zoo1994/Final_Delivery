@@ -27,6 +27,7 @@
    <resultMap type="menuVO" id="joinResult">
 		<id column="menuNum" property="menuNum"/>
 		<result column="menuName" property="menuName"/>
+		<result column="menuEng" property="menuEng"/>		
 		<result column="price" property="price"/>
 		<result column="menuDetail" property="menuDetail"/>
 		<result column="menuSale" property="menuSale" />
@@ -39,12 +40,17 @@
 	</resultMap>
 	
 	<insert id="setAdd" parameterType="MenuVO" useGeneratedKeys="true" keyProperty="menuNum">
-		INSERT INTO MENU (MENUNUM, MENUNAME, PRICE, MENUDETAIL, MENUSALE, CATEGORY)
-		VALUES (#{menuNum}, #{menuName}, #{price}, #{menuDetail}, #{menuSale}, #{category})
+		INSERT INTO MENU (MENUNUM, MENUNAME, MENUENG, PRICE, MENUDETAIL, MENUSALE, CATEGORY)
+		VALUES (#{menuNum}, #{menuName}, #{menuEng}, #{price}, #{menuDetail}, #{menuSale}, #{category})
+	</insert>
+	
+	<insert id="setIngredientAdd" parameterType="IngredientVO">
+		INSERT INTO INGREDIENT 
+		VALUES(NULL, #{menuNum}, #{weight_g}, #{weight_mg}, #{calory}, #{sugar}, #{protein}, #{fat}, {sodium}, {caffeine})
 	</insert>
 	
 	<update id="setUpdate" parameterType="MenuVO">
-		UPDATE MENU SET MENUNAME=#{menuName}, PRICE=#{price}, MENUDETAIL=#{menuDetail}, MENUSALE=#{menuSale}, CATEGORY=#{category} WHERE MENUNUM=#{menuNum}
+		UPDATE MENU SET MENUNAME=#{menuName}, MENUENG=#{menuEng}, PRICE=#{price}, MENUDETAIL=#{menuDetail}, MENUSALE=#{menuSale}, CATEGORY=#{category} WHERE MENUNUM=#{menuNum}
 	</update>
 	
 	<select id="getDetail" parameterType="MenuVO" resultMap="joinResult">

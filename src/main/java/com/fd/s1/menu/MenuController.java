@@ -89,7 +89,6 @@ public class MenuController {
 	@PostMapping("update")
 	public ModelAndView setUpdate(@Valid MenuVO menuVO, BindingResult bindingResult, MultipartFile file) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("update : "+file.getOriginalFilename());
 		
 		if(bindingResult.hasErrors()) {
 			mv.setViewName("menu/update");

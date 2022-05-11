@@ -52,7 +52,7 @@ function fileDeleteInit() {
 		result = result + '<label for="file" class="col-sm-2 col-form-label">File</label>'
 		result = result + '<div class="col-sm-10 input-group">'
 		result = result + '<input type="file" name="file" class="form-control" id="file">'
-		result = result + '<button class="btn btn-outline-secondary del" type="button">X</button>'
+		result = result + '<button class="btn btn-outline-secondary del input-group-text" type="button">X</button>'
 		result = result + '</div>';
 		result = result + '</div>';
 		$("#fileResult").append(result);

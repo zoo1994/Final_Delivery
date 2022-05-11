@@ -78,15 +78,18 @@ public class MenuService {
 	}
 	
 	public int setDelete(MenuVO menuVO) throws Exception {
+		
 		MenuFileVO file = new MenuFileVO();
 		file.setMenuNum(menuVO.getMenuNum());
 		file = menuMapper.getFileDetail(file);
+
 		
-		System.out.println(file.getFileName());
 		int result = menuMapper.setDelete(menuVO);
 		
 		if(result > 0) {
-			boolean check = fileManager.fileDelete(file.getFileName(),"resources/upload/menu/");
+			if(file!=null) {
+				boolean check = fileManager.fileDelete(file.getFileName(),"resources/upload/menu/");
+			}
 		}
 		
 		return result;

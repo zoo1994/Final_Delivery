@@ -9,6 +9,7 @@ public class MenuVO {
 
 	private Integer menuNum;
 	private String menuName;
+	private String menuEng;
 	private Integer price;
 	private String menuDetail;
 	private Integer menuSale;
