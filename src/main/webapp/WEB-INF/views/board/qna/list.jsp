@@ -13,6 +13,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
+	<c:import url="../../temp/header.jsp"></c:import>
 	<h1>Question List</h1>
 
 	<div class="container">
@@ -55,6 +56,6 @@
 
 	</div>
 
-
+	<c:import url="../../temp/header_script.jsp"></c:import>
 </body>
 </html>

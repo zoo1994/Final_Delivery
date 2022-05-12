@@ -11,7 +11,7 @@
     	WHERE NUM>0 
     	ORDER BY NUM DESC
     	LIMIT #{startRow},#{perPage}) Q
-    	ORDER BY NUM
+    	ORDER BY NUM DESC
     	</select>
 
 	<select id="getTotal" resultType="Long">

@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 public class QnaVO {
-	
+	 
 	private Long num;
 	@NotBlank(message = "id를 입력해주세요")
 	private String id;
