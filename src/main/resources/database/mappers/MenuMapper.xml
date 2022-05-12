@@ -15,10 +15,13 @@
  	</insert>
 
    <select id="getList" resultMap="joinResult">
-   		SELECT M.*, MF.* FROM MENU M
+   	   	SELECT M.*, MF.* FROM MENU M
 		LEFT OUTER JOIN MENUFILE MF
 		ON(M.MENUNUM=MF.MENUNUM)
+		ORDER BY M.MENUNUM DESC
    </select> 
+   
+
    
    <select id="getFileDetail" parameterType="MenuFileVO" resultType="MenuFileVO">
    		SELECT * FROM MENUFILE WHERE FILENUM=#{fileNum}
