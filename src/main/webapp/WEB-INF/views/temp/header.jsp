@@ -22,9 +22,13 @@
 					<li class="nav-item mx-3">
 						<a class="nav-link active" href="/menu/list" id="navbarDropdown" role="button" style="font-size: 20px">MENU</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/menu/list?kind=1">세트메뉴</a></li>
-							<li><a class="dropdown-item" href="/menu/list?kind=2">단품</a></li>
-							<li><a class="dropdown-item" href="/menu/list?kind=3">사이드</a></li>
+							<li><a class="dropdown-item" href="/menu/list?category=1">버거</a></li>
+							<li><a class="dropdown-item" href="/menu/list?category=2">맥런치</a></li>
+							<li><a class="dropdown-item" href="/menu/list?category=3">맥모닝</a></li>
+							<li><a class="dropdown-item" href="/menu/list?category=4">해피스낵</a></li>
+							<li><a class="dropdown-item" href="/menu/list?category=5">사이드&디저트</a></li>
+							<li><a class="dropdown-item" href="/menu/list?category=6">맥카페&음료</a></li>
+							<li><a class="dropdown-item" href="/menu/list?category=7">해피밀</a></li>
 						</ul>
 					</li>
 					<li class="nav-item mx-3">
