@@ -25,13 +25,13 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://d1cua0vf0mkpiy.cloudfront.net/images/web/banner/e844f140-54dc-4a80-9bfc-a1ce88873365.png" class="d-block w-100" alt="...">
+      <img src="https://www.mcdonalds.co.kr/upload/main/banner/1646731135357.png" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://d1cua0vf0mkpiy.cloudfront.net/images/web/banner/a07b5c27-e0de-417b-b1d9-262207957e6c.png" class="d-block w-100" alt="...">
+      <img src="https://www.mcdonalds.co.kr/upload/main/banner/1651049844415.png" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://d1cua0vf0mkpiy.cloudfront.net/images/web/banner/18fba3a8-1e24-48fa-82b0-b0d66831b28d.png" class="d-block w-100" alt="...">
+      <img src="https://www.mcdonalds.co.kr/upload/main/banner/1645007676428.png" class="d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -43,7 +43,7 @@
     <span class="visually-hidden">Next</span>
   </button>
 	</div>
-		<iframe width="100%" height="600px" src="https://www.youtube.com/embed/nmx2OiWEJBs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<iframe width="100%" height="600px" src="https://www.youtube.com/embed/8IkkXQZeKeU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</div>
 
 	<c:import url="./temp/header_script.jsp"></c:import>
