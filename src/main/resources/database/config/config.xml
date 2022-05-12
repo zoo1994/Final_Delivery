@@ -17,5 +17,7 @@
 		<typeAlias type="com.fd.s1.menu.MenuVO" alias="MenuVO"/>
 		<typeAlias type="com.fd.s1.menu.IngredientVO" alias="IngredientVO"/>
 		<typeAlias type="com.fd.s1.menu.MenuFileVO" alias="MenuFileVO"/>
+		<typeAlias type="com.fd.s1.board.notice.NoticeVO" alias="NoticeVO"/>
+		<typeAlias type="com.fd.s1.board.notice.NoticeFilesVO" alias="NoticeFilesVO"/>
 	</typeAliases>
 </configuration>
