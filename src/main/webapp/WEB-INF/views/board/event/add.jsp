@@ -19,21 +19,21 @@
 			<form:form modelAttribute="eventVO" method="post" enctype="multipart/form-data">
 				<div class="row mt-4">
 					<div class="mb-3">
-						<label for="exampleFormControlInput1" class="form-label">Title</label> 
+						<label for="title" class="form-label">Title</label> 
 						<form:input path="title" cssClass="form-control" id="title"/>
 						<div>
 							<form:errors path="title"></form:errors>
 						</div>
 					</div>
 					<div class="mb-3">
-						<label for="exampleFormControlInput2" class="form-label">Writer</label>
-						<form:input path="id" cssClass="form-control" id="id" readonly="readonly" value="로그인기능"/> 
+						<label for="id" class="form-label">Writer</label>
+						<form:input path="id" cssClass="form-control" id="id" readonly="true" value="로그인기능"/> 
 						<div>
 							<form:errors path="id"></form:errors>
 						</div>
 					</div>
 					<div class="mb-3">
-						<label for="exampleFormControlTextarea1" class="form-label" id="content"></label>
+						<label for="contents" class="form-label" id="content"></label>
 						<form:textarea path="contents" id="contents" cssClass="form-control"/>
 						<div>
 							<form:errors path="contents"></form:errors>

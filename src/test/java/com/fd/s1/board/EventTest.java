@@ -17,6 +17,8 @@ public class EventTest {
 	@Autowired
 	private EventMapper eventMapper;
 	
+	
+	
 	//@Test
 	public void listTest()throws Exception{
 		//List<EventVO> ar = eventMapper.getList();
@@ -24,6 +26,11 @@ public class EventTest {
 	}
 	
 	@Test
+	public void text ()throws Exception{
+		String a = "123456";
+	}
+	
+	//@Test
 	public void addTest()throws Exception{
 		for(int i =  0; i<100 ;i++) {
 		EventVO eventVO = new EventVO();
