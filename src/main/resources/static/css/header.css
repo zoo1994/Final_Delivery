@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+
+
+.nav>ul>li:hover .dropdown-menu{
+	display:block;
+}
+
+.nav>ul>li>a:hover {
+	color:red!important;
+}
+
+.nav>ul>li>a {
+	color: white!important;
+}
+
+
+.navbar{
+	background-color: orange;
+}
+
+@media screen and (max-width: 992px){
+	
+	.nav{
+	flex-direction: column;
+	}
+	.navbar-nav{
+	flex-direction: column;
+	}
+	.navbar{
+	flex-direction: column;
+	}
+	.show{
+	background-color: orange;
+	border: 1px solid white;
+	}
+	.dropdown-menu{
+		display:block;
+		background-color: orange;
+		border: 1px solid white;
+		
+	}
+	
+	
+}

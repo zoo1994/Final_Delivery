@@ -10,16 +10,15 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <link
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
 	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 
 </head>
 <body>
+	<c:import url="../../temp/header.jsp"></c:import>
 	<div
 		class="my-5 container border rounded justify-content-center d-flex">
 		<form:form modelAttribute="qnaVO" action="./update" method="post"
@@ -28,7 +27,7 @@
 			<h1 class="my-5">문의 수정</h1>
 			<div class="my-3 row">
 				<label class="col-3">고객명</label>
-				<form:input path="id" id="id" cssClass="col form-control"/>
+				<form:input path="id" id="id" cssClass="col form-control" />
 				<form:errors path="id"></form:errors>
 				<div class="col-5"></div>
 			</div>
@@ -90,23 +89,26 @@
 				<form:errors path="contents"></form:errors>
 			</div>
 			<c:forEach items="${qnaVO.filesVOs}" var="f">
-				<h3>${f.oriName}<button type="button" id="fileDel" class="btn btn-danger fileDel"
-						data-num="${f.fileNum}" data-name="${f.fileName}">삭제</button>
+				<h3>${f.oriName}<button type="button" id="fileDel"
+						class="btn btn-danger fileDel" data-num="${f.fileNum}"
+						data-name="${f.fileName}">삭제</button>
 				</h3>
 			</c:forEach>
 
 
 			<div id="fileResult"></div>
 			<div>
-				<button id="fileAdd" type="button"
-					class="btn btn-outline-success">FileAdd</button>
+				<button id="fileAdd" type="button" class="btn btn-outline-success">FileAdd</button>
 			</div>
 			<button type="button" class="btn btn-primary my-5" id="update">update</button>
-			
+
 		</form:form>
-		
+
 	</div>
+	<c:import url="../../temp/header_script.jsp"></c:import>
 	<script src="../js/file.js"></script>
+	<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 	<script type="text/javascript">
 		$('#contents').summernote({
 			height : 400
@@ -137,8 +139,8 @@
 			formData.append("phone", phone);
 			formData.append("title", title);
 			formData.append("contents", contents);
-			$('.form-control-lg').each(function(idx,item){
-				formData.append("files",item.files[0]);
+			$('.form-control-lg').each(function(idx, item) {
+				formData.append("files", item.files[0]);
 			})
 			console.log(formData);
 
