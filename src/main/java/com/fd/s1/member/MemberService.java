@@ -13,4 +13,8 @@ public class MemberService {
 		return memberMapper.join(memberVO);
 	}
 	
+	public MemberVO login(MemberVO memberVO)throws Exception{
+		return memberMapper.login(memberVO);
+	}
+	
 }

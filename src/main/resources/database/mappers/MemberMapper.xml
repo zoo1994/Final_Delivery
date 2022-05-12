@@ -12,4 +12,8 @@
     		INSERT INTO USER (ID,PW,NAME,EMAIL,PHONE,POINT,GENDER,ROADADDRESS,DETAILADDRESS,BIRTH,USERTYPE)
     		VALUES (#{id},#{pw},#{name},#{email},#{phone},0,#{gender},#{roadAddress},#{detailAddress},#{birth},0)
     	</insert>
+    	
+    	<select id="login" parameterType="MemberVO" resultType="MemberVO">
+    		SELECT * FROM USER WHERE ID=#{id} AND PW = #{pw}
+    	</select>
     </mapper>
