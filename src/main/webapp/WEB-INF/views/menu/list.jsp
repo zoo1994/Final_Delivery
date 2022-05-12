@@ -21,20 +21,52 @@
 <body>
 	<div class="container mt-4">
 
-	
-	<div class="row mt-4 justify-content-left">
-		<c:forEach items="${list}" var="vo">
-	
-			<div class="card col-3 detail mx-5 mb-3" data-num="${vo.menuNum}">
-			  <img src="../resources/upload/menu/${vo.menuFileVO.fileName}" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <p class="card-text">${vo.menuName}</p>
-			    <p class="card-text">${vo.menuEng}</p>
-			  </div>
-			</div>
+		<div class="row">
+			
+			<ul class="nav justify-content-center cateList">
+				  <li class="nav-item">
+				    <a class="nav-link category" aria-current="page" href="#">전체메뉴</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link category" href="#" data-cate="1">버거</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link category" href="#" data-cate="2">맥런치</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link category" href="#" data-cate="3">맥모닝</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link category" href="#" data-cate="4">해피스낵</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link category" href="#" data-cate="5">사이드&디저트</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link category" href="#" data-cate="6">맥카페&음료</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link category"  href="#" data-cate="7">해피밀</a>
+				  </li>
+				</ul>	
+			
+		</div>	
+	<div class="row menuResult">
+	  	<div class="row mt-4 justify-content-left">
+			<c:forEach items="${list}" var="vo">
 		
-		</c:forEach>
-		
+				<div class="card col-3 detail mx-5 mb-3" data-num="${vo.menuNum}">
+				  <img src="../resources/upload/menu/${vo.menuFileVO.fileName}" class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <p class="card-text">${vo.menuName}</p>
+				    <p class="card-text">${vo.menuEng}</p>
+				  </div>
+				</div>
+			
+			</c:forEach>
+			 
+			
+		</div> 
 		
 	</div>
 	
@@ -55,6 +87,8 @@
 		let num = $(this).attr("data-num");
 		location.href="./detail?menuNum="+num;
 	});
+	
+
 </script>
 </body>
 </html>

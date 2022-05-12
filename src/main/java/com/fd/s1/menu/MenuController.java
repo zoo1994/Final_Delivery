@@ -44,6 +44,7 @@ public class MenuController {
 		return mv;
 	}
 	
+	
 	@GetMapping("detail")
 	public ModelAndView getDetail(MenuVO menuVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -65,6 +66,7 @@ public class MenuController {
 	public ModelAndView setAdd(@Valid MenuVO menuVO, BindingResult bindingResult, MultipartFile file) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("post 진입");
+		System.out.println(bindingResult.getFieldError());
 		if(bindingResult.hasErrors()) {
 			mv.setViewName("menu/add");
 			return mv;
