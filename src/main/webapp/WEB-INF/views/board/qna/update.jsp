@@ -105,6 +105,7 @@
 		</form:form>
 
 	</div>
+			<c:import url="../../temp/footer.jsp"></c:import>
 	<c:import url="../../temp/header_script.jsp"></c:import>
 	<script src="../js/file.js"></script>
 	<script
