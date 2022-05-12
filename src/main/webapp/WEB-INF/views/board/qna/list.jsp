@@ -13,6 +13,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
+	<c:import url="../../temp/header.jsp"></c:import>
 	<h1>Question List</h1>
 
 	<div class="container">
@@ -38,10 +39,23 @@
 
 			</tbody>
 		</table>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+						<li class="page-item"><a class="page-link"
+							href="./list?pn=${pager.pre?pager.startNum-1:1}&kind=${kind}&search=${search}">&lt;</a></li>
+					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+						<li class="page-item"><a class="page-link"
+							href="./list?pn=${i}&kind=${kind}&search=${search}">${i}</a></li>
+					</c:forEach>
+					<li class="page-item"><a class="page-link"
+						href="./list?pn=${pager.next? pager.lastNum+1:pager.lastNum}&kind=${kind}&search=${search}">&gt;</a></li>
+				</ul>
+			</nav>
+		
 		<a href="./add" class="btn btn-primary">ADD</a>
 
 	</div>
 
-
+	<c:import url="../../temp/header_script.jsp"></c:import>
 </body>
 </html>

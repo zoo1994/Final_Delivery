@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fd.s1.util.Pager;
 
 @Controller
 @RequestMapping("/qna/*")
@@ -21,29 +24,32 @@ public class QnaController {
 	private QnaService qnaService;
 
 	@GetMapping("list")
-	public ModelAndView getQnaList() throws Exception {
+	public ModelAndView getQnaList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<QnaVO> ar = qnaService.getQnaList();
+		List<QnaVO> ar = qnaService.getQnaList(pager);
 		mv.addObject("list", ar);
-		mv.setViewName("qna/list");
+		mv.setViewName("board/qna/list");
 		return mv;
 	}
 
 	@GetMapping("add")
-	public void setQnaAdd(@ModelAttribute QnaVO qnaVO) throws Exception {
+	public ModelAndView setQnaAdd(@ModelAttribute QnaVO qnaVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/qna/add");
+		return mv;
 	}
 
 	@PostMapping("add")
-	public ModelAndView setQnaAdd(@Valid QnaVO qnaVO, BindingResult bindingResult) throws Exception {
+	public ModelAndView setQnaAdd(@Valid QnaVO qnaVO, BindingResult bindingResult, MultipartFile [] files) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
+		
 		if (bindingResult.hasErrors()) {
-			mv.setViewName("qna/add");
+			mv.setViewName("board/qna/add");
 			System.out.println("error :"+bindingResult);
 			return mv;
 		}
-
-		int result = qnaService.setQnaAdd(qnaVO);
+		
+		int result = qnaService.setQnaAdd(qnaVO,files);
 		if (result > 0) {
 			mv.addObject("result", result);
 			mv.setViewName("common/result");
@@ -56,7 +62,7 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 		qnaVO=qnaService.getQnaDetail(qnaVO);
 		mv.addObject("qnaVO", qnaVO);
-		mv.setViewName("qna/update");
+		mv.setViewName("board/qna/update");
 		return mv;
 	}
 
@@ -64,13 +70,13 @@ public class QnaController {
 	public ModelAndView setQnaUpdate(@Valid QnaVO qnaVO, BindingResult bindingResult) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		if (bindingResult.hasErrors()) {
-			mv.setViewName("qna/add");
+			mv.setViewName("board/qna/update");
 			System.out.println("error :"+bindingResult);
 			return mv;
 		}
 		int result = qnaService.setQnaUpdate(qnaVO);
 
-		mv.setViewName("qna/update");
+		mv.setViewName("board/qna/update");
 		if (result > 0) {
 			mv.addObject("result", result);
 			mv.setViewName("common/result");
@@ -89,6 +95,7 @@ public class QnaController {
 	@GetMapping("addSuccess")
 	public ModelAndView qnaAddSuccess() throws Exception {
 		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/qna/addSuccess");
 		return mv;
 	}
 
@@ -97,7 +104,16 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 		qnaVO = qnaService.getQnaDetail(qnaVO);
 		mv.addObject("vo", qnaVO);
-		mv.setViewName("qna/detail");
+		mv.setViewName("board/qna/detail");
+		return mv;
+	}
+	
+	@PostMapping("fileDelete")
+	public ModelAndView setQnaFileDelete(QnaFilesVO qnaFilesVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = qnaService.setQnaFileDelete(qnaFilesVO);
+		mv.setViewName("common/result");
+		mv.addObject("result", result);
 		return mv;
 	}
 
