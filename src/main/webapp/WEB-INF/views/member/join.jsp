@@ -96,7 +96,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="email" class="form-label">이메일 </label>
-						<form:input path="email" cssClass="form-control" id="email" />
+						<form:input path="email" cssClass="form-control" id="email" data-address="${ productVO.Address}"/>
 						<div>
 							<form:errors path="email"></form:errors>
 						</div>

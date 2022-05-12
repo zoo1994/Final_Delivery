@@ -24,7 +24,7 @@ public class MessageController {
 		Message message = new Message();
 		message.setFrom("01084162122");
 		message.setTo("01082968416");
-		message.setText("다시한번");
+		message.setText("testmessage");
 		SingleMessageSentResponse response =  ms.sendOne(new SingleMessageSendingRequest(message));
 		return response;
 		

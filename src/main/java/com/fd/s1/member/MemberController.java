@@ -1,6 +1,8 @@
 package com.fd.s1.member;
 
 
+import java.time.LocalDate;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MemberCheck memberCheck;
 	
 	@GetMapping("join")
 	public ModelAndView join(@ModelAttribute MemberVO memberVO)throws  Exception{
@@ -28,11 +32,23 @@ public class MemberController {
 	@PostMapping("join")
 	public ModelAndView join(@Valid MemberVO memberVO,BindingResult bindingResult)throws  Exception{
 		ModelAndView mv = new ModelAndView();
-		if(memberService.memberError(memberVO, bindingResult)) {
+		String path = "/";
+		String message = "회원가입이 완료되었습니다.";
+		if(memberCheck.memberError(memberVO, bindingResult)) {
 			mv.setViewName("member/join");
 			return mv;
 		}
-		mv.setViewName("redirect:./");
+		LocalDate birth = memberCheck.makeBirth(memberVO.getYear(), memberVO.getMonth(), memberVO.getDay());
+		memberVO.setBirth(birth);
+		int result = memberService.join(memberVO);
+		if(result<1) {
+			path="member/join";
+			message="회원가입 실패";
+		}
+		mv.addObject("path",path);
+		mv.addObject("message",message);
+		mv.setViewName("common/joinResult");
 		return mv;
 	}
+	
 }

@@ -1,6 +1,7 @@
 package com.fd.s1.member;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -24,7 +25,7 @@ public class MemberVO {
 	private String phone;
 	private Long point;
 	private Long gender;
-	private Date birth;
+	private LocalDate birth;
 	@NotNull(message="연도를 입력하세요.")
 	private Long year;
 	private String month;
