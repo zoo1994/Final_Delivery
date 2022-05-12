@@ -134,6 +134,7 @@
 				<div>
 					<form:errors path="roadAddress"></form:errors>
 				</div>
+				<button type="button" id="messageBtn">번호인증</button>
 
 				<div class="row justify-content-end">
 					<button type="submit" class="col-1 btn btn-outline-success">join</button>
@@ -142,6 +143,7 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="../js/map.js"></script>
+	<script type="text/javascript" src="../js/join.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
