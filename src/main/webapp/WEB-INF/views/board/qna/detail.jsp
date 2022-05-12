@@ -46,6 +46,7 @@
 	<a href="./delete?num=${vo.num}" class="btn btn-primary">DELETE</a>
 	<a href="./list" class="btn btn-primary">리스트</a>
 	</div>
+			<c:import url="../../temp/footer.jsp"></c:import>
 		<c:import url="../../temp/header_script.jsp"></c:import>
 </body>
 </html>

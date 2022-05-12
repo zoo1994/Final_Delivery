@@ -35,6 +35,7 @@
 		</div>
 		</div>
 	</div>
+			<c:import url="../../temp/footer.jsp"></c:import>
 		<c:import url="../../temp/header_script.jsp"></c:import>
 </body>
 </html>

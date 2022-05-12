@@ -55,7 +55,7 @@
 		<a href="./add" class="btn btn-primary">ADD</a>
 
 	</div>
-
+		<c:import url="../../temp/footer.jsp"></c:import>
 	<c:import url="../../temp/header_script.jsp"></c:import>
 </body>
 </html>
