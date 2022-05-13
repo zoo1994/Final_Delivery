@@ -22,6 +22,7 @@ public class MemberVO {
 	@Email(message="이메일 형식에 맞게 입력해주세요.")
 	@NotBlank(message="필수 입력 정보입니다.")
 	private String email;
+	@NotBlank(message="필수 입력 정보입니다.")
 	private String phone;
 	private Long point;
 	private Long gender;

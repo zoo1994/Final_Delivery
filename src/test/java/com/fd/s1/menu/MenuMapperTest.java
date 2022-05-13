@@ -41,7 +41,7 @@ class MenuMapperTest {
 		assertNotNull(menuVO);
 	}
 	
-	@Test
+	//@Test
 	public void setDeleteTest() throws Exception {
 		MenuVO menuVO = new MenuVO();
 		menuVO.setMenuNum(3);

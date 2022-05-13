@@ -101,12 +101,14 @@
 							<form:errors path="email"></form:errors>
 						</div>
 					</div>
-					<div class="mb-3">
+					<div class="mb-3" id="divv">
 						<label for="phone" class="form-label">전화번호 </label>
 						<form:input path="phone" cssClass="form-control" id="phone" />
-						<div>
+						<div  id="phoneDiv">
 							<form:errors path="phone"></form:errors>
 						</div>
+						<button type="button" id="messageBtn" class="col-1 btn btn-outline-success">번호인증</button>
+						<div id="numBox"></div>
 					</div>
 				</div>
 				<div class="input-group mb-3">
@@ -134,7 +136,6 @@
 				<div>
 					<form:errors path="roadAddress"></form:errors>
 				</div>
-				<button type="button" id="messageBtn">번호인증</button>
 
 				<div class="row justify-content-end">
 					<button type="submit" class="col-1 btn btn-outline-success">join</button>
@@ -142,6 +143,7 @@
 			</form:form>
 		</div>
 	</div>
+	<script type="text/javascript" src="../js/memberCheck.js"></script>
 	<script type="text/javascript" src="../js/map.js"></script>
 	<script type="text/javascript" src="../js/join.js"></script>
 	<script

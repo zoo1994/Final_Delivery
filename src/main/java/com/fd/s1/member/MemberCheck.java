@@ -17,17 +17,18 @@ public class MemberCheck {
 	public boolean memberError(MemberVO memberVO, BindingResult bindingResult)throws Exception{
 		boolean check = false;
 		check = bindingResult.hasErrors();
-	
+		//핸드폰번호 인증
+		//비밀번호 검증
 		if(!memberVO.getPw().equals(memberVO.getCheckPw())) {
 			check = true;
 			bindingResult.rejectValue("checkPw","member.password.notEqual");
 		}
-	
+		//성별검증
 		if(memberVO.getGender()==2) {
 			check = true;
 			bindingResult.rejectValue("gender","member.gender.blank");
 		}
-		
+		//생일검증
 		Long year = (long)LocalDate.now().getYear();
 		boolean birthCheck = true;
 		if(memberVO.getYear()==null) {
@@ -61,7 +62,7 @@ public class MemberCheck {
 				bindingResult.rejectValue("year","member.day.check");
 			}
 		}
-
+		//주소검증
 		if(memberVO.getRoadAddress().isEmpty()) {
 			check = true;
 			bindingResult.rejectValue("roadAddress","member.roadAddress.blank");
@@ -71,7 +72,7 @@ public class MemberCheck {
 				bindingResult.rejectValue("roadAddress","member.detailAddress.blank");
 			}
 		}
-		
+		//아이디검증 memberVO를 다시 생성하기때문에 항상 마지막에 위치해야함
 		memberVO = memberMapper.idCheck(memberVO);
 		if(memberVO!=null) {
 			check = true;
