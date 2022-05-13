@@ -10,7 +10,7 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-
+<c:import url="../temp/header_script.jsp"></c:import>
 <title>Insert title here</title>
 <style type="text/css">
 	.detail {
@@ -19,38 +19,42 @@
 </style>
 </head>
 <body>
+<c:import url="../temp/header.jsp"></c:import>
+	<div class="row mt-4">
+		<c:choose>
+			<c:when test="${category eq 1}">
+				<img alt="" src="../resources/image/burger.PNG">
+			</c:when>
+			<c:when test="${category eq 2}">
+				<img alt="" src="../resources/image/macLunch.PNG">
+			</c:when>
+			<c:when test="${category eq 3}">
+				<img alt="" src="../resources/image/macMorning.PNG">
+			</c:when>
+			<c:when test="${category eq 4}">
+				<img alt="" src="../resources/image/happySnack.PNG">
+			</c:when>
+			<c:when test="${category eq 5}">
+				<img alt="" src="../resources/image/side.PNG">
+			</c:when>
+			<c:when test="${category eq 6}">
+				<img alt="" src="../resources/image/macCafe.PNG">
+			</c:when>
+			<c:when test="${category eq 7}">
+				<img alt="" src="../resources/image/happyMeal.PNG">
+			</c:when>
+			<c:otherwise>
+				<img alt="" src="../resources/image/burger.PNG">
+			</c:otherwise>
+		</c:choose>
+	</div>
 	<div class="container mt-4">
-
-		<div class="row">
-			
-			<ul class="nav justify-content-center cateList">
-				  <li class="nav-item">
-				    <a class="nav-link category" aria-current="page" href="#">전체메뉴</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link category" href="#" data-cate="1">버거</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link category" href="#" data-cate="2">맥런치</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link category" href="#" data-cate="3">맥모닝</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link category" href="#" data-cate="4">해피스낵</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link category" href="#" data-cate="5">사이드&디저트</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link category" href="#" data-cate="6">맥카페&음료</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link category"  href="#" data-cate="7">해피밀</a>
-				  </li>
-				</ul>	
-			
-		</div>	
+	
+	
+	
+	<div class="row">
+		<p>∘ ${list.size()} Products</p>
+	</div>
 	<div class="row menuResult">
 	  	<div class="row mt-4 justify-content-left">
 			<c:forEach items="${list}" var="vo">
@@ -77,10 +81,7 @@
 
 </div>
 
-<!-- bootStrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<!-- Jquery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script type="text/javascript">
 	$(".detail").click(function() {
 		console.log("click");

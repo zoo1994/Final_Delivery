@@ -16,8 +16,8 @@ class MenuMapperTest {
 	
 	//@Test
 	public void getListTest() throws Exception {
-		List<MenuVO> ar = menuMapper.getList();
-		assertEquals(1, ar.size());			
+		//List<MenuVO> ar = menuMapper.getList();
+		//assertEquals(1, ar.size());			
 	}
 	
 	//@Test
