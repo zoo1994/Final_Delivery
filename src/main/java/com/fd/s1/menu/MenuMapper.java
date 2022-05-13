@@ -14,7 +14,7 @@ public interface MenuMapper {
 	
 	public MenuFileVO getFileDetail(MenuFileVO menuFileVO) throws Exception;
 	
-	public List<MenuVO> getList() throws Exception;
+	public List<MenuVO> getList(MenuVO menuVO) throws Exception;
 	
 	public int setAdd(MenuVO menuVO) throws Exception;
 	
