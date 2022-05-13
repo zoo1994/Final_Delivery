@@ -33,7 +33,7 @@ public class EventTest {
 	@Value("${apiSecret}")
 	private String apiSecret;
 	
-	private DefaultMessageService messageService;
+//	private DefaultMessageService messageService;
 	
 	//@Test
 	public void listTest()throws Exception{
@@ -52,17 +52,17 @@ public class EventTest {
 //	}
 	
 	//@Test
-	public void sendOne() {
-		System.out.println("실행");
-		DefaultMessageService ms= NurigoApp.INSTANCE.initialize(apikey,apiSecret, "https://api.coolsms.co.kr");
-		Message message = new Message();
-		message.setFrom("01084162122");
-		message.setTo("01082968416");
-		message.setText("실험");
-		SingleMessageSentResponse response =  ms.sendOne(new SingleMessageSendingRequest(message));
-		System.out.println(response);
-		
-	}
+//	public void sendOne() {
+//		System.out.println("실행");
+//		DefaultMessageService ms= NurigoApp.INSTANCE.initialize(apikey,apiSecret, "https://api.coolsms.co.kr");
+//		Message message = new Message();
+//		message.setFrom("01084162122");
+//		message.setTo("01082968416");
+//		message.setText("실험");
+//		SingleMessageSentResponse response =  ms.sendOne(new SingleMessageSendingRequest(message));
+//		System.out.println(response);
+//		
+//	}
 	
 	//@Test
 	public void addTest()throws Exception{
