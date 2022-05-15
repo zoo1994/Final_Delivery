@@ -49,6 +49,7 @@ public class MessageController {
 		String checkNum = String.valueOf(a)+String.valueOf(b)+String.valueOf(c)+String.valueOf(d);
 		String phone= memberVO.getPhone();
 		mv.setViewName("common/result");
+		//db에서 핸드폰번호중복검사
 		memberVO = memberService.phoneCheck(memberVO);
 		if(memberVO!=null) {
 			mv.addObject("result","이미 등록된 핸드폰번호입니다.");
@@ -67,8 +68,6 @@ public class MessageController {
 	
 	@PostMapping("/checkNum")
 	public ModelAndView checkNum(PhoneCheckVO phoneCheckVO,String num)throws Exception{
-		System.out.println(phoneCheckVO.getPhone());
-		System.out.println(num);
 		ModelAndView mv  = new ModelAndView();
 		mv.setViewName("common/result");
 		phoneCheckVO = memberService.numCheck(phoneCheckVO);
