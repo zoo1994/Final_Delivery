@@ -21,6 +21,7 @@ public class MenuVO {
 	private String menuDetail;
 	private Integer menuSale;
 	private Integer category;
+	private String id;
 	
 	private MenuFileVO menuFileVO;
 	private IngredientVO ingredientVO;

@@ -16,38 +16,20 @@
 	.detail {
 		cursor:pointer;
 	}
+	
+	.card {
+		background-color:#F5F5F5;
+	}
+	.card:hover {
+		background-color:#fff;
+		border-color: orange !important;
+	}
+	
 </style>
 </head>
 <body>
 <c:import url="../temp/header.jsp"></c:import>
-	<div class="row mt-4">
-		<c:choose>
-			<c:when test="${category eq 1}">
-				<img alt="" src="../resources/image/burger.PNG">
-			</c:when>
-			<c:when test="${category eq 2}">
-				<img alt="" src="../resources/image/macLunch.PNG">
-			</c:when>
-			<c:when test="${category eq 3}">
-				<img alt="" src="../resources/image/macMorning.PNG">
-			</c:when>
-			<c:when test="${category eq 4}">
-				<img alt="" src="../resources/image/happySnack.PNG">
-			</c:when>
-			<c:when test="${category eq 5}">
-				<img alt="" src="../resources/image/side.PNG">
-			</c:when>
-			<c:when test="${category eq 6}">
-				<img alt="" src="../resources/image/macCafe.PNG">
-			</c:when>
-			<c:when test="${category eq 7}">
-				<img alt="" src="../resources/image/happyMeal.PNG">
-			</c:when>
-			<c:otherwise>
-				<img alt="" src="../resources/image/burger.PNG">
-			</c:otherwise>
-		</c:choose>
-	</div>
+	<c:import url="../common/categoryBenner.jsp"></c:import>
 	<div class="container mt-4">
 	
 	
@@ -60,10 +42,10 @@
 			<c:forEach items="${list}" var="vo">
 		
 				<div class="card col-3 detail mx-5 mb-3" data-num="${vo.menuNum}">
-				  <img src="../resources/upload/menu/${vo.menuFileVO.fileName}" class="card-img-top" alt="...">
+				  <img src="../resources/upload/menu/${vo.menuFileVO.fileName}" class="card-img-top menuImg" alt="...">
 				  <div class="card-body">
-				    <p class="card-text">${vo.menuName}</p>
-				    <p class="card-text">${vo.menuEng}</p>
+				    <p class="card-text text-center fw-bolder">${vo.menuName}</p>
+				    <p class="card-text text-center text-muted">${vo.menuEng}</p>
 				  </div>
 				</div>
 			
@@ -75,9 +57,7 @@
 	</div>
 	
 	
-		<div class="col-1">
-			<a href="./add" type="button" class="btn btn-outline-primary">WRITE</a>
-		</div>
+
 
 </div>
 

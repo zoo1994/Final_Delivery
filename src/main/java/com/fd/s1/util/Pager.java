@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class Pager {
 	
+	private Integer category;
+	private Long userType;
 	private Integer perPage;
 	private Integer startRow;
 	private Integer pn;
@@ -81,4 +83,5 @@ public class Pager {
 		}
 		return this.search;
 	}
+
 }
