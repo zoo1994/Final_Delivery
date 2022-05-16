@@ -1,6 +1,9 @@
 let checkk = true;
+
 $("#messageBtn").click(function(){
 		if(!phoneCheck){
+			$("#phoneDiv").text("")
+       		$("#phoneDiv").text("휴대폰 번호를 입력해주세요.")
 			return;
 		}
 		$.ajax({
@@ -14,16 +17,17 @@ $("#messageBtn").click(function(){
 				if(data.trim()==""){
 					makeNumBox();
 					phoneCheck=false;
+					$("#phone").attr("readonly","true");
 				}
 			},
 			error:function(){
-				alert("파일 삭제 실패")
+				alert("실패")
 			}
 		}); 
 	
 });
 function makeNumBox(){
-	let v = '<div class="mb-3"><input type="text" id="checkNum" class="form-control" placeholder="인증번호" /><div id="boxMessage">3분이내에 인증번호를 입력하세요.</div><button type="button" id="checkNumBtn" class="col-1 btn btn-outline-success">인증확인</button></div>';
+	let v = '<div class="mb-3"><input type="text" id="checkNum" class="form-control" placeholder="인증번호" /><div id="boxMessage">5분이내에 인증번호를 입력하세요.</div><button type="button" id="checkNumBtn" class="col-1 btn btn-outline-success">인증확인</button></div>';
 	$("#numBox").append(v);	
 					
 }
@@ -42,13 +46,19 @@ $("#divv").on("click","#checkNumBtn",function(){
 				$("#boxMessage").html(data.trim());
 				if(data.trim()=="인증이 성공하였습니다."){
 					$("#checkNum").attr("readonly","true")
+					numCheck = true;
 					checkk=false;
 				}
 			},
 			error:function(){
-				alert("파일 삭제 실패")
+				alert("실패")
 			}
 		}); 
 	}
 	
 })
+$("#joinBtn").click(function(){
+	if(numCheck){
+		$("#joinForm").submit();
+	}
+});

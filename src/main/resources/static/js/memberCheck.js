@@ -1,4 +1,5 @@
 	let phoneCheck = false;
+	let numCheck = false;
 $("#phone").blur(function(){
     const phone = $("#phone").val();
     if(phone.substring(0,3)!="010"){

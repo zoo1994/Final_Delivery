@@ -5,8 +5,23 @@
  
     <mapper namespace="com.fd.s1.member.MemberMapper">
     	
+    	<delete id="delPhoneCheck" parameterType="java.time.LocalDate">
+    		<![CDATA[
+    			DELETE FROM  PHONECHECK WHERE REQUESTTIME < #{time}
+    		]]>
+    	</delete>
+    	
+    	
+    	<update id="updateCount" parameterType="PhoneCheckVO"  >
+    		UPDATE PHONECHECK SET COUNT = #{count} WHERE NUM = #{num}
+    	</update>
+    	
+    	<select id="hourNumber" parameterType="PhoneCheckVO" resultType="PhoneCheckVO">
+    		SELECT *FROM PHONECHECK WHERE PHONE = #{phone} AND REQUESTTIME BETWEEN #{startTime} AND #{lastTime}
+    	</select>
+    	
     	<select id="numCheck" parameterType="PhoneCheckVO" resultType="PhoneCheckVO">
-    		SELECT * FROM PHONECHECK WHERE NUMBER = (SELECT  MAX(NUMBER) FROM PHONECHECK WHERE PHONE = #{phone});
+    		SELECT * FROM PHONECHECK WHERE NUM = (SELECT  MAX(NUM) FROM PHONECHECK WHERE PHONE = #{phone});
     	</select>
     	
     	<select id="phoneCheck" parameterType="MemberVO" resultType="MemberVO">
@@ -14,8 +29,8 @@
     	</select>
     	
     	<insert id="setNumCheck" parameterType="PhoneCheckVO">
-    		INSERT INTO PHONECHECK(NUMBER,PHONE,REQUESTTIME,CHECKNUMBER)
-    		VALUES (null,#{phone},#{requestTime},#{checkNumber})
+    		INSERT INTO PHONECHECK(NUM,PHONE,REQUESTTIME,CHECKNUMBER,COUNT)
+    		VALUES (null,#{phone},#{requestTime},#{checkNumber},0)
     	</insert>
     
     	<select id="idCheck" parameterType="MemberVO" resultType="MemberVO">

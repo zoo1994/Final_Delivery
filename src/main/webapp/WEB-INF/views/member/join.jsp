@@ -24,7 +24,7 @@
 <body>
 	<div class="container mt-4">
 		<div class="row mt-4">
-			<form:form modelAttribute="memberVO" method="post"
+			<form:form modelAttribute="memberVO" id="joinForm" method="post"
 				enctype="multipart/form-data">
 				<div class="row mt-4">
 					<div class="mb-3">
@@ -138,7 +138,7 @@
 				</div>
 
 				<div class="row justify-content-end">
-					<button type="submit" class="col-1 btn btn-outline-success">join</button>
+					<button type="button" id="joinBtn" class="col-1 btn btn-outline-success">join</button>
 				</div>
 			</form:form>
 		</div>

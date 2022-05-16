@@ -1,5 +1,8 @@
 package com.fd.s1.member;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +14,16 @@ public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
+	
+	public int delPhoneCheck(LocalDate time)throws Exception{
+		return memberMapper.delPhoneCheck(time);
+	}
+	public int updateCount(PhoneCheckVO phoneCheckVO)throws Exception{
+		return memberMapper.updateCount(phoneCheckVO);
+	}
+	public List<PhoneCheckVO> hourNumber(PhoneCheckVO phoneCheckVO)throws Exception{
+		return memberMapper.hourNumber(phoneCheckVO);
+	}
 	public PhoneCheckVO numCheck(PhoneCheckVO phoneCheckVO)throws Exception{
 		return memberMapper.numCheck(phoneCheckVO);
 	}

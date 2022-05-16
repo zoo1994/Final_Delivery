@@ -1,10 +1,14 @@
 package com.fd.s1.util;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +22,7 @@ import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
 import net.nurigo.sdk.message.response.SingleMessageSentResponse;
 import net.nurigo.sdk.message.service.DefaultMessageService;
 
+@EnableScheduling
 @RestController
 public class MessageController {
 	@Value("${apikey}")
@@ -31,7 +36,7 @@ public class MessageController {
 //	휴대폰번호 형식이 맞는지 확인
 //	db에 휴대폰번호가 있는지 확인한다
 //	있으면 있는번호 
-//	없으면 메세지전송
+//  하루 최대 5번
 //	메시지 전송후 5분이내에 입력
 //  입력횟수제한
 //	하루 최대 5번 횟수제한
@@ -58,7 +63,16 @@ public class MessageController {
 		//this.sendOne(phone, checkNum);
 		PhoneCheckVO phoneCheckVO = new PhoneCheckVO();
 		LocalDateTime time = LocalDateTime.now();
+		LocalDateTime startTime = LocalDateTime.of(time.getYear(), time.getMonth(),time.getDayOfMonth() , time.getHour(), 0, 0, 0);
+		LocalDateTime lastTime = startTime.plusHours(1);
+		phoneCheckVO.setStartTime(startTime);
+		phoneCheckVO.setLastTime(lastTime);
 		phoneCheckVO.setPhone(phone);
+		List<PhoneCheckVO> ar = memberService.hourNumber(phoneCheckVO);
+		if(ar.size()>4) {
+			mv.addObject("result","한시간에 최대 5번 인증가능합니다.");
+			return mv;
+		}
 		phoneCheckVO.setCheckNumber(checkNum);
 		phoneCheckVO.setRequestTime(time);
 		memberService.setNumCheck(phoneCheckVO);
@@ -71,11 +85,22 @@ public class MessageController {
 		ModelAndView mv  = new ModelAndView();
 		mv.setViewName("common/result");
 		phoneCheckVO = memberService.numCheck(phoneCheckVO);
-		System.out.println(phoneCheckVO.getCheckNumber());
-		if(phoneCheckVO.getCheckNumber().equals(num)) {
-			mv.addObject("result","인증이 성공하였습니다.");
+		phoneCheckVO.getRequestTime().plusMinutes(5).isAfter(LocalDateTime.now());
+		if(phoneCheckVO.getRequestTime().plusMinutes(5).isAfter(LocalDateTime.now())) {
+			phoneCheckVO.setCount(phoneCheckVO.getCount()+1);
+			memberService.updateCount(phoneCheckVO);
+			if(phoneCheckVO.getCount()<6) {
+				if(phoneCheckVO.getCheckNumber().equals(num)) {
+					mv.addObject("result","인증이 성공하였습니다.");
+				}else {
+					mv.addObject("result","인증번호가 다릅니다.");
+				}
+			}else {
+				mv.addObject("result","인증은 최대 5회까지 가능합니다.");
+			}
+			
 		}else {
-			mv.addObject("result","인증번호가 다릅니다.");
+			mv.addObject("result","시간이 초과되었습니다.");
 		}
 		return mv;
 	}
@@ -90,6 +115,12 @@ public class MessageController {
 		SingleMessageSentResponse response =  ms.sendOne(new SingleMessageSendingRequest(message));
 		return response;
 		
+	}
+	
+	@Scheduled(cron="0 0 0 * * *")
+	public void del()throws Exception{
+		LocalDate time = LocalDate.now().plusDays(-1);
+		memberService.delPhoneCheck(time);
 	}
 	
 }

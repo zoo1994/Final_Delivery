@@ -10,4 +10,7 @@ public class PhoneCheckVO {
 	private String phone;
 	private LocalDateTime requestTime;
 	private String checkNumber;
+	private Long count;
+	private LocalDateTime startTime;
+	private LocalDateTime lastTime;
 }
