@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fd.s1.member.MemberVO;
 import com.fd.s1.util.Pager;
 
 @Controller
@@ -24,12 +25,12 @@ public class FaqController {
 
 
 	@PostMapping("delete")
-	public ModelAndView setDelete(FaqVO faqVO)throws Exception{
+	public ModelAndView setDelete(FaqVO faqVO, MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		int result = faqService.setDelete(faqVO);
-		
-		mv.setViewName("redirect:./list");
+		int result = faqService.setDelete(faqVO, memberVO);
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
 		return mv;
 		
 	}

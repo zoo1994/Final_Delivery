@@ -8,9 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-
-
-
+import com.fd.s1.member.MemberMapper;
+import com.fd.s1.member.MemberVO;
 import com.fd.s1.util.Pager;
 
 @Service
@@ -20,9 +19,25 @@ public class FaqService {
 	@Autowired
 	private FaqMapper faqMapper;
 
+	@Autowired
+	private MemberMapper memberMapper;
 
-	public int setDelete(FaqVO faqVO)throws Exception{	
-		return faqMapper.setDelete(faqVO);
+
+	public int setDelete(FaqVO faqVO, MemberVO memberVO)throws Exception{	
+				
+		if(memberVO != null) {
+			memberVO = memberMapper.idCheck(memberVO);
+		}else {
+			return 0;
+		}
+		
+		if(memberVO.getUserType() == 2L) {
+			return faqMapper.setDelete(faqVO);
+		}else {
+			return 0;
+		}
+		
+		
 	}
 	
 	public int setUpdate(FaqVO faqVO)throws Exception{			

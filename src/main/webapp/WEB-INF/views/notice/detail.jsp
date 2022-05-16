@@ -39,10 +39,10 @@
 		    <li class="list-group-item">${vo.contents}</li>
 		  </ul>
 		</div>
-
-		<a href="./update?num=${vo.num}" type="button" class="col-1 btn btn-outline-success ">수정</a>
-		<button class="btn btn-outline-success" type="submit">삭제</button>		
-
+		<c:if test="${member.userType == 2}">
+			<a href="./update?num=${vo.num}" type="button" class="col-1 btn btn-outline-success ">수정</a>
+			<button class="btn btn-outline-success" type="submit">삭제</button>		
+		</c:if>
 
 		</form>
 		

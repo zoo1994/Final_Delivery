@@ -61,7 +61,9 @@
 
 				
 		<div class="row justify-content-end">
-			<button type="submit" class="col-1 btn btn-outline-success">수정</button>
+			<c:if test="${member.userType == 2}">
+				<button type="submit" class="col-1 btn btn-outline-success">수정</button>
+			</c:if>
 		</div>
 		</form:form>
 		</div>

@@ -17,8 +17,10 @@
 						      <div class="accordion-body d-flex">
 						        <span class="col-1" style="color: #fd7e14; text-align: center; font-weight: bold;">A　</span>
 						        <span class="col-8">${vo.contents}</span>
+						        <c:if test="${member.userType == 2}">
 						        <span class="col-1"><a href="./update?num=${vo.num}" >수정</a></span>
-						        <span class="col-1"><a href="./detail?num=${vo.num}" >상세</a></span>
+						        <span class="col-1"><button id="deleteBtn${vo.num}" class="delete" style="border: 0; background-color : #fff; font-weight: bold;">삭제</button></span>
+						        </c:if>
 						        <strong></strong> 
 						      </div>
 						    </div>
@@ -46,5 +48,9 @@
 				<%-- 			    <li class="page-item"><button class="page-link" href="./list?pn=${pager.lastNum+1}">>></button></li> --%>
 							  </ul> 
 							  </span> 
-							  <span class="col-2" style="display: inline-block; text-align: end; width: 15%;"><a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a></span>
+							  <span class="col-2" style="display: inline-block; text-align: end; width: 15%;">
+							  	<c:if test="${member.userType == 2}">
+							  		<a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a>
+							  	</c:if>
+							  </span>
 							</nav>

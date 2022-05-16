@@ -25,7 +25,7 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<c:import url="../temp/header_script.jsp"></c:import>
-
+<input hidden id="faqId" value="${member.id}">
 <div id="container">
 	<div class="content">			
 		<!-- //visualArea -->
@@ -145,5 +145,8 @@
 </div>
 <div style="margin-bottom: 200px;"></div>
 <script src="../resources/js/faqList.js"></script>
+<script type="text/javascript">
+
+</script>
 </body>
 </html>
