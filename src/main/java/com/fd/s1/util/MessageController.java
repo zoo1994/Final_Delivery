@@ -60,7 +60,7 @@ public class MessageController {
 			mv.addObject("result","이미 등록된 핸드폰번호입니다.");
 			return mv;
 		}
-		//this.sendOne(phone, checkNum);
+		this.sendOne(phone, checkNum);
 		PhoneCheckVO phoneCheckVO = new PhoneCheckVO();
 		LocalDateTime time = LocalDateTime.now();
 		LocalDateTime startTime = LocalDateTime.of(time.getYear(), time.getMonth(),time.getDayOfMonth() , time.getHour(), 0, 0, 0);
