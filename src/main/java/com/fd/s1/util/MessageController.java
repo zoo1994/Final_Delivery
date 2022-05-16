@@ -16,6 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fd.s1.member.MemberService;
 import com.fd.s1.member.MemberVO;
 
+import net.nurigo.sdk.NurigoApp;
+import net.nurigo.sdk.message.model.Message;
+import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
+import net.nurigo.sdk.message.response.SingleMessageSentResponse;
+import net.nurigo.sdk.message.service.DefaultMessageService;
 
 @EnableScheduling
 @RestController
