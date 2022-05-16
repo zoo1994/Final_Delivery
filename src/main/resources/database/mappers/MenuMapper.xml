@@ -14,11 +14,25 @@
  		VALUES(NULL, #{menuNum}, #{fileName}, #{oriName})
  	</insert>
 
-   <select id="getList" resultMap="joinResult">
-   		SELECT M.*, MF.* FROM MENU M
+   <select id="getList" resultMap="joinResult" parameterType="MenuVO">
+   	   	SELECT M.*, MF.* FROM MENU M
 		LEFT OUTER JOIN MENUFILE MF
 		ON(M.MENUNUM=MF.MENUNUM)
+		<choose>
+			<when test="category != null">
+				WHERE CATEGORY=#{category}			
+			</when>
+			<otherwise>
+				<if test="menuSale != null">
+					WHERE MENUSALE=#{menuSale}
+				</if>
+			</otherwise>
+		</choose>
+	
+		ORDER BY M.MENUNUM DESC
    </select> 
+   
+
    
    <select id="getFileDetail" parameterType="MenuFileVO" resultType="MenuFileVO">
    		SELECT * FROM MENUFILE WHERE FILENUM=#{fileNum}

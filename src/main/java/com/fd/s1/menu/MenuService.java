@@ -38,8 +38,8 @@ public class MenuService {
 		return result;
 	}
 	
-	public List<MenuVO> getList() throws Exception{
-		return menuMapper.getList(); 
+	public List<MenuVO> getList(MenuVO menuVO) throws Exception{
+		return menuMapper.getList(menuVO); 
 	}
 	
 	public int setAdd(MenuVO menuVO, MultipartFile file) throws Exception {

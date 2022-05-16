@@ -96,6 +96,7 @@
 			<button type="button" class="btn btn-primary my-5" id="add">ADD</button>
 		</form:form>
 	</div>
+			<c:import url="../../temp/footer.jsp"></c:import>
 	<c:import url="../../temp/header_script.jsp"></c:import>
 	<script src="../js/file.js"></script>
 	<script

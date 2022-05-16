@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.fd.s1.member.MemberMapper">
+    	
+    	<delete id="delPhoneCheck" parameterType="java.time.LocalDate">
+    		<![CDATA[
+    			DELETE FROM  PHONECHECK WHERE REQUESTTIME < #{time}
+    		]]>
+    	</delete>
+    	
+    	
+    	<update id="updateCount" parameterType="PhoneCheckVO"  >
+    		UPDATE PHONECHECK SET COUNT = #{count} WHERE NUM = #{num}
+    	</update>
+    	
+    	<select id="hourNumber" parameterType="PhoneCheckVO" resultType="PhoneCheckVO">
+    		SELECT *FROM PHONECHECK WHERE PHONE = #{phone} AND REQUESTTIME BETWEEN #{startTime} AND #{lastTime}
+    	</select>
+    	
+    	<select id="numCheck" parameterType="PhoneCheckVO" resultType="PhoneCheckVO">
+    		SELECT * FROM PHONECHECK WHERE NUM = (SELECT  MAX(NUM) FROM PHONECHECK WHERE PHONE = #{phone});
+    	</select>
+    	
+    	<select id="phoneCheck" parameterType="MemberVO" resultType="MemberVO">
+    		SELECT * FROM USER WHERE PHONE=#{phone}
+    	</select>
+    	
+    	<insert id="setNumCheck" parameterType="PhoneCheckVO">
+    		INSERT INTO PHONECHECK(NUM,PHONE,REQUESTTIME,CHECKNUMBER,COUNT)
+    		VALUES (null,#{phone},#{requestTime},#{checkNumber},0)
+    	</insert>
+    
+    	<select id="idCheck" parameterType="MemberVO" resultType="MemberVO">
+    		SELECT *  FROM USER WHERE ID = #{id}
+    	</select>
+    	
+    	<insert id="join" parameterType="MemberVO">
+    		INSERT INTO USER (ID,PW,NAME,EMAIL,PHONE,POINT,GENDER,ROADADDRESS,DETAILADDRESS,BIRTH,USERTYPE)
+    		VALUES (#{id},#{pw},#{name},#{email},#{phone},0,#{gender},#{roadAddress},#{detailAddress},#{birth},0)
+    	</insert>
+    	
+    	<select id="login" parameterType="MemberVO" resultType="MemberVO">
+    		SELECT * FROM USER WHERE ID=#{id} AND PW = #{pw}
+    	</select>
+    </mapper>

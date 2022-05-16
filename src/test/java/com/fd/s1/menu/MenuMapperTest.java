@@ -16,8 +16,8 @@ class MenuMapperTest {
 	
 	//@Test
 	public void getListTest() throws Exception {
-		List<MenuVO> ar = menuMapper.getList();
-		assertEquals(1, ar.size());			
+		//List<MenuVO> ar = menuMapper.getList();
+		//assertEquals(1, ar.size());			
 	}
 	
 	//@Test
@@ -41,7 +41,7 @@ class MenuMapperTest {
 		assertNotNull(menuVO);
 	}
 	
-	@Test
+	//@Test
 	public void setDeleteTest() throws Exception {
 		MenuVO menuVO = new MenuVO();
 		menuVO.setMenuNum(3);

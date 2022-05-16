@@ -53,11 +53,13 @@
 				  </tbody>
 				</table>
 		</div>
+	<div>
+	
+		<a href="./update?menuNum=${vo.menuNum}" class="btn btn-primary">update</a>
+		<a href="./delete?menuNum=${vo.menuNum}" class="btn btn-danger">delete</a>
+	
 	</div>
-	
-	<a href="./update?menuNum=${vo.menuNum}">update</a>
-	<a href="./delete?menuNum=${vo.menuNum}">delete</a>
-	
+	</div>
 	<!-- bootStrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <!-- Jquery -->

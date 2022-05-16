@@ -35,14 +35,26 @@ public class MenuController {
 	}
 	
 	@GetMapping("list")
-	public ModelAndView getList() throws Exception {
+	public ModelAndView getList(MenuVO menuVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<MenuVO> ar = menuService.getList();
+		menuVO.setMenuSale(1); //일반사용자에겐 판매가능 메뉴만 보이게끔
+		List<MenuVO> ar = menuService.getList(menuVO);
 		mv.addObject("list", ar);
+		mv.addObject("category",menuVO.getCategory());
 		mv.setViewName("menu/list");
 		
 		return mv;
 	}
+	
+	@GetMapping("menuManage")
+	public ModelAndView getMenuManage(MenuVO menuVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<MenuVO> ar = menuService.getList(menuVO);
+		mv.addObject("list",ar);
+		mv.setViewName("menu/menuManage");
+		return mv;
+	}
+	
 	
 	@GetMapping("detail")
 	public ModelAndView getDetail(MenuVO menuVO) throws Exception {
@@ -65,6 +77,7 @@ public class MenuController {
 	public ModelAndView setAdd(@Valid MenuVO menuVO, BindingResult bindingResult, MultipartFile file) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("post 진입");
+		System.out.println(bindingResult.getFieldError());
 		if(bindingResult.hasErrors()) {
 			mv.setViewName("menu/add");
 			return mv;
