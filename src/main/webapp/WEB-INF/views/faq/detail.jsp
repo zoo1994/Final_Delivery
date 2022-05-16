@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,15 +27,33 @@
 		    <li class="list-group-item">${vo.title}</li>
 		    <li class="list-group-item">작성자</li>
 		    <li class="list-group-item">${vo.id}</li>
+		    <li class="list-group-item">카테고리</li>
+		    <li class="list-group-item">
+		    <c:choose>
+			    <c:when test="${vo.category eq 1}">
+			    	주문접수
+			    </c:when>
+			    <c:when test="${vo.category eq 2}">
+			    	주문확인
+			    </c:when>
+			    <c:when test="${vo.category eq 3}">
+			    	주문취소/변경
+			    </c:when>
+			    <c:when test="${vo.category eq 4}">
+			    	서비스 이용
+			    </c:when>
+			    <c:when test="${vo.category eq 5}">
+			    	결제
+			    </c:when>
+			    <c:when test="${vo.category eq 6}">
+			    	가맹 및 기타
+			    </c:when>			    			    			    
+		    </c:choose>
+
+		    
+		    
+		    </li>
 		    <li class="list-group-item">내용</li>
-		    <div class="container">
-			<div style="padding: 0 25%;">
-				<img style="width: 100%" alt="" src="../resources/upload/notice/${vo.noticeFilesVO.fileName}">
-			</div>
-		</div>
-		<%--     <c:forEach items="${vo.filesVO}" var="i">
-		    	<img src="/resources/upload/notice/${i.fileName}" class="img-thumbnail" alt="...">
-		    </c:forEach> --%>
 		    <li class="list-group-item">${vo.contents}</li>
 		  </ul>
 		</div>

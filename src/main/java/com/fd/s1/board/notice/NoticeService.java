@@ -130,11 +130,14 @@ public class NoticeService {
 	
 	public List<NoticeVO> getList(Pager pager)throws Exception{
 		pager.makeRow();
-		pager.makeNum(noticeMapper.getTotalCount());
+		pager.makeNum(noticeMapper.getTotalCount(pager));
 		System.out.println("start : "+pager.getStartNum());
 		System.out.println("perPage : "+pager.getPerPage());
 		return noticeMapper.getList(pager);
 	}
 	
+	public Long getListCount(Pager pager) throws Exception{	
+		return noticeMapper.getTotalCount(pager);
+	}
 	
 }

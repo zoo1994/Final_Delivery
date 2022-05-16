@@ -14,6 +14,8 @@ public class NoticeVO {
 	private Date regDate;
 	private Long hit;
 	
+	private Long searchCount;
+	
 	private NoticeFilesVO noticeFilesVO;
 	private List<NoticeFilesVO> noticeFilesVOs;
 	

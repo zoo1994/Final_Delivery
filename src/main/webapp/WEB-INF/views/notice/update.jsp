@@ -8,9 +8,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
 <body>
+	<c:import url="../temp/header.jsp"></c:import>
+	<c:import url="../temp/header_script.jsp"></c:import>
 	<div class="container mt-4">
 		<div class="row mt-4">
 			<form:form modelAttribute="noticeVO" method="post" enctype="multipart/form-data">
@@ -65,7 +67,13 @@
 		</div>
 	</div>
 <script src="../resources/js/noticeFileAdd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>	
 <script type="text/javascript">
+
+	$('#contents').summernote({
+		height : 400
+	});
+
 	fileAddInit(${not empty noticeVO.noticeFilesVO?1:0});
 	fileDeleteInit();
 </script>

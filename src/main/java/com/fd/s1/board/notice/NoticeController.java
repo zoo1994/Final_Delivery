@@ -107,10 +107,11 @@ public class NoticeController {
 	public ModelAndView getList(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<NoticeVO> ar = noticeService.getList(pager);
+		Long count = noticeService.getListCount(pager);
 		mv.setViewName("notice/list");
+		mv.addObject("count", count);
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
-		
 		return mv;
 	}
 

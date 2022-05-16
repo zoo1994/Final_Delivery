@@ -30,7 +30,7 @@ public interface NoticeMapper {
 	
 	public int setDelete(NoticeVO noticeVO)throws Exception;
 	
-	public Long getTotalCount()throws Exception;
+	public Long getTotalCount(Pager pager)throws Exception;
 	
 	
 }

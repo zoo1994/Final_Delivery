@@ -5,8 +5,13 @@
  
     <mapper namespace="com.fd.s1.board.notice.NoticeMapper">
     	
-    	<select id="getList" resultType="NoticeVO">
-    		SELECT * FROM NOTICE WHERE NUM > 0 ORDER BY NUM DESC LIMIT #{startRow}, #{perPage}
+    	<select id="getList" parameterType="Pager" resultType="NoticeVO">
+	    	SELECT * FROM NOTICE    		    		
+	 		WHERE NUM > 0
+	 		AND
+	 		(TITLE LIKE concat('%', #{search},'%') or
+	 		CONTENTS LIKE concat('%', #{search},'%'))
+	    	ORDER BY NUM DESC LIMIT #{startRow}, #{perPage}
     	</select>
 
     	
@@ -44,8 +49,11 @@
     	<delete id="setDelete" parameterType="NoticeVO">
     		DELETE FROM NOTICE WHERE NUM=#{num}
     	</delete>
-    	<select id="getTotalCount" resultType="Long">
-    		SELECT COUNT(NUM) FROM NOTICE
+    	<select id="getTotalCount" parameterType="Pager" resultType="Long">
+	    	SELECT COUNT(NUM) FROM NOTICE    		    		
+	 		WHERE
+	 		TITLE LIKE concat('%', #{search},'%') or
+	 		CONTENTS LIKE concat('%', #{search},'%')
     	</select>
     	
 		<delete id="setFileDelete" parameterType="NoticeFilesVO">

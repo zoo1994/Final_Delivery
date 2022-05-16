@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.fd.s1.faq.FaqMapper">
+    	
+    	<select id="getList" parameterType="etcVO" resultType="FaqVO">
+    		SELECT * FROM FAQ    		    		
+	 		WHERE NUM > 0
+	 		AND
+	 		(TITLE LIKE concat('%', #{search},'%') or
+	 		CONTENTS LIKE concat('%', #{search},'%'))
+	 		AND
+	 		CATEGORY = #{category}
+	    	ORDER BY NUM DESC LIMIT #{startRow}, #{perPage}
+    	</select>
+
+    	
+		<select id="getDetail" parameterType="FaqVO" resultType="FaqVO">
+			SELECT * FROM FAQ WHERE NUM=#{num};
+		</select>
+    	
+		<insert id="setAdd" parameterType="FaqVO" useGeneratedKeys="true" keyProperty="num">
+			INSERT INTO FAQ (NUM,ID,TITLE,CONTENTS, CATEGORY, REGDATE)
+			VALUES (#{num},#{id},#{title},#{contents},#{category},now())
+		</insert>
+    	<update id="setUpdate" parameterType="FaqVO">
+    		UPDATE FAQ SET TITLE=#{title}, CONTENTS=#{contents}, CATEGORY=#{category} WHERE NUM=#{num}
+    	</update>
+    	<delete id="setDelete" parameterType="FaqVO">
+    		DELETE FROM FAQ WHERE NUM=#{num}
+    	</delete>
+    	<select id="getTotalCount" parameterType="etcVO" resultType="Long">
+			SELECT COUNT(NUM) FROM FAQ    		    		
+	 		WHERE
+	 		(TITLE LIKE concat('%', #{search},'%') or
+	 		CONTENTS LIKE concat('%', #{search},'%'))
+	 		AND
+	 		CATEGORY = #{category}
+    	</select>
+    	
+	   
+	
+	
+    </mapper>
