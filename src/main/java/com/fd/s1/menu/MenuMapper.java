@@ -10,7 +10,9 @@ import com.fd.s1.util.Pager;
 @Mapper
 public interface MenuMapper {
 	
-	public Long getTotalCount(Pager pager)throws Exception;
+	public int setUpdateSale(MenuVO menuVO) throws Exception;
+	
+	public Long getTotalCount(Pager pager) throws Exception;
 	
 	public int setFileDelete(MenuFileVO menuFileVO) throws Exception;
 	

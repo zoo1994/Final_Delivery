@@ -70,6 +70,18 @@ public class MenuController {
 		mv.setViewName("menu/menuManage");
 		return mv;
 	}
+	
+	@PostMapping("menuManage")
+	public ModelAndView getMenuManage(MenuVO menuVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+//		System.out.println("manage "+menuVO.getMenuNum());
+//		System.out.println("manage "+menuVO.getMenuSale());
+		int result = menuService.setUpdateSale(menuVO);
+		mv.setViewName("common/result");
+		mv.addObject("result",result);
+		
+		return mv;
+	}
 
 	
 	@GetMapping("detail")

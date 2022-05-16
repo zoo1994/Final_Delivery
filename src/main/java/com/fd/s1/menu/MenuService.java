@@ -20,6 +20,10 @@ public class MenuService {
 	@Autowired
 	private FileManager fileManager;
 	
+	public int setUpdateSale(MenuVO menuVO) throws Exception {
+		return menuMapper.setUpdateSale(menuVO);
+	}
+	
 	public int setIngredientAdd(IngredientVO ingredientVO) throws Exception {
 		return menuMapper.setIngredientAdd(ingredientVO);
 	}

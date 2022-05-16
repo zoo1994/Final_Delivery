@@ -5,6 +5,10 @@
  
 <mapper namespace="com.fd.s1.menu.MenuMapper">
 
+	<update id="setUpdateSale" parameterType="MenuVo">
+		UPDATE MENU SET MENUSALE=#{menuSale} WHERE MENUNUM=#{menuNum}
+	</update>
+
 	<delete id="setFileDelete" parameterType="MenuFileVO">
 		DELETE FROM MENUFILE WHERE FILENUM=#{fileNum}
 	</delete>
