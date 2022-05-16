@@ -14,24 +14,55 @@
  		VALUES(NULL, #{menuNum}, #{fileName}, #{oriName})
  	</insert>
 
-   <select id="getList" resultMap="joinResult" parameterType="MenuVO">
-   	   	SELECT M.*, MF.* FROM MENU M
-		LEFT OUTER JOIN MENUFILE MF
-		ON(M.MENUNUM=MF.MENUNUM)
-		<choose>
-			<when test="category != null">
-				WHERE CATEGORY=#{category}			
-			</when>
-			<otherwise>
-				<if test="menuSale != null">
-					WHERE MENUSALE=#{menuSale}
-				</if>
-			</otherwise>
-		</choose>
-	
-		ORDER BY M.MENUNUM DESC
+   <select id="getList" resultMap="joinResult" parameterType="Pager">
+   	   	SELECT M.*, MF.*
+		FROM 
+		(
+			SELECT 
+			* 
+		 	FROM MENU
+		 	WHERE MENUNUM>0 
+		 	<if test="userType != 0">
+		 		and MENUSALE=1
+		 	</if>
+		 	<if test="category != null">
+		 		and CATEGORY=#{category}
+		 	</if>		 
+		 	and 	 
+			<choose>
+				<when test="kind == 'col1'">
+					MENUNAME
+				</when>
+				<otherwise>
+					MENUDETAIL
+				</otherwise>
+			</choose>
+			LIKE CONCAT('%',#{search},'%')
+			ORDER BY MENUNUM DESC
+			LIMIT #{startRow}, #{perPage} 	
+		 ) M
+		LEFT OUTER JOIN 
+		MENUFILE MF
+		USING (MENUNUM)
    </select> 
    
+   	 <select id="getTotalCount" resultType="Long" parameterType="Pager">
+ 			SELECT 
+			COUNT(MENUNUM) 
+		 	FROM MENU
+		 	WHERE MENUNUM>0
+		 	 and 
+			<choose>
+				<when test="kind == 'col1'">
+					MENUNAME
+				</when>
+				<otherwise>
+					MENUDETAIL
+				</otherwise>
+			</choose>
+			LIKE CONCAT('%',#{search},'%')
+ 	</select>
+	
 
    
    <select id="getFileDetail" parameterType="MenuFileVO" resultType="MenuFileVO">

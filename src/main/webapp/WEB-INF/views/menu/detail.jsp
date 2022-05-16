@@ -9,17 +9,28 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-
-<title>${vo.menuName}</title>
+<c:import url="../temp/header_script.jsp"></c:import>
+<style type="text/css">
+#menuImg {
+	width:750px;
+	height:550px;
+	margin:0 auto;
+}
+</style>
+<title>Insert title here</title>
 </head>
 <body>
-
+<c:import url="../temp/header.jsp"></c:import>
+	<c:import url="../common/categoryBenner.jsp"></c:import>
 	<div class="container">
-		<div class="row">
-			<h3>${vo.menuName}</h3>
-			<h5>${vo.menuEng}</h5>
-			<img alt="" src="../resources/upload/menu/${vo.menuFileVO.fileName}">
-		
+		<div class="row mt-4">
+			<h2 class="text-center fw-bolder">${vo.menuName}</h2>
+			<h5 class="text-center text-muted">${vo.menuEng}</h5>
+			<c:if test="${vo.menuFileVO.fileName ne null}">
+				<img alt="" src="../resources/upload/menu/${vo.menuFileVO.fileName}" id="menuImg">
+			
+			</c:if>
+			<h5 class="text-center text-muted">${vo.menuDetail}</h5>
 		</div>
 		
 		<div class="row">
@@ -53,12 +64,7 @@
 				  </tbody>
 				</table>
 		</div>
-	<div>
-	
-		<a href="./update?menuNum=${vo.menuNum}" class="btn btn-primary">update</a>
-		<a href="./delete?menuNum=${vo.menuNum}" class="btn btn-danger">delete</a>
-	
-	</div>
+
 	</div>
 	<!-- bootStrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

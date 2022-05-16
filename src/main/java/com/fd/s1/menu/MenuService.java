@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fd.s1.util.FileManager;
+import com.fd.s1.util.Pager;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -38,15 +39,21 @@ public class MenuService {
 		return result;
 	}
 	
-	public List<MenuVO> getList(MenuVO menuVO) throws Exception{
-		return menuMapper.getList(menuVO); 
+	public List<MenuVO> getList(Pager pager) throws Exception {
+		pager.makeRow();
+		pager.makeNum(menuMapper.getTotalCount(pager));
+		return menuMapper.getList(pager); 
 	}
 	
 	public int setAdd(MenuVO menuVO, MultipartFile file) throws Exception {
 		int result = menuMapper.setAdd(menuVO);
-		
+		System.out.println("service : "+file.getOriginalFilename()+".");
 		if(file != null && result > 0) {
 			
+			if(file.isEmpty()) {
+				return result;
+			}
+
 			String fileName = fileManager.fileSave(file, "resources/upload/menu/");
 			System.out.println(fileName);
 			
@@ -59,6 +66,8 @@ public class MenuService {
 			if(result<1) {
 				throw new SQLException();
 			}
+			
+				
 		}
 		
 		return result;

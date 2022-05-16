@@ -13,12 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.fd.s1.board.event.EventMapper;
 import com.fd.s1.board.event.EventVO;
 
-import net.nurigo.sdk.NurigoApp;
-import net.nurigo.sdk.message.model.Message;
-import net.nurigo.sdk.message.request.MessageListRequest;
-import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
-import net.nurigo.sdk.message.response.SingleMessageSentResponse;
-import net.nurigo.sdk.message.service.DefaultMessageService;
+
 
 @SpringBootTest
 public class EventTest {
