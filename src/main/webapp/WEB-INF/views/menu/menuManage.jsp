@@ -46,18 +46,18 @@
 				<td>${vo.price}</td>	
 			 	 <td class="menuSale">${vo.menuSale eq 1?'판매중':'판매중지'}</td>  
 				<td>
-						  <div class="row mb-3">
-					<div class="form-check">
-						  <input class="form-check-input saleTrue" type="radio" name="menuSale" value="1" id="flexRadioDefault1">
-						  <label class="form-check-label" for="flexRadioDefault1">
-						    판매중
-						  </label>
+					<div class="row mb-3">
+						<div class="form-check">
+							  <input class="form-check-input saleTrue" type="radio" name="menuSale" value="1" id="flexRadioDefault1" checked="checked"<c:if test="${vo.menuSale eq 1}">checked="checked"</c:if>>
+							  <label class="form-check-label" for="flexRadioDefault1">
+							    판매중
+							  </label>
 						</div>
 						<div class="form-check">
-						  <input class="form-check-input saleFalse" type="radio" name="menuSale" value="0" id="flexRadioDefault2">
-						  <label class="form-check-label" for="flexRadioDefault2">
-						    판매중지
-						  </label>
+							  <input class="form-check-input saleFalse" type="radio" name="menuSale" value="0" id="flexRadioDefault2" <c:if test="${vo.menuSale eq 0}">checked="checked"</c:if>>
+							  <label class="form-check-label" for="flexRadioDefault2">
+							    판매중지
+							  </label>
 						</div>
 						</div>
 				</td>
@@ -88,7 +88,7 @@
 		location.href="./update?menuNum="+num;
 	});
 	
-		let menuSale = null;
+/* 		let menuSale = null;
 	$(".menuSale").each(function(idx,item) {
 		let check = $(item).text();
 		if(check == '판매중') {
@@ -100,7 +100,7 @@
 		}
 		console.log(menuSale);
 		
-	});
+	}); */
 
 	
 </script>

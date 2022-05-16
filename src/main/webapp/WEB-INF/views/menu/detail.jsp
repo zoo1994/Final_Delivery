@@ -16,6 +16,18 @@
 	height:550px;
 	margin:0 auto;
 }
+.collapse {
+  &:not(.show) {
+    display: none;
+  }
+}
+
+.collapsing {
+  height: 0;
+  overflow: hidden;
+  @include transition($transition-collapse);
+}
+
 </style>
 <title>Insert title here</title>
 </head>
@@ -33,9 +45,18 @@
 			<h5 class="text-center text-muted">${vo.menuDetail}</h5>
 		</div>
 		
-		<div class="row">
-			<h3>영양정보</h3>
-			<table class="table">
+	
+
+
+     <div class="accordion accordion-flush row" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        <h5 class="fw-bolder">영양정보</h5>
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body"><table class="table table-bordered">
 				  <thead>
 				    <tr>
 				    	<th scope="col">영양소</th>
@@ -63,12 +84,17 @@
 				    </tr>
 				  </tbody>
 				</table>
-		</div>
+				<p>제품 별 사이즈 및 조각 수에 따라 영양정보가 달라지기 때문에 해당하는 제품페이지에서 영양정보를 확인해주세요.</p>
+				</div>
+    </div>
+  </div>
 
+
+</div>
 	</div>
-	<!-- bootStrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<!-- Jquery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+</script>
 </body>
 </html>
