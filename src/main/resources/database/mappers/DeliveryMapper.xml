@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.fd.s1.delivery.DeliveryMapper">
+    
+    <select id="getCart" parameterType="CartVO" resultType="CartVO">
+    SELECT * 
+    FROM CART C
+    LEFT JOIN
+    MENU M
+    USING (MENUNUM) 
+    LEFT JOIN
+    SHOP S
+    USING (SHOPNUM)
+    WHERE ID=#{id}
+    </select>
+    
+    </mapper>

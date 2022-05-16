@@ -10,7 +10,7 @@ import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
 import net.nurigo.sdk.message.response.SingleMessageSentResponse;
 import net.nurigo.sdk.message.service.DefaultMessageService;
 
-@RestController
+//@RestController
 public class MessageController {
 	@Value("${apikey}")
 	private String apikey;
