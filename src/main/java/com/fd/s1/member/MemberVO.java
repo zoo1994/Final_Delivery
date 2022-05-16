@@ -34,6 +34,5 @@ public class MemberVO {
 	private String address;
 	private String roadAddress;
 	private String detailAddress;
-	
 	private Long userType;
 }

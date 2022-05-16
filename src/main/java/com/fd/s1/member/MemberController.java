@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +24,53 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MemberCheck memberCheck;
+	
+	@GetMapping("update")
+	public ModelAndView update(HttpSession session ,@ModelAttribute MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberVO = (MemberVO)session.getAttribute("member");
+		memberVO = memberService.idCheck(memberVO);
+		mv.addObject("vo",memberVO);
+		mv.setViewName("member/update");
+		return mv;
+	}
+	
+	@PostMapping("updateCheck")
+	public ModelAndView updateCheck(MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String path = "./updateCheck";
+		String message = "비밀번호가 일치하지 않습니다.";
+		System.out.println(memberVO.getId());
+		System.out.println(memberVO.getPw());
+		memberVO = memberService.login(memberVO);
+		if(memberVO!=null) {
+			path = "./update";
+			message = "비밀번호 인증 완료";
+		}
+		mv.addObject("path",path);
+		mv.addObject("message",message);
+		mv.setViewName("common/joinResult");
+		return mv;
+	}
+	
+	@GetMapping("updateCheck")
+	public ModelAndView updateCheck(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		mv.addObject("vo",memberVO);
+		mv.setViewName("member/updateCheck");
+		return mv;
+	}
+	
+	@GetMapping("mypage")
+	public ModelAndView mypage(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		memberVO = memberService.idCheck(memberVO);
+		mv.addObject("vo",memberVO);
+		mv.setViewName("member/mypage");
+		return mv;
+	}
 	
 	@GetMapping("join")
 	public ModelAndView join(@ModelAttribute MemberVO memberVO)throws  Exception{

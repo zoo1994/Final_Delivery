@@ -26,14 +26,6 @@
 		<div class="row mt-4">
 			<form:form modelAttribute="memberVO" id="joinForm" method="post"
 				enctype="multipart/form-data">
-				<div class="row mt-4">
-					<div class="mb-3">
-						<label for="id" class="form-label">아이디</label>
-						<form:input path="id" cssClass="form-control" id="id" />
-						<div>
-							<form:errors path="id"></form:errors>
-						</div>
-					</div>
 					<div class="mb-3">
 						<label for="pw" class="form-label">비밀번호 </label>
 						<form:password path="pw" cssClass="form-control" id="pw" />
@@ -49,61 +41,16 @@
 						</div>
 					</div>
 					<div class="mb-3">
-						<label for="name" class="form-label">이름</label>
-						<form:input path="name" cssClass="form-control" id="name" />
-						<div>
-							<form:errors path="name"></form:errors>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="gender" class="form-label">성별</label>
-						<form:select path="gender" cssClass="form-select" id="gender">
-							<form:option value="2" selected="selected">성별</form:option>
-							<form:option value="0">남성</form:option>
-							<form:option value="1">여성</form:option>
-						</form:select>
-						<div>
-							<form:errors path="gender"></form:errors>
-						</div>
-					</div>
-
-					<div class="mb-3">
-						<label for="year" class="form-label">생년월일</label>
-						<div class="input-group mb-3">
-							<form:input path="year" cssClass="form-control" id="year"
-								placeholder="년(4자)" />
-							<form:select path="month" cssClass="form-select" id="month">
-								<form:option value="0" selected="selected">월</form:option>
-								<form:option value="01">1월</form:option>
-								<form:option value="02">2월</form:option>
-								<form:option value="03">3월</form:option>
-								<form:option value="04">4월</form:option>
-								<form:option value="05">5월</form:option>
-								<form:option value="06">6월</form:option>
-								<form:option value="07">7월</form:option>
-								<form:option value="08">8월</form:option>
-								<form:option value="09">9월</form:option>
-								<form:option value="10">10월</form:option>
-								<form:option value="11">11월</form:option>
-								<form:option value="12">12월</form:option>
-							</form:select>
-							<form:input path="day" cssClass="form-control" id="day"
-								placeholder="일" />
-						</div>
-						<div>
-							<form:errors path="year"></form:errors>
-						</div>
-					</div>
 					<div class="mb-3">
 						<label for="email" class="form-label">이메일 </label>
-						<form:input path="email" cssClass="form-control" id="email"/>
+						<form:input path="email" cssClass="form-control" id="email" value="${vo.email}"/>
 						<div>
 							<form:errors path="email"></form:errors>
 						</div>
 					</div>
 					<div class="mb-3" id="divv">
 						<label for="phone" class="form-label">전화번호 </label>
-						<form:input path="phone" cssClass="form-control" id="phone" />
+						<form:input path="phone" cssClass="form-control" id="phone" value="${vo.phone}"/>
 						<div  id="phoneDiv">
 							<form:errors path="phone"></form:errors>
 						</div>
@@ -111,6 +58,10 @@
 						<div id="numBox"></div>
 					</div>
 				</div>
+				<label for="phone" class="form-label">주소 </label>
+				<input type="text" class="form-control" value="${vo.roadAddress}">
+				<label for="phone" class="form-label">상세주소 </label>
+				<input type="text" class="form-control" value="${vo.detailAddress}">
 				<div class="input-group mb-3">
 					<input type="text" readonly="readonly"  id="postcode" placeholder="우편번호" class="form-control">
 					<input class="btn btn-outline-secondary dropdown-toggle"

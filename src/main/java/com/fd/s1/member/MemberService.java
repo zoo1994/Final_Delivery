@@ -14,6 +14,9 @@ public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
+	public MemberVO idCheck(MemberVO memberVO)throws Exception{
+		return memberMapper.idCheck(memberVO);
+	}
 	
 	public int delPhoneCheck(LocalDate time)throws Exception{
 		return memberMapper.delPhoneCheck(time);
