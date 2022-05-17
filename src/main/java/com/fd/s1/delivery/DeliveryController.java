@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fd.s1.member.MemberVO;
 import com.fd.s1.menu.MenuService;
 import com.fd.s1.menu.MenuVO;
+import com.fd.s1.util.Pager;
 
 @Controller
 @RequestMapping("/delivery/*")
@@ -27,10 +28,18 @@ public class DeliveryController {
 	private DeliveryService deliveryService;
 	
 	@GetMapping("home")
-	public ModelAndView deliveryHome(MenuVO menuVO) throws Exception {
+	public ModelAndView deliveryHome(MenuVO menuVO, Pager pager, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		menuVO.setMenuSale(1); //일반사용자에겐 판매가능 메뉴만 보이게끔
-		List<MenuVO> ar = menuService.getList(menuVO);
+		pager.setCategory(menuVO.getCategory());
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		if(memberVO == null) {
+			pager.setUserType(2L);
+		}else if(memberVO.getUserType() == 0L) {
+			pager.setUserType(memberVO.getUserType());			 
+		}else {
+			pager.setUserType(1L);
+		}
+		List<MenuVO> ar = menuService.getList(pager);
 		mv.addObject("list", ar);
 		mv.addObject("category",menuVO.getCategory());
 		mv.setViewName("delivery/home");

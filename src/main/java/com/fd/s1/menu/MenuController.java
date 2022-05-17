@@ -47,7 +47,7 @@ public class MenuController {
 		if(memberVO == null) {
 			pager.setUserType(2L);
 		}else if(memberVO.getUserType() == 0L) {
-			pager.setUserType(memberVO.getUserType());			
+			pager.setUserType(memberVO.getUserType());			 
 		}else {
 			pager.setUserType(1L);
 		}
