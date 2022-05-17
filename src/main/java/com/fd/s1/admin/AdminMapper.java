@@ -15,6 +15,9 @@ public interface AdminMapper {
 	public List<CouponVO> getCoupon(Pager pager)throws Exception;
 	public Long getCouponTotalCount(Pager pager)throws Exception;
 	public int setCouponAdd(CouponVO couponVO)throws Exception;
+	public int setCouponDelete(CouponVO couponVO)throws Exception;
+	
+	
 	/*
 	public Long getTotal()throws Exception;
 	

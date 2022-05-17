@@ -6,22 +6,24 @@
 					<table class="table">
 					  <thead class="table-light">
 					    <tr class="row" style="height: 45px;">
-					    	<th class="col-3 text-center d-flex align-items-center" style="padding: 0 auto;">쿠폰ID</th>
+					    	<th class="col-2 text-center d-flex align-items-center" style="padding: 0 auto;">쿠폰ID</th>
 							<th class="col-3 text-center d-flex align-items-center"  style="">쿠폰명</th>
 							<th class="col-3 text-center d-flex align-items-center"  style="">할인가격</th>
-							<th class="col-3 text-center d-flex align-items-center"  style="">쿠폰발급기간</th>
+							<th class="col-2 text-center d-flex align-items-center"  style="">쿠폰발급기간</th>
+							<th class="col-2 text-center d-flex align-items-center"  style=""></th>
 					    </tr>
 					  </thead>
 					  <tbody class="table-light">
 							<c:forEach items="${list}" var="vo">
 								<tr class="row" style="">
-							    	<td class="col-3 text-center d-flex align-items-center" style=" ">${vo.couponId}</td>
+							    	<td class="col-2 text-center d-flex align-items-center" style=" ">${vo.couponId}</td>
 							    	<td class="col-3 text-center d-flex align-items-center" style=" ">${vo.couponName}</td>
 							    	<td class="col-3 text-center d-flex align-items-center" style=" ">${vo.discount}</td>		
-							    	<td class="col-3 text-center d-flex align-items-center" style=" ">${vo.activeDate}
-							    		<!-- Button trigger modal -->
-										<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn${vo.couponId}" data-name="${vo.couponName}" class="modalBtn btn btn-info" data-toggle="modal" data-target="#modal">
-										  변경
+							    	<td class="col-2 text-center d-flex align-items-center" style=" ">${vo.activeDate}</td>
+							    	<td class="col-2 text-center d-flex align-items-center" style=" ">
+										<!-- Button trigger modal -->
+										<button style="margin: 0 auto; font-weight: 500;" type="button" id="couponDeleteBtn${vo.couponId}" class="deleteBtn btn btn-info">
+										  삭제
 										</button>
 							    	</td>
 							    </tr>
@@ -54,7 +56,11 @@
 							  </span> 
 							  <span class="col-2" style="display: inline-block; text-align: end; width: 15%;">
 							  	<c:if test="${member.userType == 0}">
-							  		<a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a>
+							  		<!-- <a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a> -->
+							  			<!-- Button trigger modal -->
+										<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn${vo.couponId}" data-name="${vo.couponName}" class="modalBtn btn btn-primary" data-toggle="modal" data-target="#modal">
+										  ADD
+										</button>
 							  	</c:if>
 							  </span>
 							</nav>

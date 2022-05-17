@@ -62,9 +62,15 @@ public class AdminService {
 		return adminMapper.getCouponTotalCount(pager);
 	}
 	
+	//관리자 멤버관리 - add
+	public int setCouponAdd(CouponVO couponVO) throws Exception{	
+		return adminMapper.setCouponAdd(couponVO);
+	}
 	
-	
-	
+	//관리자 멤버관리 - delete
+	public int setCouponDelete(CouponVO couponVO) throws Exception{	
+		return adminMapper.setCouponDelete(couponVO);
+	}
 	
 	
 /*	public int setDelete(AdminVO faqVO, MemberVO memberVO)throws Exception{	

@@ -45,5 +45,8 @@
 			INSERT INTO COUPON (COUPONID,COUPONNAME,DISCOUNT,ACTIVEDATE)
 			VALUES (#{couponId},#{couponName},#{discount},#{activeDate})
 		</insert>
-    	
+		
+		<delete id="setCouponDelete" parameterType="CouponVO">
+			DELETE FROM COUPON WHERE COUPONID=#{couponId}
+		</delete>
     </mapper>

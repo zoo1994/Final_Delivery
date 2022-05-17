@@ -110,20 +110,27 @@ public class AdminController {
 	}
 	
 	//관리자 쿠폰관리 - 생성
-	@GetMapping("cpAdd")
-	public ModelAndView setCouponAdd(Pager pager)throws Exception{
+	@PostMapping("cpAdd")
+	public ModelAndView setCouponAdd(CouponVO couponVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		Long count = adminService.getCouponListCount(pager);
-		if(count !=0) {
-			List<CouponVO> couponVOs = adminService.getCoupon(pager, count);
-			mv.addObject("list", couponVOs);
-		}
-		mv.addObject("count", count);
-		mv.addObject("pager", pager);
-		mv.setViewName("admin/couponList");
+
+		int result = adminService.setCouponAdd(couponVO);
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
 		return mv;
 	}
 	
+	@PostMapping("cpDelete")
+	public ModelAndView setCouponDelete(CouponVO couponVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+
+		int result = adminService.setCouponDelete(couponVO);
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+		return mv;
+	}
 	
 /*
 	@PostMapping("delete")

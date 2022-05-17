@@ -22,19 +22,29 @@ function getList(){
 
 
 $('#adminCouponListReusult').click(function(event){
+	if(event.target.classList.contains('deleteBtn')){
 
-	// if(event.target.classList.contains('modalBtn')){
-		
-		
-	// 	$('#modal_memberID').text(event.target.getAttribute("id").substr(8));
-	// 	$('#modal_memberNAME').text(event.target.getAttribute("data-name"));
-	// 	let cate = event.target.getAttribute("data-type");
-	// 	console.log(cate);
-		
-	// 	$("#inputGroupSelect01").val(cate).prop("selected", true);
-		
-	// 	$('#modal').modal("show");
-	// }
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST", "./cpDelete");
+
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhttp.send("couponId="+event.target.getAttribute("id").substr(15));
+    
+        xhttp.onreadystatechange = function(){
+            if(this.readyState==4 && this.status==200){
+				let result = this.responseText.trim();
+				if(result=='1'){
+					alert('삭제 성공');
+					getList();
+				}else {
+					alert('삭제 실패');
+				}
+			}
+        }
+		getList();
+	}
 
     if(event.target.classList.contains('page-link')){
         const xhttp = new XMLHttpRequest();
@@ -53,7 +63,7 @@ $('#adminCouponListReusult').click(function(event){
     }
 
 }); 
-/*
+
 $('#modalHide').click(function(e){
 	$('#modal').modal("hide");
 }); 
@@ -61,6 +71,43 @@ $('#modalHideX').click(function(e){
 	$('#modal').modal("hide");
 }); 
 
+$("#modalSave").click(function() {
+	let formData = new FormData();
+	let couponName = $("#couponName").val();
+	let couponDis = $("#couponDis").val();
+	let couponValiTerm = $("#couponValiTerm").val();
+	
+	formData.append("couponName", couponName);
+	formData.append("discount", couponDis);
+	formData.append("activeDate", couponValiTerm);
+	
+		$.ajax({
+		type:"POST",
+		url:"./cpAdd",
+		processData: false,
+		contentType: false,
+		data:formData,
+		success:function(data){
+			if(data.trim()=='1'){
+				alert("쿠폰 등록 완료");
+				getList();
+				$('#modal').modal("hide");
+				$("#couponId").val("");
+				$("#couponName").val("");
+				$("#couponDis").val("");
+				$("#couponValiTerm").val("");
+			}else {
+				alert("쿠폰 등록 실패");
+			}
+			
+		},
+		error:function(){
+			alert("error 발생");
+		}
+	}); 
+	
+});
+/*
 $('#modalSave').click(function(e){
 
  		$.ajax({

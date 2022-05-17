@@ -69,26 +69,31 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-center" style="margin: 50px auto;">
+      <div class="modal-body">
       		<div>
-	      		<div class="text-start">아이디 : <span id="modal_memberID"></span> </div>
-	      		<div class="text-start">이름 : <span id="modal_memberNAME"></span></div>
-		        <div class="input-group mb-3">
+				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
-				    <label class="input-group-text" for="inputGroupSelect01">회원등급</label>
-				  </div>			  
-				  <select class="custom-select" id="inputGroupSelect01">
-				    <option>선택하세요</option>
-				    <option name="options" value="2">일반회원</option>
-				    <option name="options" value="1" selected>점주회원</option>
-				    <option name="options" value="0">관리자</option>
-				  </select>
+				    <span class="input-group-text" id="inputGroup-sizing-default2">쿠폰명　</span>
+				  </div>
+				  <input type="text" id="couponName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default3">할인가격</span>
+				  </div>
+				  <input type="text" id="couponDis" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default4">쿠폰기간</span>
+				  </div>
+				  <input type="text" id="couponValiTerm" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 			</div>
       </div>
       <div class="modal-footer">
         <button type="button" id="modalHide" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="modalSave" class="btn btn-primary">Save changes</button>
+        <button type="button" id="modalSave" class="btn btn-primary">Add</button>
       </div>
     </div>
   </div>
@@ -97,7 +102,9 @@
 
 <c:import url="../temp/footer.jsp"></c:import>
 <script type="text/javascript">
- 
+
+
+
 </script>
 <script src="../resources/js/adminCouponList.js"></script>
 </body>
