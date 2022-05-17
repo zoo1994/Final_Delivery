@@ -19,6 +19,7 @@
 		<typeAlias type="com.fd.s1.menu.IngredientVO" alias="IngredientVO"/>
 		<typeAlias type="com.fd.s1.menu.MenuFileVO" alias="MenuFileVO"/>
 		<typeAlias type="com.fd.s1.member.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.fd.s1.delivery.CartVO" alias="CartVO"/>
 		<typeAlias type="com.fd.s1.util.PhoneCheckVO" alias="PhoneCheckVO"/>
 		<typeAlias type="com.fd.s1.board.notice.NoticeVO" alias="NoticeVO"/>
 		<typeAlias type="com.fd.s1.board.notice.NoticeFilesVO" alias="NoticeFilesVO"/>

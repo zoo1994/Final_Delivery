@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+body {
+  font-family:'Malgun Gothic';
+}
+
+.head_menuWrap {
+	background: #e22219;
+	position: relative;
+}
+
+.utilWrap a>span {
+	color: #fff;
+}
+
+
+
+.utilWrap {
+	position: absolute;
+	right: 20px;
+	top: 0;
+	overflow: hidden;
+}
+
+.utilWrap a {
+	position: relative;
+	float: left;
+	height: 48px;
+	padding: 0 14px;
+	font-size: .875rem;
+	line-height: 48px;
+}
+
+.head_menuWrap .web_container {
+	height: 168px;
+	padding-top: 48px;
+}
+
+.head_menuWrap .web_container {
+	position: relative;
+	height: 120px;
+	padding-top: 24px;
+}
+
+.web_container {
+	max-width: 1184px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+
+
+.head_menuWrap .logo {
+	display:inline;
+	left: 20px;
+	top: 20px;
+	width: 120px;
+	height: 82px;
+	text-indent: -9999em;
+	background: url(https://www.mcdonalds.co.kr/kor/images/common/logo.png)
+		no-repeat 0 0;
+}
+
+.web_container>h1{
+	display: inline;
+	position:absolute; 
+	bottom:0;
+	color: #fff;
+}
+
+.user {
+	color:white;
+	position:absolute;
+	right:30px;
+	bottom:0px;
+	display: block;
+}
+
+p{
+	margin: 0;
+	left:0;
+}
+
