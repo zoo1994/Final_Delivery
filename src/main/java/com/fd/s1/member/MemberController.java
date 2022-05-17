@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +24,129 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MemberCheck memberCheck;
+	
+	@GetMapping("pwChange")
+	public ModelAndView pwChange(@ModelAttribute MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/pwChange");
+		return mv;
+	}
+	
+	@PostMapping("pwChange")
+	public ModelAndView pwChange(MemberVO memberVO,BindingResult bindingResult,String password,HttpSession session )throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String path = "/";
+		String message = "비밀번호 변경이 완료되었습니다.";
+		if(memberCheck.pwChangeError(memberVO, bindingResult)) {
+			mv.setViewName("member/pwChange");
+			return mv;
+		}
+		String pw = memberVO.getPw();
+		MemberVO memberVO2 = (MemberVO)session.getAttribute("member");
+		memberVO.setPw(password);
+		memberVO.setId(memberVO2.getId());
+		memberVO = memberService.login(memberVO);
+		int result = 0;
+		if(memberVO!=null) {
+			memberVO.setPw(pw);
+			result = memberService.setPwChange(memberVO);
+		}else {
+			path="./pwChange";
+			message="기존 비밀번호가 틀립니다.";
+			mv.addObject("path",path);
+			mv.addObject("message",message);
+			mv.setViewName("common/joinResult");
+			return mv;
+		}
+		if(result<1) {
+			path="member/pwChange";
+			message="비밀번호 변경 실패";
+		}
+		mv.addObject("path",path);
+		mv.addObject("message",message);
+		mv.setViewName("common/joinResult");
+		return mv;
+	}
+	
+	@PostMapping("idCheck")
+	public ModelAndView idCheck(MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String message="중복된 아이디입니다.";
+		memberVO = memberService.idCheck(memberVO);
+		if(memberVO==null) {
+			message="사용 가능한 아이디입니다.";
+		}
+		mv.addObject("result",message);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	@GetMapping("update")
+	public ModelAndView update(HttpSession session ,@ModelAttribute MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberVO = (MemberVO)session.getAttribute("member");
+		memberVO = memberService.idCheck(memberVO);
+		mv.addObject("vo",memberVO);
+		mv.setViewName("member/update");
+		return mv;
+	}
+	
+	@PostMapping("update")
+	public ModelAndView update(@Valid MemberVO memberVO,BindingResult bindingResult)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String path = "/";
+		String message = "개인정보 변경이 완료되었습니다.";
+		if(memberCheck.updateError(memberVO, bindingResult)) {
+			mv.setViewName("member/update");
+			return mv;
+		}
+		int result = memberService.setUpdate(memberVO);
+		if(result<1) {
+			path="member/update";
+			message="정보수정 실패";
+		}
+		mv.addObject("path",path);
+		mv.addObject("message",message);
+		mv.setViewName("common/joinResult");
+		return mv;
+	}
+	
+	@PostMapping("updateCheck")
+	public ModelAndView updateCheck(MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String path = "./updateCheck";
+		String message = "비밀번호가 일치하지 않습니다.";
+		System.out.println(memberVO.getId());
+		System.out.println(memberVO.getPw());
+		memberVO = memberService.login(memberVO);
+		if(memberVO!=null) {
+			path = "./update";
+			message = "비밀번호 인증 완료";
+		}
+		mv.addObject("path",path);
+		mv.addObject("message",message);
+		mv.setViewName("common/joinResult");
+		return mv;
+	}
+	
+	@GetMapping("updateCheck")
+	public ModelAndView updateCheck(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		mv.addObject("vo",memberVO);
+		mv.setViewName("member/updateCheck");
+		return mv;
+	}
+	
+	@GetMapping("mypage")
+	public ModelAndView mypage(HttpSession session,@ModelAttribute MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberVO = (MemberVO)session.getAttribute("member");
+		memberVO = memberService.idCheck(memberVO);
+		mv.addObject("vo",memberVO);
+		mv.setViewName("member/mypage");
+		return mv;
+	}
 	
 	@GetMapping("join")
 	public ModelAndView join(@ModelAttribute MemberVO memberVO)throws  Exception{

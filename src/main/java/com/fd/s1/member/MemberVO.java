@@ -12,9 +12,9 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
-	@Size(min=5,max=20,message="아이디는 5자이상 20자이하만 사용가능합니다.")
+	@Size(min=5,max=15,message="아이디는 5자이상 15자이하만 사용가능합니다.")
 	private String id;
-	@Size(min=6,max=15,message="비밀번호는 6자이상 15자이하만 사용가능합니다.")
+	@Size(min=5,max=15,message="비밀번호는 5자이상 15자이하만 사용가능합니다.")
 	private String pw;
 	private String checkPw;
 	@NotBlank(message="필수 입력 정보입니다.")
@@ -31,9 +31,7 @@ public class MemberVO {
 	private Long year;
 	private String month;
 	private String day;
-	private String address;
 	private String roadAddress;
 	private String detailAddress;
-	
 	private Long userType;
 }
