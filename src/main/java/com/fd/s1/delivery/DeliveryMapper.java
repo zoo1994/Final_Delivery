@@ -10,4 +10,8 @@ public interface DeliveryMapper {
 	public List<CartVO> getCart(CartVO cartVO) throws Exception;
 	
 	public int setCartAdd(CartVO cartVO)throws Exception;
+	
+	public CartVO addCheck(CartVO cartVO)throws Exception;
+	
+	public int update(CartVO cartVO)throws Exception;
 }

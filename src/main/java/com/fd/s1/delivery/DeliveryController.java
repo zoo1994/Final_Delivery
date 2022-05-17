@@ -62,6 +62,15 @@ public class DeliveryController {
 		return mv;
 	}
 	
+	@PostMapping("update")
+	public ModelAndView update(CartVO cartVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = deliveryService.update(cartVO);
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
 }
 
 

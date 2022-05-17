@@ -14,7 +14,25 @@
     LEFT JOIN
     SHOP S
     USING (SHOPNUM)
+    LEFT JOIN
+    MENUFILE MF
+    USING (MENUNUM)
     WHERE ID=#{id}
     </select>
+    
+    <insert id="setCartAdd" parameterType="CartVO">
+    INSERT INTO CART(CARTNUM,ID,MENUNUM,SHOPNUM,COUNT,TOTALPRICE)
+    VALUES (null,#{id},#{menuNum},#{shopNum},1,#{totalPrice})
+    </insert>
+    
+    <select id="addCheck" parameterType="CartVO" resultType="CartVO">
+    SELECT * 
+    FROM CART 
+    WHERE ID=#{id} AND menuNum=#{menuNum}
+    </select>
+    
+    <update id="update" parameterType="CartVO">
+    UPDATE CART SET COUNT=#{count},totalPrice=#{totalPrice} WHERE CARTNUM=#{cartNum}
+    </update>
     
     </mapper>

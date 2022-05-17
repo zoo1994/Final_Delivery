@@ -27,8 +27,9 @@
 				  <div class="card-body">
 				    <p class="card-text">${vo.menuName}</p>
 				    <p class="card-text">${vo.menuEng}</p>
+				    <p class="card-text" id="menu${vo.menuNum}">${vo.price}</p>
 				    <c:if test="${not empty member}">
-				    <button class="btn btn-success">카트에 담기</button>
+				    <button class="btn btn-success cartAdd" data-num="${vo.menuNum}">카트에 담기</button>
 				    </c:if>
 				  </div>
 				</div>
@@ -41,18 +42,27 @@
 	</div>
 		<c:import url="../temp/footer.jsp"></c:import>
 	<c:import url="../temp/header_script.jsp"></c:import>
-<!-- 	<script type="text/javascript">
+	<script type="text/javascript">
 		$('.cartAdd').click(function(){
-			let menuNum = 
+			let menuNum = $(this).attr('data-num');
+			let price = '#menu'+$(this).attr('data-num');
+			let formData = new FormData();
+			formData.append("menuNum",menuNum);
+			formData.append("totalPrice",$(price).html());
+			formData.append("shopNum",'1');
+			
 			$.ajax({
 				method:'POST',
 				url:'./cartAdd',
-				data:{
-					menuNum:menuNum;
-				},
+				data:formData,
+				processData:false,
+				contentType:false,
 				success:function(data){
-					if(data.trim()=='1'){
-						alert("상품을 장바구니에 추가했습니다.");
+					 if(data.trim()=='1'){
+						alert("상품을 장바구니에 추가했습니다."); 
+					}
+					 if(data.trim()=='0'){
+						alert("장바구니에 이미 상품이 있습니다."); 
 					}
 				},
 				error:function(){
@@ -61,6 +71,6 @@
 				
 			})
 		})
-	</script> -->
+	</script>
 </body>
 </html>
