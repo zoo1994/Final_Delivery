@@ -60,7 +60,7 @@
 						<c:otherwise>
 							<li class="nav-item">
 								
-								<a class="nav-link btn btn-primary" href="/member/mypage" style="color: white; font-size: 20px; background-color: #FF8233!important; border:#FF8233!important">MyPage</a>
+								<a class="nav-link btn btn-primary" href="${member.userType != 0 ? '/member/mypage' : '/admin/manager' }" style="color: white; font-size: 20px; background-color: #FF8233!important; border:#FF8233!important">MyPage</a>
 							</li>
 							<li class="nav-item">
 								

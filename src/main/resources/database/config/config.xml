@@ -24,5 +24,7 @@
 		<typeAlias type="com.fd.s1.board.notice.NoticeFilesVO" alias="NoticeFilesVO"/>
 		<typeAlias type="com.fd.s1.faq.FaqVO" alias="FaqVO"/>
 		<typeAlias type="com.fd.s1.faq.EtcVO" alias="EtcVO"/>
+		<typeAlias type="com.fd.s1.admin.AdminVO" alias="AdminVO"/>
+		<typeAlias type="com.fd.s1.coupon.CouponVO" alias="CouponVO"/>
 	</typeAliases>
 </configuration>

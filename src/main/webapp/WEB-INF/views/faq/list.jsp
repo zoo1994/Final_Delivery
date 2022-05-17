@@ -86,10 +86,10 @@
 							<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 건의</span> 게시물이 있습니다.</legend>
 						</span>
 						<span class="col-2"  style="margin-right:10px;">
-							<input id="faq_search" class="form-control me-2" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {getList();}" placeholder="Search" aria-label="Search">
+							<input id="faq_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {getList();}" placeholder="Search" aria-label="Search">
 						</span>
 						<span class="col-1">
-							<button class="btn btn-outline-success" id="faq_search_btn"  style="width: 80px;" type="submit">검색</button>
+							<button class="btn btn-outline-success rounded-pill" id="faq_search_btn"  style="width: 80px;" type="submit">검색</button>
 						</span>
 					</div>
 					<div id="faqResult">
@@ -144,6 +144,7 @@
 	</div>			
 </div>
 <div style="margin-bottom: 200px;"></div>
+<c:import url="../temp/footer.jsp"></c:import>
 <script src="../resources/js/faqList.js"></script>
 <script type="text/javascript">
 
