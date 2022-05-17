@@ -4,11 +4,13 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 @Service
 public class MemberCheck {
 	@Autowired
@@ -17,7 +19,6 @@ public class MemberCheck {
 	public boolean memberError(MemberVO memberVO, BindingResult bindingResult)throws Exception{
 		boolean check = false;
 		check = bindingResult.hasErrors();
-		//핸드폰번호 인증
 		//비밀번호 검증
 		if(!memberVO.getPw().equals(memberVO.getCheckPw())) {
 			check = true;
@@ -81,6 +82,53 @@ public class MemberCheck {
 		return check;
 	};
 	
+	public boolean updateError(MemberVO memberVO, BindingResult bindingResult)throws Exception{
+		boolean check = false;
+		List<FieldError> ar = bindingResult.getFieldErrors();
+		for(FieldError i:ar ) {
+			if(i.getField().equals("email")) {
+				check=true;
+			}
+		}
+		System.out.println(check);
+		//주소검증
+		if(memberVO.getRoadAddress().isEmpty()) {
+			check = true;
+			bindingResult.rejectValue("roadAddress","member.roadAddress.blank");
+		}else {
+			if(memberVO.getDetailAddress().isEmpty()) {
+				check = true;
+				bindingResult.rejectValue("roadAddress","member.detailAddress.blank");
+			}
+		}
+		return check;
+	}
+	
+	public boolean pwChangeError(MemberVO memberVO, BindingResult bindingResult)throws Exception{
+		boolean check = false;
+		System.out.println(memberVO.getPw());
+		System.out.println(memberVO.getCheckPw());
+		System.out.println("0");
+		System.out.println(memberVO.getPw().length()<5||memberVO.getPw().length()>12);
+		System.out.println("1");
+		System.out.println(!memberVO.getPw().equals(memberVO.getCheckPw()));
+		System.out.println("2");
+		System.out.println(check);
+		if(memberVO.getPw().length()<5||memberVO.getPw().length()>12) {
+			check = true;
+			bindingResult.rejectValue("pw","member.password");
+		}
+		System.out.println("3");
+		System.out.println(check);
+		if(!memberVO.getPw().equals(memberVO.getCheckPw())) {
+			check = true;
+			bindingResult.rejectValue("checkPw","member.password.notEqual");
+		}
+		System.out.println("4");
+		System.out.println(check);
+		return check;
+	}
+	
 	public boolean checkDate(String checkDate) {
 		try {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd",Locale.KOREA);
@@ -91,6 +139,7 @@ public class MemberCheck {
 			return true;
 		}
 	}
+
 	
 	public LocalDate makeBirth(Long year, String month, String day) {
 		if(day.length()==1) {

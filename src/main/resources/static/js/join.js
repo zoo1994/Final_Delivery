@@ -58,7 +58,30 @@ $("#divv").on("click","#checkNumBtn",function(){
 	
 })
 $("#joinBtn").click(function(){
-	if(numCheck){
+	if(numCheck&&idCheck2&&pwCheck&&chPwCheck&&genderCheck&&yearCheck&&monthCheck&&dayCheck&&emailCheck&&addressCheck){
 		$("#joinForm").submit();
+	}else{
+		alert("정보를 모두 입력해주세요.")
+	}
+});
+
+$("#idCheckBtn").click(function(){
+	if(idCheck){
+		$.ajax({
+			type:"POST",
+			url:"./idCheck",
+			data:{
+				id : $("#id").val(),
+			},
+			success:function(data){
+				$("#idError").html(data.trim());
+				if(data.trim()=="사용 가능한 아이디입니다."){
+					idCheck2=true;
+				}
+			},
+			error:function(){
+				alert("실패")
+			}
+		}); 
 	}
 });

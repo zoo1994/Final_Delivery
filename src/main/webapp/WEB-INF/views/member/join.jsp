@@ -24,12 +24,13 @@
 <body>
 	<div class="container mt-4">
 		<div class="row mt-4">
-			<form:form modelAttribute="memberVO" id="joinForm" method="post"
-				enctype="multipart/form-data">
+			<form:form modelAttribute="memberVO" id="joinForm" method="post">
 				<div class="row mt-4">
 					<div class="mb-3">
 						<label for="id" class="form-label">아이디</label>
 						<form:input path="id" cssClass="form-control" id="id" />
+						<button type="button" id="idCheckBtn" class="col-1 btn btn-outline-success">아이디 중복검사</button>
+						<div id="idError"></div>
 						<div>
 							<form:errors path="id"></form:errors>
 						</div>
@@ -37,6 +38,7 @@
 					<div class="mb-3">
 						<label for="pw" class="form-label">비밀번호 </label>
 						<form:password path="pw" cssClass="form-control" id="pw" />
+						<div id="pwError"></div>
 						<div>
 							<form:errors path="pw"></form:errors>
 						</div>
@@ -44,6 +46,7 @@
 					<div class="mb-3">
 						<label for="checkPw" class="form-label">비밀번호 재확인 </label>
 						<form:password path="checkPw" cssClass="form-control" id="checkPw" />
+						<div id="checkPwError"></div>
 						<div>
 							<form:errors path="checkPw"></form:errors>
 						</div>
@@ -51,6 +54,7 @@
 					<div class="mb-3">
 						<label for="name" class="form-label">이름</label>
 						<form:input path="name" cssClass="form-control" id="name" />
+						<div id="nameError"></div>
 						<div>
 							<form:errors path="name"></form:errors>
 						</div>
@@ -62,11 +66,11 @@
 							<form:option value="0">남성</form:option>
 							<form:option value="1">여성</form:option>
 						</form:select>
+						<div id="genderError"></div>
 						<div>
 							<form:errors path="gender"></form:errors>
 						</div>
 					</div>
-
 					<div class="mb-3">
 						<label for="year" class="form-label">생년월일</label>
 						<div class="input-group mb-3">
@@ -87,9 +91,9 @@
 								<form:option value="11">11월</form:option>
 								<form:option value="12">12월</form:option>
 							</form:select>
-							<form:input path="day" cssClass="form-control" id="day"
-								placeholder="일" />
+							<form:input path="day" cssClass="form-control" id="day" placeholder="일" />
 						</div>
+						<div id="birthError"></div>
 						<div>
 							<form:errors path="year"></form:errors>
 						</div>
@@ -97,6 +101,7 @@
 					<div class="mb-3">
 						<label for="email" class="form-label">이메일 </label>
 						<form:input path="email" cssClass="form-control" id="email"/>
+						<div id="emailError"></div>
 						<div>
 							<form:errors path="email"></form:errors>
 						</div>
@@ -125,6 +130,7 @@
 						<input type="text" readonly="readonly" id="jibunAddress" placeholder="지번주소" class="form-control">
 					</div>
 				</div>
+				<span id="guide" style="color:#999;display:none"></span>
 				<div class="row">
 					<div class="col">
 						<form:input path="detailAddress" id="detailAddress" placeholder="상세주소" cssClass="form-control"/>
@@ -134,9 +140,9 @@
 					</div>
 				</div>
 				<div>
+					<div id="addressError"></div>
 					<form:errors path="roadAddress"></form:errors>
 				</div>
-
 				<div class="row justify-content-end">
 					<button type="button" id="joinBtn" class="col-1 btn btn-outline-success">join</button>
 				</div>

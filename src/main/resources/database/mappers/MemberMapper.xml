@@ -5,6 +5,14 @@
  
     <mapper namespace="com.fd.s1.member.MemberMapper">
     	
+    	<update id="setPwChange" parameterType="MemberVO">
+    		UPDATE USER SET PW = #{pw} WHERE ID= #{id}
+    	</update>
+    
+    	<update id="setUpdate" parameterType="MemberVO">
+    		UPDATE USER SET EMAIL =  #{email},PHONE=#{phone}, ROADADDRESS = #{roadAddress}, DETAILADDRESS = #{detailAddress} WHERE ID=#{id}
+    	</update>
+    	
     	<delete id="delPhoneCheck" parameterType="java.time.LocalDate">
     		<![CDATA[
     			DELETE FROM  PHONECHECK WHERE REQUESTTIME < #{time}

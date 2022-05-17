@@ -28,45 +28,21 @@
 			<li class="list-group-item">이름</li>
 			<li class="list-group-item">${vo.name}</li>
 			<li class="list-group-item">전화번호</li>
-			<li class="list-group-item">${vo.phone}
-				<button type="button" class="btn btn-primary" data-bs-toggle="modal"
-					data-bs-target="#exampleModal">수정</button> 
-				<div class="modal fade" id="exampleModal" tabindex="-1"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">이메일주소</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal"
-									aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<input type="text" id="emailBox" class="form-control">
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-bs-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">변경</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</li>
+			<li class="list-group-item">${vo.phone}</li>
 			<li class="list-group-item">이메일</li>
-			<li class="list-group-item">${vo.email}<button id="emailUpdate"
-					class="btn btn-outline-success">수정</button></li>
+			<li class="list-group-item">${vo.email}</li>
 			<li class="list-group-item">주소</li>
 			<li class="list-group-item">${vo.roadAddress}</li>
 			<li class="list-group-item">상세주소</li>
-			<li class="list-group-item">${vo.detailAddress}<button
-					id="emailUpdate" class="btn btn-outline-success">수정</button></li>
+			<li class="list-group-item">${vo.detailAddress}></li>
 			<li class="list-group-item">포인트</li>
 			<li class="list-group-item">${vo.point}</li>
 			<li class="list-group-item">생일</li>
 			<li class="list-group-item">${vo.birth}</li>
 		</ul>
 	</div>
-	<a href="./updateCheck" class="btn btn-outline-success">수정</a>
+	<a href="./pwChange" class="btn btn-outline-success">비밀번호 변경</a>
+	<a href="./updateCheck" class="btn btn-outline-success">개인정보 변경</a>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

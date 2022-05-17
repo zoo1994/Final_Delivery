@@ -24,79 +24,64 @@
 <body>
 	<div class="container mt-4">
 		<div class="row mt-4">
-			<form:form modelAttribute="memberVO" id="joinForm" method="post"
-				enctype="multipart/form-data">
-					<div class="mb-3">
-						<label for="pw" class="form-label">비밀번호 </label>
-						<form:password path="pw" cssClass="form-control" id="pw" />
-						<div>
-							<form:errors path="pw"></form:errors>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="checkPw" class="form-label">비밀번호 재확인 </label>
-						<form:password path="checkPw" cssClass="form-control" id="checkPw" />
-						<div>
-							<form:errors path="checkPw"></form:errors>
-						</div>
-					</div>
-					<div class="mb-3">
+			<form:form modelAttribute="memberVO" id="updateForm" method="post">
+				<form:hidden path="id" value="${vo.id}"/>
+				<div class="mb-3">
 					<div class="mb-3">
 						<label for="email" class="form-label">이메일 </label>
-						<form:input path="email" cssClass="form-control" id="email" value="${vo.email}"/>
+						<form:input path="email" cssClass="form-control" id="email" 
+							value="${vo.email}" />
+						<div id="emailError">
+						</div>
 						<div>
-							<form:errors path="email"></form:errors>
+							<form:errors path="email" ></form:errors>
 						</div>
 					</div>
 					<div class="mb-3" id="divv">
 						<label for="phone" class="form-label">전화번호 </label>
-						<form:input path="phone" cssClass="form-control" id="phone" value="${vo.phone}"/>
-						<div  id="phoneDiv">
+						<form:input path="phone" cssClass="form-control" id="phone" 
+							value="${vo.phone}" />
+						<div id="phoneDiv">
 							<form:errors path="phone"></form:errors>
 						</div>
-						<button type="button" id="messageBtn" class="col-1 btn btn-outline-success">번호인증</button>
+						<button type="button" id="messageBtn"
+							class="col-1 btn btn-outline-success">번호인증</button>
 						<div id="numBox"></div>
 					</div>
 				</div>
-				<label for="phone" class="form-label">주소 </label>
-				<input type="text" class="form-control" value="${vo.roadAddress}">
-				<label for="phone" class="form-label">상세주소 </label>
-				<input type="text" class="form-control" value="${vo.detailAddress}">
 				<div class="input-group mb-3">
-					<input type="text" readonly="readonly"  id="postcode" placeholder="우편번호" class="form-control">
-					<input class="btn btn-outline-secondary dropdown-toggle"
-						type="button" data-bs-toggle="dropdown" aria-expanded="false"
+					<input type="text" readonly="readonly" id="postcode"
+						placeholder="우편번호" class="form-control"> <input
+						class="btn btn-outline-secondary dropdown-toggle" type="button"
+						data-bs-toggle="dropdown" aria-expanded="false"
 						onclick="showPostcode()" value="우편번호 찾기"><br>
 				</div>
-				<div class="row">
+
 					<div class="col">
-						<form:input path="roadAddress"  id="roadAddress" placeholder="도로명주소" cssClass="form-control" readonly="true"/>
+						<form:input path="roadAddress" id="roadAddress"
+							 cssClass="form-control" readonly="true" value="${vo.roadAddress}" />
 					</div>
+					<input type="hidden" readonly="readonly" id="jibunAddress" placeholder="지번주소" class="form-control">
+					<span id="guide" style="color:#999;display:none"></span>
+					<input type="hidden" readonly="readonly"  id="extraAddress" placeholder="참고항목" class="form-control">
 					<div class="col">
-						<input type="text" readonly="readonly" id="jibunAddress" placeholder="지번주소" class="form-control">
+						<form:input path="detailAddress" id="detailAddress"
+							 value="${vo.detailAddress}"  cssClass="form-control" />
 					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<form:input path="detailAddress" id="detailAddress" placeholder="상세주소" cssClass="form-control"/>
-					</div>
-					<div class="col">
-						<input type="text" readonly="readonly"  id="extraAddress" placeholder="참고항목" class="form-control">
-					</div>
-				</div>
+				<div id="addressError"></div>
 				<div>
 					<form:errors path="roadAddress"></form:errors>
 				</div>
 
 				<div class="row justify-content-end">
-					<button type="button" id="joinBtn" class="col-1 btn btn-outline-success">join</button>
+					<button type="button" id="updateBtn"
+						class="col-1 btn btn-outline-success">수정</button>
 				</div>
 			</form:form>
 		</div>
 	</div>
-	<script type="text/javascript" src="../js/memberCheck.js"></script>
+	<script type="text/javascript" src="../js/update.js"></script>
 	<script type="text/javascript" src="../js/map.js"></script>
-	<script type="text/javascript" src="../js/join.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
