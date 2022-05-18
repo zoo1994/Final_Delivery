@@ -81,7 +81,7 @@
 							  </ul> 
 							  </span> 
 							  <span class="col-2" style="display: inline-block; text-align: end; width: 15%;">
-							  	<c:if test="${member.userType == 2}">
+							  	<c:if test="${member.userType == 0}">
 							  		<a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a>
 							  	</c:if>
 							  </span>

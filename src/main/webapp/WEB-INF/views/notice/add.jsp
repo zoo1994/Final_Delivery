@@ -50,7 +50,7 @@
 					</div>
 				</div>
 				<div class="row justify-content-end">
-					<c:if test="${member.userType == 2}">
+					<c:if test="${member.userType == 0}">
 						<button id="addBtn" type="submit" class="col-1 btn btn-outline-success">Add</button>
 					</c:if>
 				</div>

@@ -38,11 +38,25 @@
 		<div class="row mt-4">
 			<h2 class="text-center fw-bolder">${vo.menuName}</h2>
 			<h5 class="text-center text-muted">${vo.menuEng}</h5>
+
 			<c:if test="${vo.menuFileVO.fileName ne null}">
 				<img alt="" src="../resources/upload/menu/${vo.menuFileVO.fileName}" id="menuImg">
 			
 			</c:if>
 			<h5 class="text-center text-muted">${vo.menuDetail}</h5>
+						<c:if test="${member.userType eq 0}">
+				<c:choose>
+					<c:when test="${vo.menuSale eq 0}">
+						<h5 class="text-center">*현재 판매중지</h5>								
+					</c:when>
+					<c:when test="${vo.menuSale eq 1}">
+						<h5 class="text-center">*현재 판매중</h5>								
+					</c:when>
+					<c:otherwise>
+						<h5 class="text-center">*현재 단종메뉴</h5>
+					</c:otherwise>
+				</c:choose>
+			</c:if>
 		</div>
 		
 	
