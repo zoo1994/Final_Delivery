@@ -53,7 +53,7 @@
 	</thead>
 	<tbody>
  		 <c:forEach items="${list}" var="vo" varStatus="i">
-			<tr>
+			<tr title="자세히 보기">
 				<td>${vo.menuNum}</td>
 				<td class="detail" data-num="${vo.menuNum}">${vo.menuName}</td>
 				<td>${vo.price}원</td>	
@@ -95,6 +95,7 @@
 
 	</div>
 </div>
+<c:import url="../temp/footer.jsp"></c:import>
 <script type="text/javascript" src="../js/menu.js"></script>
 </body>
 </html>
