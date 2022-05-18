@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.fd.s1.ceo.CeoVO;
 import com.fd.s1.coupon.CouponVO;
 import com.fd.s1.member.MemberVO;
 import com.fd.s1.util.Pager;
@@ -16,7 +17,10 @@ public interface AdminMapper {
 	public Long getCouponTotalCount(Pager pager)throws Exception;
 	public int setCouponAdd(CouponVO couponVO)throws Exception;
 	public int setCouponDelete(CouponVO couponVO)throws Exception;
-	public List<CouponVO> getShop(Pager pager)throws Exception;
+	public List<CeoVO> getShop(Pager pager)throws Exception;
+	public int setShopAdd(CeoVO ceoVO)throws Exception;
+//	public int setCouponDelete(CouponVO couponVO)throws Exception;
+	
 	
 	/*
 	public Long getTotal()throws Exception;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fd.s1.ceo.CeoVO;
 import com.fd.s1.coupon.CouponVO;
 import com.fd.s1.faq.EtcVO;
 import com.fd.s1.faq.FaqVO;
@@ -22,9 +23,9 @@ public class AdminService {
 	@Autowired
 	private AdminMapper adminMapper;
 
-	/*
+	
 	//shop - 리스트
-	public List<MemberVO> getShop(Pager pager)throws Exception{
+	public List<CeoVO> getShop(Pager pager)throws Exception{
 
 //		pager.makeRow();
 //		pager.makeNum(adminMapper.getTotalCount(pager));
@@ -32,7 +33,13 @@ public class AdminService {
 		
 		return adminMapper.getShop(pager);
 	}
-*/	
+	
+	//shop - add
+	public int setShopAdd(CeoVO ceoVO) throws Exception{	
+		return adminMapper.setShopAdd(ceoVO);
+	}
+	
+	
 	//관리자 멤버관리 - 리스트
 	public List<MemberVO> getMember(Pager pager)throws Exception{
 

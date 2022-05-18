@@ -38,13 +38,13 @@
 							<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 개의</span> 쿠폰이 검색되었습니다.</legend>
 						</span>
 						<span class="col-2 mt-5"  style="margin-right:10px;">
-							<input id="admin_coupon_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {getList();}" placeholder="Search" aria-label="Search">
+							<input id="admin_shop_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {getList();}" placeholder="Search" aria-label="Search">
 						</span>
 						<span class="col-1 mt-5">
-							<button class="btn btn-outline-success rounded-pill" id="admin_coupon_search_btn"  style="width: 80px;" type="submit">검색</button>
+							<button class="btn btn-outline-success rounded-pill" id="admin_shop_search_btn"  style="width: 80px;" type="submit">검색</button>
 						</span>
 					</div>
-					<div id="adminCouponListReusult">
+					<div id="adminShopListReusult">
 						
 					</div>	
 				</div>
@@ -59,7 +59,7 @@
 
 
 
-<!-- Modal -->
+<!-- <!-- Modal -->
 <div class="modal  fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -73,22 +73,32 @@
       		<div>
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default2">쿠폰명　</span>
+				    <span class="input-group-text" id="inputGroup-sizing-default1">점주</span>
 				  </div>
-				  <input type="text" id="couponName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input type="text" id="shop_id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
+				
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default3">할인가격</span>
+				    <span class="input-group-text" id="inputGroup-sizing-default2">매장이름</span>
 				  </div>
-				  <input type="text" id="couponDis" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input type="text" id="shop_name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
+				
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default4">쿠폰기간</span>
+				    <span class="input-group-text" id="inputGroup-sizing-default3">매장위치</span>
 				  </div>
-				  <input type="text" id="couponValiTerm" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input type="text" id="shop_location" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
+				
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default4">매장전화번호</span>
+				  </div>
+				  <input type="text" id="shop_phone" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				
 			</div>
       </div>
       <div class="modal-footer">
@@ -97,7 +107,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 <c:import url="../temp/footer.jsp"></c:import>
@@ -106,6 +116,6 @@
 
 
 </script>
-<script src="../resources/js/adminCouponList.js"></script>
+<script src="../resources/js/adminShopList.js"></script>
 </body>
 </html>

@@ -1,0 +1,150 @@
+console.log("hi");
+const admin_shop_search_btn = document.querySelector("#admin_shop_search_btn");
+const admin_shop_search = document.querySelector("#admin_shop_search");
+
+getList();
+
+function getList(){
+	console.log("start");
+	$.ajax({
+		type:"GET",
+		url:"./shop1",
+//  		data:{
+//            search : admin_shop_search.value
+// 		}, 
+		success:function(data){
+			$("#adminShopListReusult").html(data.trim());
+            //category_count.innerText = document.querySelector("#admin_shop_count").getAttribute("value");
+		}
+	});
+    
+}
+
+
+$('#adminShopListReusult').click(function(event){
+
+	if(event.target.classList.contains('modalBtn')){
+
+		$('#modal').modal("show");
+	}
+
+/*
+	if(event.target.classList.contains('deleteBtn')){
+
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST", "./cpDelete");
+
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhttp.send("couponId="+event.target.getAttribute("id").substr(15));
+    
+        xhttp.onreadystatechange = function(){
+            if(this.readyState==4 && this.status==200){
+				let result = this.responseText.trim();
+				if(result=='1'){
+					alert('삭제 성공');
+					getList();
+				}else {
+					alert('삭제 실패');
+				}
+			}
+        }
+		getList();
+	}
+
+    if(event.target.classList.contains('page-link')){
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.open("GET", "./coupon1?search="+event.target.getAttribute("data-search")+"&pn="+event.target.getAttribute("data-page"));
+    
+        xhttp.send();
+    
+        xhttp.onreadystatechange = function(){
+            if(this.readyState==4 && this.status==200){
+     //           console.log(this.responseText);
+                $("#adminCouponListReusult").html(this.responseText.trim());
+                category_count.innerText = document.querySelector("#admin_coupon_count").getAttribute("value");
+            }
+        }
+    }
+*/
+}); 
+
+$('#modalHide').click(function(e){
+	$('#modal').modal("hide");
+}); 
+$('#modalHideX').click(function(e){
+	$('#modal').modal("hide");
+}); 
+
+$("#modalSave").click(function() {
+	let formData = new FormData();
+	let shop_id = $("#shop_id").val();
+	let shop_name = $("#shop_name").val();
+	let shop_location = $("#shop_location").val();
+	let shop_phone = $("#shop_phone").val();
+	
+	formData.append("id", shop_id);
+	formData.append("shopName", shop_name);
+	formData.append("location", shop_location);
+	formData.append("shopPhone", shop_phone);
+		$.ajax({
+		type:"POST",
+		url:"./shopAdd",
+		processData: false,
+		contentType: false,
+		data:formData,
+		success:function(data){
+			if(data.trim()=='1'){
+				alert("매장 등록 완료");
+				getList();
+				$('#modal').modal("hide");
+				$("#shop_id").val("");
+				$("#shop_name").val("");
+				$("#shop_location").val("");
+				$("#shop_phone").val("");
+			}else {
+				alert("매장 등록 실패");
+			}
+			
+		},
+		error:function(){
+			alert("error 발생");
+		}
+	}); 
+	
+});
+/*
+$('#modalSave').click(function(e){
+
+ 		$.ajax({
+			type:"POST",
+			url:"./mgUpdate",
+
+			data:{
+				id: $("#modal_memberID").text(),
+				userType: $("#inputGroupSelect01").val()
+			},
+			success:function(data){
+				if(data.trim()=='1'){
+					alert("등급 수정 완료");
+					getList();
+				}else {
+					alert("등급 수정 실패");
+				}				
+			},
+			error:function(){
+				alert("error 발생");
+			}
+		});
+
+ 	$('#modal').modal("hide"); 
+});
+*/
+//search submit 버튼 클릭시
+admin_shop_search_btn.addEventListener("click", function(event){
+    getList();
+});
+
+

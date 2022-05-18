@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fd.s1.ceo.CeoVO;
 import com.fd.s1.coupon.CouponVO;
 import com.fd.s1.faq.FaqVO;
 import com.fd.s1.member.MemberVO;
@@ -131,35 +132,52 @@ public class AdminController {
 		mv.setViewName("common/result");
 		return mv;
 	}
-/*	
+
 	//관리자 회원관리
 	@GetMapping("shop")
 	public ModelAndView getShop(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
+/*		
+		List<CeoVO> shopVOs = adminService.getShop(pager);
+//		Long count = adminService.getListCount(pager);
+//		mv.addObject("count", count);
+		mv.addObject("list", shopVOs);
+		mv.addObject("pager", pager);
+*/		
 		
-		List<MemberVO> memberVOs = adminService.getMember(pager);
-		Long count = adminService.getListCount(pager);
-		mv.addObject("count", count);
-		mv.addObject("list", memberVOs);
+		mv.setViewName("admin/shop");
+		return mv;
+		
+	}
+	
+	//관리자 회원관리
+	@GetMapping("shop1")
+	public ModelAndView getShop1(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		List<CeoVO> shopVOs = adminService.getShop(pager);
+//		Long count = adminService.getListCount(pager);
+//		mv.addObject("count", count);
+		mv.addObject("list", shopVOs);
 		mv.addObject("pager", pager);
 		
 		
-		mv.setViewName("admin/store");
+		mv.setViewName("admin/shopList");
 		return mv;
 		
 	}
 	//관리자 쿠폰관리 - 생성
 	@PostMapping("shopAdd")
-	public ModelAndView setShopAdd(CouponVO couponVO)throws Exception{
+	public ModelAndView setShopAdd(CeoVO ceoVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		int result = adminService.setShopAdd(couponVO);
+		int result = adminService.setShopAdd(ceoVO);
 		
 		mv.addObject("result", result);
 		mv.setViewName("common/result");
 		return mv;
 	}
-*/	
+	
 	
 	
 /*
