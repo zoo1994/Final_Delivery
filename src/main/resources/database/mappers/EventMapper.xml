@@ -5,8 +5,12 @@
  
     <mapper namespace="com.fd.s1.board.event.EventMapper">
     
-    	<select id="getTotal" resultType="Long">
-    		SELECT COUNT(EVENTNUM) FROM EVENT
+    	<select id="getTotal" parameterType="Pager" resultType="Long">
+    		SELECT COUNT(EVENTNUM) FROM EVENT 
+    		WHERE  EVENTNUM > 0
+    		AND
+	 		(TITLE LIKE concat('%', #{search},'%') or
+	 		CONTENTS LIKE concat('%', #{search},'%'))
     	</select>
 
     	<select id="getFileList" parameterType="EventVO" resultType="EventFilesVO">
@@ -26,12 +30,10 @@
     		SELECT E.*, F.* FROM 
 			EVENT E
 			LEFT JOIN EVENTFILE F 
-			USING(EVENTNUM) WHERE E.EVENTNUM > 0 AND
-			<choose>
-				<when test="kind==1">E.CONTENTS </when>
-				<otherwise>E.TITLE</otherwise>
-			</choose>
-    		LIKE CONCAT('%',#{search},'%')
+			USING(EVENTNUM) WHERE E.EVENTNUM > 0 
+			AND
+	 		(TITLE LIKE concat('%', #{search},'%') or
+	 		CONTENTS LIKE concat('%', #{search},'%'))
     		ORDER BY E.EVENTNUM DESC
 			LIMIT #{startRow}, #{perPage}
     	</select>

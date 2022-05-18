@@ -61,6 +61,8 @@ public class EventController {
 		mv.addObject("count",count);
 		mv.addObject("pager",pager);
 		mv.setViewName("board/event/eventList");
+		System.out.println(pager.getStartRow());
+		System.out.println(pager.getPerPage());
 		return mv;
 	}
 	

@@ -56,6 +56,7 @@ public class EventService {
 	public List<EventVO> getList(Pager pager, Long count) throws Exception {
 		pager.makeRow();
 		pager.makeNum(count);
+
 		return eventMapper.getList(pager);
 	}
 
