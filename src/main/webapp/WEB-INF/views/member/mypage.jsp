@@ -21,7 +21,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<c:import url="../temp/header.jsp"></c:import>
 	<input name="id" type="hidden" value="${vo.id}">
 	<div class="card" style="width: 18rem;">
 		<ul class="list-group list-group-flush">
@@ -43,7 +43,7 @@
 	</div>
 	<a href="./pwChange" class="btn btn-outline-success">비밀번호 변경</a>
 	<a href="./updateCheck" class="btn btn-outline-success">개인정보 변경</a>
-
+<c:import url="../temp/footer.jsp"></c:import>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

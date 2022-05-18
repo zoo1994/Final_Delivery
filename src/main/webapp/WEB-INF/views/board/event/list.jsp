@@ -17,6 +17,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="../../temp/header.jsp"></c:import>
 	<div class="row mt-4">
 		<c:forEach items="${list}" var="vo">
 			<div class="card detail" style="width: 18rem;">
@@ -49,7 +50,8 @@
 		</form>
 	</div>
 	<div class="row mt-4">
-		<a href="./add" type="button" class="col-1 btn btn-outline-success ">Add</a>
+		<a href="./add" type="button" class="btn btn-warning">Add</a>
 	</div>
+<c:import url="../../temp/footer.jsp"></c:import>
 </body>
 </html>
