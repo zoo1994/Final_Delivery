@@ -17,7 +17,7 @@
     LEFT JOIN
     MENUFILE MF
     USING (MENUNUM)
-    WHERE ID=#{id}
+    WHERE C.ID=#{id}
     </select>
     
     <insert id="setCartAdd" parameterType="CartVO">
@@ -34,5 +34,9 @@
     <update id="update" parameterType="CartVO">
     UPDATE CART SET COUNT=#{count},totalPrice=#{totalPrice} WHERE CARTNUM=#{cartNum}
     </update>
+    
+    <delete id="delete" parameterType="CartVO">
+    DELETE FROM CART WHERE CARTNUM=#{cartNum}
+    </delete>
     
     </mapper>

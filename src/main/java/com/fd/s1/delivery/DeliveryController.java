@@ -80,6 +80,15 @@ public class DeliveryController {
 		return mv;
 	}
 	
+	@PostMapping("delete")
+	public ModelAndView delete(CartVO cartVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = deliveryService.delete(cartVO);
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
 }
 
 
