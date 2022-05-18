@@ -53,9 +53,9 @@ public class EventService {
 		return result;
 	}
 
-	public List<EventVO> getList(Pager pager) throws Exception {
+	public List<EventVO> getList(Pager pager, Long count) throws Exception {
 		pager.makeRow();
-		pager.makeNum(eventMapper.getTotal());
+		pager.makeNum(count);
 		return eventMapper.getList(pager);
 	}
 
@@ -103,5 +103,12 @@ public class EventService {
 		}
 		return result;
 	}
+	
+	
+	public Long getTotal(Pager pager) throws Exception {
+		return eventMapper.getTotal(pager);
+	}
+	
+	
 
 }

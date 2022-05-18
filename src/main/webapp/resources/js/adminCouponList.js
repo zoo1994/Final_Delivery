@@ -22,6 +22,13 @@ function getList(){
 
 
 $('#adminCouponListReusult').click(function(event){
+
+	if(event.target.classList.contains('modalBtn')){
+
+		$('#modal').modal("show");
+	}
+
+
 	if(event.target.classList.contains('deleteBtn')){
 
         const xhttp = new XMLHttpRequest();
