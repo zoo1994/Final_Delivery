@@ -25,16 +25,15 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<%-- <c:import url="../temp/ceoHeader.jsp"></c:import> --%>
+		<%--  <c:import url="../temp/ceoHeader.jsp"></c:import>  --%>
         <div class="col py-3">
       <table class="table table-hover">
 	<thead>
-		<tr class="table-warning">
+		<tr class="table-success">
 			<th>Num</th>
 			<th>메뉴이름</th>
 			<th>가격</th>
 			<th>판매상태</th>
-			<th>추가</th>
 			<th>변경</th>
 		</tr>	
 	</thead>
@@ -42,12 +41,12 @@
             <c:forEach items="${allMenuList}" var="vo">
 			<tr>
 				<td>${vo.menuNum}</td>
-				<td class="detail" data-num="${vo.menuNum}">${vo.menuName}</td>
-				<td>${vo.price}원</td>	
+				<td class="detail" data-num="${vo.menuNum}">${vo.menuVO.menuName}</td>
+				<td>${vo.menuVO.price}원</td>	
 
-				<td>
+				<%-- <td>
 				<c:choose>
-					<c:when test="${vo.menuSale eq 1}">
+					<c:when test="${vo.sale eq 1}">
 						판매중
 					</c:when>
 					<c:otherwise>
@@ -55,15 +54,17 @@
 					</c:otherwise>
 				</c:choose>
 				</td>
-				<td>
-					<button type="button" class="btn btn-outline-success" data-num="${vo.menuNum}">추가</button>
-				</td>
+ --%>
 				 <td>
-					<select class="form-select" aria-label="Default select example">
-					  <option value="1">판매중</option>
-					  <option value="0">판매중지</option>
+					<select id="menuSale" name="menuSale${vo.menuNum}" class="form-select menuSale${vo.menuNum}" aria-label="Default select example">
+					  <option value="1" <c:if test="${vo.sale eq 1}">selected</c:if>>판매중</option>
+					  <option value="0" <c:if test="${vo.sale eq 0}">selected</c:if>>판매중지</option>
 					</select>
 				</td> 
+				
+				<td>
+					<button type="button" class="btn btn-outline-success updateBtn" data-num="${vo.menuNum}">변경</button>
+				</td>
 			</tr>
 		</c:forEach>  
 	</tbody>
@@ -71,6 +72,33 @@
        
         </div>
     </div>
+<script type="text/javascript">
+	$(".updateBtn").click(function() {
+		let menuNum = $(this).attr("data-num");
+		//console.log($('select[name='+menuSale+'] option:selected').val()); 확인		
+		let txt = 'menuSale'+menuNum;
+		let menuSale = $('select[name='+txt+'] option:selected').val();
+		
+		$.ajax({
+			type:"post",
+			url:"./ceoMenu",
+			data:{
+				sale:menuSale,
+				menuNum:menuNum
+			},
+			success:function(data) {
+				if(data.trim() ==1) {
+					alert("변경되었습니다. ");
+				}else {
+					alert("변경에 실패했습니다.");
+				}
+			}
+		
+		});
 	
+	});
+	
+	
+</script>
 </body>
 </html>

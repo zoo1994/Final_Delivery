@@ -17,8 +17,12 @@ public class ShopService {
 		return shopMapper.getList(shopMenuVO);
 	}
 	
-	public ShopVO getCeo(MemberVO memberVO) throws Exception {
-		return shopMapper.getCeo(memberVO);
+	public ShopVO getShopNum(MemberVO memberVO) throws Exception {
+		return shopMapper.getShopNum(memberVO);
+	}
+	
+	public int setUpdateSale(ShopMenuVO shopMenuVO) throws Exception {
+		return shopMapper.setUpdateSale(shopMenuVO);
 	}
 
 }
