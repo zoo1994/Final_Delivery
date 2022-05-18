@@ -49,7 +49,7 @@
 			<button type="submit">검색</button>
 		</form>
 	</div>
-	<div class="row mt-4">
+	<div class="row2 mt-4">
 		<a href="./add" type="button" class="btn btn-warning">Add</a>
 	</div>
 <c:import url="../../temp/footer.jsp"></c:import>

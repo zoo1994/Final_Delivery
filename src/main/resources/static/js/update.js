@@ -116,3 +116,10 @@ $("#updateBtn").click(function() {
 		$("#updateForm").submit();
 	}
 });
+$("#delMemBtn").click(function() {
+	let check = window.confirm("회원탈퇴하면 복구가 불가능합니다 탈퇴하시겠습니까");
+	if(!check){
+		return;
+	}
+	$("#delForm").submit();
+});
