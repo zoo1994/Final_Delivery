@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fd.s1.shop.ShopMenuVO;
 import com.fd.s1.util.Pager;
 
 @Mapper
@@ -34,4 +35,5 @@ public interface MenuMapper {
 	
 	public int setIngredientUpdate(IngredientVO ingredientVO) throws Exception;
 	
+	public int setShopMenuAdd(ShopMenuVO shopMenuVO) throws Exception;
 }

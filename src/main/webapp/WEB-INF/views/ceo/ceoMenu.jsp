@@ -27,6 +27,9 @@
 	<div class="container-fluid">
 		<%--  <c:import url="../temp/ceoHeader.jsp"></c:import>  --%>
         <div class="col py-3">
+        <div class="row">
+        	<h1>${shopMaster.shopName}, ${member.id}님</h1>
+        </div>
       <table class="table table-hover">
 	<thead>
 		<tr class="table-success">
@@ -78,13 +81,14 @@
 		//console.log($('select[name='+menuSale+'] option:selected').val()); 확인		
 		let txt = 'menuSale'+menuNum;
 		let menuSale = $('select[name='+txt+'] option:selected').val();
-		
+		let shopNum = ${shopMaster.shopNum};
 		$.ajax({
 			type:"post",
 			url:"./ceoMenu",
 			data:{
 				sale:menuSale,
-				menuNum:menuNum
+				menuNum:menuNum,
+				shopNum:shopNum
 			},
 			success:function(data) {
 				if(data.trim() ==1) {

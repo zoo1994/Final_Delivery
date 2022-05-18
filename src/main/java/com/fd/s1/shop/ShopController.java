@@ -33,15 +33,19 @@ public class ShopController {
 		return mv;
 	}
 	
+	//각 점포 메뉴 list
 	@GetMapping("ceoMenu")
 	public ModelAndView getCeoMain(Pager pager, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		//로그인한 session 정보 받아와 해당 id의 매장번호 받아오기
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		ShopVO shopVO =  shopService.getShopNum(memberVO);
 		ShopMenuVO shopMenuVO = new ShopMenuVO();
 		shopMenuVO.setShopNum(shopVO.getShopNum());
-	//	pager.setUserType(1L);
+		//해당 매장의 메뉴 list
 		List<ShopMenuVO> ar = shopService.getList(shopMenuVO);
+		
+		mv.addObject("shopMaster", shopVO);
 		
 		
 		mv.addObject("allMenuList", ar);
@@ -51,6 +55,7 @@ public class ShopController {
 		return mv;
 	}
 	
+	//메뉴 상태변경용 ajax 
 	@PostMapping("ceoMenu")
 	public ModelAndView setUpdateSale(ShopMenuVO shopMenuVO) throws Exception {
 		ModelAndView mv = new ModelAndView();

@@ -93,6 +93,11 @@
 		VALUES (#{menuNum}, #{menuName}, #{menuEng}, #{price}, #{menuDetail}, #{menuSale}, #{category})
 	</insert>
 	
+	<insert id="setShopMenuAdd" parameterType="ShopMenuVO">
+		INSERT INTO SHOPMENU (MENUNUM, SHOPNUM, SALE)
+		VALUES (#{menuNum}, #{shopNum}, 1)
+	</insert>
+	
 	<insert id="setIngredientAdd" parameterType="IngredientVO">
 		INSERT INTO INGREDIENT 
 		VALUES(NULL, #{menuNum}, #{weight_g}, #{weight_ml}, #{calory}, #{sugar}, #{protein}, #{fat}, #{sodium}, #{caffeine})

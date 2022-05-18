@@ -13,6 +13,10 @@ public class ShopService {
 	@Autowired
 	private ShopMapper shopMapper;
 	
+	public int setMenu(ShopMenuVO shopMenuVO) throws Exception {
+		return shopMapper.setMenu(shopMenuVO);
+	}
+	
 	public List<ShopMenuVO> getList(ShopMenuVO shopMenuVO) throws Exception {
 		return shopMapper.getList(shopMenuVO);
 	}
