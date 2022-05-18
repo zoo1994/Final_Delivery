@@ -60,7 +60,7 @@ public class EventController {
 		
 		mv.addObject("count",count);
 		mv.addObject("pager",pager);
-		mv.setViewName("common/result");
+		mv.setViewName("board/event/eventList");
 		return mv;
 	}
 	

@@ -46,7 +46,7 @@
 					</div>
 				</div>
 				<div class="container">
-					<form class="d-flex mb-3" action="./list" method="get">
+<%-- 					<form class="d-flex mb-3" action="./list" method="get">
 						<span class="col-9">
 							<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;">${count}건의</span> 게시물이 있습니다.</legend>
 						</span>
@@ -56,7 +56,20 @@
 						<span class="col-1">
 							<button class="btn btn-outline-success rounded-pill"  style="width: 80px;" type="submit">검색</button>
 						</span>
-					</form>
+					</form> --%>
+					
+					<div class="d-flex mb-3">
+						<input hidden name="category" type="text" id="categoryResult" value="1">
+						<span class="col-9  mt-5">
+							<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 명의</span> 회원이 검색되었습니다.</legend>
+						</span>
+						<span class="col-2 mt-5"  style="margin-right:10px;">
+							<input id="event_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {getList();}" placeholder="Search" aria-label="Search">
+						</span>
+						<span class="col-1 mt-5">
+							<button class="btn btn-outline-success rounded-pill" id="event_search_btn"  style="width: 80px;" type="submit">검색</button>
+						</span>
+					</div>
 
 					 <div class="" style="width: 1168px; margin: 0 auto;">
 					<div class="row mt-4" id="eventListResult" style="">
@@ -102,5 +115,6 @@
 	
 	
 	<c:import url="../../temp/footer.jsp"></c:import>
+	<script src="../resources/js/eventList.js"></script>
 </body>
 </html>

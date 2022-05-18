@@ -28,15 +28,17 @@ $('#adminShopListReusult').click(function(event){
 		$('#modal').modal("show");
 	}
 	if(event.target.classList.contains('modalBtn2')){
-		console.log(event.target.getAttribute("data-id"));
+		console.log(event.target.getAttribute("id").substr(13));
 		//	let shopNum2 = $("#shopNum2").val();
-		$("#shopNum2").val("11");
-		$("#shop_id2").val("점주");
-		$("#shop_name2").val("점포명");
-		$("#shop_location2").val();
-		$("#shop_phone2").val();
-		$("#shop_sale2").val();
-		$("#shop_open2").val();
+		$("#shopNum2").val(event.target.getAttribute("id").substr(13));
+		$("#shop_id2").val(event.target.getAttribute("data-id"));
+		$("#shop_name2").val(event.target.getAttribute("data-name"));
+		$("#shop_location2").val(event.target.getAttribute("data-location"));
+		$("#shop_phone2").val(event.target.getAttribute("data-phone"));
+//		$("#shop_sale2").val(event.target.getAttribute("data-sale"));
+//		$("#shop_open2").val(event.target.getAttribute("data-open"));
+		$('input:radio[name=shop_sale2]:input[value=' + event.target.getAttribute("data-sale") + ']').attr("checked", true);
+		$('input:radio[name=shop_open2]:input[value=' + event.target.getAttribute("data-open") + ']').attr("checked", true);
 		$('#modal2').modal("show");
 	}
 
@@ -134,26 +136,28 @@ $("#modalSave").click(function() {
 });
 
 $("#modalSave2").click(function() {
+	console.log($(":input:radio[name=shop_sale2]:checked").val());
+	console.log($(":input:radio[name=shop_open2]:checked").val());
 	let formData = new FormData();
-//	let shopNum2 = $("#shopNum2").val();
+	let shopNum2 = $("#shopNum2").val();
 	let shop_id2 = $("#shop_id2").val();
 	let shop_name2 = $("#shop_name2").val();
 	let shop_location2 = $("#shop_location2").val();
 	let shop_phone2 = $("#shop_phone2").val();
-	let shop_sale2 = $("#shop_sale2").val();
-	let shop_open2 = $("#shop_open2").val();
+	let shop_sale2 = $(":input:radio[name=shop_sale2]:checked").val();
+	let shop_open2 = $(":input:radio[name=shop_open2]:checked").val();
 
-	
+	formData.append("shopNum", shopNum2);
 	formData.append("id", shop_id2);
 	formData.append("shopName", shop_name2);
 	formData.append("location", shop_location2);
 	formData.append("shopPhone", shop_phone2);
-	formData.append("shopPhone", shop_sale2);
-	formData.append("shopPhone", shop_open2);
+	formData.append("sale", shop_sale2);
+	formData.append("open", shop_open2);
 
 		$.ajax({
 		type:"POST",
-		url:"./shopAdd",
+		url:"./shopUpdate",
 		processData: false,
 		contentType: false,
 		data:formData,
@@ -162,14 +166,15 @@ $("#modalSave2").click(function() {
 				alert("매장 수정 완료");
 				getList();
 				//shopNum2  shop_name2  shop_name2  shop_phone2  shop_sale2  shop_open2
-				$('#modal').modal("hide");
+				$('#modal2').modal("hide");
+				$("#shopNum2").val("");
 				$("#shop_id2").val("");
 				$("#shop_name2").val("");
 				$("#shop_location2").val("");
 				$("#shop_phone2").val("");
 				$("#shop_sale2").val("");
 				$("#shop_open2").val("");
-
+				
 			}else {
 				alert("매장 수정 실패");
 			}

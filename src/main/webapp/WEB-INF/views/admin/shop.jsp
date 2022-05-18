@@ -125,7 +125,7 @@
 				  <div class="input-group-prepend">
 				    <span class="input-group-text" id="inputGroup-sizing-default11">매장번호</span>
 				  </div>
-				  <input type="text" id="shopNum2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input readonly type="text" id="shopNum2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				
 				<div class="input-group mb-3">
@@ -154,18 +154,44 @@
 				  </div>
 				  <input type="text" id="shop_phone2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
-				<div class="input-group mb-3">
+<!-- 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default66">오픈여부</span>
+				    <span class="input-group-text" id="inputGroup-sizing-default666">오픈여부</span>
 				  </div>
 				  <input type="text" id="shop_sale2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default777">운영여부</span>
+				  </div>
+				  <input type="text" id="shop_open2"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div> -->
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default66">오픈여부</span>
+				  </div>
+				  	<div class="form-control">
+				  		<div style="display: inline-block; width: 20%">
+				  			판매가능</div><div style="display: inline-block; width: 20%"><input type="radio" class="shop_sale2" value="1"  name="shop_sale2" aria-label="Radio button for following text input">				  		
+				  		</div>
+				  		<div style="display: inline-block; width: 20%">
+				 		판매종료</div><div style="display: inline-block; width: 20%"><input type="radio" class="shop_sale2" value="0"  name="shop_sale2" aria-label="Radio button for following text input">
+						</div>
+				  	</div>
+				</div>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
 				    <span class="input-group-text" id="inputGroup-sizing-default77">운영여부</span>
 				  </div>
-				  <input type="text" id="shop_open2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				</div>
+				  	<div class="form-control">
+				  		<div style="display: inline-block; width: 20%">
+				  		운영</div><div style="display: inline-block; width: 20%"><input type="radio" class="shop_open2" value="0" name="shop_open2" aria-label="Radio button for following text input">
+				 		</div>
+				 		<div style="display: inline-block; width: 20%">
+				 		폐업</div><div style="display: inline-block; width: 20%"><input type="radio" class="shop_open2" value="1" name="shop_open2" aria-label="Radio button for following text input">				  		
+				  		</div>
+				  	</div>
+				</div>				
 				<!-- id="shopUpdateBtn${vo.shopNum}" data-id="${vo.id}" data-name="${vo.shopName}" data-location="${vo.location}" data-phone="${vo.shopPhone}" data-open="${vo.open}" -->
 			</div>
       </div>

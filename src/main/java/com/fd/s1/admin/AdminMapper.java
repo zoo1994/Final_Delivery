@@ -20,6 +20,7 @@ public interface AdminMapper {
 	public List<ShopVO> getShop(Pager pager)throws Exception;
 	public int setShopAdd(ShopVO shopVO)throws Exception;
 	public int setShopDelete(ShopVO shopVO)throws Exception;
+	public int setShopUpdate(ShopVO shopVO)throws Exception;
 	public Long getShopTotalCount(Pager pager)throws Exception;
 	
 	

@@ -37,6 +37,11 @@ public class AdminService {
 		return adminMapper.setShopDelete(shopVO);
 	}
 	
+	//관리자 shop관리 - update
+	public int setShopUpdate(ShopVO shopVO) throws Exception{	
+		return adminMapper.setShopUpdate(shopVO);
+	}
+	
 	//관리자 shop관리 - count
 	public Long getShopListCount(Pager pager) throws Exception{	
 		return adminMapper.getShopTotalCount(pager);
