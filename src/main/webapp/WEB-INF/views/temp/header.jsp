@@ -32,6 +32,11 @@
 							<li><a class="dropdown-item" href="/menu/list?category=7">해피밀</a></li>
 						</ul>
 					</li>
+					<c:if test="${member.userType eq 0}">
+						<li class="nav-item mx-3">
+							<a class="nav-link active" href="/menu/menuManage" id="navbarDropdown" role="button" style="font-size: 20px">메뉴관리</a>
+						</li>
+					</c:if>
 					<li class="nav-item mx-3">
 						<a class="nav-link active" href="/notice/list" id="navbarDropdown" role="button" style="font-size: 20px">고객센터</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">

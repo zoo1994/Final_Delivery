@@ -11,27 +11,28 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <c:import url="../temp/header_script.jsp"></c:import>
 <style type="text/css">
-#menuImg {
-	width:750px;
-	height:550px;
-	margin:0 auto;
+a {
+	text-decoration: none;
+	color: gray;
 }
+
+.header-top {
+	font-size: smaller;
+}
+
+.header-botton {
+
+margin: 0 auto;
+
+}
+
 </style>
-<title>Insert title here</title>
 </head>
 <body>
-
-	<c:import url="./detail.jsp"></c:import>
 	<div class="container">
-	
-		<div>
-			<a href="./update?menuNum=${vo.menuNum}" class="btn btn-primary">수정</a>
-			<a onclick="return confirm('정말 삭제하시겠습니까?');" href="./delete?menuNum=${vo.menuNum}" class="btn btn-danger">메뉴삭제</a>
+		<div class="row">
+			<c:import url="../temp/sellerHeader.jsp"></c:import>
 		</div>
-
 	</div>
-<c:import url="../temp/footer.jsp"></c:import>
-
 </body>
-
 </html>
