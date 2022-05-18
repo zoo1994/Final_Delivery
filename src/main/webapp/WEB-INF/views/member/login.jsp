@@ -19,7 +19,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container mt-4">
+<c:import url="../temp/header.jsp"></c:import>
+	<div class="container mt-4" >
 		<div class="row mt-4">
 			<form action="./login" method="post">
 				<div class="row mt-4">
@@ -42,7 +43,8 @@
 			</form>
 		</div>
 	</div>
-	<script
+<c:import url="../temp/footer.jsp"></c:import>
+<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>

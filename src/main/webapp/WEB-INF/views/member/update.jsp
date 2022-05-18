@@ -22,6 +22,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="../temp/header.jsp"></c:import>
+<div class="row mt-4"  style="width: 55rem; margin:0 auto;">
 	<div class="container mt-4">
 		<div class="row mt-4">
 			<form:form modelAttribute="memberVO" id="updateForm" method="post">
@@ -39,13 +41,16 @@
 					</div>
 					<div class="mb-3" id="divv">
 						<label for="phone" class="form-label">전화번호 </label>
+						<div class="input-group mb-3">
 						<form:input path="phone" cssClass="form-control" id="phone" 
 							value="${vo.phone}" />
+							<button type="button" id="messageBtn"
+							class="col-2 btn btn-outline-success">번호인증</button>
+						</div>
 						<div id="phoneDiv">
 							<form:errors path="phone"></form:errors>
 						</div>
-						<button type="button" id="messageBtn"
-							class="col-1 btn btn-outline-success">번호인증</button>
+						
 						<div id="numBox"></div>
 					</div>
 				</div>
@@ -74,12 +79,18 @@
 				</div>
 
 				<div class="row justify-content-end">
-					<button type="button" id="updateBtn"
-						class="col-1 btn btn-outline-success">수정</button>
+					<button type="button" id="delMemBtn" class="col-2 btn btn-outline-success">회원탈퇴</button>
+					<button type="button" id="updateBtn" class="col-2 btn btn-outline-success">수정</button>
 				</div>
 			</form:form>
 		</div>
 	</div>
+	</div>
+	<form action="./delMem" method="post" id="delForm">
+		<input type="hidden" name="id" value="${vo.id}">
+	</form>
+	<c:import url="../temp/footer.jsp"></c:import>
+
 	<script type="text/javascript" src="../js/update.js"></script>
 	<script type="text/javascript" src="../js/map.js"></script>
 	<script

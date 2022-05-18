@@ -52,7 +52,7 @@
 			</ul>
 		</nav>
 		<div class="row mt-4">
-			<a href="./add" class="btn btn-primary">ADD</a>
+			<a href="./add" class="btn btn-primary " >ADD</a>
 		</div>
 	</div>
 	<c:import url="../../temp/footer.jsp"></c:import>

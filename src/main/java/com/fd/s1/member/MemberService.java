@@ -14,6 +14,10 @@ public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
+	public int delMem(MemberVO memberVO)throws Exception{
+		return memberMapper.delMem(memberVO);
+	}
+	
 	public int setPwChange(MemberVO memberVO)throws Exception{
 		return memberMapper.setPwChange(memberVO);
 	}
