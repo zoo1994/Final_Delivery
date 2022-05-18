@@ -11,9 +11,9 @@
 	$(".updateBtn").click(function() {
 		let num = $(this).attr("data-num");
 		let txt = 'menuSale'+num;
-		console.log(txt);
+
 	 	let menuSale = $('input[name='+txt+']:checked').val();
-		console.log($(this).parent().parent().children("td.menuSale").text());
+		/*console.log($(this).parent().parent().children("td.menuSale").text());*/
 
 		  $.ajax({
 			type:"post",
@@ -24,8 +24,7 @@
 			},
 			success:function(data) {
 				if(data.trim() == 1) {
-					alert("변경되었습니다.")
-					
+					alert("변경되었습니다.");		
 				}else {
 					alert("변경에 실패했습니다.");
 				}

@@ -25,6 +25,20 @@
 	
 		<p class="fs-3 fw-bolder">메뉴 관리</p>
 	</div>
+	
+	<!-- 검색 창 -->
+		<div class="row mb-4">
+			<form action="./menuManage" method="get" class="d-flex">
+
+				<select name="kind">
+					<option value="col1">메뉴이름</option>
+					<option value="col2">메뉴설명</option>
+				</select> 
+				<input type="search" name="search" value="${pager.search}" placeholder="Search" class="com-2">
+				<button type="submit" class="btn btn-outline-success">Search</button>
+
+			</form>
+		</div>
 	<div class="row">
 
 <table class="table table-hover">
@@ -39,7 +53,7 @@
 	</thead>
 	<tbody>
  		 <c:forEach items="${list}" var="vo" varStatus="i">
-			<tr>
+			<tr title="자세히 보기">
 				<td>${vo.menuNum}</td>
 				<td class="detail" data-num="${vo.menuNum}">${vo.menuName}</td>
 				<td>${vo.price}원</td>	
@@ -47,20 +61,20 @@
 				<td>
 					<div>
 						<div class="form-check">
-							  <input class="form-check-input menuSale${vo.menuNum}" type="radio" name="menuSale${vo.menuNum}" value="1" id="flexRadioDefault1" <c:if test="${vo.menuSale eq 1}">checked</c:if>>
-							  <label class="form-check-label" for="flexRadioDefault1">
+							  <input class="form-check-input menuSale${vo.menuNum}" type="radio" name="menuSale${vo.menuNum}" value="1" id="saleOn" <c:if test="${vo.menuSale eq 1}">checked</c:if>>
+							  <label class="saleOn" for="flexRadioDefault1">
 							    판매중
 							  </label>
 						</div>
 						<div class="form-check">
-							  <input class="form-check-input menuSale${vo.menuNum}" type="radio" name="menuSale${vo.menuNum}" value="0" id="flexRadioDefault2" <c:if test="${vo.menuSale eq 0}">checked</c:if>>
-							  <label class="form-check-label" for="flexRadioDefault2">
+							  <input class="form-check-input menuSale${vo.menuNum}" type="radio" name="menuSale${vo.menuNum}" value="0" id="saleOff" <c:if test="${vo.menuSale eq 0}">checked</c:if>>
+							  <label class="saleOff" for="flexRadioDefault2">
 							    판매중지
 							  </label>
 						</div>
 						<div class="form-check">
-							  <input class="form-check-input menuSale${vo.menuNum}" type="radio" name="menuSale${vo.menuNum}" value="2" id="flexRadioDefault3" <c:if test="${vo.menuSale eq 2}">checked</c:if>>
-							  <label class="form-check-label" for="flexRadioDefault2">
+							  <input class="form-check-input menuSale${vo.menuNum}" type="radio" name="menuSale${vo.menuNum}" value="2" id="seasonOff" <c:if test="${vo.menuSale eq 2}">checked</c:if>>
+							  <label class="seasonOff" for="flexRadioDefault2">
 							    단종
 							  </label>
 						</div>
@@ -81,6 +95,7 @@
 
 	</div>
 </div>
+<c:import url="../temp/footer.jsp"></c:import>
 <script type="text/javascript" src="../js/menu.js"></script>
 </body>
 </html>

@@ -36,12 +36,35 @@ public class EventController {
 	@GetMapping("list")
 	public ModelAndView getList(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<EventVO> ar = eventService.getList(pager);
+		pager.setPerPage(6);
+		Long count = eventService.getTotal(pager);
+		
+		List<EventVO> ar = eventService.getList(pager, count);
 		mv.addObject("list",ar);
+		
+		mv.addObject("count",count);
 		mv.addObject("pager",pager);
 		mv.setViewName("board/event/list");
 		return mv;
 	}
+	
+	//이벤트리스트 ajax
+	@GetMapping("list1")
+	public ModelAndView getList1(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		pager.setPerPage(6);
+		Long count = eventService.getTotal(pager);
+		
+		List<EventVO> ar = eventService.getList(pager, count);
+		mv.addObject("list",ar);
+		
+		mv.addObject("count",count);
+		mv.addObject("pager",pager);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	
 	
 	@GetMapping("add")
 	public ModelAndView setAdd(@ModelAttribute EventVO eventVO)throws Exception{

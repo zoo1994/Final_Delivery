@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.fd.s1.admin.AdminMapper">
+    
+        <select id="getMember" parameterType="Pager" resultType="MemberVO">
+			SELECT * FROM USER    		    		
+	 		WHERE ID  is not null
+	 		AND
+	 		(ID LIKE concat('%', #{search},'%') or
+	 		NAME LIKE concat('%', #{search},'%'))
+	    	ORDER BY USERTYPE ASC, ID ASC LIMIT #{startRow}, #{perPage}
+    	</select>
+    
+        <update id="setMemberGrade" parameterType="MemberVO">
+			UPDATE USER SET USERTYPE = #{userType} WHERE ID=#{id}
+    	</update>
+    	<select id="getTotalCount" parameterType="pager" resultType="Long">
+			SELECT COUNT(ID) FROM USER    		    		
+	 		WHERE
+	 		(ID LIKE concat('%', #{search},'%') or
+	 		NAME LIKE concat('%', #{search},'%'))
+    	</select>
+    	
+    	
+    	 <select id="getCoupon" parameterType="Pager" resultType="CouponVO">
+			SELECT * FROM COUPON 		    		
+	 		WHERE COUPONID  is not null
+	 		AND
+	 		(COUPONID LIKE concat('%', #{search},'%') or
+	 		COUPONNAME LIKE concat('%', #{search},'%'))
+	    	ORDER BY COUPONID ASC LIMIT #{startRow}, #{perPage}
+    	</select>
+
+    	<select id="getCouponTotalCount" parameterType="pager" resultType="Long">
+	 		SELECT COUNT(COUPONID) FROM COUPON 		    		
+	 		WHERE
+	 		(COUPONID LIKE concat('%', #{search},'%') or
+	 		COUPONNAME LIKE concat('%', #{search},'%'))
+    	</select>
+    	
+    	<insert id="setCouponAdd" parameterType="CouponVO" useGeneratedKeys="true" keyProperty="couponId">
+			INSERT INTO COUPON (COUPONID,COUPONNAME,DISCOUNT,ACTIVEDATE)
+			VALUES (#{couponId},#{couponName},#{discount},#{activeDate})
+		</insert>
+		
+		<delete id="setCouponDelete" parameterType="CouponVO">
+			DELETE FROM COUPON WHERE COUPONID=#{couponId}
+		</delete>
+    </mapper>

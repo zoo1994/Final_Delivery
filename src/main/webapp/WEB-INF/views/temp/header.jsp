@@ -32,6 +32,11 @@
 							<li><a class="dropdown-item" href="/menu/list?category=7">해피밀</a></li>
 						</ul>
 					</li>
+					<c:if test="${member.userType eq 0}">
+						<li class="nav-item mx-3">
+							<a class="nav-link active" href="/menu/menuManage" id="navbarDropdown" role="button" style="font-size: 20px">메뉴관리</a>
+						</li>
+					</c:if>
 					<li class="nav-item mx-3">
 						<a class="nav-link active" href="/notice/list" id="navbarDropdown" role="button" style="font-size: 20px">고객센터</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -60,7 +65,7 @@
 						<c:otherwise>
 							<li class="nav-item">
 								
-								<a class="nav-link btn btn-primary" href="/member/mypage" style="color: white; font-size: 20px; background-color: #FF8233!important; border:#FF8233!important">MyPage</a>
+								<a class="nav-link btn btn-primary" href="${member.userType != 0 ? '/member/mypage' : '/admin/manager' }" style="color: white; font-size: 20px; background-color: #FF8233!important; border:#FF8233!important">MyPage</a>
 							</li>
 							<li class="nav-item">
 								

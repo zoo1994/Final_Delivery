@@ -15,6 +15,7 @@
 	color: black;
 	font-weight: bold;
 }
+
 </style>
 </head>
 <body>
@@ -37,10 +38,10 @@
 							<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;">${count}건의</span> 게시물이 있습니다.</legend>
 						</span>
 						<span class="col-2"  style="margin-right:10px;">
-							<input class="form-control me-2" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {search_onclick_submit}" placeholder="Search" aria-label="Search">
+							<input class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {search_onclick_submit}" placeholder="Search" aria-label="Search">
 						</span>
 						<span class="col-1">
-							<button class="btn btn-outline-success"  style="width: 80px;" type="submit">검색</button>
+							<button class="btn btn-outline-success rounded-pill"  style="width: 80px;" type="submit">검색</button>
 						</span>
 					</form>
 
@@ -81,7 +82,7 @@
 							  </ul> 
 							  </span> 
 							  <span class="col-2" style="display: inline-block; text-align: end; width: 15%;">
-							  	<c:if test="${member.userType == 2}">
+							  	<c:if test="${member.userType == 0}">
 							  		<a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a>
 							  	</c:if>
 							  </span>
@@ -93,7 +94,7 @@
 	</div>			
 </div>
 <div style="margin-bottom: 200px;"></div>
-
+<c:import url="../temp/footer.jsp"></c:import>
 	<c:import url="../temp/header_script.jsp"></c:import>
 </body>
 </html>

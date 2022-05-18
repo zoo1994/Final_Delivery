@@ -10,7 +10,7 @@ import com.fd.s1.util.Pager;
 @Mapper
 public interface EventMapper {
 	
-	public Long getTotal()throws Exception;
+	public Long getTotal(Pager pager)throws Exception;
 	
 	public List<EventFilesVO> getFileList(EventVO eventVO)throws Exception;
 	

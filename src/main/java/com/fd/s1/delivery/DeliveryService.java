@@ -43,4 +43,8 @@ public class DeliveryService {
 		return deliveryMapper.update(cartVO);
 	}
 	
+	public int delete(CartVO cartVO)throws Exception{
+		return deliveryMapper.delete(cartVO);
+	}
+	
 }
