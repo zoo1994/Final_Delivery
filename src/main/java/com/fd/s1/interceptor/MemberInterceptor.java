@@ -10,34 +10,29 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.fd.s1.member.MemberVO;
 
-
 @Component
-public class AdminInterceptor implements HandlerInterceptor{
-	
+public class MemberInterceptor implements HandlerInterceptor {
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		boolean check = false;
-		
+		boolean check = true;
+
 		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		
-		if(memberVO != null) {
-			if(memberVO.getUserType()==0) {
-				check = true;
-			}
-		}
-		
-		if(!check) {
-			request.setAttribute("message", "권한이 없습니다.");
-			request.setAttribute("path", "../");
-			
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+
+		if (memberVO == null) {
+
+			request.setAttribute("message", "로그인이 필요합니다.");
+			request.setAttribute("path", "/member/login");
+
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/joinResult.jsp");
 			view.forward(request, response);
+			check = false;
+
 		}
-		
+
 		return check;
 	}
-	
-	
+
 }

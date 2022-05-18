@@ -22,14 +22,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="../temp/header.jsp"></c:import>
 	<div class="container mt-4">
 		<div class="row mt-4">
 			<form:form modelAttribute="memberVO" id="joinForm" method="post">
 				<div class="row mt-4">
 					<div class="mb-3">
 						<label for="id" class="form-label">아이디</label>
+						<div class="input-group mb-3">
 						<form:input path="id" cssClass="form-control" id="id" />
-						<button type="button" id="idCheckBtn" class="col-1 btn btn-outline-success">아이디 중복검사</button>
+						<button type="button" id="idCheckBtn" class="col-2 btn btn-outline-success">아이디 중복검사</button>
+						</div>
 						<div id="idError"></div>
 						<div>
 							<form:errors path="id"></form:errors>
@@ -108,11 +111,13 @@
 					</div>
 					<div class="mb-3" id="divv">
 						<label for="phone" class="form-label">전화번호 </label>
+						<div class="input-group mb-3">
 						<form:input path="phone" cssClass="form-control" id="phone" />
+						<button type="button" id="messageBtn" class="col-2 btn btn-outline-success">번호인증</button>
+						</div>
 						<div  id="phoneDiv">
 							<form:errors path="phone"></form:errors>
 						</div>
-						<button type="button" id="messageBtn" class="col-1 btn btn-outline-success">번호인증</button>
 						<div id="numBox"></div>
 					</div>
 				</div>
@@ -149,6 +154,7 @@
 			</form:form>
 		</div>
 	</div>
+	<c:import url="../temp/footer.jsp"></c:import>
 	<script type="text/javascript" src="../js/memberCheck.js"></script>
 	<script type="text/javascript" src="../js/map.js"></script>
 	<script type="text/javascript" src="../js/join.js"></script>

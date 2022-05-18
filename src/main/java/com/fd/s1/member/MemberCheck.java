@@ -106,14 +106,6 @@ public class MemberCheck {
 	
 	public boolean pwChangeError(MemberVO memberVO, BindingResult bindingResult)throws Exception{
 		boolean check = false;
-		System.out.println(memberVO.getPw());
-		System.out.println(memberVO.getCheckPw());
-		System.out.println("0");
-		System.out.println(memberVO.getPw().length()<5||memberVO.getPw().length()>12);
-		System.out.println("1");
-		System.out.println(!memberVO.getPw().equals(memberVO.getCheckPw()));
-		System.out.println("2");
-		System.out.println(check);
 		if(memberVO.getPw().length()<5||memberVO.getPw().length()>12) {
 			check = true;
 			bindingResult.rejectValue("pw","member.password");

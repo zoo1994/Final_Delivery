@@ -10,6 +10,7 @@ import com.fd.s1.util.PhoneCheckVO;
 @Mapper
 public interface MemberMapper {
 	
+	public int delMem(MemberVO memberVO)throws Exception;
 	public int setPwChange(MemberVO memberVO)throws Exception;
 	public int setUpdate(MemberVO memberVO)throws Exception;
 	public int delPhoneCheck(LocalDate time)throws Exception;

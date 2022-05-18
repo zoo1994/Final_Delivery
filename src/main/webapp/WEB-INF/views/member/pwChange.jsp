@@ -20,7 +20,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="row mt-4">
+<c:import url="../temp/header.jsp"></c:import>
+	<div class="row mt-4"  style="width: 55rem; margin:0 auto;">
 			<form:form modelAttribute="memberVO" id="pwChangeForm" method="post" >
 			<div class="mb-3">
 				<label for="id" class="form-label">기존 비밀번호</label> 
@@ -42,11 +43,13 @@
 							<form:errors path="checkPw"></form:errors>
 						</div>
 					</div>
-					<button type="button" id="pwChangeBtn" class="btn btn-outline-success">변경</button>
+					<div class="row justify-content-end">
+					<button type="button" id="pwChangeBtn" class="col-2 btn btn-outline-success">변경</button>
+					</div>
 		</form:form>
 	</div>
 
-
+<c:import url="../temp/footer.jsp"></c:import>
 	<script type="text/javascript" src="../js/pwChange.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

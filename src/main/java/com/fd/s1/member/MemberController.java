@@ -25,6 +25,21 @@ public class MemberController {
 	@Autowired
 	private MemberCheck memberCheck;
 	
+	@PostMapping("delMem")
+	public ModelAndView delMember(MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String path ="/";
+		String message = "회원탈퇴 되었습니다";
+		int result = memberService.delMem(memberVO);
+		if(result<1) {
+			message="회원탈퇴가 실패하였습니다";
+		}
+		mv.addObject("path",path);
+		mv.addObject("message",message);
+		mv.setViewName("common/joinResult");
+		return mv;
+	}
+	
 	@GetMapping("pwChange")
 	public ModelAndView pwChange(@ModelAttribute MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();

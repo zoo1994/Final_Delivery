@@ -1,6 +1,5 @@
 package com.fd.s1.member;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.validation.constraints.Email;
