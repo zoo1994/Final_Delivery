@@ -131,6 +131,36 @@ public class AdminController {
 		mv.setViewName("common/result");
 		return mv;
 	}
+/*	
+	//관리자 회원관리
+	@GetMapping("shop")
+	public ModelAndView getShop(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		List<MemberVO> memberVOs = adminService.getMember(pager);
+		Long count = adminService.getListCount(pager);
+		mv.addObject("count", count);
+		mv.addObject("list", memberVOs);
+		mv.addObject("pager", pager);
+		
+		
+		mv.setViewName("admin/store");
+		return mv;
+		
+	}
+	//관리자 쿠폰관리 - 생성
+	@PostMapping("shopAdd")
+	public ModelAndView setShopAdd(CouponVO couponVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = adminService.setShopAdd(couponVO);
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+		return mv;
+	}
+*/	
+	
 	
 /*
 	@PostMapping("delete")

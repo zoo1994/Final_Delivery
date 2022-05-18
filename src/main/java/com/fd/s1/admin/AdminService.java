@@ -22,6 +22,17 @@ public class AdminService {
 	@Autowired
 	private AdminMapper adminMapper;
 
+	/*
+	//shop - 리스트
+	public List<MemberVO> getShop(Pager pager)throws Exception{
+
+//		pager.makeRow();
+//		pager.makeNum(adminMapper.getTotalCount(pager));
+//		System.out.println(pager.getPerPage());
+		
+		return adminMapper.getShop(pager);
+	}
+*/	
 	//관리자 멤버관리 - 리스트
 	public List<MemberVO> getMember(Pager pager)throws Exception{
 

@@ -11,7 +11,7 @@
 					<a class="" href="#" style="">배너관리</a>
 				</li>
 				<li class="rounded-pill" style="display: block ; background-color: #ad1457; color: #fff; text-align: center; width: 100px; height: 30px;">
-					<a class="" href="#" style="">점포관리</a>
+					<a class="" href="/admin/shop" style="">점포관리</a>
 				</li>
 				<li class="rounded-pill" style="display: block ; background-color: #d87e00; color: #fff; text-align: center; width: 100px; height: 30px;">
 					<a class="" href="/admin/member" style="">회원관리</a>
