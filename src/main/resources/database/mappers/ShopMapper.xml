@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-    <mapper namespace="com.fd.s1.ceo.ShopMapper">
+    <mapper namespace="com.fd.s1.shop.ShopMapper">
     	<select id="getList" parameterType="ShopMenuVO" resultMap="listResult">
     		SELECT S.MENUNUM, M.MENUNAME, M.PRICE, S.SALE 
 			FROM SHOPMENU S
@@ -22,8 +22,11 @@
  		</association>
 		</resultMap>
 		
-		<select id="getCeo" parameterType="MemberVO" resultType="ShopVO">
+		<select id="getShopNum" parameterType="MemberVO" resultType="ShopVO">
 			SELECT SHOPNUM FROM SHOP WHERE ID=#{id}
 		</select>
     	
+    	<update id="setUpdateSale" parameterType="ShopMenuVO">
+    		UPDATE SHOPMENU SET SALE=#{sale} WHERE MENUNUM=#{menuNum}
+    	</update>
     </mapper>
