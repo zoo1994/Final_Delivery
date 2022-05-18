@@ -1,9 +1,9 @@
-package com.fd.s1.ceo;
+package com.fd.s1.shop;
 
 import lombok.Data;
 
 @Data
-public class CeoVO {
+public class ShopVO {
 	private Integer shopNum;
 	private String id;
 	private String shopName;

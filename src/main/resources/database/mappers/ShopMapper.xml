@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.fd.s1.ceo.ShopMapper">
+    	<select id="getList" parameterType="ShopMenuVO" resultMap="listResult">
+    		SELECT S.MENUNUM, M.MENUNAME, M.PRICE, S.SALE 
+			FROM SHOPMENU S
+			INNER JOIN
+			MENU M 
+			USING(MENUNUM)
+			WHERE S.SHOPNUM = #{shopNum}
+    	</select>
+    	<resultMap type="ShopMenuVO" id="listResult">
+			<id column="menuNum" property="menuNum"/>
+			<id column="shopNum" property="shopNum"/>	
+			<result column="sale" property="sale"/>
+		<association property="menuVO" javaType="MenuVO">
+			<result column="menuName" property="menuName"/>
+ 			<result column="price" property="price" />
+ 		</association>
+		</resultMap>
+		
+		<select id="getCeo" parameterType="MemberVO" resultType="ShopVO">
+			SELECT SHOPNUM FROM SHOP WHERE ID=#{id}
+		</select>
+    	
+    </mapper>

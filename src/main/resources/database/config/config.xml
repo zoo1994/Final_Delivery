@@ -27,6 +27,7 @@
 		<typeAlias type="com.fd.s1.faq.EtcVO" alias="EtcVO"/>
 		<typeAlias type="com.fd.s1.admin.AdminVO" alias="AdminVO"/>
 		<typeAlias type="com.fd.s1.coupon.CouponVO" alias="CouponVO"/>
-		<typeAlias type="com.fd.s1.ceo.CeoVO" alias="CeoVO"/>
+		<typeAlias type="com.fd.s1.shop.ShopMenuVO" alias="ShopMenuVO"/>
+		<typeAlias type="com.fd.s1.shop.ShopVO" alias="ShopVO"/>
 	</typeAliases>
 </configuration>
