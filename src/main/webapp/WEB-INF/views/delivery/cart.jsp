@@ -31,7 +31,7 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th scope="col"><input type="checkbox"></th>
+									<th scope="col"><input type="checkbox" id="checkAll"></th>
 									<th scope="col">Menu</th>
 									<th scope="col">Count</th>
 									<th scope="col">Price</th>
@@ -39,9 +39,9 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${list}" var="cart">
-									<tr>
+									<tr id="cart${cart.cartNum}">
 										<th scope="row" data-num="${cart.cartNum}"><input
-											type="checkbox"></th>
+											type="checkbox" class="checkbox"></th>
 										<td>${cart.menuVO.menuName}</td>
 										<td><input type="number" class="border cartCount"
 											data-num="${cart.cartNum}" id="cartCount${cart.cartNum}"
@@ -52,7 +52,7 @@
 							</tbody>
 						</table>
 
-						<button class="btn btn-danger">삭제하기</button>
+						<button class="btn btn-danger" id="delete">삭제하기</button>
 
 					</div>
 					<div class="col-1"></div>
@@ -68,7 +68,7 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${list}" var="cart">
-									<tr>
+									<tr id="receipt${cart.cartNum}">
 										<th scope="row">${cart.menuVO.menuName}</th>
 										<td data-num="${cart.cartNum}" id="price${cart.cartNum}">${cart.menuVO.price}</td>
 										<td id="receiptCount${cart.cartNum}">${cart.count}</td>
@@ -145,6 +145,74 @@
 
 					});
 			})
+			
+			$("#checkAll").click(function(){
+				if($("#checkAll").prop("checked"))
+					{
+						$(".checkbox").each(function(idx,item){
+							item.checked=true;
+						})
+					}
+				else{
+					$(".checkbox").each(function(idx,item){
+						item.checked=false;
+					})
+				}
+			})
+			
+			$(".checkbox").click(function(){
+				let check = true;
+				
+				$(".checkbox").each(function(idx,item){
+					if(item.checked==false){
+						check=false;
+					}
+				})
+				
+				if(check){
+					$("#checkAll").prop("checked",true);
+				}
+				else{
+					$("#checkAll").prop("checked",false);	
+				}
+			})
+			
+			$("#delete").click(function(){
+				let check = window.confirm("장바구니에서 삭제합니다.");
+				if(check){
+					$(".checkbox").each(function(idx,item){
+						if(item.checked){
+							
+							let formData = new FormData();
+							formData.append("cartNum",item.parentNode.getAttribute("data-num"));
+							
+							
+							$.ajax({
+								method:"POST",
+								url:"./delete",
+								data:formData,
+								processData : false,
+								contentType : false,
+								success : function(data) {
+									if(data.trim()=='1'){
+										
+										location.reload();
+									}
+								},
+								error:function(){
+									alert("error");
+								}
+							
+							})
+						}
+						
+						
+					})
+					
+				}
+			})
+			
+			
 	</script>
 
 </body>

@@ -14,4 +14,6 @@ public interface DeliveryMapper {
 	public CartVO addCheck(CartVO cartVO)throws Exception;
 	
 	public int update(CartVO cartVO)throws Exception;
+
+	public int delete(CartVO cartVO)throws Exception;
 }
