@@ -77,6 +77,8 @@
 	 		SHOPPHONE LIKE concat('%', #{search},'%'))
     	</select>
 		
-		
+		<update id="setShopUpdate" parameterType="ShopVO">
+			UPDATE SHOP SET ID=#{id},SHOPNAME=#{shopName},LOCATION=#{location},SHOPPHONE=#{shopPhone},SALE=#{sale},OPEN=#{open}  WHERE SHOPNUM=#{shopNum}
+    	</update>
 		
     </mapper>

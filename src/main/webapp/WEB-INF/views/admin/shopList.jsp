@@ -34,7 +34,7 @@
 							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.open}</td>
  							    	<td class="col-1 text-center d-flex align-items-center" style=" ">
  							    		<!-- Button trigger modal -->
-										<button style="margin: 0 auto; font-weight: 500;" type="button" id="shopUpdateBtn${vo.shopNum}" data-id="${vo.id}" data-name="${vo.shopName}" data-location="${vo.location}" data-phone="${vo.shopPhone}" data-open="${vo.open}" class="modalBtn2 btn btn-primary" data-toggle="modal" data-target="#modal2">
+										<button style="margin: 0 auto; font-weight: 500;" type="button" id="shopUpdateBtn${vo.shopNum}" data-id="${vo.id}" data-name="${vo.shopName}" data-location="${vo.location}" data-phone="${vo.shopPhone}" data-sale="${vo.sale}" data-open="${vo.open}" class="modalBtn2 btn btn-primary" data-toggle="modal" data-target="#modal2">
 										  변경
 										</button>
 										<!-- Button trigger modal -->

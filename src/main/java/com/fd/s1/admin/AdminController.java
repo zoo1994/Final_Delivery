@@ -187,6 +187,18 @@ public class AdminController {
 		return mv;
 	}
 	
+	@PostMapping("shopUpdate")
+	public ModelAndView setShopUpdate(ShopVO shopVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+
+		int result = adminService.setShopUpdate(shopVO);
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	
 /*
 	@PostMapping("delete")
 	public ModelAndView setDelete(FaqVO faqVO, MemberVO memberVO)throws Exception{
