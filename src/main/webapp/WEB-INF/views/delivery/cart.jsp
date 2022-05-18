@@ -85,7 +85,7 @@
 								</tr>
 							</tfoot>
 						</table>
-						<button class="btn btn-success" style="width: 100%">결제하기</button>
+						<a href="./order" class="btn btn-success" style="width: 100%">주문하기</a>
 					</div>
 				</div>
 			</c:otherwise>
