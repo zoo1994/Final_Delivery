@@ -59,12 +59,12 @@
 
 
 
-<!-- <!-- Modal -->
+ <!-- Modal -->
 <div class="modal  fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">추가하기</h5>
         <button type="button" id="modalHideX" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -107,7 +107,75 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
+
+ <!-- Modal2 -->
+<div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">수정하기</h5>
+        <button type="button" id="modalHideX2" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      		<div>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default11">매장번호</span>
+				  </div>
+				  <input type="text" id="shopNum2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default22">점주　　</span>
+				  </div>
+				  <input type="text" id="shop_id2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default33">매장이름1</span>
+				  </div>
+				  <input type="text" id="shop_name2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default44">매장위치</span>
+				  </div>
+				  <input type="text" id="shop_location2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default55">전화번호</span>
+				  </div>
+				  <input type="text" id="shop_phone2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default66">오픈여부</span>
+				  </div>
+				  <input type="text" id="shop_sale2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default77">운영여부</span>
+				  </div>
+				  <input type="text" id="shop_open2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<!-- id="shopUpdateBtn${vo.shopNum}" data-id="${vo.id}" data-name="${vo.shopName}" data-location="${vo.location}" data-phone="${vo.shopPhone}" data-open="${vo.open}" -->
+			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="modalHide2" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="modalSave2" class="btn btn-primary">수정하기</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <c:import url="../temp/footer.jsp"></c:import>

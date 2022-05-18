@@ -7,15 +7,13 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fd.s1.ceo.CeoVO;
 import com.fd.s1.coupon.CouponVO;
-import com.fd.s1.faq.FaqVO;
 import com.fd.s1.member.MemberVO;
+import com.fd.s1.shop.ShopVO;
 import com.fd.s1.util.Pager;
 
 
@@ -154,10 +152,10 @@ public class AdminController {
 	@GetMapping("shop1")
 	public ModelAndView getShop1(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		
-		List<CeoVO> shopVOs = adminService.getShop(pager);
-//		Long count = adminService.getListCount(pager);
-//		mv.addObject("count", count);
+		Long count = adminService.getShopListCount(pager);	
+		List<ShopVO> shopVOs = adminService.getShop(pager, count);
+
+		mv.addObject("count", count);
 		mv.addObject("list", shopVOs);
 		mv.addObject("pager", pager);
 		
@@ -168,17 +166,26 @@ public class AdminController {
 	}
 	//관리자 쿠폰관리 - 생성
 	@PostMapping("shopAdd")
-	public ModelAndView setShopAdd(CeoVO ceoVO)throws Exception{
+	public ModelAndView setShopAdd(ShopVO shopVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		int result = adminService.setShopAdd(ceoVO);
+		int result = adminService.setShopAdd(shopVO);
 		
 		mv.addObject("result", result);
 		mv.setViewName("common/result");
 		return mv;
 	}
 	
-	
+	@PostMapping("shopDelete")
+	public ModelAndView setShopDelete(ShopVO shopVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+
+		int result = adminService.setShopDelete(shopVO);
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+		return mv;
+	}
 	
 /*
 	@PostMapping("delete")

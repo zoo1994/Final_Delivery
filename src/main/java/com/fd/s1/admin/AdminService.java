@@ -6,14 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.fd.s1.ceo.CeoVO;
 import com.fd.s1.coupon.CouponVO;
-import com.fd.s1.faq.EtcVO;
-import com.fd.s1.faq.FaqVO;
-import com.fd.s1.member.MemberMapper;
 import com.fd.s1.member.MemberVO;
+import com.fd.s1.shop.ShopVO;
 import com.fd.s1.util.Pager;
 
 @Service
@@ -24,19 +20,26 @@ public class AdminService {
 	private AdminMapper adminMapper;
 
 	
-	//shop - 리스트
-	public List<CeoVO> getShop(Pager pager)throws Exception{
-
-//		pager.makeRow();
-//		pager.makeNum(adminMapper.getTotalCount(pager));
-//		System.out.println(pager.getPerPage());
-		
+	//관리자 shop관리 - 리스트
+	public List<ShopVO> getShop(Pager pager, Long count)throws Exception{
+		pager.makeRow();
+		pager.makeNum(count);		
 		return adminMapper.getShop(pager);
 	}
 	
-	//shop - add
-	public int setShopAdd(CeoVO ceoVO) throws Exception{	
-		return adminMapper.setShopAdd(ceoVO);
+	//관리자 shop관리 - add
+	public int setShopAdd(ShopVO shopVO) throws Exception{	
+		return adminMapper.setShopAdd(shopVO);
+	}
+	
+	//관리자 shop관리 - delete
+	public int setShopDelete(ShopVO shopVO) throws Exception{	
+		return adminMapper.setShopDelete(shopVO);
+	}
+	
+	//관리자 shop관리 - count
+	public Long getShopListCount(Pager pager) throws Exception{	
+		return adminMapper.getShopTotalCount(pager);
 	}
 	
 	
@@ -67,7 +70,7 @@ public class AdminService {
 	
 	
 	
-	//관리자 멤버관리 - 리스트
+	//관리자 쿠폰관리 - 리스트
 	public List<CouponVO> getCoupon(Pager pager, Long count)throws Exception{		
 		pager.makeRow();
 		pager.makeNum(count);
@@ -75,17 +78,17 @@ public class AdminService {
 		return adminMapper.getCoupon(pager);
 	}
 	
-	//관리자 멤버관리 - count
+	//관리자 쿠폰관리 - count
 	public Long getCouponListCount(Pager pager) throws Exception{	
 		return adminMapper.getCouponTotalCount(pager);
 	}
 	
-	//관리자 멤버관리 - add
+	//관리자 쿠폰관리 - add
 	public int setCouponAdd(CouponVO couponVO) throws Exception{	
 		return adminMapper.setCouponAdd(couponVO);
 	}
 	
-	//관리자 멤버관리 - delete
+	//관리자 쿠폰관리 - delete
 	public int setCouponDelete(CouponVO couponVO) throws Exception{	
 		return adminMapper.setCouponDelete(couponVO);
 	}

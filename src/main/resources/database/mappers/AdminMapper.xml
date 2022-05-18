@@ -50,20 +50,33 @@
 			DELETE FROM COUPON WHERE COUPONID=#{couponId}
 		</delete>
 		
-		<select id="getShop" parameterType="Pager" resultType="CeoVO">
-			SELECT * FROM SHOP
-			ORDER BY SHOPNUM DESC    		    		
-<!-- 	 		WHERE ID  is not null
+		<select id="getShop" parameterType="Pager" resultType="ShopVO">
+			SELECT * FROM SHOP			   		    		
+	 		WHERE SHOPNUM  is not null
 	 		AND
 	 		(ID LIKE concat('%', #{search},'%') or
-	 		NAME LIKE concat('%', #{search},'%'))
-	    	, ID ASC LIMIT #{startRow}, #{perPage} -->
+	 		SHOPNAME LIKE concat('%', #{search},'%') or
+	 		SHOPPHONE LIKE concat('%', #{search},'%'))
+	    	ORDER BY SHOPNUM DESC LIMIT #{startRow}, #{perPage}
     	</select>
     	
-     	<insert id="setShopAdd" parameterType="CeoVO" useGeneratedKeys="true" keyProperty="shopNum">
+     	<insert id="setShopAdd" parameterType="ShopVO" useGeneratedKeys="true" keyProperty="shopNum">
 			INSERT INTO SHOP  (SHOPNUM, ID, SHOPNAME,LOCATION,SHOPPHONE,OPENTIME,CLOSETIME,SALE,DISTANCE,OPEN)
 			VALUE (#{shopNum},#{id},#{shopName},#{location},#{shopPhone},9,21,0,3,0);
 		</insert>
+		
+		<delete id="setShopDelete" parameterType="ShopVO">
+			DELETE FROM SHOP WHERE SHOPNUM=#{shopNum}
+		</delete>
+		
+		<select id="getShopTotalCount" parameterType="pager" resultType="Long">
+	 		SELECT COUNT(SHOPNUM) FROM SHOP 		    		
+	 		WHERE
+	 		(ID LIKE concat('%', #{search},'%') or
+	 		SHOPNAME LIKE concat('%', #{search},'%') or
+	 		SHOPPHONE LIKE concat('%', #{search},'%'))
+    	</select>
+		
 		
 		
     </mapper>
