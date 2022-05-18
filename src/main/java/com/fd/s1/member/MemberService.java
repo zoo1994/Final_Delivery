@@ -14,6 +14,16 @@ public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
+	public int setPwChange(MemberVO memberVO)throws Exception{
+		return memberMapper.setPwChange(memberVO);
+	}
+	public int setUpdate(MemberVO memberVO)throws Exception{
+		return memberMapper.setUpdate(memberVO);
+	}
+	
+	public MemberVO idCheck(MemberVO memberVO)throws Exception{
+		return memberMapper.idCheck(memberVO);
+	}
 	
 	public int delPhoneCheck(LocalDate time)throws Exception{
 		return memberMapper.delPhoneCheck(time);

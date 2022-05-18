@@ -3,6 +3,7 @@ package com.fd.s1.menu;
 import java.awt.Menu;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fd.s1.member.MemberVO;
+import com.fd.s1.util.Pager;
+
 
 
 @Controller
@@ -35,10 +40,18 @@ public class MenuController {
 	}
 	
 	@GetMapping("list")
-	public ModelAndView getList(MenuVO menuVO) throws Exception {
+	public ModelAndView getList(MenuVO menuVO, Pager pager, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		menuVO.setMenuSale(1); //일반사용자에겐 판매가능 메뉴만 보이게끔
-		List<MenuVO> ar = menuService.getList(menuVO);
+		pager.setCategory(menuVO.getCategory());
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		if(memberVO == null) {
+			pager.setUserType(2L);
+		}else if(memberVO.getUserType() == 0L) {
+			pager.setUserType(memberVO.getUserType());			 
+		}else {
+			pager.setUserType(1L);
+		}
+		List<MenuVO> ar = menuService.getList(pager);
 		mv.addObject("list", ar);
 		mv.addObject("category",menuVO.getCategory());
 		mv.setViewName("menu/list");
@@ -47,14 +60,29 @@ public class MenuController {
 	}
 	
 	@GetMapping("menuManage")
-	public ModelAndView getMenuManage(MenuVO menuVO) throws Exception {
+	public ModelAndView getMenuManage(MenuVO menuVO,Pager pager, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<MenuVO> ar = menuService.getList(menuVO);
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		pager.setUserType(memberVO.getUserType());			
+		pager.setCategory(menuVO.getCategory());
+		List<MenuVO> ar = menuService.getList(pager);
 		mv.addObject("list",ar);
 		mv.setViewName("menu/menuManage");
 		return mv;
 	}
 	
+	@PostMapping("menuManage")
+	public ModelAndView getMenuManage(MenuVO menuVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+//		System.out.println("manage "+menuVO.getMenuNum());
+//		System.out.println("manage "+menuVO.getMenuSale());
+		int result = menuService.setUpdateSale(menuVO);
+		mv.setViewName("common/result");
+		mv.addObject("result",result);
+		
+		return mv;
+	}
+
 	
 	@GetMapping("detail")
 	public ModelAndView getDetail(MenuVO menuVO) throws Exception {
@@ -62,6 +90,18 @@ public class MenuController {
 		menuVO = menuService.getDetail(menuVO);
 		mv.addObject("vo", menuVO);
 		mv.setViewName("menu/detail");
+		return mv;
+	}
+	
+	
+	@GetMapping("manageDetail")
+	public ModelAndView getManageDetail(MenuVO menuVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		//parameter는 productNum
+		//판매자가 보는 페이지
+		menuVO = menuService.getDetail(menuVO);
+		mv.addObject("vo",menuVO);
+		mv.setViewName("menu/manageDetail");
 		return mv;
 	}
 	
@@ -74,7 +114,7 @@ public class MenuController {
 	}
 	
 	@PostMapping("add")
-	public ModelAndView setAdd(@Valid MenuVO menuVO, BindingResult bindingResult, MultipartFile file) throws Exception {
+	public ModelAndView setAdd(@Valid MenuVO menuVO, BindingResult bindingResult, MultipartFile file, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("post 진입");
 		System.out.println(bindingResult.getFieldError());
@@ -82,7 +122,7 @@ public class MenuController {
 			mv.setViewName("menu/add");
 			return mv;
 		}
-		System.out.println(file.getOriginalFilename());
+		System.out.println("controller : "+file.getBytes()+".");
 		int result = menuService.setAdd(menuVO, file);
 		if(result > 0) {
 			IngredientVO ingredientVO = new IngredientVO();
@@ -97,7 +137,7 @@ public class MenuController {
 			ingredientVO.setCaffeine(menuVO.getIngredientVO().getCaffeine());
 			result = menuService.setIngredientAdd(ingredientVO);
 		}
-		mv.setViewName("redirect:./list");
+		mv.setViewName("redirect:./menuManage");
 		
 		return mv;
 	}
@@ -134,7 +174,7 @@ public class MenuController {
 			ingredientVO.setCaffeine(menuVO.getIngredientVO().getCaffeine());
 			result = menuService.setIngredientUpdate(ingredientVO);
 		}
-		mv.setViewName("redirect:./list");
+		mv.setViewName("redirect:./menuManage");
 		
 		return mv;
 	}
@@ -143,7 +183,7 @@ public class MenuController {
 	public ModelAndView setDeleAndView(MenuVO menuVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = menuService.setDelete(menuVO);
-		mv.setViewName("redirect:./list");
+		mv.setViewName("redirect:./menuManage");
 		
 		return mv;
 	}
