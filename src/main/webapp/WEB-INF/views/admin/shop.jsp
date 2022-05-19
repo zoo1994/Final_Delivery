@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style type="text/css">
  a {
 	text-decoration: none;
@@ -89,7 +90,9 @@
 				  <div class="input-group-prepend">
 				    <span class="input-group-text" id="inputGroup-sizing-default3">매장위치</span>
 				  </div>
-				  <input type="text" id="shop_location" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input type="text" id="shop_location" class="form-control"  readonly="readonly" placeholder="도로명 주소" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input class="col-2 btn btn-outline-success dropdown-toggle" type="button" id="addBtn" data-bs-toggle="dropdown" aria-expanded="false" onclick="showPostcode()" value="주소변경">
+				  <span id="guide" style="color: #999; display: none"></span>
 				</div>
 				
 				<div class="input-group mb-3">
@@ -144,10 +147,13 @@
 				
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default44">매장위치</span>
+				    <span class="input-group-text" id="inputGroup-sizing-default3">매장위치</span>
 				  </div>
-				  <input type="text" id="shop_location2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input type="text" id="shop_location2" class="form-control"  readonly="readonly" placeholder="도로명 주소" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input class="col-2 btn btn-outline-success dropdown-toggle" type="button" id="addBtn" data-bs-toggle="dropdown" aria-expanded="false" onclick="showPostcode1()" value="주소변경">
+				  <span id="guide1" style="color: #999; display: none"></span>
 				</div>
+				
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
 				    <span class="input-group-text" id="inputGroup-sizing-default55">전화번호</span>
@@ -202,7 +208,12 @@
     </div>
   </div>
 </div>
-
+<input type="hidden" id="postcode">
+<input type="hidden" id="jibunAddress"> 
+<input type="hidden"id="extraAddress">
+<input type="hidden"id="detailAddress">
+<input type="hidden"id="x_axis">
+<input type="hidden"id="y_axis">
 
 <c:import url="../temp/footer.jsp"></c:import>
 <script type="text/javascript">
@@ -210,6 +221,9 @@
 
 
 </script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a58574ac7b94ffdb63ca1f5c17c22c7&libraries=services"></script>
+<script src="../resources/js/map2.js"></script>
+<script src="../resources/js/map3.js"></script>
 <script src="../resources/js/adminShopList.js"></script>
 </body>
 </html>

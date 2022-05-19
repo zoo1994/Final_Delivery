@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fd.s1.menu.MenuMapper;
 import com.fd.s1.menu.MenuVO;
+import com.fd.s1.shop.ShopVO;
 
 @Service
 public class DeliveryService {
@@ -16,6 +17,10 @@ public class DeliveryService {
 	
 	@Autowired
 	private MenuMapper menuMapper;
+	
+	public List<ShopVO> findShops(Double maxX,Double minX,Double maxY,Double minY )throws Exception{
+		return deliveryMapper.findShops(maxX, minX, maxY, minY);
+	}
 	
 	public List<CartVO> getCart(CartVO cartVO)throws Exception{
 		List<CartVO> ar = deliveryMapper.getCart(cartVO);

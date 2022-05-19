@@ -8,6 +8,7 @@
 	<typeAliases>	
 		<typeAlias type = "java.util.List" alias="List"/>
 		<typeAlias type = "java.lang.Long" alias="Long"/>
+		<typeAlias type = "java.lang.Double" alias="Double"/>
 		<typeAlias type = "java.lang.Integer" alias="Integer"/>
 		<typeAlias type="java.util.Map" alias="Map"/>
 		<typeAlias type="com.fd.s1.board.qna.QnaVO" alias="QnaVO"/>

@@ -5,6 +5,10 @@
  
     <mapper namespace="com.fd.s1.delivery.DeliveryMapper">
     
+    <select id="findShops" parameterType="Double" resultType="ShopVO">
+    	SELECT * FROM SHOP WHERE X_AXIS BETWEEN  #{minX}  AND #{maxX} AND Y_AXIS BETWEEN  #{minY}  AND #{maxY}
+    </select>
+    
     <select id="getCart" parameterType="CartVO" resultType="CartVO">
     SELECT * 
     FROM CART C

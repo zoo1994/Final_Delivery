@@ -27,12 +27,18 @@
 
 			<div class="user d-flex justify-content-center">
 				<c:choose>
-					<c:when test="${not empty member}">
+					<c:when test="${not empty location}">
+					<div>
+				배달 매장 :
+					</div>
+				<div class="mx-3" style="display: inline; bottom: 0;">
+				 ${shop.shopName}
+				</div>
 					<div>
 				현재 주소지 :
 					</div>
 				<div class="mx-3" style="display: inline; bottom: 0;">
-				 ${member.roadAddress}<p></p>${member.detailAddress}
+				 ${location}
 				</div>
 				<a class="btn btn-warning m-2" href="./cart" style="height: 40px;color:green;">장바구니</a>				
 			</c:when>

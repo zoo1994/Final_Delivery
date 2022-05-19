@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fd.s1.member.MemberVO;
 import com.fd.s1.menu.MenuService;
 import com.fd.s1.menu.MenuVO;
+import com.fd.s1.shop.ShopVO;
 import com.fd.s1.util.Pager;
 
 @Controller
@@ -48,10 +49,39 @@ public class DeliveryController {
 	}
 	
 	@PostMapping("goDeli")
-	public ModelAndView goDeli(String x, String y) throws Exception {
+	public ModelAndView goDeli(Double x, Double y,String location) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(x);
-		System.out.println(y);
+		//1km 는  위도y : 1/109.958489129649955 경도x : 1/88.74
+		//5km 반경구하기
+		double gapX = 1/88.74;
+		double gapY = 1/109.958489129649955;
+		double maxX = x+gapX*5;//반경5키로
+		double minX = x-gapX*5;
+		double maxY = y+gapY*5;
+		double minY = y-gapY*5;
+		if(minX>maxX) {
+			maxX=x-gapX*5;
+			minX=x+gapX*5;
+		}
+		if(minY>maxY) {
+			maxY= y-gapY*5;
+			minY= y+gapY*5;
+		}
+		List<ShopVO> ar = deliveryService.findShops(maxX, minX, maxY, minY);
+		double [] a = new double[ar.size()];
+		for(int i =0; i<ar.size();i++) {
+			a[i]=this.distance(y,x,ar.get(i).getY_axis(),ar.get(i).getX_axis());
+		}
+		Double min = a[0];
+		int minName = 0;
+		for(int j = 0 ; j<(a.length-1);j++) {
+			if (min>a[j]) {
+				min = a[j];
+				minName=j;
+			}
+		}
+		mv.addObject("shop",ar.get(minName));
+		mv.addObject("location",location);
 		mv.setViewName("delivery/home");
 		return mv;
 	}
@@ -106,6 +136,30 @@ public class DeliveryController {
 		mv.setViewName("common/result");
 		return mv;
 	}
+	
+    // 거리구하기 식
+    private static double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+     
+    // 거리구하기 실
+    private static double rad2deg(double rad) {
+        return (rad * 180 / Math.PI);
+    }
+    
+    private double distance(double lat1, double lon1, double lat2, double lon2) {
+        
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+         
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1609.344;
+       
+ 
+        return (dist);
+    }
 	
 }
 

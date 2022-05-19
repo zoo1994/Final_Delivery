@@ -197,7 +197,8 @@ public class AdminController {
 	@PostMapping("shopUpdate")
 	public ModelAndView setShopUpdate(ShopVO shopVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-
+		System.out.println(shopVO.getX_axis());
+		System.out.println(shopVO.getY_axis());
 		int result = adminService.setShopUpdate(shopVO);
 		
 		mv.addObject("result", result);
