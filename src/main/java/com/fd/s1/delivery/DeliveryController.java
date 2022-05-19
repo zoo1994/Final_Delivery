@@ -47,6 +47,24 @@ public class DeliveryController {
 		return mv;
 	}
 	
+	@PostMapping("goDeli")
+	public ModelAndView goDeli(String x, String y) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(x);
+		System.out.println(y);
+		mv.setViewName("delivery/home");
+		return mv;
+	}
+	
+	@GetMapping("addAddress")
+	public ModelAndView addAddress(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		mv.addObject("vo",memberVO);
+		mv.setViewName("delivery/addAddress");
+		return mv;
+	}
+	
 	@GetMapping("cart")
 	public ModelAndView getCart(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
