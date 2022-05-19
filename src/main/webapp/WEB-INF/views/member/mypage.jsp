@@ -82,6 +82,7 @@
 		<div class="row justify-content-end">
 			<a href="./pwChange" class="col-2 btn btn-outline-success">비밀번호 변경</a> 
 			<a href="./updateCheck" class="col-2  btn btn-outline-success">개인정보 변경</a>
+			<a href="../shop/shopMenu" class="col-2  btn btn-outline-success">매장 관리</a>
 		</div>
 	</div>
 	<c:import url="../temp/footer.jsp"></c:import>

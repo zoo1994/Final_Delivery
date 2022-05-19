@@ -14,4 +14,7 @@ public interface ShopMapper {
 	public ShopVO getShopNum(MemberVO memberVO) throws Exception;
 	
 	public int setUpdateSale(ShopMenuVO shopMenuVO) throws Exception;
+
+	public int setUpdateShopSystem(ShopVO shopVO) throws Exception;
+	
 }
