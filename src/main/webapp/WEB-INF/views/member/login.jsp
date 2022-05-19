@@ -28,7 +28,6 @@
 						<label for="exampleFormControlInput1" class="form-label">id</label>
 						<input type="text" name="id" class="form-control"
 							id="exampleFormControlInput1">
-
 					</div>
 					<div class="mb-3">
 						<label for="exampleFormControlInput2" class="form-label">pw</label>
