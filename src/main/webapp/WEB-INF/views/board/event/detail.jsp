@@ -21,7 +21,7 @@
   <button class="btn btn-outline-success" type="submit">삭제</button>
   </form> --%>
   
-  
+
 <div id="container">
 	<div class="content">			
 		<!-- //visualArea -->
@@ -43,11 +43,11 @@
 								${vo.title}
 							</span>
 						
-						<span class="date col-2" style="display:flex; position:relative;  justify-content: center; height: 50px;">
-							<em><b class="hide">등록일 :</b>${vo.regDate}</em> 
+						<span class="date col-2" style="display:flex; position:relative;  justify-content: end; height: 50px;">
+							<em><b class="hide"></b>${vo.regDate}</em> 
 						</span>	
 						<span class="date col-1" style="display:flex; position:relative;  justify-content: center; height: 50px;">
-							<em><b class="hide">조회수 :</b>${vo.hit}</em>
+							<em><b class="hide"></b>${vo.hit}</em>
 						</span>
 					</div>
 					<div class="">
@@ -61,14 +61,28 @@
 						</article>
 					</div>
 					<div class="btnArea" style="border-top: 5px solid; margin-top: 50px;">
-						<div class="row" style="margin-top: 50px;">
+						<div class="row" style="margin-top: 30px; justify-content: end;">
 						<span class="col-4"></span>
-						<span class="col-4"></span>
-						<span class="col-4" style="text-align: center;"><a href="./list" role="button" class="btnMC btnM"><span>목록보기</span></a></span>
+						<span class="col-3"></span><!-- display:flex; position:relative;   -->
+						<span class="col-2" style="line-height: 70px;">
+						<input type="hidden" id="eventNum1" value="${vo.eventNum}">
+							<c:if test="${member.userType == 0}">
+					  			<!-- Button trigger modal -->
+					  			<form action="./update" method="get" style="display: inline-block;">
+					  				<input type="hidden" name="eventNum" id="eventNum" value="${vo.eventNum}">
+						  			<button style="margin: 0 auto; font-weight: 500;"  type="submit" id="eventDetailUpdateBtn" class="updateBtn btn btn-primary">
+									  	UPDATE
+									</button>									<!--   onclick="javascript:{getDeleteBtn();}" -->
+					  			</form>
+								<button style="margin: 0 auto; font-weight: 500;" type="button" id="eventDetailDeleteBtn" class="deleteBtn btn btn-info">
+								  	DELETE
+								</button>
+						  	</c:if>
+						</span>
+						<span class="col-2" class="rounded-pill" style="background-color: #ffbc0d; color: black; text-align: center; font-weight:bold; width: 100px; height: 30px; border-radius: 70px; margin-right: 50px; min-width: 172px; height: 70px; align-content: center; line-height: 70px;"><a href="./list" role="button" class="btnMC btnM"><span>목록보기</span></a></span>
 						</div>
 					</div>
 				</div>
-				
 				
 				
 																										
@@ -83,5 +97,6 @@
   
 <c:import url="../../temp/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script src="../resources/js/eventDetail.js"></script>
 </body>
 </html>

@@ -99,8 +99,10 @@ public class EventController {
 	@PostMapping("delete")
 	public  ModelAndView setDelete(EventVO eventVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		eventService.setDelete(eventVO);
-		mv.setViewName("redirect:./list");
+		System.out.println(eventVO.getEventNum());
+		int result = eventService.setDelete(eventVO);
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
 		return mv;
 	}
 	

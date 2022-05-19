@@ -59,7 +59,7 @@
 					<div class="d-flex mb-3">
 						<input hidden name="category" type="text" id="categoryResult" value="1">
 						<span class="col-9  mt-5">
-							<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 명의</span> 회원이 검색되었습니다.</legend>
+							<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 개의</span> 이벤트가 검색되었습니다.</legend>
 						</span>
 						<span class="col-2 mt-5"  style="margin-right:10px;">
 							<input id="event_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {removeResult(); pageMore=1; getList();}" placeholder="Search" aria-label="Search">
