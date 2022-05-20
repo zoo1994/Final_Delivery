@@ -12,6 +12,4 @@ public class CouponVO {
 	private Long discount;
 	private Long activeDate;
 	
-	
-	
 }

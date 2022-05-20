@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.fd.s1.interceptor.AdminInterceptor;
+import com.fd.s1.interceptor.LocationInterceptor;
 import com.fd.s1.interceptor.MemberInterceptor;
 import com.fd.s1.interceptor.SellerInterceptor;
 
@@ -19,6 +20,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	private MemberInterceptor memberInterceptor;
 	@Autowired
 	private SellerInterceptor sellerInterceptor;
+	@Autowired
+	private LocationInterceptor locationInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -28,11 +31,17 @@ public class InterceptorConfig implements WebMvcConfigurer{
 		
 		registry.addInterceptor(memberInterceptor)
 				.addPathPatterns("/member/*")
+				.addPathPatterns("/delivery/*")
 				.excludePathPatterns("/member/join")
 				.excludePathPatterns("/member/login")
 				.excludePathPatterns("/member/idCheck");
 		
 		registry.addInterceptor(sellerInterceptor)
 				.addPathPatterns("/shop/shopMenu");
+		
+		registry.addInterceptor(locationInterceptor)
+				.addPathPatterns("/delivery/*")
+				.excludePathPatterns("/delivery/addAddress")
+				.excludePathPatterns("/delivery/goDeli");
 	}
 }

@@ -2,6 +2,7 @@
 		const IMP = window.IMP; // 생략가능
 		IMP.init('imp53756830');
 		let amount = Number($("#pay").html()); 
+		let request = $("#request").val();
 		IMP.request_pay({
 			pg: 'inicis', // version 1.1.0부터 지원.
 			pay_method: 'card',
@@ -13,9 +14,9 @@
 			buyer_name: $("#name").val(),
 			buyer_tel: $("#phone").val(),
 			buyer_addr: $("#address").val(),
-			buyer_postcode: '',
+			buyer_postcode: $("#postcode").val(),
 			m_redirect_url: '127.0.0.1/delivery/orderComplite',
-			custum_data: $("#request").html()
+			custom_data:{buyer_request:request}
 
 			}, 
 			function (rsp) {
@@ -40,16 +41,11 @@
 					
 					function order(){
 						formData2.append("payNum",rsp.merchant_uid);
-						console.log(rsp.merchant_uid);
 						formData2.append("address",rsp.buyer_addr);
-						console.log(rsp.buyer_addr);
 						formData2.append("phone",rsp.buyer_tel);
-						console.log(rsp.buyer_tel);
-						formData2.append("request",rsp.custum_data);
-						console.log(rsp.custum_data);
+						formData2.append("request",rsp.custom_data.buyer_request);
 						formData2.append("coupon",0);
 						formData2.append("totalPrice",rsp.paid_amount);
-						console.log(rsp.paid_amount);
 						$.ajax({
 							method:"POST",
 							url:"./order",
@@ -97,3 +93,4 @@
 	    
 		
 		});
+		
