@@ -30,5 +30,8 @@
 		<typeAlias type="com.fd.s1.coupon.CouponVO" alias="CouponVO"/>
 		<typeAlias type="com.fd.s1.shop.ShopMenuVO" alias="ShopMenuVO"/>
 		<typeAlias type="com.fd.s1.shop.ShopVO" alias="ShopVO"/>
+		<typeAlias type="com.fd.s1.delivery.OrdersVO" alias="OrdersVO"/>
+		<typeAlias type="com.fd.s1.delivery.OrderDetailVO" alias="OrderDetailVO"/>
+		<typeAlias type="com.fd.s1.delivery.PaymentVO" alias="PaymentVO"/>
 	</typeAliases>
 </configuration>

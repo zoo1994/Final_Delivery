@@ -43,4 +43,21 @@
     DELETE FROM CART WHERE CARTNUM=#{cartNum}
     </delete>
     
+   
+   <insert id="payAdd" parameterType="PaymentVO">
+   	INSERT INTO PAYMENT VALUES(#{payNum},#{type},#{price},now())
+   </insert>
+
+   <insert id="orderAdd" parameterType="OrdersVO">
+   	INSERT INTO ORDERS (DELINUM,PAYNUM,ID,ADDRESS,PHONE,REQUEST,COUPON,ORDERDATE,TOTALPRICE)
+   	VALUES(null,#{payNum},#{id},#{address},#{phone},#{request},#{coupon},now(),#{totalPrice})
+   </insert>
+   <insert id="orderDetailAdd" parameterType="OrderDetailVO">
+   	INSERT INTO ORDERDETAIL VALUES(null,#{deliNum},#{payNum},#{menuNum},#{shopNum},#{orderCount},#{menuPrice})
+   </insert>
+   
+   <select id="getOrder" parameterType="OrdersVO" resultType="OrdersVO">
+   SELECT * FROM ORDERS WHERE PAYNUM=#{payNum}
+   </select>
+    
     </mapper>
