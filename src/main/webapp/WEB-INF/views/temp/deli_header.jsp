@@ -42,6 +42,10 @@
 				</div>
 				<a class="btn btn-warning m-2" href="./cart" style="height: 40px;color:green;">장바구니</a>				
 			</c:when>
+			<c:when test="${not empty member && empty location}">
+				<div>주소를 입력해주세요</div>
+				<a class="btn btn-warning m-2" href="./addAddress" style="height: 40px;color:green;">주소입력</a>				
+			</c:when>
 					<c:otherwise>
 						<a href="../member/login"> 로그인을 해주세요. </a>
 					</c:otherwise>
