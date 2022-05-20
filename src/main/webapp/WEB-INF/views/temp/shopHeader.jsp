@@ -19,7 +19,7 @@
                                 <a href="../shop/shopSystem" class="nav-link px-0"> <span class="d-none d-sm-inline">&nbsp;&nbsp;가게관리</span></a>
                             </li>
                              <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">&nbsp;&nbsp;영업임시중지</span></a>
+                                <a href="../shop/shopStop"" class="nav-link px-0"> <span class="d-none d-sm-inline">&nbsp;&nbsp;영업임시중지</span></a>
                             </li>
                         </ul>
                     </li>

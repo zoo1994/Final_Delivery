@@ -19,6 +19,10 @@ public class MemberCheck {
 	public boolean memberError(MemberVO memberVO, BindingResult bindingResult)throws Exception{
 		boolean check = false;
 		check = bindingResult.hasErrors();
+		List<FieldError> ar = bindingResult.getFieldErrors();
+		for(FieldError i:ar ) {
+			System.out.println(i.getField());
+		}
 		//비밀번호 검증
 		if(!memberVO.getPw().equals(memberVO.getCheckPw())) {
 			check = true;

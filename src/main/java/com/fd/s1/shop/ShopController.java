@@ -35,6 +35,18 @@ public class ShopController {
 		return mv;
 	}
 	
+	@GetMapping("shopStop")
+	public ModelAndView shopStop(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		ShopVO shopVO = new ShopVO();
+		shopVO.setId(memberVO.getId());
+		shopVO = adminService.getShopDetail(shopVO);
+		mv.addObject("vo",shopVO);
+		mv.setViewName("shop/shopStop");
+		return mv;
+	}
+	
 	//각 점포 메뉴 list
 	@GetMapping("shopMenu")
 	public ModelAndView getCeoMain(Pager pager, HttpSession session) throws Exception {

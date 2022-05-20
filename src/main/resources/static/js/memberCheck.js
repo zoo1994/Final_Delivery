@@ -61,13 +61,28 @@ $("#id").blur(function(){
 });
 $("#pw").blur(function(){
 	pwCheck = true;
+	let pw = $("#pw").val();
+	let checkNumber = pw.search(/[0-9]/g);
+	let checkEnglish = pw.search(/[a-z]/ig);
 	$("#pwError").text("")
-	length = $("#pw").val().length;
-	if(length<5||length>15){
-		pwCheck=false;
-		$("#pw").focus();
-		$("#pwError").text("비밀번호는 5자이상 15자이하만 사용가능합니다.");
-	}
+	
+	if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/.test(pw)){   
+			$("#pwError").text('숫자+영문자+특수문자 조합으로 8자리 이상 20자리 이하로 사용해야 합니다.');         
+	        pwCheck=false;
+	        $("#pw").focus();
+	        return;
+	    }else if(checkNumber <0 || checkEnglish <0){
+			$("#pwError").text('숫자와 영문자를 혼용하여야 합니다.');         
+	        pwCheck=false;
+	        $("#pw").focus();
+	        return;
+	    }else if(/(\w)\1\1\1/.test(pw)){
+			$("#pwError").text('같은 문자를 4번 이상 사용하실 수 없습니다.');         
+	        pwCheck=false;
+	        $("#pw").focus();
+	        return;
+	    }
+	    
 });
 $("#checkPw").blur(function(){
 	chPwCheck = true;
