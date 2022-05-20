@@ -67,7 +67,9 @@ public class DeliveryController {
 			maxY= y-gapY*5;
 			minY= y+gapY*5;
 		}
+		
 		List<ShopVO> ar = deliveryService.findShops(maxX, minX, maxY, minY);
+		
 		if(ar.size()==0) {
 			String message= "주문가능한 매장이 없습니다";
 			String path = "/";
@@ -90,7 +92,7 @@ public class DeliveryController {
 		}
 		mv.addObject("shop",ar.get(minName));
 		mv.addObject("location",location);
-		mv.setViewName("delivery/home");
+		mv.setViewName("redirect:./home");
 		return mv;
 	}
 	
