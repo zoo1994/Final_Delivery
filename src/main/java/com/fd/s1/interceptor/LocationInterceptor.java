@@ -10,29 +10,32 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.fd.s1.member.MemberVO;
 
-@Component
-public class MemberInterceptor implements HandlerInterceptor {
 
+@Component
+public class LocationInterceptor implements HandlerInterceptor{
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		boolean check = true;
-
+		boolean check = false;
+		
 		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-
-		if (memberVO == null) {
-
-			request.setAttribute("message", "로그인이 필요합니다.");
-			request.setAttribute("path", "/member/login");
-			session.invalidate();
+		String location = (String)session.getAttribute("location");
+		
+		if(location != null) {
+				check = true;
+		}
+		
+		if(!check) {
+			request.setAttribute("message", "먼저 주소를 입력해주세요.");
+			request.setAttribute("path", "../");
+			
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/joinResult.jsp");
 			view.forward(request, response);
-			check = false;
-
 		}
-
+		
 		return check;
 	}
-
+	
+	
 }

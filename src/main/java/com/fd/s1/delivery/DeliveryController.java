@@ -34,7 +34,7 @@ public class DeliveryController {
 	@GetMapping("home")
 	public ModelAndView deliveryHome(MenuVO menuVO, Pager pager, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+//		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 //		pager.setCategory(menuVO.getCategory());
 //		if(memberVO == null) {
 //			pager.setUserType(2L);
@@ -56,7 +56,7 @@ public class DeliveryController {
 	}
 	
 	@PostMapping("goDeli")
-	public ModelAndView goDeli(Double x, Double y,String location, HttpSession session) throws Exception {
+	public ModelAndView goDeli(Double x, Double y,String postcode,String location,String detailLocation, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		//1km 는  위도y : 1/109.958489129649955 경도x : 1/88.74
 		//5km 반경구하기
@@ -100,6 +100,8 @@ public class DeliveryController {
 
 		session.setAttribute("shop", ar.get(minName));
 		session.setAttribute("location", location);
+		session.setAttribute("detailLocation", detailLocation);
+		session.setAttribute("postcode", postcode);
 		mv.setViewName("redirect:./home");
 		return mv;
 	}

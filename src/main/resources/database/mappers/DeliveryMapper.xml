@@ -6,7 +6,7 @@
     <mapper namespace="com.fd.s1.delivery.DeliveryMapper">
     
     <select id="findShops" parameterType="Double" resultType="ShopVO">
-    	SELECT * FROM SHOP WHERE X_AXIS BETWEEN  #{minX}  AND #{maxX} AND Y_AXIS BETWEEN  #{minY}  AND #{maxY} AND SALE = 0
+    	SELECT * FROM SHOP WHERE X_AXIS BETWEEN  #{minX}  AND #{maxX} AND Y_AXIS BETWEEN  #{minY}  AND #{maxY} AND SALE = 1
     </select>
     
     <select id="getCart" parameterType="CartVO" resultType="CartVO">
@@ -14,15 +14,14 @@
     FROM CART C
     LEFT JOIN
     MENU M
-    USING (MENUNUM) 
-    LEFT JOIN
-    SHOP S
-    USING (SHOPNUM)
+    USING (MENUNUM)
     LEFT JOIN
     MENUFILE MF
     USING (MENUNUM)
     WHERE C.ID=#{id}
     </select>
+    
+
     
     <insert id="setCartAdd" parameterType="CartVO">
     INSERT INTO CART(CARTNUM,ID,MENUNUM,SHOPNUM,COUNT,TOTALPRICE)

@@ -32,6 +32,7 @@
 							<thead>
 								<tr>
 									<th scope="col"><input type="checkbox" id="checkAll"></th>
+									<th scope="col"></th>
 									<th scope="col">Menu</th>
 									<th scope="col">Count</th>
 									<th scope="col">Price</th>
@@ -42,6 +43,9 @@
 									<tr id="cart${cart.cartNum}">
 										<th scope="row" data-num="${cart.cartNum}"><input
 											type="checkbox" class="checkbox"></th>
+										<td> <div style="width: 80px; height: 60px;"><img alt="${cart.menuVO.menuName}" 
+										src="../resources/upload/menu/${cart.menuVO.menuFileVO.fileName}" style="width: 80px;height: 60px;object-fit:cover;"></div> 
+										</td>
 										<td>${cart.menuVO.menuName}</td>
 										<td><input type="number" class="border cartCount"
 											data-num="${cart.cartNum}" id="cartCount${cart.cartNum}"

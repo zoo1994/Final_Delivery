@@ -28,7 +28,7 @@ public class MemberController {
 	@PostMapping("delMem")
 	public ModelAndView delMember(MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		String path ="/";
+		String path ="/"; 
 		String message = "회원탈퇴 되었습니다";
 		int result = memberService.delMem(memberVO);
 		if(result<1) {

@@ -23,18 +23,9 @@
 					
 					<input type="hidden" name="id" id="id" value="${member.id}">
 					<input type="hidden" name="name" id="name" value="${member.name}">
-					<c:choose>
-					<c:when test="${not empty address}">					
 					<label class="mt-4">주소</label>
-					<input type="text" readonly id="address" name="address" value="${address}">
-					</c:when>
-					<c:otherwise>					
-					<label class="mt-4">주소</label>
-					<input type="text" id="roadAddress" class="form-control my-2" readonly value="${member.roadAddress}">
-					<input type="text" id="detailAddress" class="form-control my-2" readonly value="${member.detailAddress}">
-					<input type="hidden" id="address" name="address">
-					</c:otherwise>
-					</c:choose>
+					<input type="text" class="form-control mb-1" readonly id="postcode" name="postcode" value="${postcode}" style="width: 200px">
+					<input type="text" class="form-control" readonly id="address" name="address" value="${location} ${detailLocation}">
 					<label class="mt-4">전화번호</label>
 					<input class="form-control my-2" name="phone" id="phone" type="text" value="${member.phone}" style="width: 200px;">
 					<label class="mt-4">이메일</label>					
@@ -108,16 +99,16 @@
 		getAddress();
 		
 		function getAddress(){
-			$("#address").val($("#roadAddress").val()+" "+$("#detailAddress").val());
+			$("#address2").val($("#roadAddress").val()+" "+$("#detailAddress").val());
 		}
 		
 		$("#roadAddress").change(function(){
 			getAddress();
-			console.log($("#address").val());
+			console.log($("#address2").val());
 		})
 		$("#detailAddress").change(function(){
 			getAddress();
-			console.log($("#address").val());
+			console.log($("#address2").val());
 		})
 		
 		$(".totalPrice").val($("#pay").html());

@@ -23,8 +23,9 @@
 			</div>
  			<div class="row menuResult">
 				<div class="row mt-4 justify-content-left">
+				<input type="hidden" id="shopNum" value="${shop.shopNum}">
 					<c:forEach items="${list}" var="vo">
-
+						<c:if test="${vo.sale==1}">
 						<div class="card col-3 detail mx-5 mb-3" data-num="${vo.menuNum}">
 							<img src="../resources/upload/menu/${vo.menuFileVO.fileName}"
 								class="card-img-top" alt="...">
@@ -38,6 +39,7 @@
 								</c:if>
 							</div> 
 						</div>
+						</c:if>
 					</c:forEach>
 				</div>
 
@@ -53,7 +55,7 @@
 			let formData = new FormData();
 			formData.append("menuNum", menuNum);
 			formData.append("totalPrice", $(price).html());
-			formData.append("shopNum", '1');
+			formData.append("shopNum", $("#shopNum").val());
 
 			$.ajax({
 				method : 'POST',
