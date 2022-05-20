@@ -28,5 +28,9 @@ public class ShopService {
 	public int setUpdateSale(ShopMenuVO shopMenuVO) throws Exception {
 		return shopMapper.setUpdateSale(shopMenuVO);
 	}
+	
+	public int setUpdateShopSystem(ShopVO shopVO) throws Exception {
+		return shopMapper.setUpdateShopSystem(shopVO);
+	}
 
 }

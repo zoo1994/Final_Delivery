@@ -7,8 +7,9 @@
     
     	<insert id="setMenu" parameterType="ShopMenuVO">
 		  	INSERT INTO SHOPMENU (MENUNUM,SHOPNUM,SALE)
-			SELECT MENUNUM, #{shopNum}, 1
+			SELECT MENUNUM, #{shopNum}, MENUSALE
 			FROM MENU
+			WHERE MENUSALE=1
 		</insert>
     
     	<select id="getList" parameterType="ShopMenuVO" resultMap="listResult">
@@ -36,4 +37,10 @@
     	<update id="setUpdateSale" parameterType="ShopMenuVO">
     		UPDATE SHOPMENU SET SALE=#{sale} WHERE SHOPNUM=#{shopNum} and MENUNUM=#{menuNum}
     	</update>
+    	
+    	<update id="setUpdateShopSystem" parameterType="ShopVO">
+    		UPDATE SHOP SET SHOPNAME=#{shopName}, SHOPPHONE=#{shopPhone}, OPENTIME=#{openTime}, CLOSETIME=#{closeTime}
+    		WHERE SHOPNUM=#{shopNum}
+    	</update>
+    
     </mapper>

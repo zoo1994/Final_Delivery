@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.fd.s1.menu.MenuMapper">
-
+    
 	<update id="setUpdateSale" parameterType="MenuVo">
 		UPDATE MENU SET MENUSALE=#{menuSale} WHERE MENUNUM=#{menuNum}
 	</update>
@@ -98,6 +98,10 @@
 		VALUES (#{menuNum}, #{shopNum}, 1)
 	</insert>
 	
+	<delete id="setDeleteMenu" parameterType="ShopMenuVO">
+    	DELETE FROM SHOPMENU WHERE MENUNUM=#{menuNum}
+    </delete>
+    
 	<insert id="setIngredientAdd" parameterType="IngredientVO">
 		INSERT INTO INGREDIENT 
 		VALUES(NULL, #{menuNum}, #{weight_g}, #{weight_ml}, #{calory}, #{sugar}, #{protein}, #{fat}, #{sodium}, #{caffeine})
