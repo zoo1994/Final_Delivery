@@ -48,7 +48,7 @@ public class DeliveryController {
 	}
 	
 	@GetMapping("cart")
-	public ModelAndView getCart(HttpSession session) throws Exception {
+	public ModelAndView cart(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		CartVO cartVO = new CartVO();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
@@ -59,6 +59,7 @@ public class DeliveryController {
 		return mv;
 		
 	}
+	
 	
 	@PostMapping("cartAdd")
 	public ModelAndView setCartAdd(HttpSession session,CartVO cartVO)throws Exception{
@@ -86,6 +87,46 @@ public class DeliveryController {
 		int result = deliveryService.delete(cartVO);
 		mv.addObject("result", result);
 		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	@GetMapping("order")
+	public ModelAndView getOrder(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		CartVO cartVO = new CartVO();
+		cartVO.setId(memberVO.getId());
+		List<CartVO> ar = deliveryService.getCart(cartVO);
+		mv.addObject("list", ar);
+		mv.setViewName("delivery/order");
+		return mv;
+	}
+	
+	@PostMapping("order")
+	public ModelAndView order(OrdersVO ordersVO,HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		ordersVO.setId(memberVO.getId());
+		int result= deliveryService.orderAdd(ordersVO);
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	@PostMapping("payment")
+	public ModelAndView payment(PaymentVO paymentVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = deliveryService.payAdd(paymentVO);
+		mv.addObject("result", result);
+		mv.addObject("pay", paymentVO);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	@GetMapping("orderComplite")
+	public ModelAndView orderComplite()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("delivery/orderComplite");
 		return mv;
 	}
 	

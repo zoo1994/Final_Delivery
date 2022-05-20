@@ -16,4 +16,12 @@ public interface DeliveryMapper {
 	public int update(CartVO cartVO)throws Exception;
 
 	public int delete(CartVO cartVO)throws Exception;
+	
+	public int payAdd(PaymentVO paymentVO)throws Exception;
+	
+	public int orderAdd(OrdersVO ordersVO)throws Exception;
+	
+	public int orderDetailAdd(OrderDetailVO orderDetailVO)throws Exception;
+	
+	public OrdersVO getOrder(OrdersVO ordersVO)throws Exception;
 }

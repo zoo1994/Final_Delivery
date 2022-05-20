@@ -47,4 +47,29 @@ public class DeliveryService {
 		return deliveryMapper.delete(cartVO);
 	}
 	
+	public int payAdd(PaymentVO paymentVO)throws Exception{
+		return deliveryMapper.payAdd(paymentVO);
+	}
+	
+	public int orderAdd(OrdersVO ordersVO)throws Exception{
+		int result = deliveryMapper.orderAdd(ordersVO);
+		ordersVO = deliveryMapper.getOrder(ordersVO);
+		CartVO cartVO = new CartVO();
+		cartVO.setId(ordersVO.getId());
+		List<CartVO> ar = deliveryMapper.getCart(cartVO);
+		for(CartVO c:ar) {			
+		OrderDetailVO orderDetailVO = new OrderDetailVO();
+		orderDetailVO.setDeliNum(ordersVO.getDeliNum());
+		orderDetailVO.setMenuNum(c.getMenuNum());
+		orderDetailVO.setMenuPrice(c.getTotalPrice()/c.getCount());
+		orderDetailVO.setOrderCount(c.getCount());
+		orderDetailVO.setPayNum(ordersVO.getPayNum());
+		orderDetailVO.setShopNum(c.getShopNum());
+		result = deliveryMapper.orderDetailAdd(orderDetailVO);
+		}
+		return result;
+	}
+
+
+	
 }
