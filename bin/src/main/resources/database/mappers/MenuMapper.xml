@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.fd.s1.menu.MenuMapper">
+
+	<delete id="setFileDelete" parameterType="MenuFileVO">
+		DELETE FROM MENUFILE WHERE FILENUM=#{fileNum}
+	</delete>
+
+	<insert id="setFileAdd" parameterType="MenuFileVO">
+ 		INSERT INTO MENUFILE (FILENUM, MENUNUM, FILENAME, ORINAME)
+ 		VALUES(NULL, #{menuNum}, #{fileName}, #{oriName})
+ 	</insert>
+
+   <select id="getList" resultMap="joinResult" parameterType="MenuVO">
+   	   	SELECT M.*, MF.* FROM MENU M
+		LEFT OUTER JOIN MENUFILE MF
+		ON(M.MENUNUM=MF.MENUNUM)
+		<choose>
+			<when test="category != null">
+				WHERE CATEGORY=#{category}			
+			</when>
+			<otherwise>
+				<if test="menuSale != null">
+					WHERE MENUSALE=#{menuSale}
+				</if>
+			</otherwise>
+		</choose>
+	
+		ORDER BY M.MENUNUM DESC
+   </select> 
+   
+
+   
+   <select id="getFileDetail" parameterType="MenuFileVO" resultType="MenuFileVO">
+   		SELECT * FROM MENUFILE WHERE FILENUM=#{fileNum}
+   </select>
+   
+   <resultMap type="menuVO" id="joinResult">
+		<id column="menuNum" property="menuNum"/>
+		<result column="menuName" property="menuName"/>
+		<result column="menuEng" property="menuEng"/>		
+		<result column="price" property="price"/>
+		<result column="menuDetail" property="menuDetail"/>
+		<result column="menuSale" property="menuSale" />
+		<result column="category" property="category" />
+		<association property="menuFileVO" javaType="MenuFileVO">
+			<id column="fileNum" property="fileNum"/>
+			<result column="fileName" property="fileName"/>
+ 			<result column="oriName" property="oriName" />
+ 		</association>
+	</resultMap>
+	
+	<insert id="setAdd" parameterType="MenuVO" useGeneratedKeys="true" keyProperty="menuNum">
+		INSERT INTO MENU (MENUNUM, MENUNAME, MENUENG, PRICE, MENUDETAIL, MENUSALE, CATEGORY)
+		VALUES (#{menuNum}, #{menuName}, #{menuEng}, #{price}, #{menuDetail}, #{menuSale}, #{category})
+	</insert>
+	
+	<insert id="setIngredientAdd" parameterType="IngredientVO">
+		INSERT INTO INGREDIENT 
+		VALUES(NULL, #{menuNum}, #{weight_g}, #{weight_ml}, #{calory}, #{sugar}, #{protein}, #{fat}, #{sodium}, #{caffeine})
+	</insert>
+	
+	<update id="setUpdate" parameterType="MenuVO">
+		UPDATE MENU SET MENUNAME=#{menuName}, MENUENG=#{menuEng}, PRICE=#{price}, MENUDETAIL=#{menuDetail}, MENUSALE=#{menuSale}, CATEGORY=#{category} WHERE MENUNUM=#{menuNum}
+	</update>
+	
+	<update id="setIngredientUpdate" parameterType="IngredientVO">
+		UPDATE INGREDIENT SET WEIGHT_G=#{weight_g}, WEIGHT_ML=#{weight_ml}, CALORY=#{calory}, SUGAR=#{sugar}, PROTEIN=#{protein}, FAT=#{fat}, SODIUM=#{sodium}, CAFFEINE=#{caffeine}
+		WHERE MENUNUM=#{menuNum}
+	</update>
+	
+	<select id="getDetail" parameterType="MenuVO" resultMap="detailResult">
+		SELECT * FROM MENU M
+		LEFT OUTER JOIN MENUFILE MF
+		ON(M.MENUNUM=MF.MENUNUM)
+		LEFT OUTER JOIN INGREDIENT ING 
+		ON(M.MENUNUM=ING.MENUNUM)
+		WHERE M.MENUNUM=#{menuNum}
+	</select>
+	
+	 <resultMap type="menuVO" id="detailResult">
+		<id column="menuNum" property="menuNum"/>
+		<result column="menuName" property="menuName"/>
+		<result column="menuEng" property="menuEng"/>		
+		<result column="price" property="price"/>
+		<result column="menuDetail" property="menuDetail"/>
+		<result column="menuSale" property="menuSale" />
+		<result column="category" property="category" />
+		<association property="menuFileVO" javaType="MenuFileVO">
+			<id column="fileNum" property="fileNum"/>
+			<result column="fileName" property="fileName"/>
+ 			<result column="oriName" property="oriName" />
+ 		</association>
+ 		<association property="ingredientVO" javaType="IngredientVO">
+ 			<id column="ingreNum" property="ingreNum"/>
+ 			<result column="weight_g" property="weight_g"/>
+ 			<result column="weight_ml" property="weight_ml"/>
+ 			<result column="calory" property="calory"/>
+ 			<result column="sugar" property="sugar"/>
+ 			<result column="protein" property="protein"/>
+ 			<result column="fat" property="fat"/>
+ 			<result column="sodium" property="sodium"/>
+ 			<result column="caffeine" property="caffeine"/>
+ 		</association>
+	</resultMap>
+	
+	
+	<delete id="setDelete" parameterType="MenuVO">
+		DELETE FROM MENU WHERE MENUNUM=#{menuNum}
+	</delete>
+</mapper>

@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+
+#wrap {
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer {
+	font-size:14px;
+	color: #fff;
+	width: 100%;
+	height: 300px; 
+	bottom: 0px;
+	margin-top:100px;
+	background-color: #292929;
+}
+
+.fUtil>li>a:hover{
+	color:white;
+}
+
+
+.footer .fUtil .privacy {
+    color: yellow;
+}
+.fInfo{
+	color:#929292;
+	
+}
+
+.footer .fSns {
+    float: right;
+}
+
+.footer .fInfo {
+    float: left;
+    font-weight: 400;
+    opacity: .6;
+}
+ul, ol, li{
+	list-style: none outside;
+	font-family: SpeedeeK, Malgun Gothic,'맑은 고딕', Dotum,'돋움', Arial, sans-serif!important;
+	margin:5px;
+}
+.info{
+	padding-left: 0px;
+}
+p{
+	margin-left: 10px;
+}
+.footer .fUtil {
+    float: left;
+    width: 190px;
+    font-weight: bold;
+}
+.footer .footArea {
+    padding: 45px 0 55px;
+    text-align: left;
+}
+.footer .fSns{
+	margin-right: 5%;
+}
+
+.footer .fSns a:not(.web_accessibility) {
+	
+    display: block;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    text-indent: -9999px;
+    background: url(https://www.mcdonalds.co.kr/kor/images/common/ico_sns.png) 0 0 no-repeat;
+}
+.footer .fSns a.fb {
+    background-position: 0 0;
+}
+.footer .fSns a.ig {
+    background-position: 0 -40px;
+}
+.footer .fSns a.yt {
+    background-position: 0 -80px;
+}
+.footer .fSns a.ks {
+    background-position: 0 -120px;
+}
+.footer .fSns .web_accessibility {
+    margin-top: -5px;
+}
+.footer .fSns .web_accessibility a img {
+    width: 100%;
+}
+.web_accessibility>img{
+	width: 100px;
+	height: 71px;
+}
+
+img {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    vertical-align: top;
+}
+.footer .fSns li {
+    float: left;
+    margin-left: 20px;
+}
