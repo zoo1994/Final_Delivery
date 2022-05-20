@@ -19,6 +19,13 @@ public class AdminService {
 	@Autowired
 	private AdminMapper adminMapper;
 
+	public ShopVO getShopDetail(ShopVO shopVO) throws Exception {
+		return adminMapper.getShopDetail(shopVO);
+	}
+	
+	public List<ShopVO> getShopMaster() throws Exception {
+		return adminMapper.getShopMaster();
+	}
 	
 	//관리자 shop관리 - 리스트
 	public List<ShopVO> getShop(Pager pager, Long count)throws Exception{

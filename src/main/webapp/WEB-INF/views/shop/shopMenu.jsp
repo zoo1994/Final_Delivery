@@ -25,10 +25,12 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<%--  <c:import url="../temp/ceoHeader.jsp"></c:import>  --%>
-        <div class="col py-3">
+		    <div class="row flex-nowrap">
+		  <c:import url="../temp/shopHeader.jsp"></c:import> 
+
+        <div class="col-6 py-3">
         <div class="row">
-        	<h1>${shopMaster.shopName}, ${member.id}님</h1>
+        	<h1>맥도날드 ${shopMaster.shopName}점, ${member.id}님</h1>
         </div>
       <table class="table table-hover">
 	<thead>
@@ -72,7 +74,7 @@
 		</c:forEach>  
 	</tbody>
 </table>
-       
+       		          </div> 
         </div>
     </div>
 <script type="text/javascript">

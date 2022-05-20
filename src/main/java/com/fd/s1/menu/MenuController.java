@@ -79,11 +79,27 @@ public class MenuController {
 	
 	//메뉴 상태 변경용 ajax
 	@PostMapping("menuManage")
-	public ModelAndView getMenuManage(MenuVO menuVO) throws Exception {
+	public ModelAndView getMenuManage(MenuVO menuVO, Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-//		System.out.println("manage "+menuVO.getMenuNum());
-//		System.out.println("manage "+menuVO.getMenuSale());
 		int result = menuService.setUpdateSale(menuVO);
+		Long count = adminService.getShopListCount(pager);
+		System.out.println("count : "+count);
+		List<ShopVO> ar = adminService.getShop(pager, count);
+		if(menuVO.getMenuSale() != 1) {
+			for(int i = 0; i<ar.size();i++) {
+				ShopMenuVO shopMenuVO = new ShopMenuVO();
+				shopMenuVO.setMenuNum(menuVO.getMenuNum());
+				result = menuService.setDeleteMenu(shopMenuVO);
+			}
+		}else {
+			for(int i = 0; i<ar.size();i++) {
+				ShopMenuVO shopMenuVO = new ShopMenuVO();
+				shopMenuVO.setMenuNum(menuVO.getMenuNum());
+				shopMenuVO.setShopNum(ar.get(i).getShopNum());
+				result = menuService.setShopMenuAdd(shopMenuVO);
+			}
+		}
+		
 		mv.setViewName("common/result");
 		mv.addObject("result",result);
 		
@@ -180,6 +196,7 @@ public class MenuController {
 			mv.setViewName("menu/update");
 			return mv;
 		}
+		
 		int result = menuService.setUpdate(menuVO, file);
 		if(result > 0) {
 			IngredientVO ingredientVO = new IngredientVO();
@@ -194,6 +211,7 @@ public class MenuController {
 			ingredientVO.setCaffeine(menuVO.getIngredientVO().getCaffeine());
 			result = menuService.setIngredientUpdate(ingredientVO);
 		}
+		
 		mv.setViewName("redirect:./menuManage");
 		
 		return mv;

@@ -25,6 +25,10 @@ public class MenuService {
 	@Autowired
 	private AdminMapper adminMapper;
 	
+	public int setDeleteMenu(ShopMenuVO shopMenuVO) throws Exception {
+		return menuMapper.setDeleteMenu(shopMenuVO);
+	}
+	
 	public int setShopMenuAdd(ShopMenuVO shopMenuVO) throws Exception {
 		return menuMapper.setShopMenuAdd(shopMenuVO);
 	}

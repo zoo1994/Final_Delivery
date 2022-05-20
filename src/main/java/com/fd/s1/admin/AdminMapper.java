@@ -22,8 +22,8 @@ public interface AdminMapper {
 	public int setShopDelete(ShopVO shopVO)throws Exception;
 	public int setShopUpdate(ShopVO shopVO)throws Exception;
 	public Long getShopTotalCount(Pager pager)throws Exception;
-	
-	
+	public List<ShopVO> getShopMaster()throws Exception;
+	public ShopVO getShopDetail(ShopVO shopVO) throws Exception;
 	
 //	public int setCouponDelete(CouponVO couponVO)throws Exception;
 	

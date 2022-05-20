@@ -60,6 +60,10 @@
 	    	ORDER BY SHOPNUM DESC LIMIT #{startRow}, #{perPage}
     	</select>
     	
+    	<select id="getShopMaster" resultType="ShopVO">
+    		SELECT ID FROM SHOP
+    	</select>
+    	 
      	<insert id="setShopAdd" parameterType="ShopVO" useGeneratedKeys="true" keyProperty="shopNum">
 			INSERT INTO SHOP  (SHOPNUM, ID, SHOPNAME,LOCATION,X_AXIS,Y_AXIS,SHOPPHONE,OPENTIME,CLOSETIME,SALE,DISTANCE,OPEN)
 			VALUE (#{shopNum},#{id},#{shopName},#{location},#{x_axis},#{y_axis},#{shopPhone},9,21,0,3,0);
@@ -68,6 +72,10 @@
 		<delete id="setShopDelete" parameterType="ShopVO">
 			DELETE FROM SHOP WHERE SHOPNUM=#{shopNum}
 		</delete>
+		
+		<select id="getShopDetail" resultType="ShopVO">
+			SELECT * FROM SHOP WHERE ID=#{id}
+		</select>
 		
 		<select id="getShopTotalCount" parameterType="pager" resultType="Long">
 	 		SELECT COUNT(SHOPNUM) FROM SHOP 		    		
