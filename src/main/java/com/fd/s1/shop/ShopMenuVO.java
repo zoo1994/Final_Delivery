@@ -1,5 +1,6 @@
 package com.fd.s1.shop;
 
+import com.fd.s1.menu.MenuFileVO;
 import com.fd.s1.menu.MenuVO;
 
 import lombok.Data;
@@ -12,5 +13,5 @@ public class ShopMenuVO {
 	private Integer sale;
 	
 	private MenuVO menuVO;
-	
+	private MenuFileVO menuFileVO;
 }

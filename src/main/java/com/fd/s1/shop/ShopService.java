@@ -32,5 +32,9 @@ public class ShopService {
 	public int setUpdateShopSystem(ShopVO shopVO) throws Exception {
 		return shopMapper.setUpdateShopSystem(shopVO);
 	}
+	
+	public List<ShopMenuVO> getShopInfo(ShopVO shopVO) throws Exception {
+		return shopMapper.getShopInfo(shopVO);
+	}
 
 }

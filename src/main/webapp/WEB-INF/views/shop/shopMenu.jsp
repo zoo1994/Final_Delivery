@@ -86,7 +86,7 @@
 		let shopNum = ${shopMaster.shopNum};
 		$.ajax({
 			type:"post",
-			url:"./ceoMenu",
+			url:"./shopMenu",
 			data:{
 				sale:menuSale,
 				menuNum:menuNum,
