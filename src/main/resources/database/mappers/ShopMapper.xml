@@ -34,6 +34,37 @@
 			SELECT SHOPNUM, SHOPNAME FROM SHOP WHERE ID=#{id}
 		</select>
     	
+    	<select id="getShopInfo" parameterType="ShopVO" resultMap="joinResult">
+    		SELECT SM.*, M.MENUNAME, M.MENUENG, M.PRICE, M.CATEGORY, MF.FILENUM ,MF.FILENAME, MF.ORINAME
+			FROM SHOPMENU SM
+			INNER JOIN MENU M 
+			ON(SM.MENUNUM=M.MENUNUM)
+			LEFT OUTER JOIN MENUFILE MF 
+			ON(M.MENUNUM=MF.MENUNUM)
+			WHERE SM.SHOPNUM = #{shopNum}
+			AND SM.SALE=1
+    	</select>
+    	<resultMap type="shopMenuVO" id="joinResult">
+    		<id column="menuNum" property="menuNum"/>
+			<id column="shopNum" property="shopNum"/>	
+			<result column="sale" property="sale"/>
+	    	<association property="menuVO" javaType="MenuVO">
+			<id column="menuNum" property="menuNum"/>
+			<result column="menuName" property="menuName"/>
+			<result column="menuEng" property="menuEng"/>		
+			<result column="price" property="price"/>
+			<result column="menuDetail" property="menuDetail"/>
+			<result column="menuSale" property="menuSale" />
+			<result column="category" property="category" />
+			</association>
+			<association property="menuFileVO" javaType="MenuFileVO">
+				<id column="fileNum" property="fileNum"/>
+				<result column="fileName" property="fileName"/>
+	 			<result column="oriName" property="oriName" />
+	 		</association>
+		</resultMap>
+    	
+    	
     	<update id="setUpdateSale" parameterType="ShopMenuVO">
     		UPDATE SHOPMENU SET SALE=#{sale} WHERE SHOPNUM=#{shopNum} and MENUNUM=#{menuNum}
     	</update>

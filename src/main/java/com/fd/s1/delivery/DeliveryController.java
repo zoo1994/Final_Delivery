@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fd.s1.member.MemberVO;
 import com.fd.s1.menu.MenuService;
 import com.fd.s1.menu.MenuVO;
+import com.fd.s1.shop.ShopMenuVO;
+import com.fd.s1.shop.ShopService;
 import com.fd.s1.shop.ShopVO;
 import com.fd.s1.util.Pager;
 
@@ -24,32 +26,37 @@ public class DeliveryController {
 	
 	@Autowired
 	private MenuService menuService;
-	
+	@Autowired
+	private ShopService shopService;
 	@Autowired
 	private DeliveryService deliveryService;
 	
 	@GetMapping("home")
 	public ModelAndView deliveryHome(MenuVO menuVO, Pager pager, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		pager.setCategory(menuVO.getCategory());
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		if(memberVO == null) {
-			pager.setUserType(2L);
-		}else if(memberVO.getUserType() == 0L) {
-			pager.setUserType(memberVO.getUserType());			 
-		}else {
-			pager.setUserType(1L);
-		}
-		List<MenuVO> ar = menuService.getList(pager);
+//		pager.setCategory(menuVO.getCategory());
+//		if(memberVO == null) {
+//			pager.setUserType(2L);
+//		}else if(memberVO.getUserType() == 0L) {
+//			pager.setUserType(memberVO.getUserType());			 
+//		}else {
+//			pager.setUserType(1L);
+//		}
+//		List<MenuVO> ar = menuService.getList(pager);
+//		mv.addObject("list", ar);
+//		mv.addObject("category",menuVO.getCategory());
+//		mv.setViewName("delivery/home");
+		ShopVO shopVO = (ShopVO)session.getAttribute("shop");
+		List<ShopMenuVO> ar = shopService.getShopInfo(shopVO);
 		mv.addObject("list", ar);
-		mv.addObject("category",menuVO.getCategory());
 		mv.setViewName("delivery/home");
-		
+			
 		return mv;
 	}
 	
 	@PostMapping("goDeli")
-	public ModelAndView goDeli(Double x, Double y,String location) throws Exception {
+	public ModelAndView goDeli(Double x, Double y,String location, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		//1km 는  위도y : 1/109.958489129649955 경도x : 1/88.74
 		//5km 반경구하기
@@ -90,8 +97,9 @@ public class DeliveryController {
 				minName=j;
 			}
 		}
-		mv.addObject("shop",ar.get(minName));
-		mv.addObject("location",location);
+
+		session.setAttribute("shop", ar.get(minName));
+		session.setAttribute("location", location);
 		mv.setViewName("redirect:./home");
 		return mv;
 	}

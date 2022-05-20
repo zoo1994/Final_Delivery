@@ -31,7 +31,7 @@
 					<div>
 				배달 매장 :
 					</div>
-				<div class="mx-3" style="display: inline; bottom: 0;">
+				<div class="mx-3" style="display: inline; bottom: 0;" id="shopName">
 				 ${shop.shopName}
 				</div>
 					<div>
