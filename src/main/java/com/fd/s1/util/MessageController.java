@@ -117,7 +117,7 @@ public class MessageController {
 		
 	}
 	
-	@Scheduled(cron="0 0 0 * * *")
+	@Scheduled(cron="0 10 12 * * *")
 	public void del()throws Exception{
 		LocalDate time = LocalDate.now().plusDays(-1);
 		memberService.delPhoneCheck(time);

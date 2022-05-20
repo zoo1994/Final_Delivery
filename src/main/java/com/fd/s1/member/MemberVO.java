@@ -30,6 +30,7 @@ public class MemberVO {
 	private Long year;
 	private String month;
 	private String day;
+	private String postcode;
 	private String roadAddress;
 	private String detailAddress;
 	private Long userType;
