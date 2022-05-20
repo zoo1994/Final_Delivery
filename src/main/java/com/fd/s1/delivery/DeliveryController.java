@@ -68,6 +68,14 @@ public class DeliveryController {
 			minY= y+gapY*5;
 		}
 		List<ShopVO> ar = deliveryService.findShops(maxX, minX, maxY, minY);
+		if(ar.size()==0) {
+			String message= "주문가능한 매장이 없습니다";
+			String path = "/";
+			mv.addObject("message",message);
+			mv.addObject("path",path);
+			mv.setViewName("common/joinResult");
+			return mv;
+		}
 		double [] a = new double[ar.size()];
 		for(int i =0; i<ar.size();i++) {
 			a[i]=this.distance(y,x,ar.get(i).getY_axis(),ar.get(i).getX_axis());
