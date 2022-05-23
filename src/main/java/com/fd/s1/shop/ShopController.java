@@ -35,6 +35,17 @@ public class ShopController {
 		return mv;
 	}
 	
+	@PostMapping("shopStop")
+	public ModelAndView shopStop(ShopStopVO shopStopVO,String startHour, String startMinute, String finishHour, String finishMinute) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(startHour);
+		System.out.println(startMinute);
+		System.out.println(finishHour);
+		System.out.println(finishMinute);
+		mv.setViewName("redirect:./shopStop");
+		return mv;
+	}
+	
 	@GetMapping("shopStop")
 	public ModelAndView shopStop(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();

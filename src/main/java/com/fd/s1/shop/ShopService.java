@@ -13,6 +13,10 @@ public class ShopService {
 	@Autowired
 	private ShopMapper shopMapper;
 	
+	public int setShopStop(ShopStopVO shopStopVO) throws Exception {
+		return shopMapper.setShopStop(shopStopVO);
+	}
+	
 	public int setMenu(ShopMenuVO shopMenuVO) throws Exception {
 		return shopMapper.setMenu(shopMenuVO);
 	}

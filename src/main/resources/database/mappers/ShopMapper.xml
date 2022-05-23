@@ -6,6 +6,8 @@
     <mapper namespace="com.fd.s1.shop.ShopMapper">
     	
     	<insert id="setShopStop" parameterType="ShopStopVO">
+    		INSERT INTO SHOPSTOP(NUM,SHOPNUM,STARTTIME,FINISHTIME,REASON)
+    		VALUES (null,#{shopNum},#{startTime},#{finishTime},#{reason})
     	</insert>
     	
     	<insert id="setMenu" parameterType="ShopMenuVO">
