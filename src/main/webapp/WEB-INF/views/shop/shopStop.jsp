@@ -27,47 +27,88 @@
 	<div class="container-fluid">
 		<div class="row flex-nowrap">
 			<c:import url="../temp/shopHeader.jsp"></c:import> 
-			<div class="col-6 py-3">
-				<div class="row mt-4">
-					<h1>맥도날드 ${vo.shopName}점</h1>	
-				</div>
-				<div class="row mt-4">
-					<h3>영업 일시중지</h3>
-				</div>
-				<form action="./shopStop" method="post">
-					<input type="hidden" value="${vo.shopNum}" name="shopNum">
-					<div class="row mt-4">
-						<h5>사유</h5>
-				 	  <select class="form-select" aria-label="Default select example" name="reason" id="reason">
-							 <option value="0">조기종료</option>
-							 <option value="1">오픈지연</option>
-							 <option value="2">매장사정</option>
-							 <option value="3">기타</option>
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						  <span class="input-group-text" id="inputGroup-sizing-default33">시작</span>
+			<c:choose>
+				<c:when test="${empty stop}">
+					<div class="col-6 py-3">
+						<div class="row mt-4">
+							<h1>맥도날드 ${vo.shopName}점</h1>	
 						</div>
-					    <select class="form-select" aria-label="Default select example" name="startHour" id="startHour">
-						</select>
-						<select class="form-select" aria-label="Default select example" name="startMinute" id="startMinute">
-					   </select>
-					</div>
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						  <span class="input-group-text" id="inputGroup-sizing-default33">종료</span>
+						<div class="row mt-4">
+							<h3>영업 일시중지</h3>
 						</div>
-					    <select class="form-select" aria-label="Default select example" name="finishHour" id="finishHour">
-						</select>
-						<select class="form-select" aria-label="Default select example" name="finishMinute" id="finishMinute">
-					   </select>
+						<form action="./shopStop" method="post">
+							<input type="hidden" value="${vo.shopNum}" name="shopNum">
+							<div class="row mt-4">
+								<h5>사유</h5>
+						 	  <select class="form-select" aria-label="Default select example" name="reason" id="reason">
+									 <option value="0">조기종료</option>
+									 <option value="1">오픈지연</option>
+									 <option value="2">매장사정</option>
+									 <option value="3">기타</option>
+								</select>
+							</div>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+								  <span class="input-group-text" id="inputGroup-sizing-default33">시작</span>
+								</div>
+							    <select class="form-select" aria-label="Default select example" name="startHour" id="startHour">
+								</select>
+								<select class="form-select" aria-label="Default select example" name="startMinute" id="startMinute">
+							   </select>
+							</div>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+								  <span class="input-group-text" id="inputGroup-sizing-default33">종료</span>
+								</div>
+							    <select class="form-select" aria-label="Default select example" name="finishHour" id="finishHour">
+								</select>
+								<select class="form-select" aria-label="Default select example" name="finishMinute" id="finishMinute">
+							   </select>
+							</div>
+							<div class="row justify-content-end">
+								<button type="submit" class="col-2 btn btn-outline-success">등록</button>
+							</div>
+						</form>
 					</div>
-					<div class="row justify-content-end">
-						<button type="submit" class="col-2 btn btn-outline-success">등록</button>
+				</c:when>
+				<c:otherwise>	
+					<div class="col-6 py-3">
+						<form action="./shopStopDel" method="post">
+							<input type="hidden" value="${stop.num}" name="num">
+							<div class="row mt-4">
+								<h1>맥도날드 ${vo.shopName}점</h1>	
+							</div>
+							<div class="row mt-4">
+								<h3>영업 일시중지</h3>
+								<h5>해당 가게는 영업일시중지 상태입니다.</h5>
+							</div>
+							<div class="row mt-4">
+								<h5>사유</h5>
+								<c:if test="${stop.reason==0}">
+									<h5>조기종료</h5>
+								</c:if>
+								<c:if test="${stop.reason==1}">
+									<h5>오픈지연</h5>
+								</c:if>
+								<c:if test="${stop.reason==2}">
+									<h5>매장사정</h5>
+								</c:if>
+								<c:if test="${stop.reason==3}">
+									<h5>기타</h5>
+								</c:if>
+							</div>
+							<div class="row mt-4">
+								<h5>시간</h5>
+								<h5>${stop.startTime}~${stop.finishTime}</h5>
+							</div>
+							<div class="row justify-content-end">
+								<button type="submit" class="col-4 btn btn-outline-success">영업 일시중지 해제</button>
+							</div>
+						</form>
 					</div>
-				</form>
-			</div>
+				</c:otherwise>
+			</c:choose>
+
 		</div>
 	</div>
 	<script type="text/javascript" src="../js/shopStop.js"></script>

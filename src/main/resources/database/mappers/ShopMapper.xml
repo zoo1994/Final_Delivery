@@ -5,6 +5,14 @@
  
     <mapper namespace="com.fd.s1.shop.ShopMapper">
     	
+    	<delete id="setStopDel" parameterType="shopStopVO">
+    		DELETE FROM SHOPSTOP WHERE NUM = #{num}
+    	</delete>
+    	
+    	<select id="getShopStop" parameterType="ShopVO" resultType="ShopStopVO">
+    		SELECT * FROM SHOPSTOP WHERE SHOPNUM=#{shopNum} 
+    	</select>
+    	
     	<insert id="setShopStop" parameterType="ShopStopVO">
     		INSERT INTO SHOPSTOP(NUM,SHOPNUM,STARTTIME,FINISHTIME,REASON)
     		VALUES (null,#{shopNum},#{startTime},#{finishTime},#{reason})
