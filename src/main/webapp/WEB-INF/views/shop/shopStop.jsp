@@ -34,23 +34,40 @@
 				<div class="row mt-4">
 					<h3>영업 일시중지</h3>
 				</div>
-				<div class="row mt-4">
-					<h5>사유</h5>
-				   <select class="form-select" aria-label="Default select example" name="reason" id="reason">
-						 <option value="0">조기종료</option>
-						 <option value="1">오픈지연</option>
-						 <option value="2">매장사정</option>
-					</select>
-				</div>
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-					  <span class="input-group-text" id="inputGroup-sizing-default33">시작</span>
+				<form action="./shopStop" method="post">
+					<input type="hidden" value="${vo.shopNum}" name="shopNum">
+					<div class="row mt-4">
+						<h5>사유</h5>
+				 	  <select class="form-select" aria-label="Default select example" name="reason" id="reason">
+							 <option value="0">조기종료</option>
+							 <option value="1">오픈지연</option>
+							 <option value="2">매장사정</option>
+							 <option value="3">기타</option>
+						</select>
 					</div>
-				    <select class="form-select" aria-label="Default select example" name="startHour" id="startHour">
-					</select>
-					<select class="form-select" aria-label="Default select example" name="startMinute" id="startMinute">
-				   </select>
-				</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+						  <span class="input-group-text" id="inputGroup-sizing-default33">시작</span>
+						</div>
+					    <select class="form-select" aria-label="Default select example" name="startHour" id="startHour">
+						</select>
+						<select class="form-select" aria-label="Default select example" name="startMinute" id="startMinute">
+					   </select>
+					</div>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+						  <span class="input-group-text" id="inputGroup-sizing-default33">종료</span>
+						</div>
+					    <select class="form-select" aria-label="Default select example" name="finishHour" id="finishHour">
+						</select>
+						<select class="form-select" aria-label="Default select example" name="finishMinute" id="finishMinute">
+					   </select>
+					</div>
+					<div class="row justify-content-end">
+						<button type="submit" class="col-2 btn btn-outline-success">등록</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="../js/shopStop.js"></script>
