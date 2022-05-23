@@ -11,6 +11,8 @@ public interface QnaMapper {
 
 	public List<QnaVO> getQnaList(Pager pager) throws Exception;
 
+	public List<QnaVO> getUserQnaList(Pager pager) throws Exception;
+
 	public Long getTotal ()throws Exception;
 
 	public QnaVO getQnaDetail(QnaVO qnaVO)throws Exception;
@@ -24,4 +26,12 @@ public interface QnaMapper {
 	public int setQnaFileAdd(QnaFilesVO qnaFilesVO)throws Exception;
 
 	public int setQnaFileDelete(QnaFilesVO qnaFilesVO)throws Exception;
+	
+	public int setAnswerAdd(AnswerVO answerVO)throws Exception;
+
+	public int setAnswerDelete(AnswerVO answerVO)throws Exception;
+	
+	public int setAnswer(QnaVO qnaVO)throws Exception;
+	
+	public AnswerVO getAnswer(AnswerVO answerVO)throws Exception;
 }
