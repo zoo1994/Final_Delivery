@@ -14,6 +14,14 @@ public class ShopService {
 	@Autowired
 	private ShopMapper shopMapper;
 	
+	public int setStopDel(ShopStopVO shopStopVO) throws Exception{
+		return shopMapper.setStopDel(shopStopVO);
+	};
+	
+	public ShopStopVO getShopStop(ShopVO shopVO) throws Exception{
+		return shopMapper.getShopStop(shopVO);
+	};
+	
 	public int setShopStop(ShopStopVO shopStopVO) throws Exception {
 		return shopMapper.setShopStop(shopStopVO);
 	}

@@ -1,6 +1,5 @@
 package com.fd.s1.member;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
@@ -114,8 +113,6 @@ public class MemberCheck {
 			check = true;
 			bindingResult.rejectValue("pw","member.password");
 		}
-		System.out.println("3");
-		System.out.println(check);
 		if(!memberVO.getPw().equals(memberVO.getCheckPw())) {
 			check = true;
 			bindingResult.rejectValue("checkPw","member.password.notEqual");

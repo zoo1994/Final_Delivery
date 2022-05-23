@@ -42,7 +42,7 @@ function makeFinishTime(){
 	for(let i =0; i<24;i++){
 		let addHour = finishHour+i;
 		let next = "";
-		if(addHour>24){
+		if(addHour>23){
 			addHour=addHour-24;
 			next = "(다음날)"
 		}

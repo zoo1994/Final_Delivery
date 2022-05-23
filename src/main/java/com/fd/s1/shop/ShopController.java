@@ -1,6 +1,9 @@
 package com.fd.s1.shop;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,11 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fd.s1.admin.AdminMapper;
 import com.fd.s1.admin.AdminService;
 import com.fd.s1.member.MemberVO;
-import com.fd.s1.menu.MenuService;
-import com.fd.s1.menu.MenuVO;
 import com.fd.s1.util.Pager;
 
 @Controller
@@ -35,13 +35,54 @@ public class ShopController {
 		return mv;
 	}
 	
+	@PostMapping("shopStopDel")
+	public ModelAndView shopStopDel(ShopStopVO shopStopVO)throws Exception {
+		ModelAndView mv = new ModelAndView();
+		String path ="./shopStop"; 
+		String message = "일시중지가 해제되었습니다.";
+		int result = shopService.setStopDel(shopStopVO);
+		if(result<1) {
+			message = "일시중지 해제가 실패하였습니다";
+		}
+		mv.addObject("path",path);
+		mv.addObject("message",message);
+		mv.setViewName("common/joinResult");
+		return mv;
+	}
+	
 	@PostMapping("shopStop")
 	public ModelAndView shopStop(ShopStopVO shopStopVO,String startHour, String startMinute, String finishHour, String finishMinute) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(startHour);
-		System.out.println(startMinute);
-		System.out.println(finishHour);
-		System.out.println(finishMinute);
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm",Locale.KOREA);
+		String month = String.valueOf(now.getMonthValue());
+		String day = String.valueOf(now.getMonthValue());
+		if(month.length()==1) {
+			month  = "0"+month;
+		}
+		if(day.length()==1) {
+			day  = "0"+day;
+		}
+		if(startHour.length()==1) {
+			startHour  = "0"+startHour;
+		}
+		if(startMinute.length()==1) {
+			startMinute  = "0"+startMinute;
+		}
+		if(finishHour.length()==1) {
+			finishHour  = "0"+finishHour;
+		}
+		if(finishMinute.length()==1) {
+			finishMinute  = "0"+finishMinute;
+		}
+		LocalDateTime startTime = LocalDateTime.parse(now.getYear()+"-"+month+"-"+day+" "+startHour+":"+startMinute,formatter);
+		LocalDateTime finishTime = LocalDateTime.parse(now.getYear()+"-"+month+"-"+day+" "+finishHour+":"+finishMinute,formatter);
+		if(startTime.isAfter(finishTime)) {
+			finishTime = finishTime.plusDays(1);
+		}
+		shopStopVO.setFinishTime(finishTime);
+		shopStopVO.setStartTime(startTime);
+		int result = shopService.setShopStop(shopStopVO);
 		mv.setViewName("redirect:./shopStop");
 		return mv;
 	}
@@ -53,6 +94,8 @@ public class ShopController {
 		ShopVO shopVO = new ShopVO();
 		shopVO.setId(memberVO.getId());
 		shopVO = adminService.getShopDetail(shopVO);
+		ShopStopVO shopStopVO = shopService.getShopStop(shopVO);
+		mv.addObject("stop",shopStopVO);
 		mv.addObject("vo",shopVO);
 		mv.setViewName("shop/shopStop");
 		return mv;
