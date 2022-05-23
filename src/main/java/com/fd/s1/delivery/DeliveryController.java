@@ -1,5 +1,6 @@
 package com.fd.s1.delivery;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -32,7 +33,7 @@ public class DeliveryController {
 	private DeliveryService deliveryService;
 	
 	@GetMapping("home")
-	public ModelAndView deliveryHome(MenuVO menuVO, Pager pager, HttpSession session) throws Exception {
+	public ModelAndView deliveryHome(MenuVO menuVO, Pager pager, HttpSession session, Integer category) throws Exception {
 		ModelAndView mv = new ModelAndView();
 //		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 //		pager.setCategory(menuVO.getCategory());
@@ -47,8 +48,10 @@ public class DeliveryController {
 //		mv.addObject("list", ar);
 //		mv.addObject("category",menuVO.getCategory());
 //		mv.setViewName("delivery/home");
+		
+		System.out.println("home : "+category);
 		ShopVO shopVO = (ShopVO)session.getAttribute("shop");
-		List<ShopMenuVO> ar = shopService.getShopInfo(shopVO);
+		List<ShopMenuVO> ar = shopService.getShopInfo(shopVO, category);
 		mv.addObject("list", ar);
 		mv.setViewName("delivery/home");
 			
@@ -97,7 +100,8 @@ public class DeliveryController {
 				minName=j;
 			}
 		}
-
+		int category = 0;
+		mv.addObject(category);
 		session.setAttribute("shop", ar.get(minName));
 		session.setAttribute("location", location);
 		session.setAttribute("detailLocation", detailLocation);

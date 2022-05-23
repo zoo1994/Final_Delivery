@@ -98,7 +98,6 @@ public class ShopController {
 		ShopVO shopVO = new ShopVO();
 		shopVO.setId(memberVO.getId());
 		shopVO = adminService.getShopDetail(shopVO);
-		mv.addObject("shopMaster", shopVO);
 		mv.addObject("vo",shopVO);
 		mv.setViewName("shop/shopSystem");
 		

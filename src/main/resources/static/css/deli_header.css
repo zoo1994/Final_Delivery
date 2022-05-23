@@ -4,6 +4,10 @@ body {
   font-family:'Malgun Gothic';
 }
 
+.container {
+	margin-top : -240px;
+}
+
 .head_menuWrap {
 	background: #e22219;
 	position: relative;
@@ -81,3 +85,22 @@ p{
 	left:0;
 }
 
+.price {
+	color:green;
+}
+
+.sidebar-menu {
+	position: sticky; left:20px; top:130px;
+	width:240px;
+	height:250px;
+	background: Moccasin;
+	border-radius: 10px;
+	}
+
+.fa-circle:before {
+	content : "∘";
+}
+
+.secondary-menu-item-target :hover {
+	color:orange;
+}
