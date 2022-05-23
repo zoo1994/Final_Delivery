@@ -1,5 +1,6 @@
 package com.fd.s1.shop;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,11 @@ public class ShopService {
 		return shopMapper.setUpdateShopSystem(shopVO);
 	}
 	
-	public List<ShopMenuVO> getShopInfo(ShopVO shopVO) throws Exception {
-		return shopMapper.getShopInfo(shopVO);
+	public List<ShopMenuVO> getShopInfo(ShopVO shopVO, Integer category) throws Exception {
+		HashMap<Object, Object> map = new HashMap<Object, Object>();
+		map.put("category", category);
+		map.put("shopVO", shopVO);
+		return shopMapper.getShopInfo(map);
 	}
 
 }

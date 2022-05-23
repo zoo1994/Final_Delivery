@@ -34,15 +34,18 @@
 			SELECT SHOPNUM, SHOPNAME FROM SHOP WHERE ID=#{id}
 		</select>
     	
-    	<select id="getShopInfo" parameterType="ShopVO" resultMap="joinResult">
+    	<select id="getShopInfo" parameterType="hashmap" resultMap="joinResult">
     		SELECT SM.*, M.MENUNAME, M.MENUENG, M.PRICE, M.CATEGORY, MF.FILENUM ,MF.FILENAME, MF.ORINAME
 			FROM SHOPMENU SM
 			INNER JOIN MENU M 
 			ON(SM.MENUNUM=M.MENUNUM)
 			LEFT OUTER JOIN MENUFILE MF 
 			ON(M.MENUNUM=MF.MENUNUM)
-			WHERE SM.SHOPNUM = #{shopNum}
+			WHERE SM.SHOPNUM = #{shopVO.shopNum}
 			AND SM.SALE=1
+ 		<if test="category != null">
+				AND M.CATEGORY = #{category}
+			</if>
     	</select>
     	<resultMap type="shopMenuVO" id="joinResult">
     		<id column="menuNum" property="menuNum"/>

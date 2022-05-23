@@ -29,7 +29,7 @@
 		  <c:import url="../temp/shopHeader.jsp"></c:import> 
 		         <div class="col-6 py-3">
 		<div class="row">
-			<h1>맥도날드 ${shopMaster.shopName}점</h1>
+			<h1>맥도날드 ${vo.shopName}점</h1>
 			      <div class="row mt-4 col-5">
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
