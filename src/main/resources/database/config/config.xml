@@ -9,6 +9,7 @@
 		<typeAlias type = "java.util.List" alias="List"/>
 		<typeAlias type = "java.lang.Long" alias="Long"/>
 		<typeAlias type = "java.lang.Integer" alias="Integer"/>
+		<typeAlias type = "java.lang.String" alias="String"/>
 		<typeAlias type="java.util.Map" alias="Map"/>
 		<typeAlias type="com.fd.s1.board.qna.QnaVO" alias="QnaVO"/>
 		<typeAlias type="com.fd.s1.board.qna.QnaFilesVO" alias="QnaFilesVO"/>
@@ -29,5 +30,8 @@
 		<typeAlias type="com.fd.s1.coupon.CouponVO" alias="CouponVO"/>
 		<typeAlias type="com.fd.s1.shop.ShopMenuVO" alias="ShopMenuVO"/>
 		<typeAlias type="com.fd.s1.shop.ShopVO" alias="ShopVO"/>
+		<typeAlias type="com.fd.s1.coupon.UserCouponVO" alias="UserCouponVO"/>
+		
+		
 	</typeAliases>
 </configuration>

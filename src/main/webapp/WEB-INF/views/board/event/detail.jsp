@@ -56,6 +56,29 @@
 							    <c:forEach items="${vo.filesVO}" var="i">
 							    	<img src="/resources/upload/board/event/${i.fileName}" class="img-thumbnail" alt="...">
 							    </c:forEach>
+							    <div></div>
+							    
+							    
+								<c:if test="${member != null}">
+									<div class="" style="display:inline-block; width: 30%; min-width:300px; height: 180px; border: rgb(224,228,232) solid 2px; line-height: 66px; border-radius :5px; ">
+										<div class="d-flex justify-content-around" style="line-height: 60px;">
+											<strong>사용가능쿠폰6</strong>
+											<div>~2022-05-19</div>
+										</div>
+										<div class="d-flex justify-content-start mb-4" style="">
+											<div style="display: block; text-align:left; line-height: 33px;">
+												<p style=" margin: -10px 25px;">사용처 : 분식</p>
+												<p style=" margin: -10px 25px;">할인금액 : 1000</p>
+											</div>
+
+										</div>
+										<div class="d-flex justify-content-end">								
+											<button id="couponClick" class="btn btn-light" style="margin: 0 25px; border: 1px solid rgb(221,59,74); color: rgb(221,59,74);">발급받기</button>
+										</div>
+									</div>
+								</c:if>	
+								
+								
 							    <li class="list-group-item">${vo.contents}</li>
 							</div>
 						</article>
@@ -72,7 +95,7 @@
 					  				<input type="hidden" name="eventNum" id="eventNum" value="${vo.eventNum}">
 						  			<button style="margin: 0 auto; font-weight: 500;"  type="submit" id="eventDetailUpdateBtn" class="updateBtn btn btn-primary">
 									  	UPDATE
-									</button>									<!--   onclick="javascript:{getDeleteBtn();}" -->
+									</button>					<!--   onclick="javascript:{getDeleteBtn();}" -->
 					  			</form>
 								<button style="margin: 0 auto; font-weight: 500;" type="button" id="eventDetailDeleteBtn" class="deleteBtn btn btn-info">
 								  	DELETE
@@ -83,9 +106,7 @@
 						</div>
 					</div>
 				</div>
-				
-				
-																										
+																	
 			</div>
 		</div>
 		<!-- //contArea -->
