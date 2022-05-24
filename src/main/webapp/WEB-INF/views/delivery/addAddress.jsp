@@ -24,12 +24,10 @@
 				<input type="hidden" id="jibunAddress"> <input type="hidden"
 					id="extraAddress"> <input type="text" id="input_postcode"
 					class="form-control my-1" style="width: 200px" readonly="readonly"
-					value="${vo.postcode}"> <input type="text" id="roadAddress"
-					class="form-control" readonly="readonly" value="${vo.roadAddress}">
+					value="${vo.postcode}"> 
 				<div class="input-group mb-3 my-1"
 					style="padding-left: 0; padding-right: 0;">
-					<input type="text" id="detailAddress" class="form-control"
-						value="${vo.detailAddress}">
+					
 				<input type="hidden" id="jibunAddress"> 
 				<input type="hidden"id="extraAddress">
 				<input type="hidden" id="input_postcode" class="form-control my-1" style="width: 200px"  readonly="readonly" value="${vo.postcode}">
@@ -37,6 +35,7 @@
 				<div class="input-group mb-3 my-1" style="padding-left: 0; padding-right: 0;">
 					<input type="text" id="detailAddress" class="form-control" value="${vo.detailAddress}">
 					<div class="col-1"></div>
+					
 					<input class="col-2 btn btn-outline-success dropdown-toggle"
 						type="button" id="addBtn" data-bs-toggle="dropdown"
 						aria-expanded="false" onclick="showPostcode()" value="주소변경">
@@ -56,6 +55,7 @@
 			name="location"> <input type="hidden" id="detailLocation"
 			name="detailLocation">
 	</form>
+	</div>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a58574ac7b94ffdb63ca1f5c17c22c7&libraries=services"></script>
 	<script type="text/javascript" src="../js/map.js"></script>
