@@ -1,5 +1,9 @@
 package com.fd.s1.board.event;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -76,13 +80,42 @@ public class EventController {
 	}
 	
 	@PostMapping("add")
-	public ModelAndView setAdd(@Valid EventVO eventVO,BindingResult bindingResult,MultipartFile[] files)throws Exception{
+	public ModelAndView setAdd(@Valid EventVO eventVO,BindingResult bindingResult,MultipartFile[] files, Event_couponVO ecVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
+//		String [] str = eventSchedule1.split("/");
+//		System.out.println(str[0]);
+//		System.out.println(str[1]);
+//		System.out.println(str[2]);		
+
+//		DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+//		System.out.println(sdf.format(eventSchedule1));
+
+//			String   s = "2020/01/01";
+
+//			DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+
+//			Date d = (Date) sdf.parse(eventSchedule1);
+
+//			System.out.println(d);
+
+
+		
+//		System.out.println("couponId : "+couponId);
 		if(bindingResult.hasErrors()) {
 			mv.setViewName("board/event/add");
 			return mv;
 		}
 		int result = eventService.setAdd(eventVO,files);
+		if(ecVO != null) {
+			System.out.println(ecVO.getCouponId());
+			System.out.println(eventVO.getEventNum());
+			System.out.println(ecVO.getEventSchedule());
+			eventService.setEventCouponAdd(ecVO);
+		}
+
+//		System.out.println("EventNum : "+eventVO.getEventNum());
+				
 		mv.setViewName("redirect:./list");
 		return mv;
 	}

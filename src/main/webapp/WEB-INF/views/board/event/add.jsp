@@ -10,6 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 </head>
 <body>
 	<c:import url="../../temp/header.jsp"></c:import>
@@ -51,7 +53,7 @@
 						<input id="couponName" class="form-control" readonly="readonly" type="text" value=""> 
 				</div>
 				<input id="couponId" name="couponId" class="form-control" hidden type="text" value=""> 
-
+				<input id="eventSchedule" name="eventSchedule" class="form-control" hidden type="text" value=""> 
 				<div id="fileResult"></div>
 				<div>
 					<button id="fileAdd" type="button" class="col-1 btn btn-outline-success">FileAdd</button>
@@ -104,7 +106,31 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" id="modalHide" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" id="modalSave" class="btn btn-primary">Add</button>
+	        <button type="button" id="modalSave" class="btn btn-primary">Next</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- Modal2 -->
+	<div class="modal  fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">추가하기</h5>
+	        <button type="button" id="modalHideX2" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      		<div class="container" style="">
+					<input type="text" id="datepicker">
+					<div id="couponListSelect"></div>
+					
+				</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="modalHide2" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" id="modalSave2" class="btn btn-primary">Add</button>
 	      </div>
 	    </div>
 	  </div>
@@ -116,6 +142,41 @@
 	<script src="../resources/js/eventAdd.js"></script>
 	<c:import url="../../temp/footer.jsp"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>	
+<script>
+var picker = new Pikaday({
+    field: document.getElementById('datepicker'),
+    format: 'YYYY/MM/DD',
+    toString(date, format) {
+        // you should do formatting based on the passed format,
+        // but we will just return 'D/M/YYYY' for simplicity
+        const day = CF_leftPad(date.getDate());
+        const month = CF_leftPad(date.getMonth() + 1);
+        const year = date.getFullYear();
+        console.log(CF_leftPad(date.getDate()));
+        console.log(CF_leftPad(date.getMonth() + 1));
+        console.log(date.getFullYear());
+        console.log(new Date(year+"/"+month+"/"+day));
+        return new Date(year+"/"+month+"/"+day);
+    },
+/*     parse(dateString, format) {
+        // dateString is the result of `toString` method
+        const parts = dateString.split('/');
+        const day = parseInt(parts[0], 10);
+        const month = parseInt(parts[1], 10) - 1;
+        const year = parseInt(parts[2], 10);
+        return new Date(year, month, day);
+
+
+    } */
+    
+});
+function CF_leftPad(value){
+	if (Number(value) >= 10) {
+		return value;
+	}
+	return "0" + value;
+}
+</script>
 <script type="text/javascript">
 
 	//summernote

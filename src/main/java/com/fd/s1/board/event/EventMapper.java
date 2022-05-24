@@ -24,6 +24,8 @@ public interface EventMapper {
 	
 	public int setAdd(EventVO eventVO)throws Exception;
 	
+	public int setEventCouponAdd(Event_couponVO ecVO)throws Exception;
+	
 	public int setUpdate(EventVO eventVO)throws Exception;
 	
 	public int setDelete(EventVO eventVO)throws Exception;

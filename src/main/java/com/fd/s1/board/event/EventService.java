@@ -64,6 +64,12 @@ public class EventService {
 		return eventMapper.getDetail(eventVO);
 	}
 
+	
+	
+	public int setEventCouponAdd(Event_couponVO ecVO) throws Exception {
+		return eventMapper.setEventCouponAdd(ecVO);
+	}
+	
 	public int setAdd(EventVO eventVO, MultipartFile[] files) throws Exception {
 		int result = eventMapper.setAdd(eventVO);
 		if (files != null && result>0) {

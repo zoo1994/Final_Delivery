@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
+import com.fd.s1.coupon.CouponVO;
+
 import lombok.Data;
 
 @Data
@@ -18,4 +20,6 @@ public class EventVO {
 	private Date regDate;
 	private Long hit;
 	private List<EventFilesVO> filesVO;
+	private Event_couponVO ecVO;
+	private CouponVO couponVO;
 }

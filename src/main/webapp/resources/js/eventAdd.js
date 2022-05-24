@@ -4,6 +4,7 @@ const event_coupon_search = document.querySelector("#event_coupon_search");
 const couponListSelect = document.querySelector("#couponListSelect");
 const couponId = document.querySelector("#couponId");
 const couponName = document.querySelector("#couponName");
+const eventSchedule = document.querySelector("#eventSchedule");
 
 getList();
 
@@ -81,20 +82,33 @@ $('#modalHideX').click(function(e){
 	$('#modal').modal("hide");
 }); 
 
+$('#modalHide2').click(function(e){
+	$('#modal2').modal("hide");
+}); 
+$('#modalHideX2').click(function(e){
+	$('#modal2').modal("hide");
+}); 
+
 $("#modalSave").click(function() {
+	$('#modal2').modal("show");
+    
+	$('#modal').modal("hide");
+});
+$("#modalSave2").click(function() {
     $(".cpRadio").each(function(idx, item) {
         if($(item).prop("checked")){
             console.log($(item).prop("value"));
             console.log($(item).prop("title"));
             couponName.setAttribute("value", $(item).prop("title"));
             couponId.setAttribute("value", $(item).prop("value").substr(6));
+			eventSchedule.setAttribute("value", $(datepicker).prop("value"));
+			console.log($(datepicker).prop("value"));
             return;
         }
     });
-    
-	$('#modal').modal("hide");
-});
 
+	$('#modal2').modal("hide");
+});
 event_coupon_search_btn.addEventListener("click", function(event){
     getList();
 });

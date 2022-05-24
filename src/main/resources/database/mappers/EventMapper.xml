@@ -52,10 +52,14 @@
     	</resultMap>
     	
     	<select id="getDetail" parameterType="EventVO" resultMap="detailResult">
-    		SELECT E.*, F.* FROM 
+    		SELECT E.*, F.*, EC.*, C.* FROM 
 			EVENT E
 			LEFT JOIN EVENTFILE F 
 			USING(EVENTNUM)
+			LEFT JOIN EVENT_COUPON EC 
+			USING(EVENTNUM)
+			LEFT JOIN COUPON C
+			USING(COUPONID)
     		WHERE EVENTNUM=#{eventNum}
     	</select>
     	<resultMap type="EventVO" id="detailResult">
@@ -65,12 +69,29 @@
     		<result column="contents" property="contents"/>
     		<result column="regDate" property="regDate"/>
     		<result column="hit" property="hit"/>
+    		<association property="couponVO" javaType="CouponVO">
+    			<id column="couponId" property="couponId"/>
+    			<result column="couponName" property="couponName"/>
+    			<result column="discount" property="discount"/>
+    			<result column="activeDate" property="activeDate"/>
+    		</association>
+    		<association property="ecVO" javaType="Event_couponVO">
+    			<id column="eventNum" property="eventNum"/>
+    			<result column="couponId" property="couponId"/>
+    			<result column="eventSchedule" property="eventSchedule"/>
+    		</association>
     		<collection property="filesVO" javaType="List" ofType="EventFilesVO">
     			<id column="fileNum" property="fileNum"/>
     			<result column="fileName" property="fileName"/>
     			<result column="oriName" property="oriName"/>
     		</collection>
     	</resultMap>
+    	
+    	
+    	<insert id="setEventCouponAdd" parameterType="Event_couponVO">
+    		INSERT INTO EVENT_COUPON(EVENTNUM, COUPONID, EVENTSCHEDULE)
+			VALUES (#{eventNum},#{couponId},#{eventSchedule})
+    	</insert>
     	
     	<insert id="setAdd" parameterType="EventVO" useGeneratedKeys="true" keyProperty="eventNum">
     		INSERT INTO EVENT(EVENTNUM, ID, TITLE,CONTENTS,REGDATE,HIT)
