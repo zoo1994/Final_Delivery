@@ -101,8 +101,8 @@
 								<h5>시간</h5>
 								<h5>${stop.startTime}~${stop.finishTime}</h5>
 							</div>
-							<div class="row justify-content-end">
-								<button type="submit" class="col-4 btn btn-outline-success">영업 일시중지 해제</button>
+							<div class="row justify-content-left">
+								<button type="submit" class="col-3 btn btn-outline-success">영업 일시중지 해제</button>
 							</div>
 						</form>
 					</div>

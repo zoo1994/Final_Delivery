@@ -33,7 +33,7 @@
     	</select>
     	
     	<select id="numCheck" parameterType="PhoneCheckVO" resultType="PhoneCheckVO">
-    		SELECT * FROM PHONECHECK WHERE NUM = (SELECT  MAX(NUM) FROM PHONECHECK WHERE PHONE = #{phone});
+    		SELECT * FROM PHONECHECK WHERE NUM = (SELECT  MAX(NUM) FROM PHONECHECK WHERE PHONE = #{phone})
     	</select>
     	
     	<select id="phoneCheck" parameterType="MemberVO" resultType="MemberVO">

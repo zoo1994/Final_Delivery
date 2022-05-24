@@ -5,6 +5,14 @@
  
     <mapper namespace="com.fd.s1.shop.ShopMapper">
     	
+    	<update id="setChaneSale" parameterType="ShopVO">
+    		UPDATE SHOP SET SALE = #{sale} WHERE SHOPNUM= #{shopNum}
+    	</update>
+    	
+    	<select id="getStopList" resultType="ShopStopVO">
+    		SELECT * FROM SHOPSTOP 
+    	</select>
+    	
     	<delete id="setStopDel" parameterType="shopStopVO">
     		DELETE FROM SHOPSTOP WHERE NUM = #{num}
     	</delete>

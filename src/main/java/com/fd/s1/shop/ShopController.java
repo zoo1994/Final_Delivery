@@ -1,5 +1,6 @@
 package com.fd.s1.shop;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.Locale;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +21,7 @@ import com.fd.s1.admin.AdminService;
 import com.fd.s1.member.MemberVO;
 import com.fd.s1.util.Pager;
 
+@EnableScheduling
 @Controller
 @RequestMapping("/shop/*")
 public class ShopController {
@@ -127,7 +131,6 @@ public class ShopController {
 	@PostMapping("shopMenu")
 	public ModelAndView setUpdateSale(ShopMenuVO shopMenuVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(shopMenuVO.getSale());
 		int result = shopService.setUpdateSale(shopMenuVO);
 		mv.setViewName("common/result");
 		mv.addObject("result",result);
@@ -150,12 +153,43 @@ public class ShopController {
 	@PostMapping("setUpdateShopSystem")
 	public ModelAndView setUpdateShopSystem(ShopVO shopVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(shopVO.getShopName());
 		int result = shopService.setUpdateShopSystem(shopVO);
 		
 		mv.addObject("result", result);
 		mv.setViewName("common/result");
 		
 		return mv;
+	}
+	
+	@Scheduled(cron="0 0/10 * * * *")
+	public void stopAndGO()throws Exception{
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm",Locale.KOREA);
+		String month = String.valueOf(now.getMonthValue());
+		String day = String.valueOf(now.getMonthValue());
+		String hour = String.valueOf(now.getHour());
+		String min = String.valueOf(now.getMinute());
+		if(month.length()==1) { month  = "0"+month;}
+		if(day.length()==1) {day  = "0"+day;}
+		if(hour.length()==1) {hour  = "0"+hour;}
+		if(min.length()==1) {min  = "0"+min;}
+		LocalDateTime time = LocalDateTime.parse(now.getYear()+"-"+month+"-"+day+" "+hour+":"+min,formatter);
+		List<ShopStopVO> ar = shopService.getStopList();
+		for(ShopStopVO vo : ar) {
+			ShopVO shopVO = new ShopVO();
+			shopVO.setShopNum(vo.getShopNum());
+			//시작시간이 같으면 영업 일시중지
+			if(vo.getStartTime().equals(time)) {
+				shopVO.setSale(1);
+				shopService.setChaneSale(shopVO);
+			}
+			//끝나는 시간이 같으면 영업일시중지 해제
+			else if(vo.getFinishTime().equals(time)) {
+				shopVO.setSale(0);
+				shopService.setChaneSale(shopVO);
+				shopService.setStopDel(vo);
+			}
+		}
+		
 	}
 }

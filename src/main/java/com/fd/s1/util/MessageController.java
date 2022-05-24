@@ -84,9 +84,11 @@ public class MessageController {
 	public ModelAndView checkNum(PhoneCheckVO phoneCheckVO,String num)throws Exception{
 		ModelAndView mv  = new ModelAndView();
 		mv.setViewName("common/result");
+		//핸드폰 번호로 phoneCheckVO반환
 		phoneCheckVO = memberService.numCheck(phoneCheckVO);
-		phoneCheckVO.getRequestTime().plusMinutes(5).isAfter(LocalDateTime.now());
+		//문자발송시간으로부터 문자인증시간이 5분이 지났는지 비교
 		if(phoneCheckVO.getRequestTime().plusMinutes(5).isAfter(LocalDateTime.now())) {
+			//문자인증 카운트(총5번시도가능)
 			phoneCheckVO.setCount(phoneCheckVO.getCount()+1);
 			memberService.updateCount(phoneCheckVO);
 			if(phoneCheckVO.getCount()<6) {
@@ -117,7 +119,7 @@ public class MessageController {
 		
 	}
 	
-	@Scheduled(cron="0 10 12 * * *")
+	@Scheduled(cron="0 0 12 * * *")
 	public void del()throws Exception{
 		LocalDate time = LocalDate.now().plusDays(-1);
 		memberService.delPhoneCheck(time);

@@ -9,6 +9,10 @@ import com.fd.s1.member.MemberVO;
 @Mapper
 public interface ShopMapper {
 	
+	public int setChaneSale(ShopVO shopVO) throws Exception;
+	
+	public List<ShopStopVO> getStopList()throws Exception;
+	
 	public int setStopDel(ShopStopVO shopStopVO) throws Exception;
 	
 	public ShopStopVO getShopStop(ShopVO shopVO) throws Exception;

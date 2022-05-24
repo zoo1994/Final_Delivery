@@ -117,11 +117,10 @@ public class MemberCheck {
 			check = true;
 			bindingResult.rejectValue("checkPw","member.password.notEqual");
 		}
-		System.out.println("4");
-		System.out.println(check);
 		return check;
 	}
 	
+	//없는 날짜 선택시 TRUE반환 (ex 1월32일 등)
 	public boolean checkDate(String checkDate) {
 		try {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd",Locale.KOREA);

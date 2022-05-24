@@ -69,15 +69,7 @@ public class DeliveryController {
 		double minX = x-gapX*5;
 		double maxY = y+gapY*5;
 		double minY = y-gapY*5;
-		if(minX>maxX) {
-			maxX=x-gapX*5;
-			minX=x+gapX*5;
-		}
-		if(minY>maxY) {
-			maxY= y-gapY*5;
-			minY= y+gapY*5;
-		}
-		
+		// 반경 5km내에 매장 검색
 		List<ShopVO> ar = deliveryService.findShops(maxX, minX, maxY, minY);
 		
 		if(ar.size()==0) {
@@ -88,12 +80,15 @@ public class DeliveryController {
 			mv.setViewName("common/joinResult");
 			return mv;
 		}
+		//주문가능매장리스트 크기의 배열 생성
 		double [] a = new double[ar.size()];
 		for(int i =0; i<ar.size();i++) {
+			//각 점포마다 주문지와의 거리 계산 후 a배열에 삽입
 			a[i]=this.distance(y,x,ar.get(i).getY_axis(),ar.get(i).getX_axis());
 		}
 		Double min = a[0];
 		int minName = 0;
+		//가장 가까운 매장 찾기
 		for(int j = 0 ; j<(a.length-1);j++) {
 			if (min>a[j]) {
 				min = a[j];
@@ -214,7 +209,8 @@ public class DeliveryController {
     private double distance(double lat1, double lon1, double lat2, double lon2) {
         
         double theta = lon1 - lon2;
-        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) 
+        		+ Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
          
         dist = Math.acos(dist);
         dist = rad2deg(dist);

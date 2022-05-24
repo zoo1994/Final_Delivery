@@ -22,7 +22,7 @@
 			<div class="row mt-4">
 				<input type="hidden" id="jibunAddress"> 
 				<input type="hidden"id="extraAddress">
-				<input type="text" id="input_postcode" class="form-control my-1" style="width: 200px"  readonly="readonly" value="${vo.postcode}">
+				<input type="hidden" id="input_postcode" class="form-control my-1" style="width: 200px"  readonly="readonly" value="${vo.postcode}">
 				<input type="text" id="roadAddress" class="form-control"  readonly="readonly" value="${vo.roadAddress}">
 				<div class="input-group mb-3 my-1" style="padding-left: 0; padding-right: 0;">
 					<input type="text" id="detailAddress" class="form-control" value="${vo.detailAddress}">

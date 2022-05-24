@@ -132,7 +132,7 @@
 						<form:input path="roadAddress"  id="roadAddress" placeholder="도로명주소" cssClass="form-control" readonly="true"/>
 					</div>
 					<div class="col">
-						<input type="text" readonly="readonly" id="jibunAddress" placeholder="지번주소" class="form-control">
+  						<input type="text" readonly="readonly" id="jibunAddress" placeholder="지번주소" class="form-control">
 					</div>
 				</div>
 				<span id="guide" style="color:#999;display:none"></span>
