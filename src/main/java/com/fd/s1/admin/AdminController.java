@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fd.s1.coupon.CouponVO;
 import com.fd.s1.member.MemberVO;
+import com.fd.s1.shop.ShopMenuVO;
+import com.fd.s1.shop.ShopService;
 import com.fd.s1.shop.ShopVO;
 import com.fd.s1.util.Pager;
 
@@ -23,6 +25,8 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private ShopService shopService;
 
 	//관리자 마이페이지
 	@GetMapping("manager")
@@ -170,7 +174,10 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView();
 		
 		int result = adminService.setShopAdd(shopVO);
-		
+		ShopMenuVO shopMenuVO = new ShopMenuVO();
+		shopMenuVO.setShopNum(shopVO.getShopNum());
+		//매장 추가시 매장메뉴 같이 추가
+		int result2 = shopService.setMenu(shopMenuVO);
 		mv.addObject("result", result);
 		mv.setViewName("common/result");
 		return mv;
@@ -190,7 +197,8 @@ public class AdminController {
 	@PostMapping("shopUpdate")
 	public ModelAndView setShopUpdate(ShopVO shopVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-
+		System.out.println(shopVO.getX_axis());
+		System.out.println(shopVO.getY_axis());
 		int result = adminService.setShopUpdate(shopVO);
 		
 		mv.addObject("result", result);

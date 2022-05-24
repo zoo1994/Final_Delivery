@@ -14,5 +14,7 @@ public class ShopVO {
 	private Integer sale;
 	private Integer distance;
 	private Integer open;
-	
+	private Double x_axis;
+	private Double y_axis;
+
 }

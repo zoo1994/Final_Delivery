@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fd.s1.admin.AdminMapper;
+import com.fd.s1.shop.ShopMenuVO;
+import com.fd.s1.shop.ShopVO;
 import com.fd.s1.util.FileManager;
 import com.fd.s1.util.Pager;
 
@@ -19,6 +22,16 @@ public class MenuService {
 	private MenuMapper menuMapper;
 	@Autowired
 	private FileManager fileManager;
+	@Autowired
+	private AdminMapper adminMapper;
+	
+	public int setDeleteMenu(ShopMenuVO shopMenuVO) throws Exception {
+		return menuMapper.setDeleteMenu(shopMenuVO);
+	}
+	
+	public int setShopMenuAdd(ShopMenuVO shopMenuVO) throws Exception {
+		return menuMapper.setShopMenuAdd(shopMenuVO);
+	}
 	
 	public int setUpdateSale(MenuVO menuVO) throws Exception {
 		return menuMapper.setUpdateSale(menuVO);
@@ -70,7 +83,6 @@ public class MenuService {
 			if(result<1) {
 				throw new SQLException();
 			}
-			
 				
 		}
 		

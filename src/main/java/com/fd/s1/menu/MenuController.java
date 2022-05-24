@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fd.s1.admin.AdminService;
 import com.fd.s1.member.MemberVO;
+import com.fd.s1.shop.ShopMenuVO;
+import com.fd.s1.shop.ShopVO;
 import com.fd.s1.util.Pager;
 
 
@@ -27,6 +30,8 @@ public class MenuController {
 	
 	@Autowired
 	private MenuService menuService;
+	@Autowired
+	private AdminService adminService;
 	
 	@PostMapping("fileDelete")
 	public ModelAndView setFileDelete(MenuFileVO menuFileVO) throws Exception {
@@ -59,6 +64,7 @@ public class MenuController {
 		return mv;
 	}
 	
+	//관리자 메뉴 list
 	@GetMapping("menuManage")
 	public ModelAndView getMenuManage(MenuVO menuVO,Pager pager, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -71,12 +77,29 @@ public class MenuController {
 		return mv;
 	}
 	
+	//메뉴 상태 변경용 ajax
 	@PostMapping("menuManage")
-	public ModelAndView getMenuManage(MenuVO menuVO) throws Exception {
+	public ModelAndView getMenuManage(MenuVO menuVO, Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-//		System.out.println("manage "+menuVO.getMenuNum());
-//		System.out.println("manage "+menuVO.getMenuSale());
 		int result = menuService.setUpdateSale(menuVO);
+		Long count = adminService.getShopListCount(pager);
+		System.out.println("count : "+count);
+		List<ShopVO> ar = adminService.getShop(pager, count);
+		if(menuVO.getMenuSale() != 1) {
+			for(int i = 0; i<ar.size();i++) {
+				ShopMenuVO shopMenuVO = new ShopMenuVO();
+				shopMenuVO.setMenuNum(menuVO.getMenuNum());
+				result = menuService.setDeleteMenu(shopMenuVO);
+			}
+		}else {
+			for(int i = 0; i<ar.size();i++) {
+				ShopMenuVO shopMenuVO = new ShopMenuVO();
+				shopMenuVO.setMenuNum(menuVO.getMenuNum());
+				shopMenuVO.setShopNum(ar.get(i).getShopNum());
+				result = menuService.setShopMenuAdd(shopMenuVO);
+			}
+		}
+		
 		mv.setViewName("common/result");
 		mv.addObject("result",result);
 		
@@ -93,12 +116,10 @@ public class MenuController {
 		return mv;
 	}
 	
-	
+	//관리자 전용 menu Detail
 	@GetMapping("manageDetail")
 	public ModelAndView getManageDetail(MenuVO menuVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		//parameter는 productNum
-		//판매자가 보는 페이지
 		menuVO = menuService.getDetail(menuVO);
 		mv.addObject("vo",menuVO);
 		mv.setViewName("menu/manageDetail");
@@ -114,7 +135,7 @@ public class MenuController {
 	}
 	
 	@PostMapping("add")
-	public ModelAndView setAdd(@Valid MenuVO menuVO, BindingResult bindingResult, MultipartFile file, HttpSession session) throws Exception {
+	public ModelAndView setAdd(@Valid MenuVO menuVO, BindingResult bindingResult, MultipartFile file, HttpSession session, Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("post 진입");
 		System.out.println(bindingResult.getFieldError());
@@ -122,8 +143,13 @@ public class MenuController {
 			mv.setViewName("menu/add");
 			return mv;
 		}
-		System.out.println("controller : "+file.getBytes()+".");
+		//System.out.println("controller : "+file.getBytes()+".");
+		Long count = adminService.getShopListCount(pager);
+		System.out.println("count : "+count);
+		List<ShopVO> ar = adminService.getShop(pager, count);
+		System.out.println("shop Count : "+ar.size());
 		int result = menuService.setAdd(menuVO, file);
+		//메뉴추가 성공했다면, 영양정보도 추가
 		if(result > 0) {
 			IngredientVO ingredientVO = new IngredientVO();
 			ingredientVO.setMenuNum(menuVO.getMenuNum());
@@ -136,6 +162,16 @@ public class MenuController {
 			ingredientVO.setSodium(menuVO.getIngredientVO().getSodium());
 			ingredientVO.setCaffeine(menuVO.getIngredientVO().getCaffeine());
 			result = menuService.setIngredientAdd(ingredientVO);
+		}
+		//메뉴추가 성공했다면, 전체 매장에도 매장메뉴 추가
+		if(result >0) {
+			for(int i=0; i<ar.size();i++) {
+				System.out.println("shopName : "+ar.get(i).getShopName());
+				ShopMenuVO shopMenuVO = new ShopMenuVO();
+				shopMenuVO.setMenuNum(menuVO.getMenuNum());
+				shopMenuVO.setShopNum(ar.get(i).getShopNum());
+				result = menuService.setShopMenuAdd(shopMenuVO);
+			}
 		}
 		mv.setViewName("redirect:./menuManage");
 		
@@ -160,6 +196,7 @@ public class MenuController {
 			mv.setViewName("menu/update");
 			return mv;
 		}
+		
 		int result = menuService.setUpdate(menuVO, file);
 		if(result > 0) {
 			IngredientVO ingredientVO = new IngredientVO();
@@ -174,6 +211,7 @@ public class MenuController {
 			ingredientVO.setCaffeine(menuVO.getIngredientVO().getCaffeine());
 			result = menuService.setIngredientUpdate(ingredientVO);
 		}
+		
 		mv.setViewName("redirect:./menuManage");
 		
 		return mv;

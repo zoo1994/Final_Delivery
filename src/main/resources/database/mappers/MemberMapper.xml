@@ -14,7 +14,7 @@
     	</update>
     
     	<update id="setUpdate" parameterType="MemberVO">
-    		UPDATE USER SET EMAIL =  #{email},PHONE=#{phone}, ROADADDRESS = #{roadAddress}, DETAILADDRESS = #{detailAddress} WHERE ID=#{id}
+    		UPDATE USER SET EMAIL =  #{email},PHONE=#{phone},POSTCODE = #{postcode}, ROADADDRESS = #{roadAddress}, DETAILADDRESS = #{detailAddress} WHERE ID=#{id}
     	</update>
     	
     	<delete id="delPhoneCheck" parameterType="java.time.LocalDate">
@@ -33,7 +33,7 @@
     	</select>
     	
     	<select id="numCheck" parameterType="PhoneCheckVO" resultType="PhoneCheckVO">
-    		SELECT * FROM PHONECHECK WHERE NUM = (SELECT  MAX(NUM) FROM PHONECHECK WHERE PHONE = #{phone});
+    		SELECT * FROM PHONECHECK WHERE NUM = (SELECT  MAX(NUM) FROM PHONECHECK WHERE PHONE = #{phone})
     	</select>
     	
     	<select id="phoneCheck" parameterType="MemberVO" resultType="MemberVO">
@@ -50,8 +50,8 @@
     	</select>
     	
     	<insert id="join" parameterType="MemberVO">
-    		INSERT INTO USER (ID,PW,NAME,EMAIL,PHONE,POINT,GENDER,ROADADDRESS,DETAILADDRESS,BIRTH,USERTYPE)
-    		VALUES (#{id},#{pw},#{name},#{email},#{phone},0,#{gender},#{roadAddress},#{detailAddress},#{birth},0)
+    		INSERT INTO USER (ID,PW,NAME,EMAIL,PHONE,POINT,GENDER,POSTCODE,ROADADDRESS,DETAILADDRESS,BIRTH,USERTYPE)
+    		VALUES (#{id},#{pw},#{name},#{email},#{phone},0,#{gender},#{postcode},#{roadAddress},#{detailAddress},#{birth},0)
     	</insert>
     	
     	<select id="login" parameterType="MemberVO" resultType="MemberVO">

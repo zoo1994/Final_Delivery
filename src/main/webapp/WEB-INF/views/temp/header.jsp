@@ -74,7 +74,7 @@
 					</c:choose>
 				</div>
 
-					<a class="btn btn-success d-flex align-items-center justify-content-center" style="width: 150px; height:60px; font-size: 24px;" href="../delivery/home">주문하기</a>
+					<a class="btn btn-success d-flex align-items-center justify-content-center" style="width: 150px; height:60px; font-size: 24px;" href="../delivery/addAddress">주문하기</a>
 
 			</div>
 		</div>

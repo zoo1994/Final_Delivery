@@ -28,7 +28,7 @@ public class MemberController {
 	@PostMapping("delMem")
 	public ModelAndView delMember(MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		String path ="/";
+		String path ="/"; 
 		String message = "회원탈퇴 되었습니다";
 		int result = memberService.delMem(memberVO);
 		if(result<1) {
@@ -99,6 +99,21 @@ public class MemberController {
 	@GetMapping("update")
 	public ModelAndView update(HttpSession session ,@ModelAttribute MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		String a = (String)session.getAttribute("check");
+		String path = "/";
+		String message = "정상적인 접근이 아닙니다.";
+		if(a==null) {
+			mv.addObject("path",path);
+			mv.addObject("message",message);
+			mv.setViewName("common/joinResult");
+			return mv;
+		}else if(!a.equals("ok")) {
+			mv.addObject("path",path);
+			mv.addObject("message",message);
+			mv.setViewName("common/joinResult");
+			return mv;
+		}
+		session.removeAttribute("check");
 		memberVO = (MemberVO)session.getAttribute("member");
 		memberVO = memberService.idCheck(memberVO);
 		mv.addObject("vo",memberVO);
@@ -127,16 +142,15 @@ public class MemberController {
 	}
 	
 	@PostMapping("updateCheck")
-	public ModelAndView updateCheck(MemberVO memberVO)throws Exception{
+	public ModelAndView updateCheck(MemberVO memberVO, HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		String path = "./updateCheck";
 		String message = "비밀번호가 일치하지 않습니다.";
-		System.out.println(memberVO.getId());
-		System.out.println(memberVO.getPw());
 		memberVO = memberService.login(memberVO);
 		if(memberVO!=null) {
 			path = "./update";
 			message = "비밀번호 인증 완료";
+			session.setAttribute("check","ok");
 		}
 		mv.addObject("path",path);
 		mv.addObject("message",message);
@@ -164,8 +178,17 @@ public class MemberController {
 	}
 	
 	@GetMapping("join")
-	public ModelAndView join(@ModelAttribute MemberVO memberVO)throws  Exception{
+	public ModelAndView join(@ModelAttribute MemberVO memberVO,HttpSession session)throws  Exception{
 		ModelAndView mv = new ModelAndView();
+		memberVO = (MemberVO)session.getAttribute("member");
+		if(memberVO!=null) {
+			String path = "/";
+			String message = "정상적인 접근이 아닙니다.";
+			mv.addObject("path",path);
+			mv.addObject("message",message);
+			mv.setViewName("common/joinResult");
+			return mv;
+		}
 		mv.setViewName("member/join");
 		return mv;
 	}

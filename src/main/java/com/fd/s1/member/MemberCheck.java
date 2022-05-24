@@ -1,6 +1,5 @@
 package com.fd.s1.member;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
@@ -19,6 +18,10 @@ public class MemberCheck {
 	public boolean memberError(MemberVO memberVO, BindingResult bindingResult)throws Exception{
 		boolean check = false;
 		check = bindingResult.hasErrors();
+		List<FieldError> ar = bindingResult.getFieldErrors();
+		for(FieldError i:ar ) {
+			System.out.println(i.getField());
+		}
 		//비밀번호 검증
 		if(!memberVO.getPw().equals(memberVO.getCheckPw())) {
 			check = true;
@@ -110,17 +113,14 @@ public class MemberCheck {
 			check = true;
 			bindingResult.rejectValue("pw","member.password");
 		}
-		System.out.println("3");
-		System.out.println(check);
 		if(!memberVO.getPw().equals(memberVO.getCheckPw())) {
 			check = true;
 			bindingResult.rejectValue("checkPw","member.password.notEqual");
 		}
-		System.out.println("4");
-		System.out.println(check);
 		return check;
 	}
 	
+	//없는 날짜 선택시 TRUE반환 (ex 1월32일 등)
 	public boolean checkDate(String checkDate) {
 		try {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd",Locale.KOREA);

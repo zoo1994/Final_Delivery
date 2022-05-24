@@ -5,20 +5,23 @@
  
     <mapper namespace="com.fd.s1.delivery.DeliveryMapper">
     
+    <select id="findShops" parameterType="Double" resultType="ShopVO">
+    	SELECT * FROM SHOP WHERE X_AXIS BETWEEN  #{minX}  AND #{maxX} AND Y_AXIS BETWEEN  #{minY}  AND #{maxY} AND SALE = 1
+    </select>
+    
     <select id="getCart" parameterType="CartVO" resultType="CartVO">
     SELECT * 
     FROM CART C
     LEFT JOIN
     MENU M
-    USING (MENUNUM) 
-    LEFT JOIN
-    SHOP S
-    USING (SHOPNUM)
+    USING (MENUNUM)
     LEFT JOIN
     MENUFILE MF
     USING (MENUNUM)
     WHERE C.ID=#{id}
     </select>
+    
+
     
     <insert id="setCartAdd" parameterType="CartVO">
     INSERT INTO CART(CARTNUM,ID,MENUNUM,SHOPNUM,COUNT,TOTALPRICE)
@@ -38,5 +41,22 @@
     <delete id="delete" parameterType="CartVO">
     DELETE FROM CART WHERE CARTNUM=#{cartNum}
     </delete>
+    
+   
+   <insert id="payAdd" parameterType="PaymentVO">
+   	INSERT INTO PAYMENT VALUES(#{payNum},#{type},#{price},now())
+   </insert>
+
+   <insert id="orderAdd" parameterType="OrdersVO">
+   	INSERT INTO ORDERS (DELINUM,PAYNUM,ID,ADDRESS,PHONE,REQUEST,COUPON,ORDERDATE,TOTALPRICE)
+   	VALUES(null,#{payNum},#{id},#{address},#{phone},#{request},#{coupon},now(),#{totalPrice})
+   </insert>
+   <insert id="orderDetailAdd" parameterType="OrderDetailVO">
+   	INSERT INTO ORDERDETAIL VALUES(null,#{deliNum},#{payNum},#{menuNum},#{shopNum},#{orderCount},#{menuPrice})
+   </insert>
+   
+   <select id="getOrder" parameterType="OrdersVO" resultType="OrdersVO">
+   SELECT * FROM ORDERS WHERE PAYNUM=#{payNum}
+   </select>
     
     </mapper>

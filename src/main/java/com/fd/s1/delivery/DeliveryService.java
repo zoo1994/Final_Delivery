@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fd.s1.menu.MenuMapper;
 import com.fd.s1.menu.MenuVO;
+import com.fd.s1.shop.ShopVO;
 
 @Service
 public class DeliveryService {
@@ -16,6 +17,10 @@ public class DeliveryService {
 	
 	@Autowired
 	private MenuMapper menuMapper;
+	
+	public List<ShopVO> findShops(Double maxX,Double minX,Double maxY,Double minY )throws Exception{
+		return deliveryMapper.findShops(maxX, minX, maxY, minY);
+	}
 	
 	public List<CartVO> getCart(CartVO cartVO)throws Exception{
 		List<CartVO> ar = deliveryMapper.getCart(cartVO);
@@ -46,5 +51,30 @@ public class DeliveryService {
 	public int delete(CartVO cartVO)throws Exception{
 		return deliveryMapper.delete(cartVO);
 	}
+	
+	public int payAdd(PaymentVO paymentVO)throws Exception{
+		return deliveryMapper.payAdd(paymentVO);
+	}
+	
+	public int orderAdd(OrdersVO ordersVO)throws Exception{
+		int result = deliveryMapper.orderAdd(ordersVO);
+		ordersVO = deliveryMapper.getOrder(ordersVO);
+		CartVO cartVO = new CartVO();
+		cartVO.setId(ordersVO.getId());
+		List<CartVO> ar = deliveryMapper.getCart(cartVO);
+		for(CartVO c:ar) {			
+		OrderDetailVO orderDetailVO = new OrderDetailVO();
+		orderDetailVO.setDeliNum(ordersVO.getDeliNum());
+		orderDetailVO.setMenuNum(c.getMenuNum());
+		orderDetailVO.setMenuPrice(c.getTotalPrice()/c.getCount());
+		orderDetailVO.setOrderCount(c.getCount());
+		orderDetailVO.setPayNum(ordersVO.getPayNum());
+		orderDetailVO.setShopNum(c.getShopNum());
+		result = deliveryMapper.orderDetailAdd(orderDetailVO);
+		}
+		return result;
+	}
+
+
 	
 }

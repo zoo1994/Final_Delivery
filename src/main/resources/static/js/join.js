@@ -29,7 +29,6 @@ $("#messageBtn").click(function(){
 function makeNumBox(){
 	let v = '<div class="mb-3"><input type="text" id="checkNum" class="form-control" placeholder="인증번호" /><div id="boxMessage">5분이내에 인증번호를 입력하세요.</div><button type="button" id="checkNumBtn" class="col-1 btn btn-outline-success">인증확인</button></div>';
 	$("#numBox").append(v);	
-					
 }
 
 $("#divv").on("click","#checkNumBtn",function(){

@@ -122,7 +122,7 @@
 					</div>
 				</div>
 				<div class="input-group mb-3">
-					<input type="text" readonly="readonly"  id="postcode" placeholder="우편번호" class="form-control">
+					<form:input path="postcode" readonly="readonly"  id="postcode" placeholder="우편번호" cssClass="form-control"/>
 					<input class="btn btn-outline-secondary dropdown-toggle"
 						type="button" data-bs-toggle="dropdown" aria-expanded="false"
 						onclick="showPostcode()" value="우편번호 찾기"><br>
@@ -132,7 +132,7 @@
 						<form:input path="roadAddress"  id="roadAddress" placeholder="도로명주소" cssClass="form-control" readonly="true"/>
 					</div>
 					<div class="col">
-						<input type="text" readonly="readonly" id="jibunAddress" placeholder="지번주소" class="form-control">
+  						<input type="text" readonly="readonly" id="jibunAddress" placeholder="지번주소" class="form-control">
 					</div>
 				</div>
 				<span id="guide" style="color:#999;display:none"></span>

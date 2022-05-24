@@ -11,37 +11,59 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+
 </head>
 <body>
 	<c:import url="../temp/deli_header.jsp"></c:import>
 	<div class="wrap">
 
+			
+			<div class="sidebar-menu" data-sticky="true">
+					<div class="food-menu">
+						<ul class="primary-menu">
+							<li class="primary-menu-item"><a class="primary-menu-item-target" href="./home"><span>전체 메뉴</span><i class="fa fa-angle-right"></i></a>
+								<ul class="secondary-menu">
+									<li class="secondary-menu-item "><a class="secondary-menu-item-target" href="./home?category=1"><i class="fa fa-circle"></i> <span>버거</span></a></li>
+									<li class="secondary-menu-item "><a class="secondary-menu-item-target" href="./home?category=2"><i class="fa fa-circle"></i> <span>맥런치</span></a></li>
+									<li class="secondary-menu-item "><a class="secondary-menu-item-target" href="./home?category=3"><i class="fa fa-circle"></i> <span>맥모닝</span></a></li>
+									<li class="secondary-menu-item "><a class="secondary-menu-item-target" href="./home?category=4"><i class="fa fa-circle"></i> <span>해피스낵</span></a></li>
+									<li class="secondary-menu-item "><a class="secondary-menu-item-target" href="./home?category=5"><i class="fa fa-circle"></i> <span>사이드 & 디저트</span></a></li>
+									<li class="secondary-menu-item "><a class="secondary-menu-item-target" href="./home?category=6"><i class="fa fa-circle"></i> <span>맥카페 & 음료</span></a></li>
+									<li class="secondary-menu-item "><a class="secondary-menu-item-target" href="./home?category=7"><i class="fa fa-circle"></i> <span>해피밀®</span></a></li>
+																
+								</ul>
+							</li>		
+		 				</ul>
+		 			</div>	
+		 		</div>
+			
 		<div class="container">
 			<h1>Delivery</h1>
 			<div class="row">
 				<p>∘ ${list.size()} Products</p>
 			</div>
-			<div class="row menuResult">
+ 			<div class="row menuResult">
 				<div class="row mt-4 justify-content-left">
+				<input type="hidden" id="shopNum" value="${shop.shopNum}">
 					<c:forEach items="${list}" var="vo">
-
+						<c:if test="${vo.sale==1}">
 						<div class="card col-3 detail mx-5 mb-3" data-num="${vo.menuNum}">
 							<img src="../resources/upload/menu/${vo.menuFileVO.fileName}"
 								class="card-img-top" alt="...">
-							<div class="card-body">
-								<p class="card-text">${vo.menuName}</p>
-								<p class="card-text">${vo.menuEng}</p>
-								<p class="card-text" id="menu${vo.menuNum}">${vo.price}</p>
+							 <div class="card-body">
+								<p class="card-text">${vo.menuVO.menuName}</p>
+								<p class="card-text price" id="menu${vo.menuNum}">가격 ₩ ${vo.menuVO.price}</p>
 								<c:if test="${not empty member}">
 									<button class="btn btn-success cartAdd"
 										data-num="${vo.menuNum}">카트에 담기</button>
 								</c:if>
-							</div>
+							</div> 
 						</div>
+						</c:if>
 					</c:forEach>
 				</div>
 
-			</div>
+			</div> 
 		</div>
 		<c:import url="../temp/footer.jsp"></c:import>
 	</div>
@@ -53,7 +75,7 @@
 			let formData = new FormData();
 			formData.append("menuNum", menuNum);
 			formData.append("totalPrice", $(price).html());
-			formData.append("shopNum", '1');
+			formData.append("shopNum", $("#shopNum").val());
 
 			$.ajax({
 				method : 'POST',

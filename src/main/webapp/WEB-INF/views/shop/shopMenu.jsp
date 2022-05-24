@@ -25,8 +25,13 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<%--  <c:import url="../temp/ceoHeader.jsp"></c:import>  --%>
-        <div class="col py-3">
+		    <div class="row flex-nowrap">
+		  <c:import url="../temp/shopHeader.jsp"></c:import> 
+
+        <div class="col-6 py-3">
+        <div class="row">
+        	<h1>맥도날드 ${shopMaster.shopName}점, ${member.id}님</h1>
+        </div>
       <table class="table table-hover">
 	<thead>
 		<tr class="table-success">
@@ -69,7 +74,7 @@
 		</c:forEach>  
 	</tbody>
 </table>
-       
+       		          </div> 
         </div>
     </div>
 <script type="text/javascript">
@@ -78,13 +83,14 @@
 		//console.log($('select[name='+menuSale+'] option:selected').val()); 확인		
 		let txt = 'menuSale'+menuNum;
 		let menuSale = $('select[name='+txt+'] option:selected').val();
-		
+		let shopNum = ${shopMaster.shopNum};
 		$.ajax({
 			type:"post",
-			url:"./ceoMenu",
+			url:"./shopMenu",
 			data:{
 				sale:menuSale,
-				menuNum:menuNum
+				menuNum:menuNum,
+				shopNum:shopNum
 			},
 			success:function(data) {
 				if(data.trim() ==1) {

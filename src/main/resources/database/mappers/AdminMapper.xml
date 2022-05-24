@@ -60,14 +60,22 @@
 	    	ORDER BY SHOPNUM DESC LIMIT #{startRow}, #{perPage}
     	</select>
     	
+    	<select id="getShopMaster" resultType="ShopVO">
+    		SELECT ID FROM SHOP
+    	</select>
+    	 
      	<insert id="setShopAdd" parameterType="ShopVO" useGeneratedKeys="true" keyProperty="shopNum">
-			INSERT INTO SHOP  (SHOPNUM, ID, SHOPNAME,LOCATION,SHOPPHONE,OPENTIME,CLOSETIME,SALE,DISTANCE,OPEN)
-			VALUE (#{shopNum},#{id},#{shopName},#{location},#{shopPhone},9,21,0,3,0);
+			INSERT INTO SHOP  (SHOPNUM, ID, SHOPNAME,LOCATION,X_AXIS,Y_AXIS,SHOPPHONE,OPENTIME,CLOSETIME,SALE,DISTANCE,OPEN)
+			VALUE (#{shopNum},#{id},#{shopName},#{location},#{x_axis},#{y_axis},#{shopPhone},9,21,0,3,0);
 		</insert>
 		
 		<delete id="setShopDelete" parameterType="ShopVO">
 			DELETE FROM SHOP WHERE SHOPNUM=#{shopNum}
 		</delete>
+		
+		<select id="getShopDetail" resultType="ShopVO">
+			SELECT * FROM SHOP WHERE ID=#{id}
+		</select>
 		
 		<select id="getShopTotalCount" parameterType="pager" resultType="Long">
 	 		SELECT COUNT(SHOPNUM) FROM SHOP 		    		
@@ -78,7 +86,7 @@
     	</select>
 		
 		<update id="setShopUpdate" parameterType="ShopVO">
-			UPDATE SHOP SET ID=#{id},SHOPNAME=#{shopName},LOCATION=#{location},SHOPPHONE=#{shopPhone},SALE=#{sale},OPEN=#{open}  WHERE SHOPNUM=#{shopNum}
+			UPDATE SHOP SET ID=#{id},SHOPNAME=#{shopName},LOCATION=#{location},X_AXIS=#{x_axis},Y_AXIS=#{y_axis},SHOPPHONE=#{shopPhone},SALE=#{sale},OPEN=#{open}  WHERE SHOPNUM=#{shopNum}
     	</update>
 		
     </mapper>

@@ -23,7 +23,7 @@
 				menuNum:num
 			},
 			success:function(data) {
-				if(data.trim() == 1) {
+				if(data.trim() >= 1) {
 					alert("변경되었습니다.");		
 				}else {
 					alert("변경에 실패했습니다.");
@@ -32,3 +32,4 @@
 			}
 		});   
 	});
+	

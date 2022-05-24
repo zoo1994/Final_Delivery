@@ -8,6 +8,7 @@
 	<typeAliases>	
 		<typeAlias type = "java.util.List" alias="List"/>
 		<typeAlias type = "java.lang.Long" alias="Long"/>
+		<typeAlias type = "java.lang.Double" alias="Double"/>
 		<typeAlias type = "java.lang.Integer" alias="Integer"/>
 		<typeAlias type = "java.lang.String" alias="String"/>
 		<typeAlias type="java.util.Map" alias="Map"/>
@@ -32,6 +33,9 @@
 		<typeAlias type="com.fd.s1.shop.ShopVO" alias="ShopVO"/>
 		<typeAlias type="com.fd.s1.coupon.UserCouponVO" alias="UserCouponVO"/>
 		<typeAlias type="com.fd.s1.board.event.Event_couponVO" alias="Event_couponVO"/>
-		
+		<typeAlias type="com.fd.s1.shop.ShopStopVO" alias="ShopStopVO"/>
+		<typeAlias type="com.fd.s1.delivery.OrdersVO" alias="OrdersVO"/>
+		<typeAlias type="com.fd.s1.delivery.OrderDetailVO" alias="OrderDetailVO"/>
+		<typeAlias type="com.fd.s1.delivery.PaymentVO" alias="PaymentVO"/>
 	</typeAliases>
 </configuration>
