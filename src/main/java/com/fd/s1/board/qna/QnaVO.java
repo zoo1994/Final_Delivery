@@ -29,9 +29,8 @@ public class QnaVO {
 	private String contents;
 	private Date regDate;
 	private Long reply;
-	private Long ref;
-	private Long step;
-	private Long depth;
+
 	private List<QnaFilesVO> filesVOs;
 	
+	private AnswerVO answerVO;
 }

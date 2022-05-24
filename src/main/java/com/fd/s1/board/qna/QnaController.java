@@ -2,6 +2,7 @@ package com.fd.s1.board.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fd.s1.member.MemberVO;
 import com.fd.s1.util.Pager;
 
 @Controller
@@ -24,9 +26,10 @@ public class QnaController {
 	private QnaService qnaService;
 
 	@GetMapping("list")
-	public ModelAndView getQnaList(Pager pager) throws Exception {
+	public ModelAndView getQnaList(Pager pager,HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<QnaVO> ar = qnaService.getQnaList(pager);
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		List<QnaVO> ar = qnaService.getQnaList(pager,memberVO);
 		mv.addObject("list", ar);
 		mv.setViewName("board/qna/list");
 		return mv;
@@ -116,5 +119,43 @@ public class QnaController {
 		mv.addObject("result", result);
 		return mv;
 	}
+	
+	@GetMapping("answerAdd")
+	public ModelAndView setAnswerAdd(QnaVO qnaVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		qnaVO = qnaService.getQnaDetail(qnaVO);
+		mv.setViewName("board/qna/answerAdd");
+		mv.addObject("vo", qnaVO);
+		return mv;
+	}
+	
+	@PostMapping("answerAdd")
+	public ModelAndView setAnswerAdd(AnswerVO answerVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = qnaService.setAnswerAdd(answerVO);
+		mv.setViewName("common/result");
+		mv.addObject("result", result);
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
