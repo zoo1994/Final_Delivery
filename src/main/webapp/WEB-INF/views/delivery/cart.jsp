@@ -14,7 +14,7 @@
 </head>
 <body>
 	<c:import url="../temp/deli_header.jsp"></c:import>
-	<div class="container">
+	<div class="container mt-1">
 		<h1>Cart</h1>
 		<c:choose>
 			<c:when test="${empty list}">

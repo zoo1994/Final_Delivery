@@ -94,7 +94,7 @@
     	</update>
     	
     	<update id="setUpdateShopSystem" parameterType="ShopVO">
-    		UPDATE SHOP SET SHOPNAME=#{shopName}, SHOPPHONE=#{shopPhone}, OPENTIME=#{openTime}, CLOSETIME=#{closeTime}
+    		UPDATE SHOP SET SHOPNAME=#{shopName}, SHOPPHONE=#{shopPhone}, OPENTIME=#{openTime}, CLOSETIME=#{closeTime}, DISTANCE=#{distance}
     		WHERE SHOPNUM=#{shopNum}
     	</update>
     
