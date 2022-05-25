@@ -1,5 +1,7 @@
 package com.fd.s1.delivery;
 
+import com.fd.s1.menu.MenuVO;
+
 import lombok.Data;
 
 @Data
@@ -13,4 +15,5 @@ public class OrderDetailVO {
 	private Long orderCount;
 	private Long menuPrice;
 	
+	private MenuVO menuVO;
 }

@@ -14,15 +14,22 @@
 </head>
 <body>
 	<c:import url="../temp/deli_header.jsp"></c:import>
-	<div class="container">
-	
-	<img alt="" src="" style="width: 600; height: 500;">
-	<h1>	
-	Order Complite!
-	</h1>
+	<div
+		class="container mt-1 d-flex justify-content-center align-items-center"
+		style="height: 500px;">
+
+		<img class="rounded" src="https://t1.daumcdn.net/cfile/tistory/99BB9E3359BF9EF730" style="width: 600px; height: 400px;">
 	</div>
-	
-		<c:import url="../temp/footer.jsp"></c:import>
+
+	<div class="container mt-1 d-flex justify-content-center align-items-center">
+		<div>
+		<h1>주문이 완료되었습니다.</h1>
+		</div>
+	</div>
+	<div class="container mt-3 d-flex justify-content-center align-items-center">
+		<a href="../" class="btn btn-success">홈으로</a>
+	</div>
+	<c:import url="../temp/footer.jsp"></c:import>
 	<c:import url="../temp/header_script.jsp"></c:import>
 </body>
 </html>

@@ -180,6 +180,30 @@ public class DeliveryController {
 		return mv;
 	}
 	
+	@GetMapping("orderList")
+	public ModelAndView orderList(Pager pager, HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		List<OrdersVO> ar = deliveryService.orderList(pager,memberVO);
+		mv.addObject("list", ar);
+		mv.setViewName("delivery/orderList");
+		return mv;
+	}
+	
+	@GetMapping("orderDetail")
+	public ModelAndView getOrderDetail(OrderDetailVO orderDetailVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrderDetailVO> ar = deliveryService.getOrderDetail(orderDetailVO);
+		/*
+		 * for(OrderDetailVO vo:ar) { MenuVO menuVO = new MenuVO();
+		 * menuVO.setMenuNum(orderDetailVO.getMenuNum()); menuVO =
+		 * menuService.getDetail(menuVO); vo.setMenuVO(menuVO); }
+		 */
+		mv.addObject("list", ar);
+		mv.setViewName("delivery/orderDetail");
+		return mv;
+	}
+	
 	@PostMapping("payment")
 	public ModelAndView payment(PaymentVO paymentVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
