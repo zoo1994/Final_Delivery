@@ -93,12 +93,13 @@ public class DeliveryController {
 		Double min = a[0];
 		int minName = 0;
 		//가장 가까운 매장 찾기
-		for(int j = 0 ; j<(a.length-1);j++) {
+		for(int j = 1 ; j<(a.length);j++) {
 			if (min>a[j]) {
 				min = a[j];
 				minName=j;
 			}
 		}
+//		System.out.println("마지막 매장 : "+a[a.length-1]);
 		if(a[minName]>5000) {
 			String message= "주문가능한 매장이 없습니다";
 			String path = "/";
