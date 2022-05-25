@@ -93,7 +93,7 @@ public class DeliveryController {
 		Double min = a[0];
 		int minName = 0;
 		//가장 가까운 매장 찾기
-		for(int j = 0 ; j<(a.length-1);j++) {
+		for(int j = 1 ; j<a.length;j++) {
 			if (min>a[j]) {
 				min = a[j];
 				minName=j;

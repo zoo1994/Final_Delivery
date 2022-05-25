@@ -20,9 +20,29 @@
 </head>
 <body>
 <c:import url="../temp/header.jsp"></c:import>
-	<div class="container mt-4" >
-		<div class="row mt-4">
-			<form action="./login" method="post">
+	<div class="weblogin_ui">
+		<fieldset class="login">
+			<h3 class="tit01 tit_ico key02">로그인</h3>
+			<div class="cont">
+				<div class="inpbox">
+					<label>
+						<span class="hide">ID</span>
+						<input type="text" placeholder="아이디">
+					</label>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+<c:import url="../temp/footer.jsp"></c:import>
+<script type="text/javascript" src="../css/login.css"></script>
+<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+</body>
+</html>
+
+<%-- 			<form action="./login" method="post">
 				<div class="row mt-4">
 					<div class="mb-3">
 						<label for="exampleFormControlInput1" class="form-label">id</label>
@@ -39,13 +59,4 @@
 						<button type="submit" class="col-1 btn btn-outline-success">login</button>
 					</div>
 				</div>
-			</form>
-		</div>
-	</div>
-<c:import url="../temp/footer.jsp"></c:import>
-<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
-</body>
-</html>
+			</form> --%>
