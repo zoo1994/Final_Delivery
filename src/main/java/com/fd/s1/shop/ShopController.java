@@ -158,4 +158,20 @@ public class ShopController {
 		
 		return mv;
 	}
+	
+	@GetMapping("shopList")
+	public ModelAndView getShopList(Pager pager) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		Long count = adminService.getShopListCount(pager);	
+		List<ShopVO> shopVOs = adminService.getShop(pager, count);
+
+		mv.addObject("count", count);
+		mv.addObject("list", shopVOs);
+		mv.addObject("pager", pager);
+		
+		
+		mv.setViewName("shop/shopList");
+		return mv;
+	}
 }

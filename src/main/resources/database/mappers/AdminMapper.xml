@@ -56,7 +56,8 @@
 	 		AND
 	 		(ID LIKE concat('%', #{search},'%') or
 	 		SHOPNAME LIKE concat('%', #{search},'%') or
-	 		SHOPPHONE LIKE concat('%', #{search},'%'))
+	 		SHOPPHONE LIKE concat('%', #{search},'%') or
+	 		LOCATION LIKE concat('%', #{search}, '%'))
 	    	ORDER BY SHOPNUM DESC LIMIT #{startRow}, #{perPage}
     	</select>
     	

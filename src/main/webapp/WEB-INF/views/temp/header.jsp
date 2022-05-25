@@ -18,7 +18,7 @@
 			<div class="collapse navbar-collapse nav" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item mx-3">
-						<a class="nav-link active" aria-current="page" href="#" style="font-size: 20px">매장소개</a>
+						<a class="nav-link active" aria-current="page" href="/shop/shopList" style="font-size: 20px">매장목록</a>
 					</li>
 					<li class="nav-item mx-3">
 						<a class="nav-link active" href="/menu/list" id="navbarDropdown" role="button" style="font-size: 20px">MENU</a>
