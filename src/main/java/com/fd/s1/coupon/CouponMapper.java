@@ -13,9 +13,9 @@ public interface CouponMapper {
 	public List<CouponVO> getCoupon(Pager pager)throws Exception;
 	public Long getCouponTotalCount(Pager pager)throws Exception;
 	
-	public Long setUserCoupon(UserCouponVO userCouponVO)throws Exception;
-	
+	public Long setUserCoupon(UserCouponVO userCouponVO)throws Exception;	
 	public Long getOverlap(UserCouponVO userCouponVO)throws Exception;
+	public Long getCouponLog(UserCouponVO userCouponVO)throws Exception;
 	
 	public Long getTotal(Pager pager)throws Exception;
 	

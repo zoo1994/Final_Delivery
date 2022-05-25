@@ -19,7 +19,13 @@ public class CouponService {
 	private CouponMapper couponMapper;
 
 	public Long createCoupon(UserCouponVO userCouponVO) throws Exception {
-			
+		Long limit = 1L;
+		Long hi = couponMapper.getCouponLog(userCouponVO);
+		if(hi>=limit) {
+			return -5L;
+		}
+		
+		
 		String [] randCharacter = {	"0","1","2","3","4",
 									"5","6","7","8","9",
 									"A","B","C","D","E",

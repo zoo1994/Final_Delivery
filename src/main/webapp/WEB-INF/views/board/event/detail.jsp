@@ -19,17 +19,15 @@
 <body>
 	<c:import url="../../temp/header.jsp"></c:import>
 	<c:import url="../../temp/header_script.jsp"></c:import>
-	
-	<input type="text" id="datepicker">
-	
 
+<input hidden id="member" value="${member.id}">
 <%-- <form action="./delete" method="post">
 <input type="hidden" name="eventNum" value="${vo.eventNum}">
 
  <a href="./update?eventNum=${vo.eventNum}" type="button" class="col-1 btn btn-outline-success ">수정</a>
   <button class="btn btn-outline-success" type="submit">삭제</button>
   </form> --%>
-  
+
 
 <div id="container">
 	<div class="content">			
@@ -66,14 +64,22 @@
 							    	<img src="/resources/upload/board/event/${i.fileName}" class="img-thumbnail" alt="...">
 							    </c:forEach>
 							    <div></div>
-
 							    
+							    <c:choose>
+							    	<c:when test="${compare != null}">
+							    		<input id="eventScheduleCompare" value="${compare}" hidden>
+							    	</c:when>
+							    	<c:otherwise>
+							    		<input id="eventScheduleCompare" value="" hidden>
+							    	</c:otherwise>
+							    </c:choose>
 							    
-								<c:if test="${member != null}">
+								<c:if test="${vo.ecVO.couponId != null}">
 									<div class="" style="display:inline-block; width: 30%; min-width:300px; height: 180px; border: rgb(224,228,232) solid 2px; line-height: 66px; border-radius :5px; ">
 										<div class="d-flex justify-content-around" style="line-height: 60px;">
-											<strong style="width: 50%; text-align: left; margin: 0 20px;">${vo.couponVO.couponName}</strong>
-											<div>~2022-05-19</div><!-- 이벤트 스케줄러 -->
+											<input hidden id="couponId" value="${vo.couponVO.couponId}">
+											<strong style="width: 50%; text-align: left; margin: 0 20px; ">${vo.couponVO.couponName}</strong>
+											<div>~${vo.ecVO.eventSchedule}</div><!-- 이벤트 스케줄러 -->
 										</div>
 										<div class="d-flex justify-content-start mb-4" style="">
 											<div style="display: block; text-align:left; line-height: 33px;">
@@ -124,37 +130,8 @@
 	</div>			
 </div>  
   
-<p>Date: <input type="text" class="selector" id="selector"></p> 
-
-  
 <c:import url="../../temp/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src="../resources/js/eventDetail.js"></script>
-	<script>
-var picker = new Pikaday({
-    field: document.getElementById('datepicker'),
-    format: 'YYYY/MM/DD',
-    toString(date, format) {
-        // you should do formatting based on the passed format,
-        // but we will just return 'D/M/YYYY' for simplicity
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-        console.log(date.getDate());
-        console.log(date.getMonth() + 1);
-        console.log(date.getFullYear());
-        
-        return date.getFullYear()+"/"+(date.getMonth() + 1)+"/"+date.getDate();
-    },
-    parse(dateString, format) {
-        // dateString is the result of `toString` method
-        const parts = dateString.split('/');
-        const day = parseInt(parts[0], 10);
-        const month = parseInt(parts[1], 10) - 1;
-        const year = parseInt(parts[2], 10);
-        return new Date(year, month, day);
-    }
-});
-</script>
 </body>
 </html>

@@ -18,8 +18,13 @@
     	</select>
     	
     	<insert id="setFileAdd" parameterType="EventFilesVO">
-    		INSERT INTO EVENTFILE (FILENUM, EVENTNUM, FILENAME, ORINAME)
-    		VALUES (null,#{eventNum},#{fileName},#{oriName})
+    		INSERT INTO EVENTFILE (FILENUM, EVENTNUM, FILENAME, ORINAME, FILESECTION)
+    		VALUES (null,#{eventNum},#{fileName},#{oriName}, 0)
+    	</insert>
+    	
+    	<insert id="setThumbFileAdd" parameterType="EventFilesVO">
+    		INSERT INTO EVENTFILE (FILENUM, EVENTNUM, FILENAME, ORINAME, FILESECTION)
+    		VALUES (null,#{eventNum},#{fileName},#{oriName}, 1)
     	</insert>
     	
     	<delete id="setFileDelete" parameterType="EventFilesVO">
@@ -29,8 +34,8 @@
     	<select id="getList" parameterType="Pager" resultMap="listResult">
     		SELECT E.*, F.* FROM 
 			EVENT E
-			LEFT JOIN EVENTFILE F 
-			USING(EVENTNUM) WHERE E.EVENTNUM > 0 
+			LEFT JOIN (SELECT * FROM EVENTFILE WHERE FILESECTION = 1) F 
+			USING(EVENTNUM) WHERE E.EVENTNUM > 0
 			AND
 	 		(TITLE LIKE concat('%', #{search},'%') or
 	 		CONTENTS LIKE concat('%', #{search},'%'))
@@ -50,11 +55,21 @@
     			<result column="oriName" property="oriName"/>
     		</collection>
     	</resultMap>
-    	
-    	<select id="getDetail" parameterType="EventVO" resultMap="detailResult">
-    		SELECT E.*, F.*, EC.*, C.* FROM 
+    		
+    	<select id="getThumb" parameterType="EventVO" resultType="EventFilesVO">
+    		SELECT F.* FROM 
 			EVENT E
 			LEFT JOIN EVENTFILE F 
+			USING(EVENTNUM)
+    		WHERE EVENTNUM=#{eventNum}
+    		AND
+    		F.FILESECTION=1
+    	</select>
+    		
+    	<select id="getDetail" parameterType="EventVO" resultMap="detailResult">
+    		SELECT E.*, F.*, EC.*, C.*, NOW() TIME FROM
+			EVENT E
+			LEFT JOIN (SELECT * FROM EVENTFILE WHERE FILESECTION = 0) F 
 			USING(EVENTNUM)
 			LEFT JOIN EVENT_COUPON EC 
 			USING(EVENTNUM)
@@ -69,6 +84,7 @@
     		<result column="contents" property="contents"/>
     		<result column="regDate" property="regDate"/>
     		<result column="hit" property="hit"/>
+    		<result column="time" property="time"/>
     		<association property="couponVO" javaType="CouponVO">
     			<id column="couponId" property="couponId"/>
     			<result column="couponName" property="couponName"/>
@@ -102,7 +118,15 @@
     		UPDATE EVENT SET TITLE = #{title} , CONTENTS = #{contents} WHERE EVENTNUM =#{eventNum}
     	</update>
     	
+    	<update id="setUpdateCoupon" parameterType="Event_couponVO">
+    		UPDATE EVENT_COUPON SET COUPONID = #{couponId} , EVENTSCHEDULE = #{eventSchedule} WHERE EVENTNUM =#{eventNum}
+    	</update>
+    	
     	<delete id="setDelete" parameterType="EventVO">
     		DELETE FROM EVENT  WHERE EVENTNUM=#{eventNum}
     	</delete>
+    	
+<!--     	<select id="getTest" parameterType="EventVO" resultMap="detailResult">
+			
+    	</select> -->
     </mapper>

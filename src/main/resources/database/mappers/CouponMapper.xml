@@ -8,10 +8,14 @@
     	<select id="getOverlap" parameterType="UserCouponVO" resultType="Long">
 			SELECT COUNT(COUPONNUM) FROM USERCOUPON WHERE ID  is not null AND ((COUPONNUM = #{couponNum} AND USAGESTATUS = 1)  )<!--  or (ID = #{id} AND COUPONID = 1) -->
     	</select>		
+		<select id="getCouponLog" parameterType="UserCouponVO" resultType="Long">
+			SELECT COUNT(ID) FROM USERCOUPON WHERE ID  is not null AND (ID = #{id} AND COUPONID = #{couponId})
+    	</select>	
+		
 		
 		<insert id="setUserCoupon" parameterType="UserCouponVO" useGeneratedKeys="true" keyProperty="num">
 			INSERT INTO USERCOUPON (NUM,ID,COUPONID,COUPONNUM,DOWNDATE,USAGESTATUS)
-			VALUES (#{num},#{id},1,#{couponNum},now(),1)
+			VALUES (#{num},#{id},#{couponId},#{couponNum},now(),1)
 		</insert>
 		
 		<select id="getCoupon" parameterType="Pager" resultType="CouponVO">

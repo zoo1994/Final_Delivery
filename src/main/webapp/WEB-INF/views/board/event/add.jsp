@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -43,6 +43,7 @@
 					</div>
 				</div>
 				<div class="mb-3">
+						
 						<label for="couponName" class="form-label">쿠폰</label>
 						<!-- Button trigger modal -->
 						<span id="modalStartBtn">
@@ -50,13 +51,23 @@
 							  ADD
 							</button>
 						</span>	
+						<button style="margin: 0 auto; font-weight: 500;" type="button" id="resetBtn" class="btn btn-danger">
+						  초기화
+						</button>
+						<div style="height: 5px;"></div>
 						<input id="couponName" class="form-control" readonly="readonly" type="text" value=""> 
 				</div>
 				<input id="couponId" name="couponId" class="form-control" hidden type="text" value=""> 
-				<input id="eventSchedule" name="eventSchedule" class="form-control" hidden type="text" value=""> 
+				<input id="eventSchedule" name="eventSchedule" class="form-control" hidden type="text">
+				<!-- 썸네일 -->
+				<div id="thumbFileResult"></div>
+				<div style="margin-bottom: 10px;">
+					<button id="thumbFileAdd" type="button" class="col-2 btn btn-outline-success">썸네일 추가</button>
+				</div>				
+				<!-- 내용이미지 -->
 				<div id="fileResult"></div>
 				<div>
-					<button id="fileAdd" type="button" class="col-1 btn btn-outline-success">FileAdd</button>
+					<button id="fileAdd" type="button" class="col-2 btn btn-outline-success">내용이미지 추가</button>
 				</div>
 				<div class="row justify-content-end">
 					<button type="submit" class="col-1 btn btn-outline-success">Add</button>
@@ -122,10 +133,13 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	      		<div class="container" style="">
-					<input type="text" id="datepicker">
-					<div id="couponListSelect"></div>
-					
+	      		<div class="container" style="">	      		
+		      		<div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="inputGroup-sizing-default3">발급기간</span>
+					  </div>
+					  <input type="text" id="datepicker" placeholder="미선택시 무기한" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+					</div>			
 				</div>
 	      </div>
 	      <div class="modal-footer">
@@ -145,18 +159,14 @@
 <script>
 var picker = new Pikaday({
     field: document.getElementById('datepicker'),
-    format: 'YYYY/MM/DD',
+    format: 'YYYY-MM-DD',
     toString(date, format) {
         // you should do formatting based on the passed format,
         // but we will just return 'D/M/YYYY' for simplicity
         const day = CF_leftPad(date.getDate());
         const month = CF_leftPad(date.getMonth() + 1);
         const year = date.getFullYear();
-        console.log(CF_leftPad(date.getDate()));
-        console.log(CF_leftPad(date.getMonth() + 1));
-        console.log(date.getFullYear());
-        console.log(new Date(year+"/"+month+"/"+day));
-        return new Date(year+"/"+month+"/"+day);
+        return year+"-"+month+"-"+day;
     },
 /*     parse(dateString, format) {
         // dateString is the result of `toString` method

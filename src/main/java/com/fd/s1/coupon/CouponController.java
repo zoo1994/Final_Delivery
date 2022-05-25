@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +27,11 @@ public class CouponController {
 	@Autowired
 	private CouponService couponService;
 	
+	@Scheduled(cron = "0 0 0 * * *")
+	public void couponClonSchedule()throws Exception {
+		System.out.println("hi");
+	}
+	
 	
 	//쿠폰리스트
 	@GetMapping("list")
@@ -43,10 +49,9 @@ public class CouponController {
 	}
 	
 	@PostMapping("issuance")
-	public ModelAndView getList(HttpSession session)throws Exception{
+	public ModelAndView getList(HttpSession session, UserCouponVO userCouponVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		UserCouponVO userCouponVO = new UserCouponVO();
 		userCouponVO.setId(memberVO.getId());
 		Long result = couponService.createCoupon(userCouponVO);
 		System.out.println(result);

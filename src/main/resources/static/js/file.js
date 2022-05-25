@@ -1,4 +1,4 @@
-let v = '<div class="mb-3"><input class="form-control form-control-lg" type="file" name="files"><button  type="button" class="btn btn-outline-success delBtn">x</button></div>'
+let v = '<div class="mb-3 d-flex"><input class="col-10 form-control form-control-lg" type="file" name="files" style="width: 97%; margin-right: 5px;"><button  type="button" class="btn btn-outline-success delBtn">x</button></div>'
 $("#fileAdd").click(function() {
 	$("#fileResult").append(v);
 });

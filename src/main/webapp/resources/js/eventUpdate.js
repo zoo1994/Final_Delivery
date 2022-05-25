@@ -1,10 +1,4 @@
-console.log("hhhh");
-const event_coupon_search_btn = document.querySelector("#event_coupon_search_btn");
-const event_coupon_search = document.querySelector("#event_coupon_search");
-const couponListSelect = document.querySelector("#couponListSelect");
-const couponId = document.querySelector("#couponId");
-const couponName = document.querySelector("#couponName");
-const eventSchedule = document.querySelector("#eventSchedule");
+const thumbCount = document.querySelector("thumbCount");
 
 getList();
 
@@ -24,6 +18,87 @@ function getList(){
     
 }
 
+console.log();
+//console.log($("#thumbCount").val);
+let count =0;
+$(".thumbCount").each(function(idx, item) {
+    count++;
+});
+console.log(count);
+
+//thumbnail
+let v1Count =count;
+let v1 = '<div class="mb-3 d-flex"><input class="col-10 form-control form-control-lg" type="file" name="thumbFiles" style="width: 97%; margin-right: 5px;"><button  type="button" class="btn btn-outline-success delBtn">x</button></div>'
+$("#thumbFileAdd").click(function() {
+    if(v1Count>0){
+        alert("1장의 사진만 업로드 가능합니다");
+        return;
+    }
+    $("#thumbFileResult").append(v1);
+    v1Count++;
+});
+$("#thumbFileResult").on("click", ".delBtn", function() {
+    $(this).parent().remove();
+    v1Count--;
+});
+
+$(".del").click(function(event) {
+
+    if(event.target.classList.contains("thumbDel")){
+//        console.log(111);
+        let check = window.confirm("삭제하면 복구가 불가능합니다. 삭제하시겠습니까?")
+        if (check) {
+            let fileNum = $(this).attr("data-num");
+            let fileName = $(this).attr("data-name");
+            let select = $(this);
+            $.ajax({
+                type: "POST",
+                url: "./fileDelete",
+                data: {
+                    fileNum: fileNum,
+                    fileName: fileName
+                },
+                success: function(data) {
+                    if (data.trim() == '1') {
+                        select.parent().remove();
+                        v1Count--;
+                    } else {
+                        alert("파일 삭제 실패");
+                    }
+                },
+                error: function() {
+                    alert("파일 삭제 실패")
+                }
+            });
+        }
+        return;
+    }
+//    console.log(222);
+	let check = window.confirm("삭제하면 복구가 불가능합니다. 삭제하시겠습니까?")
+	if (check) {
+		let fileNum = $(this).attr("data-num");
+		let fileName = $(this).attr("data-name");
+		let select = $(this);
+		$.ajax({
+			type: "POST",
+			url: "./fileDelete",
+			data: {
+				fileNum: fileNum,
+				fileName: fileName
+			},
+			success: function(data) {
+				if (data.trim() == '1') {
+					select.parent().remove();
+				} else {
+					alert("파일 삭제 실패");
+				}
+			},
+			error: function() {
+				alert("파일 삭제 실패")
+			}
+		});
+	}
+});
 $('#resetBtn').click(function(event){
     console.log(event.target);
 	if(event.target.classList.contains('modalBtn')){
@@ -129,11 +204,12 @@ $("#modalSave2").click(function() {
             console.log($(item).prop("title"));
             couponName.setAttribute("value", $(item).prop("title"));
             couponId.setAttribute("value", $(item).prop("value").substr(6));
-			if($(datepicker).prop("value")==""){
+            if($(datepicker).prop("value")==""){
 				eventSchedule.setAttribute("value", "9999-12-31");
 			}else{
 				eventSchedule.setAttribute("value", $(datepicker).prop("value"));
 			}
+			console.log($(datepicker).prop("value"));
             return;
         }
     });
@@ -142,56 +218,3 @@ $("#modalSave2").click(function() {
 event_coupon_search_btn.addEventListener("click", function(event){
     getList();
 });
-
-//썸네일 이미지
-let v1Count =0;
-let v1 = '<div class="mb-3 d-flex"><input class="col-10 form-control form-control-lg" type="file" name="thumbFiles" style="width: 97%; margin-right: 5px;"><button  type="button" class="btn btn-outline-success delBtn">x</button></div>'
-$("#thumbFileAdd").click(function() {
-	if(v1Count>0){
-		alert("1장의 사진만 업로드 가능합니다");
-		return;
-	}
-	$("#thumbFileResult").append(v1);
-	v1Count++;
-});
-$("#thumbFileResult").on("click", ".delBtn", function() {
-	$(this).parent().remove();
-	v1Count--;
-});
-
-
-/*
-let v = '<div class="mb-3"><input class="form-control form-control-lg" type="file" name="files"><button  type="button" class="btn btn-outline-success delBtn">x</button></div>'
-$("#fileAdd").click(function() {
-	$("#fileResult").append(v);
-});
-$("#fileResult").on("click", ".delBtn", function() {
-	$(this).parent().remove();
-});
-
-$(".fileDel").click(function() {
-	let check = window.confirm("삭제하면 복구가 불가능합니다. 삭제하시겠습니까?")
-	if (check) {
-		let fileNum = $(this).attr("data-num");
-		let fileName = $(this).attr("data-name");
-		let select = $(this);
-		$.ajax({
-			type: "POST",
-			url: "./fileDelete",
-			data: {
-				fileNum: fileNum,
-				fileName: fileName
-			},
-			success: function(data) {
-				if (data.trim() == '1') {
-					select.parent().remove();
-				} else {
-					alert("파일 삭제 실패");
-				}
-			},
-			error: function() {
-				alert("파일 삭제 실패")
-			}
-		});
-	}
-});*/

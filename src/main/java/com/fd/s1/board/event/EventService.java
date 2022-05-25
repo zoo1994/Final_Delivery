@@ -20,7 +20,7 @@ public class EventService {
 	@Autowired
 	private FileManager fileManager;
 	
-	public int setFileAdd(EventVO eventVO,MultipartFile[] files)throws Exception {
+	public int setFileAdd(EventVO eventVO,MultipartFile[] files, MultipartFile[] thumbFiles)throws Exception {
 		int result = 1;
 		if(files!=null) {
 			for(MultipartFile mf : files) {
@@ -33,6 +33,22 @@ public class EventService {
 				eventFilesVO.setOriName(mf.getOriginalFilename());
 				eventFilesVO.setEventNum(eventVO.getEventNum());
 				int result1 = eventMapper.setFileAdd(eventFilesVO);
+				if(result1<1) {
+					result = 0;
+				}
+			}
+		}
+		if(thumbFiles!=null) {
+			for(MultipartFile mf : thumbFiles) {
+				if(mf.isEmpty()) {
+					continue;
+				}
+				String fileName = fileManager.fileSave(mf, "resources/upload/board/event/");
+				EventFilesVO eventFilesVO = new EventFilesVO();
+				eventFilesVO.setFileName(fileName);
+				eventFilesVO.setOriName(mf.getOriginalFilename());
+				eventFilesVO.setEventNum(eventVO.getEventNum());
+				int result1 = eventMapper.setThumbFileAdd(eventFilesVO);
 				if(result1<1) {
 					result = 0;
 				}
@@ -63,14 +79,16 @@ public class EventService {
 	public EventVO getDetail(EventVO eventVO) throws Exception {
 		return eventMapper.getDetail(eventVO);
 	}
-
+	public List<EventFilesVO> getThumb(EventVO eventVO) throws Exception {
+		return eventMapper.getThumb(eventVO);
+	}
 	
 	
 	public int setEventCouponAdd(Event_couponVO ecVO) throws Exception {
 		return eventMapper.setEventCouponAdd(ecVO);
 	}
 	
-	public int setAdd(EventVO eventVO, MultipartFile[] files) throws Exception {
+	public int setAdd(EventVO eventVO, MultipartFile[] files, MultipartFile[] thumbFiles) throws Exception {
 		int result = eventMapper.setAdd(eventVO);
 		if (files != null && result>0) {
 			for (MultipartFile mf : files) {
@@ -88,11 +106,31 @@ public class EventService {
 				}
 			}
 		}
+		if (thumbFiles != null && result>0) {
+			for (MultipartFile mf : thumbFiles) {
+				if(mf.isEmpty()) {
+					continue;
+				}
+				String fileName = fileManager.fileSave(mf, "resources/upload/board/event/");
+				EventFilesVO eventFilesVO = new EventFilesVO();
+				eventFilesVO.setEventNum(eventVO.getEventNum());
+				eventFilesVO.setFileName(fileName);
+				eventFilesVO.setOriName(mf.getOriginalFilename());
+				int result1 = eventMapper.setThumbFileAdd(eventFilesVO);
+				if (result1 < 1) {
+					throw new SQLException();
+				}
+			}
+		}
 		return result;
 	}
 
-	public int setUpdate(EventVO eventVO) throws Exception {
-		return eventMapper.setUpdate(eventVO);
+	public int setUpdate(EventVO eventVO, Event_couponVO event_couponVO) throws Exception {
+		int result = eventMapper.setUpdate(eventVO);		
+		if(result==1) {
+			eventMapper.setUpdateCoupon(event_couponVO);
+		}
+		return result;
 	}
 
 	public int setDelete(EventVO eventVO) throws Exception {
