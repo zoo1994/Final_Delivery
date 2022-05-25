@@ -32,8 +32,6 @@
 	
 	
 <!--  --><!--  --><!--  --><!--  -->
-
-<div class="shadow p-3 mb-5 bg-white rounded">Regular shadow</div>
 <div id="container">
 	<div class="content">			
 		<!-- //visualArea -->
@@ -61,10 +59,10 @@
 					<div class="d-flex mb-3">
 						<input hidden name="category" type="text" id="categoryResult" value="1">
 						<span class="col-9  mt-5">
-							<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 명의</span> 회원이 검색되었습니다.</legend>
+							<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 개의</span> 이벤트가 검색되었습니다.</legend>
 						</span>
 						<span class="col-2 mt-5"  style="margin-right:10px;">
-							<input id="event_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {getList();}" placeholder="Search" aria-label="Search">
+							<input id="event_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {removeResult(); pageMore=1; getList();}" placeholder="Search" aria-label="Search">
 						</span>
 						<span class="col-1 mt-5">
 							<button class="btn btn-outline-success rounded-pill" id="event_search_btn"  style="width: 80px;" type="submit">검색</button>
@@ -76,10 +74,10 @@
 
 					</div>
 					</div>	
-<%-- 							<nav aria-label="Page navigation example mt-5 bs-warning">
+ 							<nav aria-label="Page navigation example mt-5 bs-warning" style="width: 1168px; margin: 0 auto;">
 							<span class="col-2" style="display: inline-block;"></span>
 							<span class="col-8" style="display: inline-block;">
-							  <ul class="pagination justify-content-center" style="display: flex; width: 90%; margin: 0 auto;">
+<%-- 							  <ul class="pagination justify-content-center" style="display: flex; width: 90%; margin: 0 auto;">
 							  	<li class="page-item"><a class="page-link" href="./list?pn=${pager.startNum-1}"><<</a></li>
 							  	<c:if test="${pager.pre}">
 							    	<li class="page-item"><a class="page-link" href="./list?pn=${pager.startNum-1}">prev</a></li>
@@ -91,18 +89,18 @@
 							   		<li class="page-item"><a class="page-link" href="./list?pn=${pager.lastNum+1}">next</a></li>
 							    </c:if>
 							    <li class="page-item"><a class="page-link" href="./list?pn=${pager.lastNum+1}">>></a></li>
-							  </ul> 
+							  </ul>  --%>
 							  </span> 
 							  <span class="col-2" style="display: inline-block; text-align: end; width: 15%;">
 							  	<c:if test="${member.userType == 0}">
 							  		<a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a>
 							  	</c:if>
 							  </span>
-							</nav> --%>
+							</nav>
 							
-					<div class="row mt-4">
+<!-- 					<div class="row mt-4">
 						<a href="./add" type="button" class="col-1 btn btn-outline-success ">Add</a>
-					</div>
+					</div> -->
 				</div>																				
 			</div>
 		</div>
@@ -111,7 +109,9 @@
 </div>
 <div style="margin-bottom: 200px;"></div>
 	
-	
+
+
+
 	
 	
 	<c:import url="../../temp/footer.jsp"></c:import>

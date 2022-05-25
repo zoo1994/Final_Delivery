@@ -1,14 +1,12 @@
-package com.fd.s1.board.event;
+package com.fd.s1.coupon;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,16 +17,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fd.s1.member.MemberVO;
 import com.fd.s1.util.Pager;
 
 @Controller
-@RequestMapping("/event/*")
-public class EventController {
+@RequestMapping("/coupon/*")
+public class CouponController {
 	
 	@Autowired
-	private EventService eventService;
+	private CouponService couponService;
 	
-	@PostMapping("fileDelete")
+	@Scheduled(cron = "0 0 0 * * *")
+	public void couponClonSchedule()throws Exception {
+		System.out.println("hi");
+	}
+	
+	
+	//쿠폰리스트
+	@GetMapping("list")
+	public ModelAndView getList(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		Long count = couponService.getCouponListCount(pager);
+		if(count !=0) {
+			List<CouponVO> couponVOs = couponService.getCoupon(pager, count);
+			mv.addObject("list", couponVOs);
+		}	
+		mv.addObject("count", count);
+		mv.addObject("pager", pager);
+		mv.setViewName("board/event/couponList");
+		return mv;
+	}
+	
+	@PostMapping("issuance")
+	public ModelAndView getList(HttpSession session, UserCouponVO userCouponVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		userCouponVO.setId(memberVO.getId());
+		Long result = couponService.createCoupon(userCouponVO);
+		System.out.println(result);
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	
+	
+	
+/*	@PostMapping("fileDelete")
 	public ModelAndView setFileDelete(EventFilesVO fileVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = eventService.setFileDelete(fileVO);
@@ -80,31 +115,13 @@ public class EventController {
 	}
 	
 	@PostMapping("add")
-	public ModelAndView setAdd(@Valid EventVO eventVO,BindingResult bindingResult,MultipartFile[] files, MultipartFile[] thumbFiles, Event_couponVO ecVO)throws Exception{
+	public ModelAndView setAdd(@Valid EventVO eventVO,BindingResult bindingResult,MultipartFile[] files)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println();
-//		if(ecVO.getEventSchedule() == null) {
-//			System.out.println("fffff");     
-//			String dateStr = "9999-12-31";         
-//			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
-//			Date date = (Date) formatter.parse(dateStr); 
-//			ecVO.setEventSchedule(date);
-//		}
-		System.out.println(ecVO.getEventSchedule());
-		
 		if(bindingResult.hasErrors()) {
 			mv.setViewName("board/event/add");
 			return mv;
 		}
-		int result = eventService.setAdd(eventVO,files, thumbFiles);
-		if(ecVO.getCouponId() != null) {
-
-			ecVO.setEventNum(eventVO.getEventNum());
-			eventService.setEventCouponAdd(ecVO);
-		}
-
-//		System.out.println("EventNum : "+eventVO.getEventNum());
-				
+		int result = eventService.setAdd(eventVO,files);
 		mv.setViewName("redirect:./list");
 		return mv;
 	}
@@ -113,14 +130,6 @@ public class EventController {
 	public ModelAndView getDetail(EventVO eventVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		eventVO = eventService.getDetail(eventVO);
-
-		if(eventVO.getEcVO().getEventSchedule() != null) {
-			int compare = eventVO.getEcVO().getEventSchedule().compareTo(eventVO.getTime());
-			System.out.println(compare);
-			mv.addObject("compare", compare);
-		}	
-//		if(eventVO.getEcVO().getEventSchedule() >= eventVO.getTime()) {}
-		
 		mv.addObject("vo",eventVO);
 		mv.setViewName("board/event/detail");
 		return mv;
@@ -139,30 +148,22 @@ public class EventController {
 	@GetMapping("update")
 	public  ModelAndView setUpdate(@ModelAttribute EventVO eventVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<EventFilesVO> thumbFilesVO = eventService.getThumb(eventVO);
 		eventVO = eventService.getDetail(eventVO);
-		mv.addObject("thumbFilesVO",thumbFilesVO);
 		mv.addObject("eventVO",eventVO);
 		mv.setViewName("board/event/update");
 		return mv;
 	}
 	
 	@PostMapping("update")
-	public  ModelAndView setUpdate(@Valid EventVO eventVO,BindingResult bindingResult,MultipartFile[] files, MultipartFile[] thumbFiles, Event_couponVO event_couponVO)throws Exception{
+	public  ModelAndView setUpdate(@Valid EventVO eventVO,BindingResult bindingResult,MultipartFile[] files)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		if(event_couponVO.getEventSchedule() == null) {
-			System.out.println("hi");
-		}
-			
 		if(bindingResult.hasErrors()) {
 			mv.setViewName("board/event/update");
 			return mv;
 		}
-		eventService.setFileAdd(eventVO, files, thumbFiles);
-		System.out.println(event_couponVO.getCouponId());
-		System.out.println(event_couponVO.getEventSchedule());
-		eventService.setUpdate(eventVO, event_couponVO);
+		eventService.setFileAdd(eventVO, files);
+		eventService.setUpdate(eventVO);
 		mv.setViewName("redirect:./list");
 		return mv;
-	}
+	}*/
 }
