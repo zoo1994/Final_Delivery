@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+.weblogin_ui {
+    min-height: 560px;
+    padding: 45px 0 70px;
+    overflow: hidden;
+}
+
+a, div, li {
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+}
+
+body {
+    min-height: 100%;
+    color: #000;
+    background: #f2ebe6;
+    word-wrap: normal;
+    word-break: keep-all;
+}
+
+.weblogin_ui .login {
+    width: 100%;
+    min-width: 530px;
+    padding-right: 5.23%;
+    border-right: 1px solid #e5e5e5;
+}
+
+.weblogin_ui .tit01 {
+    margin-top: 0;
+    font-size: 1.125rem;
+}
+.tit_ico {
+    position: relative;
+    padding-left: 50px;
+    line-height: 40px;
+}
+.tit01 {
+    margin: 45px 0 17px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #2e2e2e;
+    font-family: dabanggu;
+    font-weight: 400;
+}
+
+.inpbox {
+    position: relative;
+}
+
+.inpbox>label {
+    display: block;
+}
+label, label>span {
+    vertical-align: middle;
+}
+label {
+    cursor: default;
+}
+.hide {
+    position: absolute!important;
+    left: -10000px;
+    top: -10000px;
+    visibility: hidden;
+}
+label, label>span {
+    vertical-align: middle;
+}
+.loginWrap .login .inpbox input {
+    padding-left: 12px;
+    font-size: 1.5em;
+    font-size: 1.5rem;
+}
+.inpbox input {
+    width: 100%;
+    padding: 0 25px 3px 5px;
+}
+
+input {
+    writing-mode: horizontal-tb !important;
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    margin: 0em;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
