@@ -161,6 +161,7 @@ public class ShopController {
 		return mv;
 	}
 	
+
 	@Scheduled(cron="0 0/10 * * * *")
 	public void stopAndGO()throws Exception{
 		LocalDateTime now = LocalDateTime.now();
@@ -190,6 +191,22 @@ public class ShopController {
 				shopService.setStopDel(vo);
 			}
 		}
+	}
+
+	@GetMapping("shopList")
+	public ModelAndView getShopList(Pager pager) throws Exception {
+		ModelAndView mv = new ModelAndView();
 		
+		Long count = adminService.getShopListCount(pager);	
+		List<ShopVO> shopVOs = adminService.getShop(pager, count);
+
+		mv.addObject("count", count);
+		mv.addObject("list", shopVOs);
+		mv.addObject("pager", pager);
+		
+		
+		mv.setViewName("shop/shopList");
+		return mv;
+
 	}
 }

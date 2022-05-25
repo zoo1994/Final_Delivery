@@ -55,7 +55,7 @@
 					</div>
 				</div>
 				<div class="input-group mb-3">
-					<form:input path="postcode" readonly="readonly"  id="postcode" placeholder="우편번호" cssClass="form-control"/>
+					<form:input path="postcode" readonly="readonly" id="postcode" value="${vo.postcode}" cssClass="form-control"/>
 					<input class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onclick="showPostcode()" value="우편번호 찾기"><br>
 				</div>
 

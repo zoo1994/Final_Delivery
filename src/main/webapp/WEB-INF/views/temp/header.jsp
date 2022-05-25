@@ -18,11 +18,11 @@
 			<a class="navbar-brand" href="/"
 				style="color: white; font-size: 30px;">Home</a>
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item mx-3"><a class="nav-link active"
-						aria-current="page" href="#" style="font-size: 20px">매장소개</a></li>
-					<li class="nav-item mx-3"><a class="nav-link active"
-						href="/menu/list" id="navbarDropdown" role="button"
-						style="font-size: 20px">MENU</a>
+					<li class="nav-item mx-3">
+						<a class="nav-link active" aria-current="page" href="/shop/shopList" style="font-size: 20px">매장목록</a>
+					</li>
+					<li class="nav-item mx-3">
+						<a class="nav-link active" href="/menu/list" id="navbarDropdown" role="button" style="font-size: 20px">MENU</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/menu/list?category=1">버거</a></li>
 							<li><a class="dropdown-item" href="/menu/list?category=2">맥런치</a></li>
