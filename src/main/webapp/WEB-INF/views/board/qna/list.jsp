@@ -26,7 +26,7 @@
 				<p class="txt"
 					style="font-family: SDGothic, HGG, Malgun Gothic, '\B9D1\C740 \ACE0\B515', dotum, '\B3CB\C6C0', sans-serif;">
 					<span>언제나 고객의 의견에 귀 기울이며 더 나은 서비스 이용 경험을 제공하고자 노력하고 있습니다.</span><span>궁금하신
-						사항이 있거나 문제를 해결하는데 도움이 필요하신 경우<a href="./faq"><strong>FAQ
+						사항이 있거나 문제를 해결하는데 도움이 필요하신 경우<a href="../faq/list"><strong>FAQ
 								페이지</strong></a>에서 도움을 받으실 수 있습니다.
 					</span>
 				</p>
@@ -39,9 +39,10 @@
 					<thead>
 						<tr>
 							<th scope="col" width="10%">Num</th>
-							<th scope="col" width="60%">Title</th>
-							<th scope="col" width="20%">ID</th>
-							<th scope="col">Date</th>
+							<th scope="col" width="50%">Title</th>
+							<th scope="col" width="15%">ID</th>
+							<th scope="col" width="15%">Date</th>
+							<th scope="col" width="10%">처리상태</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -52,6 +53,7 @@
 								<td><a href="./detail?num=${vo.num}"> ${vo.title} </a></td>
 								<td>${vo.id}</td>
 								<td>${vo.regDate}</td>
+								<td>${vo.reply==1? '상담완료':'접수중'}</td>
 							</tr>
 
 						</c:forEach>
@@ -82,10 +84,12 @@
 				</div>
 			</c:otherwise>
 		</c:choose>
+		<c:if test="${member.userType>0}">
 		<div class="d-flex justify-content-end mt-2">
 			<a href="./add" class="btn btn-primary col-1">ADD</a>
 			<div style="width: 50px"></div>
 		</div>
+		</c:if>
 	</div>
 	<c:import url="../../temp/footer.jsp"></c:import>
 	<c:import url="../../temp/header_script.jsp"></c:import>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/css/deli_header.css" />
 <header>
-	<div class="head_menuWrap ">
+	<div class="head_menuWrap mb-1">
 		<div class="web_container">
 			<a href="./home"> <img alt=""
 				src="https://www.mcdonalds.co.kr/kor/images/common/logo.png">
@@ -15,14 +15,14 @@
 				<c:choose>
 					<c:when test="${not empty member}">
 						<a href="../member/logout"><span>로그아웃</span></a>
-						<a href="../member/mypage"><span>MyPage</span></a>
+						<a href="../delivery/orderList"><span>주문내역</span></a>
 					</c:when>
 					<c:otherwise>
 						<a href="../member/login"><span>로그인</span></a>
 						<a href="../member/join"><span>회원가입</span></a>
 					</c:otherwise>
 				</c:choose>
-				<a href="../notice/list"><span>고객센터</span></a>
+				<a href="../qna/list"><span>고객센터</span></a>
 			</div>
 
 			<div class="user d-flex justify-content-center">

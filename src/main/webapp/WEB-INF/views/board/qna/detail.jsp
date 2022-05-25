@@ -58,7 +58,7 @@
 		</table>
 	</div>
 
-	<div class="container d-flex justify-content-between">
+	<div class="container">
 		<c:choose>
 			<c:when test="${vo.reply==1}">
 				<div class="container border rounded">
@@ -75,16 +75,20 @@
 				
 			</c:when>
 			<c:otherwise>
+			<div class="d-flex justify-content-end" style="width: 100%">
+				<c:if test="${vo.id == member.id}">
 				<div>
 					<a href="./update?num=${vo.num}" class="btn btn-primary">UPDATE</a>
 					<a href="./delete?num=${vo.num}" class="btn btn-primary">DELETE</a>
 					<a href="./list" class="btn btn-primary">리스트</a>
 				</div>
+				</c:if>
 				<c:if test="${member.userType==0 && vo.reply==0}">
 					<div>
 						<a class="btn btn-success" id="answer" href="./answerAdd?num=${vo.num}">답변하기</a>
 					</div>
 				</c:if>
+			</div>
 			</c:otherwise>
 		</c:choose>
 	</div>
