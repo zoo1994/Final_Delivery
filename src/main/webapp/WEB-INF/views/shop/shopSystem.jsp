@@ -139,6 +139,13 @@
 					  <option value="23">23:00</option>
 					</select>
 				</div>
+				<div class="input-group mb-3">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default33">배달거리(m)</span>
+				  </div>
+					<input type="text" id="distance" value="${vo.distance}" placeholder="m단위로 입력" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div id="distanceError"></div>
 				
 				<div>
 					<button type="button" id="updateBtn" class="btn btn-primary">변경하기</button>				
@@ -155,19 +162,29 @@
 	<script type="text/javascript">
 		let openTime = ${vo.openTime};
 		let closeTime = ${vo.closeTime};
+
 		
 		$("#openTime").val(openTime).attr("selected","selected");
 		$("#closeTime").val(closeTime).attr("selected","selected");
 		
 		$("#updateBtn").click(function() {
+			let distance = $("#distance").val();
+			if(distance==""){
+				alert("배달거리를 입력하세요.");
+				return;
+			}else if(isNaN(distance)){
+				alert("배달거리는 숫자만 입력가능합니다.");
+				return;
+			}
 			let formData = new FormData();
 			let shopNum = $("#shopNum").val();
 			let id = $("#id").val();
 			let shopName = $("#shopName").val();
 			let shopPhone = $("#shopPhone").val();
+
 			openTime = $('select[name=openTime] option:selected').val();
 			closeTime = $('select[name=closeTime] option:selected').val();
-			
+			formData.append("distance",distance);
 			formData.append("shopNum",shopNum);
 			formData.append("id",id);
 			formData.append("shopName", shopName);

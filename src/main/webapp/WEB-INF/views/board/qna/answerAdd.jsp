@@ -15,7 +15,7 @@
 </head>
 <body>
 	<c:import url="../../temp/header.jsp"></c:import>
-	<h1>Question Detail</h1>
+	<h1>Answer</h1>
 	<div class="container border my-5">
 
 
@@ -57,39 +57,43 @@
 			</tbody>
 		</table>
 	</div>
-
-	<div class="container d-flex justify-content-between">
-		<c:choose>
-			<c:when test="${vo.reply==1}">
-				<div class="container border rounded">
+	<div class="container border rounded">
 		<div>
 			<input type="hidden" id="num" value="${vo.num}"> 
-			<label>답변</label>
-			<div style="border-top: black solid 1px;">
-			<div class="my-1 form-control border rounded" style="height: 300px">
-			${vo.answerVO.contents}</div>
-			</div>
+			<label>답변 작성</label>
+			<textarea class="form-control my-2"
+				id="contents" style="width: 100%; height: 300px"></textarea>
+		</div>
+		<div class="d-flex justify-content-end">
+			<button class="btn btn-success my-2" id="answer">답변완료</button>
 		</div>
 	</div>
-				
-				
-			</c:when>
-			<c:otherwise>
-				<div>
-					<a href="./update?num=${vo.num}" class="btn btn-primary">UPDATE</a>
-					<a href="./delete?num=${vo.num}" class="btn btn-primary">DELETE</a>
-					<a href="./list" class="btn btn-primary">리스트</a>
-				</div>
-				<c:if test="${member.userType==0 && vo.reply==0}">
-					<div>
-						<a class="btn btn-success" id="answer" href="./answerAdd?num=${vo.num}">답변하기</a>
-					</div>
-				</c:if>
-			</c:otherwise>
-		</c:choose>
-	</div>
+
+
+
 	<c:import url="../../temp/footer.jsp"></c:import>
 	<c:import url="../../temp/header_script.jsp"></c:import>
-	
+	<script type="text/javascript">
+		$("#answer").click(function(){
+			$.ajax({
+				method:"POST",
+				url:"./answerAdd",
+				data:{
+					num:$("#num").val(),
+					contents:$("#contents").val()
+				},
+				success:function(data){
+					if(data.trim()=='1'){						
+					alert("답변 등록 완료");
+					window.location.assign("./list");
+					}
+				},
+				error:function(){
+					alert("실패");
+				}
+			})
+			
+		})
+	</script>
 </body>
 </html>

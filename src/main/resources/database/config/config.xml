@@ -13,6 +13,7 @@
 		<typeAlias type = "java.lang.String" alias="String"/>
 		<typeAlias type="java.util.Map" alias="Map"/>
 		<typeAlias type="com.fd.s1.board.qna.QnaVO" alias="QnaVO"/>
+		<typeAlias type="com.fd.s1.board.qna.AnswerVO" alias="AnswerVO"/>
 		<typeAlias type="com.fd.s1.board.qna.QnaFilesVO" alias="QnaFilesVO"/>
 		<typeAlias type="com.fd.s1.util.Pager" alias="Pager"/>
 		<typeAlias type="com.fd.s1.board.event.EventVO" alias="EventVO"/>

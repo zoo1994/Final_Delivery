@@ -52,7 +52,7 @@
 								class="card-img-top" alt="...">
 							 <div class="card-body">
 								<p class="card-text">${vo.menuVO.menuName}</p>
-								<p class="card-text price" id="menu${vo.menuNum}">가격 ₩ ${vo.menuVO.price}</p>
+								<p class="card-text price" id="menu${vo.menuNum}">${vo.menuVO.price}</p>
 								<c:if test="${not empty member}">
 									<button class="btn btn-success cartAdd"
 										data-num="${vo.menuNum}">카트에 담기</button>

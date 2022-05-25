@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fd.s1.member.MemberVO;
 import com.fd.s1.util.FileManager;
 import com.fd.s1.util.Pager;
 
@@ -19,21 +20,35 @@ public class QnaService {
 	@Autowired
 	private FileManager fileManager;
 
-	public List<QnaVO> getQnaList(Pager pager) throws Exception {
+	public List<QnaVO> getQnaList(Pager pager,MemberVO memberVO) throws Exception {
 		pager.makeRow();
 		pager.makeNum(qnaMapper.getTotal());
-		return qnaMapper.getQnaList(pager);
+		List<QnaVO> ar;
+		if(memberVO.getUserType()>0) {
+			pager.setId(memberVO.getId());
+		ar = qnaMapper.getUserQnaList(pager);	
+		}else {
+		ar = qnaMapper.getQnaList(pager);
+		}
+		return ar;
 	}
 
 	public QnaVO getQnaDetail(QnaVO qnaVO) throws Exception {
-		return qnaMapper.getQnaDetail(qnaVO);
+		AnswerVO answerVO = new AnswerVO();
+		answerVO.setNum(qnaVO.getNum());
+		qnaVO = qnaMapper.getQnaDetail(qnaVO);
+		answerVO=qnaMapper.getAnswer(answerVO);
+		if(answerVO!=null) {			
+		qnaVO.setAnswerVO(answerVO);
+		}
+		return qnaVO;
 	}
 
 	@Transactional(rollbackFor = Exception.class)
 	public int setQnaAdd(QnaVO qnaVO, MultipartFile[] files) throws Exception {
 		int result = qnaMapper.setQnaAdd(qnaVO);
-		System.out.println(files[0].getName());
 		if (files != null) {
+			System.out.println(files[0].getName());
 
 			for (MultipartFile f : files) {
 				if (f.isEmpty()) {
@@ -60,6 +75,19 @@ public class QnaService {
 	public int setQnaDelete(QnaVO qnaVO) throws Exception {
 		return qnaMapper.setQnaDelete(qnaVO);
 	}
+	
+	public int setAnswerAdd(AnswerVO answerVO) throws Exception {
+		QnaVO qnaVO = new QnaVO();
+		qnaVO.setNum(answerVO.getNum());
+		int result = qnaMapper.setAnswer(qnaVO);
+		result = qnaMapper.setAnswerAdd(answerVO);
+		return result;
+	}
+	
+	public int setAnswerDelete(AnswerVO answerVO) throws Exception {
+		return qnaMapper.setAnswerDelete(answerVO);
+	}
+
 	
 	public int setQnaFileDelete(QnaFilesVO qnaFilesVO)throws Exception{
 		String fileName = qnaFilesVO.getFileName();

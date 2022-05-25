@@ -14,6 +14,18 @@
     	ORDER BY NUM DESC
     	</select>
 
+	<select id="getUserQnaList" parameterType="Pager" resultType="QnaVO">
+    	SELECT Q.* 
+    	FROM 
+    	(SELECT *
+    	FROM QNA
+    	WHERE NUM>0 
+    	AND ID=#{id}
+    	ORDER BY NUM DESC
+    	LIMIT #{startRow},#{perPage}) Q
+    	ORDER BY NUM DESC
+    	</select>
+
 	<select id="getTotal" resultType="Long">
 		SELECT COUNT(NUM) 
 		FROM QNA
@@ -51,8 +63,8 @@
 	</resultMap>
 
 	<insert id="setQnaAdd" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
-		INSERT INTO QNA (NUM,ID,LOCATION,KIND,EMAIL,PHONE,TITLE,CONTENTS,REGDATE,REPLY,REF,STEP,DEPTH) 
-		VALUES (#{num},#{id},#{location},#{kind},#{email},#{phone},#{title},#{contents},now(),0,0,0,0)
+		INSERT INTO QNA (NUM,ID,LOCATION,KIND,EMAIL,PHONE,TITLE,CONTENTS,REGDATE,REPLY) 
+		VALUES (#{num},#{id},#{location},#{kind},#{email},#{phone},#{title},#{contents},now(),0)
 		</insert>
 	<update id="setQnaUpdate" parameterType="QnaVO">
     	UPDATE QNA SET ID=#{id}, LOCATION=#{location}, KIND=#{kind}, EMAIL=#{email}, PHONE=#{phone}, TITLE=#{title}, CONTENTS=#{contents} 
@@ -61,6 +73,18 @@
 	<delete id="setQnaDelete">
     	DELETE FROM QNA WHERE NUM=#{num}
     	</delete>
+
+	<insert id="setAnswerAdd" parameterType="AnswerVO">
+		INSERT INTO ANSWER VALUES (null,#{num},#{contents})
+	</insert>
+	
+	<update id="setAnswer" parameterType="QnaVO">
+		UPDATE QNA SET REPLY=1 WHERE NUM=#{num}
+	</update>
+
+	<select id="getAnswer" parameterType="AnswerVO" resultType="AnswerVO">
+		SELECT * FROM ANSWER WHERE NUM=#{num}
+	</select>
 
 	<insert id="setQnaFileAdd" parameterType="QnaFilesVO">
     	INSERT INTO QNAFILE 

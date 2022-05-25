@@ -14,7 +14,7 @@
 </head>
 <body>
 	<c:import url="../temp/deli_header.jsp"></c:import>
-	<div class="container">
+	<div class="container mt-1">
 		<h1>Cart</h1>
 		<c:choose>
 			<c:when test="${empty list}">
@@ -43,8 +43,12 @@
 									<tr id="cart${cart.cartNum}">
 										<th scope="row" data-num="${cart.cartNum}"><input
 											type="checkbox" class="checkbox"></th>
-										<td> <div style="width: 80px; height: 60px;"><img alt="${cart.menuVO.menuName}" 
-										src="../resources/upload/menu/${cart.menuVO.menuFileVO.fileName}" style="width: 80px;height: 60px;object-fit:cover;"></div> 
+										<td>
+											<div style="width: 80px; height: 60px;">
+												<img alt="${cart.menuVO.menuName}"
+													src="../resources/upload/menu/${cart.menuVO.menuFileVO.fileName}"
+													style="width: 80px; height: 60px; object-fit: cover;">
+											</div>
 										</td>
 										<td>${cart.menuVO.menuName}</td>
 										<td><input type="number" class="border cartCount"

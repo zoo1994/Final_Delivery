@@ -49,7 +49,6 @@ public class DeliveryController {
 //		mv.addObject("category",menuVO.getCategory());
 //		mv.setViewName("delivery/home");
 		
-		System.out.println("home : "+category);
 		ShopVO shopVO = (ShopVO)session.getAttribute("shop");
 		List<ShopMenuVO> ar = shopService.getShopInfo(shopVO, category);
 		mv.addObject("list", ar);
@@ -82,9 +81,14 @@ public class DeliveryController {
 		}
 		//주문가능매장리스트 크기의 배열 생성
 		double [] a = new double[ar.size()];
+		System.err.println(ar.size());
 		for(int i =0; i<ar.size();i++) {
 			//각 점포마다 주문지와의 거리 계산 후 a배열에 삽입
-			a[i]=this.distance(y,x,ar.get(i).getY_axis(),ar.get(i).getX_axis());
+			double dis =this.distance(y,x,ar.get(i).getY_axis(),ar.get(i).getX_axis());
+			if(dis>ar.get(i).getDistance()) {
+				dis=6000;
+			}
+			a[i] =dis;
 		}
 		Double min = a[0];
 		int minName = 0;
@@ -94,6 +98,14 @@ public class DeliveryController {
 				min = a[j];
 				minName=j;
 			}
+		}
+		if(a[minName]>5000) {
+			String message= "주문가능한 매장이 없습니다";
+			String path = "/";
+			mv.addObject("message",message);
+			mv.addObject("path",path);
+			mv.setViewName("common/joinResult");
+			return mv;
 		}
 		int category = 0;
 		mv.addObject(category);
