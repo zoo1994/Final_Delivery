@@ -60,11 +60,11 @@
 							</tbody>
 						</table>
 
-						<button class="btn btn-danger" id="delete">삭제하기</button>
+						<button class="btn btn-danger mb-3" id="delete">삭제하기</button>
 
 					</div>
 					<div class="col-1"></div>
-					<div class="col">
+					<div class="col border rounded">
 						<table class="table">
 							<thead>
 								<tr>

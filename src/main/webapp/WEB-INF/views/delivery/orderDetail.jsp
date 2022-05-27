@@ -35,6 +35,14 @@
 						<td class="menuPrice">${vo.menuVO.price * vo.orderCount}</td>
 					</tr>
 				</c:forEach>
+			<c:if test="${not empty coupon}">
+				<tr>
+					<th scope="row">${coupon.couponName}</th>
+					<td></td>
+					<td></td>
+					<td class="menuPrice">-${coupon.discount}</td>
+				</tr>
+			</c:if>
 
 			</tbody>
 			

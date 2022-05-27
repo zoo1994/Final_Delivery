@@ -14,7 +14,7 @@ public class OrdersVO {
 	private String address;
 	private String phone;
 	private String request;
-	private Integer coupon;
+	private Long coupon;
 	private Date orderDate;
 	private Long totalPrice;
 	private List<OrderDetailVO> detailVOs;

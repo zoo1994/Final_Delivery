@@ -39,7 +39,7 @@ public class InterceptorConfig implements WebMvcConfigurer{
 				.excludePathPatterns("/member/findPw")
 				.excludePathPatterns("/member/pwChange");
 		
-		registry.addInterceptor(sellerInterceptor)
+		registry.addInterceptor(sellerInterceptor) 
 				.addPathPatterns("/shop/shopMenu");
 		
 		registry.addInterceptor(locationInterceptor)

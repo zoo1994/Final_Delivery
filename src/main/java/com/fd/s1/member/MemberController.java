@@ -299,8 +299,9 @@ public class MemberController {
 	}
 	
 	@GetMapping("login")
-	public ModelAndView login()throws Exception{
+	public ModelAndView login(HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		session.invalidate();
 		mv.setViewName("member/login");
 		return mv;
 	}
