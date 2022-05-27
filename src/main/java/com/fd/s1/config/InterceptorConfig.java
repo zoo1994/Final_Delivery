@@ -31,6 +31,7 @@ public class InterceptorConfig implements WebMvcConfigurer{
 		registry.addInterceptor(memberInterceptor)
 				.addPathPatterns("/member/*")
 				.addPathPatterns("/delivery/*")
+				.addPathPatterns("/qna/*")
 				.excludePathPatterns("/member/join")
 				.excludePathPatterns("/member/login")
 				.excludePathPatterns("/member/idCheck")
@@ -44,6 +45,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
 		registry.addInterceptor(locationInterceptor)
 				.addPathPatterns("/delivery/*")
 				.excludePathPatterns("/delivery/addAddress")
-				.excludePathPatterns("/delivery/goDeli");
+				.excludePathPatterns("/delivery/goDeli")
+				.excludePathPatterns("/delivery/orderList*")
+				.excludePathPatterns("/delivery/orderDetail");
 	}
 }

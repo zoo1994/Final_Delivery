@@ -8,24 +8,21 @@
 <link rel="stylesheet"
 	href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <header>
+
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
 		style="height: 100px; background-color: orange !important;">
+<div class="container">
 		<div class="container-fluid">
+			
+			<div class="collapse navbar-collapse nav" id="navbarSupportedContent">
 			<a class="navbar-brand" href="/"
 				style="color: white; font-size: 30px;">Home</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse nav" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item mx-3"><a class="nav-link active"
-						aria-current="page" href="#" style="font-size: 20px">매장소개</a></li>
-					<li class="nav-item mx-3"><a class="nav-link active"
-						href="/menu/list" id="navbarDropdown" role="button"
-						style="font-size: 20px">MENU</a>
+					<li class="nav-item mx-3">
+						<a class="nav-link active" aria-current="page" href="/shop/shopList" style="font-size: 20px">매장목록</a>
+					</li>
+					<li class="nav-item mx-3">
+						<a class="nav-link active" href="/menu/list" id="navbarDropdown" role="button" style="font-size: 20px">MENU</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/menu/list?category=1">버거</a></li>
 							<li><a class="dropdown-item" href="/menu/list?category=2">맥런치</a></li>
@@ -68,21 +65,32 @@
 						<c:otherwise>
 							<li class="nav-item"><a class="nav-link btn btn-primary"
 								href="${member.userType != 0 ? '/member/mypage' : '/admin/manager' }"
-								style="color: white; font-size: 20px; background-color: #FF8233 !important; border: #FF8233 !important">MyPage</a>
+								style="color: white; font-size: 20px; background-color: #FF8233 !important; border: #FF8233 !important">${member.userType != 0 ? 'MyPage' : '관리자' }</a>
 							</li>
 							<li class="nav-item"><a
 								class="nav-link btn btn-primary mx-3" href="/member/logout"
 								style="color: white; font-size: 20px; background-color: #FF8233 !important; border: #FF8233 !important">logout</a></li>
 						</c:otherwise>
 					</c:choose>
-				</div>
+				
+				<c:if test="${not empty location}">
+				<a
+					class="btn btn-success d-flex align-items-center justify-content-center"
+					style="width: 150px; height: 60px; font-size: 24px;"
+					href="../delivery/home">주문하기</a>
+				</c:if>
 
+				<c:if test="${empty location}">
 				<a
 					class="btn btn-success d-flex align-items-center justify-content-center"
 					style="width: 150px; height: 60px; font-size: 24px;"
 					href="../delivery/addAddress">주문하기</a>
+				</c:if>
+				</div>
 
 			</div>
-		</div>
+			</div>
+		
+	</div>
 	</nav>
 </header>

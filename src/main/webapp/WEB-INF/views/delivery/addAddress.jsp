@@ -22,15 +22,14 @@
 			<h3>입력하신 주소로 배달하시겠습니까?</h3>
 			<div class="row mt-4">
 				<input type="hidden" id="jibunAddress"> <input type="hidden"
-					id="extraAddress"> <input type="text" id="input_postcode"
-					class="form-control my-1" style="width: 200px" readonly="readonly"
-					value="${vo.postcode}"> 
-				<div class="input-group mb-3 my-1"
+					id="extraAddress"> 
+					
+				<input type="text" id="postcode" class="form-control my-1" readonly style="width: 200px" value="${vo.postcode}">
+				<div class="input-group mb-2 my-1"
 					style="padding-left: 0; padding-right: 0;">
 					
 				<input type="hidden" id="jibunAddress"> 
 				<input type="hidden"id="extraAddress">
-				<input type="hidden" id="input_postcode" class="form-control my-1" style="width: 200px"  readonly="readonly" value="${vo.postcode}">
 				<input type="text" id="roadAddress" class="form-control"  readonly="readonly" value="${vo.roadAddress}">
 				<div class="input-group mb-3 my-1" style="padding-left: 0; padding-right: 0;">
 					<input type="text" id="detailAddress" class="form-control" value="${vo.detailAddress}">
@@ -50,7 +49,7 @@
 	</div>
 	<form action="./goDeli" method="post" id="goDeli">
 		<input type="hidden" id="x" name="x"> <input type="hidden"
-			id="y" name="y"> <input type="hidden" id="postcode"
+			id="y" name="y"> <input type="hidden" id="input_postcode"
 			name="postcode"> <input type="hidden" id="location"
 			name="location"> <input type="hidden" id="detailLocation"
 			name="detailLocation">

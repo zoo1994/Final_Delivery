@@ -17,7 +17,7 @@ $("#goBtn").click(function() {
 			$("#x").val(x);
 			$("#y").val(y);
 			$("#location").val($("#roadAddress").val());
-			$("#postcode").val($("#input_postcode").val());
+			$("#input_postcode").val($("#postcode").val());
 			$("#detailLocation").val($("#detailAddress").val());
 			$("#goDeli").submit();
 		}
