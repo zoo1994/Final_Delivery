@@ -56,7 +56,6 @@ public class MessageController {
 		mv.setViewName("common/result");
 		//db에서 핸드폰번호중복검사
 		memberVO = memberService.phoneCheck(memberVO);
-		System.out.println(!find.equals("find"));
 		if(!find.equals("find")) {
 			if(memberVO!=null) {
 				mv.addObject("result","이미 등록된 핸드폰번호입니다.");

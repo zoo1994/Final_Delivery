@@ -19,12 +19,11 @@
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<div class="container mt-4" style="width: 50rem; margin: 0 auto;">
 		<div class="row mt-4">
-			<h3>입력하신 주소로 배달하시겠습니까?</h3>
 			<div class="row mt-4">
 				<input type="hidden" id="jibunAddress"> <input type="hidden"
 					id="extraAddress"> 
 					
-				<input type="hidden"" id="postcode" class="form-control my-1" readonly style="width: 200px" value="${vo.postcode}">
+				<input type="hidden" id="postcode" class="form-control my-1" readonly style="width: 200px" value="${vo.postcode}">
 				<div class="input-group mb-2 my-1"
 					style="padding-left: 0; padding-right: 0;">
 					
@@ -37,13 +36,14 @@
 					
 					<input class="col-2 btn btn-outline-success dropdown-toggle"
 						type="button" id="addBtn" data-bs-toggle="dropdown"
-						aria-expanded="false" onclick="showPostcode()" value="주소변경">
+						aria-expanded="false" onclick="showPostcode()" value="주소입력">
 				</div>
 				<span id="guide" style="color: #999; display: none"></span>
 			</div>
+			<div id="map" style="width:1200px;height:600px;" data-address="${vo.roadAddress}"></div>
 			<div class="row justify-content-end">
 				<button type="button" id="goBtn"
-					class="col-2 btn btn-outline-success">주문하기</button>
+					class="col-2 btn btn-outline-success">포장하기</button>
 			</div>
 		</div>
 	</div>
@@ -57,7 +57,7 @@
 	</div>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a58574ac7b94ffdb63ca1f5c17c22c7&libraries=services"></script>
-	<script type="text/javascript" src="../js/map.js"></script>
+	<script type="text/javascript" src="../js/packagingMap.js"></script>
 	<script type="text/javascript" src="../js/addAddress.js"></script>
 	<c:import url="../temp/footer.jsp"></c:import>
 </body>
