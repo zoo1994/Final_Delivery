@@ -81,7 +81,6 @@ public class DeliveryController {
 		}
 		//주문가능매장리스트 크기의 배열 생성
 		double [] a = new double[ar.size()];
-		System.err.println(ar.size());
 		for(int i =0; i<ar.size();i++) {
 			//각 점포마다 주문지와의 거리 계산 후 a배열에 삽입
 			double dis =this.distance(y,x,ar.get(i).getY_axis(),ar.get(i).getX_axis());

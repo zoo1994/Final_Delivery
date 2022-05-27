@@ -21,7 +21,6 @@ $("#checkPw").blur(function(){
 });
 
 $("#pwChangeBtn").click(function(){
-	console.log("d")
 	if(pwCheck&&chPwCheck){
 		$("#pwChangeForm").submit();
 	}else{

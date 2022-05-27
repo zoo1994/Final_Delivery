@@ -1,16 +1,15 @@
 let checkk = true;
-
+let numCheck = false;
 $("#messageBtn").click(function(){
 		if(!phoneCheck){
-			$("#phoneDiv").text("")
-       		$("#phoneDiv").text("휴대폰 번호를 입력해주세요.")
 			return;
 		}
 		$.ajax({
 			type:"POST",
 			url:"/send",
 			data:{
-				phone : $("#phone").val()
+				phone : $("#phone").val(),
+				find : $("#numBox").attr("data-find")
 			},
 			success:function(data){
 				$("#phoneDiv").html(data.trim());
@@ -82,5 +81,13 @@ $("#idCheckBtn").click(function(){
 				alert("실패")
 			}
 		}); 
+	}
+});
+
+$("#findPwBtn").click(function(){
+	if(numCheck){
+		$("#findPwForm").submit();
+	}else{
+		alert("핸드폰 인증이 완료되지 않았습니다.")
 	}
 });

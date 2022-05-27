@@ -21,38 +21,31 @@
 </head>
 <body>
 <c:import url="../temp/header.jsp"></c:import>
-	<div class="row mt-4"  style="width: 55rem; margin:0 auto;">
-			<form:form modelAttribute="memberVO" id="pwChangeForm" method="post" >
-			<c:if test="${empty checkPw}">
+<div class="row mt-4"  style="width: 55rem; margin:0 auto;">
+	<h6>가입시 등록하신 아이디와 핸드폰번호를 입력해주세요.</h6>
+	<div class="row mt-4"id="divv">
+		<form action="./findPw" id="findPwForm"method="post">
 			<div class="mb-3">
-				<label for="id" class="form-label">기존 비밀번호</label> 
-				<input type="password" name="password" class="form-control" >
+				<label for="id" class="form-label">아이디</label> 
+				<input type="text" name="id" id="id"  class="form-control" >
 			</div>
-			</c:if>
 			<div class="mb-3">
-						<label for="pw" class="form-label">변경할 비밀번호 </label>
-						<form:password path="pw" cssClass="form-control" id="pw" />
-						<div id="pwError"></div>
-						<div>
-							<form:errors path="pw"></form:errors>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="checkPw" class="form-label">비밀번호 재확인 </label>
-						<form:password path="checkPw" cssClass="form-control" id="checkPw" />
-						<div id="checkPwError"></div>
-						<div>
-							<form:errors path="checkPw"></form:errors>
-						</div>
-					</div>
-					<div class="row justify-content-end">
-					<button type="button" id="pwChangeBtn" class="col-2 btn btn-outline-success">변경</button>
-					</div>
-		</form:form>
+				<label for="phone" class="form-label">전화번호</label>
+				<div class="input-group mb-3">
+				<input type="text" name="phone" class="form-control" id="phone"/>
+				<button type="button" id="messageBtn" class="col-2 btn btn-outline-success">인증번호 발송</button>
+				</div>
+				<div id="phoneDiv"></div>
+				<div id="numBox" data-find="find"></div>
+			</div>
+			<button type="button" id="findPwBtn" class="btn btn-outline-success">비밀번호 찾기</button>
+		</form>
 	</div>
+</div>
 
 <c:import url="../temp/footer.jsp"></c:import>
-	<script type="text/javascript" src="../js/pwChange.js"></script>
+	<script type="text/javascript" src="../js/pwChange2.js"></script>
+	<script type="text/javascript" src="../js/join.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

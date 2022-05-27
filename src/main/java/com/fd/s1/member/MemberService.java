@@ -50,6 +50,14 @@ public class MemberService {
 		return memberMapper.phoneCheck(memberVO);
 	}
 	
+	public MemberVO findId(MemberVO memberVO)throws Exception{
+		return memberMapper.findId(memberVO);
+	}
+	
+	public MemberVO findPw(MemberVO memberVO)throws Exception{
+		return memberMapper.findPw(memberVO);
+	}
+	
 	public int join(MemberVO memberVO)throws Exception{
 		return memberMapper.join(memberVO);
 	}

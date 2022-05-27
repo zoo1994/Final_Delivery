@@ -5,6 +5,14 @@
  
     <mapper namespace="com.fd.s1.member.MemberMapper">
 		
+		<select id="findPw" parameterType="MemberVO" resultType="MemberVO">
+			SELECT * FROM USER WHERE ID=#{id} AND PHONE=#{phone}
+		</select>
+		
+		<select id="findId" parameterType="MemberVO" resultType="MemberVO">
+			SELECT * FROM USER WHERE NAME=#{name} AND PHONE=#{phone}
+		</select>
+		
 		<delete id="delMem" parameterType="MemberVO">
 			DELETE FROM USER WHERE ID = #{id}
 		</delete>

@@ -25,7 +25,6 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-
 		registry.addInterceptor(adminInterceptor)
 				.addPathPatterns("/menu/menuManage");
 		
@@ -34,7 +33,10 @@ public class InterceptorConfig implements WebMvcConfigurer{
 				.addPathPatterns("/delivery/*")
 				.excludePathPatterns("/member/join")
 				.excludePathPatterns("/member/login")
-				.excludePathPatterns("/member/idCheck");
+				.excludePathPatterns("/member/idCheck")
+				.excludePathPatterns("/member/findId")
+				.excludePathPatterns("/member/findPw")
+				.excludePathPatterns("/member/pwChange");
 		
 		registry.addInterceptor(sellerInterceptor)
 				.addPathPatterns("/shop/shopMenu");
