@@ -12,6 +12,11 @@
 			SELECT COUNT(ID) FROM USERCOUPON WHERE ID  is not null AND (ID = #{id} AND COUPONID = #{couponId})
     	</select>	
 		
+		<select id="getDetail" parameterType="CouponVO" resultType="CouponVO">
+		SELECT * 
+		FROM COUPON
+		WHERE COUPONID=#{couponId}
+		</select>
 		
 		<insert id="setUserCoupon" parameterType="UserCouponVO" useGeneratedKeys="true" keyProperty="num">
 			INSERT INTO USERCOUPON (NUM,ID,COUPONID,COUPONNUM,DOWNDATE,USAGESTATUS)
@@ -26,6 +31,23 @@
 	 		COUPONNAME LIKE concat('%', #{search},'%'))
 	    	ORDER BY COUPONID ASC LIMIT #{startRow}, #{perPage}
     	</select>
+    	
+		<select id="getUserCoupon" parameterType="UserCouponVO" resultType="UserCouponVO">
+			SELECT * 
+			FROM USERCOUPON 		    		
+	 		WHERE ID=#{id}
+    	</select>
+    	
+		<select id="getSelectUserCoupon" parameterType="UserCouponVO" resultType="UserCouponVO">
+			SELECT * 
+			FROM USERCOUPON 		    		
+	 		WHERE ID=#{id} AND COUPONNUM=#{couponNum}
+    	</select>
+    	
+    	<delete id="setUserCouponDelete" parameterType="UserCouponVO">
+    		DELETE FROM USERCOUPON
+    		WHERE ID=#{id} AND COUPONNUM=#{couponNum}
+    	</delete>
 
     	<select id="getCouponTotalCount" parameterType="pager" resultType="Long">
 	 		SELECT COUNT(COUPONID) FROM COUPON 		    		

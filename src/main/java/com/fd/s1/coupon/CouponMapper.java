@@ -28,4 +28,10 @@ public interface CouponMapper {
 	public int setUpdate(CouponVO couponVO)throws Exception;
 	
 	public int setDelete(CouponVO couponVO)throws Exception;
+	
+	public List<UserCouponVO> getUserCoupon(UserCouponVO userCouponVO)throws Exception;
+	
+	public UserCouponVO getSelectUserCoupon(UserCouponVO userCouponVO)throws Exception;
+	
+	public int setUserCouponDelete(UserCouponVO userCouponVO)throws Exception;
 }

@@ -13,4 +13,5 @@ public class UserCouponVO {
 	private Date downDate;
 	private Long usageStatus;
 	
+	private CouponVO couponVO;
 }

@@ -58,6 +58,10 @@ public class DeliveryService {
 		return deliveryMapper.payAdd(paymentVO);
 	}
 	
+	public OrdersVO getOrder(OrdersVO ordersVO)throws Exception{
+		return deliveryMapper.getOrder(ordersVO);
+	}
+	
 	public int orderAdd(OrdersVO ordersVO)throws Exception{
 		int result = deliveryMapper.orderAdd(ordersVO);
 		ordersVO = deliveryMapper.getOrder(ordersVO);
