@@ -5,7 +5,7 @@
  	$(".detail").click(function() {
 		console.log("click");
 		let num = $(this).attr("data-num");
-		location.href="./manageDetail?menuNum="+num;
+		location.href="../menu/manageDetail?menuNum="+num;
 	});
 	
 	$(".updateBtn").click(function() {

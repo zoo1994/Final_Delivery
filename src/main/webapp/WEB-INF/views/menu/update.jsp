@@ -144,7 +144,7 @@
 		</form:form>
 	
 	
-	
+	<c:import url="../temp/footer.jsp"></c:import>
 	
 </div>	
 	

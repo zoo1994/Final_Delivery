@@ -2,6 +2,7 @@ package com.fd.s1.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fd.s1.coupon.CouponVO;
 import com.fd.s1.member.MemberVO;
+import com.fd.s1.menu.MenuService;
+import com.fd.s1.menu.MenuVO;
 import com.fd.s1.shop.ShopMenuVO;
 import com.fd.s1.shop.ShopService;
 import com.fd.s1.shop.ShopVO;
@@ -27,6 +30,8 @@ public class AdminController {
 	private AdminService adminService;
 	@Autowired
 	private ShopService shopService;
+	@Autowired
+	private MenuService menuService;
 
 	//관리자 마이페이지
 	@GetMapping("manager")
@@ -205,6 +210,50 @@ public class AdminController {
 		mv.setViewName("common/result");
 		return mv;
 	}
+	
+	//관리자 메뉴 list
+	@GetMapping("menuManage")
+	public ModelAndView getMenuManage(MenuVO menuVO,Pager pager, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		pager.setUserType(memberVO.getUserType());			
+		pager.setCategory(menuVO.getCategory());
+		List<MenuVO> ar = menuService.getList(pager);
+		mv.addObject("list",ar);
+		mv.setViewName("admin/menuManage");
+		return mv;
+	}
+	
+	//메뉴 상태 변경용 ajax
+	@PostMapping("menuManage")
+	public ModelAndView getMenuManage(MenuVO menuVO, Pager pager) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = menuService.setUpdateSale(menuVO);
+		Long count = adminService.getShopListCount(pager);
+		System.out.println("menuVO : "+menuVO.getMenuNum());
+		System.out.println("count : "+count);
+		System.out.println("menuSale : "+menuVO.getMenuSale());
+		List<ShopVO> ar = adminService.getShop(pager, count);
+		if(menuVO.getMenuSale() != 1) {
+				ShopMenuVO shopMenuVO = new ShopMenuVO();
+				shopMenuVO.setMenuNum(menuVO.getMenuNum());
+				result = menuService.setDeleteMenu(shopMenuVO);
+				System.out.println("result : "+result);				
+		}else {
+			for(int i = 0; i<ar.size();i++) {
+				ShopMenuVO shopMenuVO = new ShopMenuVO();
+				shopMenuVO.setMenuNum(menuVO.getMenuNum());
+				shopMenuVO.setShopNum(ar.get(i).getShopNum());
+				result = menuService.setShopMenuAdd(shopMenuVO);
+				System.out.println("result : "+result);
+			}
+		}
+		mv.setViewName("common/result");
+		mv.addObject("result",result);
+		
+		return mv;
+	}
+		
 	
 	
 /*

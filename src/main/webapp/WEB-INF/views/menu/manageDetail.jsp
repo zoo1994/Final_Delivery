@@ -23,13 +23,13 @@
 
 	<c:import url="./detail.jsp"></c:import>
 	<div class="container">
-	
 		<div>
 			<a href="./update?menuNum=${vo.menuNum}" class="btn btn-primary">수정</a>
 			<a onclick="return confirm('정말 삭제하시겠습니까?');" href="./delete?menuNum=${vo.menuNum}" class="btn btn-danger">메뉴삭제</a>
 		</div>
-
 	</div>
+	
+
 
 </body>
 

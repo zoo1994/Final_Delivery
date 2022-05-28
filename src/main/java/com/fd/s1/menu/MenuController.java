@@ -64,47 +64,47 @@ public class MenuController {
 		return mv;
 	}
 	
-	//관리자 메뉴 list
-	@GetMapping("menuManage")
-	public ModelAndView getMenuManage(MenuVO menuVO,Pager pager, HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		pager.setUserType(memberVO.getUserType());			
-		pager.setCategory(menuVO.getCategory());
-		List<MenuVO> ar = menuService.getList(pager);
-		mv.addObject("list",ar);
-		mv.setViewName("menu/menuManage");
-		return mv;
-	}
-	
-	//메뉴 상태 변경용 ajax
-	@PostMapping("menuManage")
-	public ModelAndView getMenuManage(MenuVO menuVO, Pager pager) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		int result = menuService.setUpdateSale(menuVO);
-		Long count = adminService.getShopListCount(pager);
-		System.out.println("count : "+count);
-		List<ShopVO> ar = adminService.getShop(pager, count);
-		if(menuVO.getMenuSale() != 1) {
-			for(int i = 0; i<ar.size();i++) {
-				ShopMenuVO shopMenuVO = new ShopMenuVO();
-				shopMenuVO.setMenuNum(menuVO.getMenuNum());
-				result = menuService.setDeleteMenu(shopMenuVO);
-			}
-		}else {
-			for(int i = 0; i<ar.size();i++) {
-				ShopMenuVO shopMenuVO = new ShopMenuVO();
-				shopMenuVO.setMenuNum(menuVO.getMenuNum());
-				shopMenuVO.setShopNum(ar.get(i).getShopNum());
-				result = menuService.setShopMenuAdd(shopMenuVO);
-			}
-		}
-		
-		mv.setViewName("common/result");
-		mv.addObject("result",result);
-		
-		return mv;
-	}
+//	//관리자 메뉴 list
+//	@GetMapping("menuManage")
+//	public ModelAndView getMenuManage(MenuVO menuVO,Pager pager, HttpSession session) throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+//		pager.setUserType(memberVO.getUserType());			
+//		pager.setCategory(menuVO.getCategory());
+//		List<MenuVO> ar = menuService.getList(pager);
+//		mv.addObject("list",ar);
+//		mv.setViewName("menu/menuManage");
+//		return mv;
+//	}
+//	
+//	//메뉴 상태 변경용 ajax
+//	@PostMapping("menuManage")
+//	public ModelAndView getMenuManage(MenuVO menuVO, Pager pager) throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		int result = menuService.setUpdateSale(menuVO);
+//		Long count = adminService.getShopListCount(pager);
+//		System.out.println("count : "+count);
+//		List<ShopVO> ar = adminService.getShop(pager, count);
+//		if(menuVO.getMenuSale() != 1) {
+//			for(int i = 0; i<ar.size();i++) {
+//				ShopMenuVO shopMenuVO = new ShopMenuVO();
+//				shopMenuVO.setMenuNum(menuVO.getMenuNum());
+//				result = menuService.setDeleteMenu(shopMenuVO);
+//			}
+//		}else {
+//			for(int i = 0; i<ar.size();i++) {
+//				ShopMenuVO shopMenuVO = new ShopMenuVO();
+//				shopMenuVO.setMenuNum(menuVO.getMenuNum());
+//				shopMenuVO.setShopNum(ar.get(i).getShopNum());
+//				result = menuService.setShopMenuAdd(shopMenuVO);
+//			}
+//		}
+//		
+//		mv.setViewName("common/result");
+//		mv.addObject("result",result);
+//		
+//		return mv;
+//	}
 
 	
 	@GetMapping("detail")

@@ -17,7 +17,7 @@
 					<a class="" href="/admin/member" style="">회원관리</a>
 				</li>
 				<li class="rounded-pill" style="display: block ; background-color: #264a36; color: #fff; text-align: center; width: 100px; height: 30px;">
-					<a class="" href="#" style="">메뉴관리</a>
+					<a class="" href="/admin/menuManage" style="">메뉴관리</a>
 				</li>
 				<li class="rounded-pill" style="display: block ; background-color: #3f51b5; color: #fff; text-align: center; width: 100px; height: 30px;">
 					<a class="" href="/admin/coupon" style="">쿠폰발급</a>

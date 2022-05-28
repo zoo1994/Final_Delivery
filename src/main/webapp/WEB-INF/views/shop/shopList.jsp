@@ -120,7 +120,7 @@
 		<div class="row mt-4" id="shopListResult">
 			<%-- 			<input type="hidden" id="admin_shop_count" value="${count}"> --%>
 			<table class="table" style="">
-				<thead class="table-light">
+				<thead class="table-warning">
 					<tr>
 						<th class="col text-center align-items-center" style="">매장이름</th>
 						<th class="col text-center align-items-center" style="">매장위치</th>
