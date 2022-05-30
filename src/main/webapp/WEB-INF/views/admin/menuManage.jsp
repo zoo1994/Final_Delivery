@@ -61,11 +61,11 @@ thead tbody {
 <table class="table table-hover">
 	<thead>
 		<tr class="table-warning">
-			<th>Num</th>
-			<th>메뉴이름</th>
-			<th>가격</th>
-			<th>판매상태</th>
-			<th>변경</th>
+			<th class="col-1">Num</th>
+			<th class="col-3">메뉴이름</th>
+			<th class="col-1">가격</th>
+			<th class="col-2">판매상태</th>
+			<th class="col-2">변경</th>
 		</tr>	
 	</thead>
 	<tbody>
@@ -99,6 +99,7 @@ thead tbody {
 				</td>
 				<td>
 					<button type="button" class="btn btn-success updateBtn" data-num="${vo.menuNum}">변경</button>
+					<button type="button" class="btn btn-danger deleteBtn" data-num="${vo.menuNum}">삭제</button>
 				</td>
 			</tr>
 		</c:forEach>  
@@ -107,7 +108,7 @@ thead tbody {
 
 	
 		<div class="col-2">
-			<a href="./add" type="button" class="btn btn-outline-primary">메뉴 추가</a>
+			<a href="./add" type="button" class="btn btn-primary">메뉴 추가</a>
 		</div>
 
 	</div>

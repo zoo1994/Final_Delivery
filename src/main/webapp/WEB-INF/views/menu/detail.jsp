@@ -106,7 +106,9 @@
 
 </div>
 	</div>
+	<div class="footer">
 <c:import url="../temp/footer.jsp"></c:import>
+</div>
 <script type="text/javascript">
 
 </script>

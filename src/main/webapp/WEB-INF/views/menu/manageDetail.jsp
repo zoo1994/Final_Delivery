@@ -29,7 +29,9 @@
 		</div>
 	</div>
 	
-
+<script type="text/javascript">
+	$(".footer").remove();
+</script>
 
 </body>
 

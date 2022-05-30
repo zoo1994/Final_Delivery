@@ -82,6 +82,7 @@
 				</td>
 				<td>
 					<button type="button" class="btn btn-outline-success updateBtn" data-num="${vo.menuNum}">변경</button>
+				
 				</td>
 			</tr>
 		</c:forEach>  

@@ -220,8 +220,10 @@ public class MenuController {
 	@GetMapping("delete")
 	public ModelAndView setDeleAndView(MenuVO menuVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		System.out.println(menuVO.getMenuNum());
 		int result = menuService.setDelete(menuVO);
-		mv.setViewName("redirect:./menuManage");
+		mv.setViewName("common/result");
+		mv.addObject("result",result);
 		
 		return mv;
 	}
