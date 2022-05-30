@@ -20,6 +20,12 @@ public class DeliveryService {
 	@Autowired
 	private MenuMapper menuMapper;
 	
+	public List<ShopVO> shopList(Pager pager)throws Exception{
+		pager.makeRow();
+		pager.makeNum(deliveryMapper.getShopTotal());
+		return deliveryMapper.shopList(pager);
+	}
+	
 	public List<ShopVO> findShops(Double maxX,Double minX,Double maxY,Double minY )throws Exception{
 		return deliveryMapper.findShops(maxX, minX, maxY, minY);
 	}

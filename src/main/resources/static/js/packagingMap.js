@@ -1,23 +1,22 @@
 const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 const geocoder = new kakao.maps.services.Geocoder();
-let x = 126.570667;
-let y = 33.450701;
-geocoder.addressSearch(container.getAttribute("data-address"), function(result, status) {
-		if (status === kakao.maps.services.Status.OK) {
-			console.log(result[0].x)
-			x = result[0].x;
-			y = result[0].y;
-			let options = { //지도를 생성할 때 필요한 기본 옵션
-			center: new kakao.maps.LatLng(y, x), //지도의 중심좌표.
-			level: 4 //지도의 레벨(확대, 축소 정도)
-		};
-			let map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-			}
-		});
+let shopList = document.getElementsByClassName("shopList");
+let x = 126.979502322878;
+let y = 37.5668136314671;
+
+
+for(const i of shopList){
+	console.log(i.innerText);
+	console.log(i.getAttribute("data-x"));
+}
+
+let options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new kakao.maps.LatLng(y, x), //지도의 중심좌표.
+		level: 4 //지도의 레벨(확대, 축소 정도)
+	}
+let map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 		
-
-
-
+			
 function showPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -64,7 +63,7 @@ function showPostcode() {
                 } else if(data.autoJibunAddress) {
                     var expJibunAddr = data.autoJibunAddress;
                     guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                    guideTextBox.style.display = 'block';
+                    guideTextBox.style.display = 'none';
                 } else {
                     guideTextBox.innerHTML = '';
                     guideTextBox.style.display = 'none';

@@ -10,6 +10,10 @@ import com.fd.s1.util.Pager;
 @Mapper
 public interface DeliveryMapper {
 	
+	public Long getShopTotal()throws Exception;
+	
+	public List<ShopVO> shopList(Pager pager)throws Exception;
+	
 	public List<ShopVO> findShops(Double maxX,Double minX,Double maxY,Double minY )throws Exception;
 
 	public List<CartVO> getCart(CartVO cartVO) throws Exception;
