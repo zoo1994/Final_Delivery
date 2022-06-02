@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+
+
+
+body, div, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, p, form, fieldset, table, tr, th, td {
+    margin: 0;
+    padding: 0;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+}
+body {
+    position: relative;
+    font-family: 'Noto Sans KR', '맑은고딕', 'Malgun Gothic', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #555;
+    letter-spacing: -0.5px;
+    height: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    line-height: 1;
+    -webkit-overflow-scrolling: touch;
+}
+
+.loginOuter {
+    width: 650px;
+}
+
+
+.loginOuter {
+    width: calc(60% - 120px);
+    margin: 0 auto;
+    padding: 100px 75px 75px;
+    border-radius: 30px;
+    border: 1px solid #707070;
+    background: #fff;
+}
+body, div, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, p, form, fieldset, table, tr, th, td {
+    margin: 0;
+    padding: 0;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+
+.loginDiv {
+    position: relative;
+}
+
+.loginDiv .titDiv {
+    position: relative;
+    margin-bottom: 50px;
+    padding: 0;
+    padding-left: calc(0 + env(safe-area-inset-left));
+    padding-right: calc(0 + env(safe-area-inset-right));
+}
+
+.loginForm {
+    position: relative;
+    padding: 0;
+    padding-left: calc(0 + env(safe-area-inset-left));
+    padding-right: calc(0 + env(safe-area-inset-right));
+}
+
+.loginDiv .titDiv .tit {
+	text-align: center; 
+    font-size: 45px;
+    color: #000;
+    line-height: 56px;
+    letter-spacing: -0.7px;
+}
+.loginForm .bottomDiv {
+    margin-top: 30px;
+    text-align: center; 
+}
+
+.inputDiv.type2 {
+	margin: 0 auto;
+	width:75%;
+    border: none;
+    border-radius: 0;
+    background: #fff;
+    border: 1px solid #C8C8C8;
+}
+
+.inputDiv {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #C8C8C8;
+    background: #fff;
+}
+
+.inputDiv.type2 input {
+    background: none;
+}
+
+.inputDiv input {
+    width: calc(100% - 35px);
+}
+
+.loginForm .topDiv .inputDiv.type2 {
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    height: 100%;
+    padding: 5px 15px;
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+}
+input[type="password"] {
+    height: 100%;
+    padding: 5px 15px;
+    border: none;
+    -webkit-appearance: none;
+
+    box-shadow: none;
+}
+input:focus {outline: none;}
+input, select {
+    vertical-align: middle;
+    font-family: 'Noto Sans KR', '맑은고딕', 'Malgun Gothic', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.6px;
+    border-radius: 0px;
+    font-size: 16px;
+}
+.yellowBtn {
+	
+    display: inline-block;
+    width: auto;
+    height: 60px;
+    padding: 0 65px;
+    font-size: 18px;
+    line-height: 58px;
+    border-radius: 60px;
+        background: orange;
+    text-align: center;
+        color: #222;
+}
+.loginForm .bottomDiv .btnDiv {
+    margin-top: 25px;
+    text-align: center;
+}
+.loginForm .bottomDiv .btnDiv a {
+    padding: 0 8px 0 11px;
+    font-size: 15px;
+    color: #999;
+}

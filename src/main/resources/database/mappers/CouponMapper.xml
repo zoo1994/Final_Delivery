@@ -14,12 +14,19 @@
     	<select id="getCouponActiveDate" parameterType="UserCouponVO" resultType="Long">
 			SELECT ACTIVEDATE FROM COUPON WHERE COUPONID = #{couponId}
     	</select>	
-		
+    	
+    	
 		<!-- userCoupon 기한만료 처리 이벤트스케줄 -->
 		<!-- UPDATE USERCOUPON SET USAGESTATUS = 2 WHERE DUEDATE = DATE_ADD(DATE_FORMAT(NOW(), '%Y-%m-%d'), INTERVAL -1 DAY) AND USAGESTATUS =1 -->
 		<update id="setExpiration">
 			UPDATE USERCOUPON SET USAGESTATUS = 2 WHERE DUEDATE <![CDATA[ < ]]> DATE_FORMAT(NOW(), '%Y-%m-%d') AND USAGESTATUS =1
     	</update>
+
+		<select id="getDetail" parameterType="CouponVO" resultType="CouponVO">
+		SELECT * 
+		FROM COUPON
+		WHERE COUPONID=#{couponId}
+		</select>
 		
 		<insert id="setUserCoupon" parameterType="UserCouponVO" useGeneratedKeys="true" keyProperty="num">
 			INSERT INTO USERCOUPON (NUM,ID,COUPONID,COUPONNUM,DOWNDATE,DUEDATE,USAGESTATUS)
@@ -34,6 +41,23 @@
 	 		COUPONNAME LIKE concat('%', #{search},'%'))
 	    	ORDER BY COUPONID ASC LIMIT #{startRow}, #{perPage}
     	</select>
+    	
+		<select id="getUserCoupon" parameterType="UserCouponVO" resultType="UserCouponVO">
+			SELECT * 
+			FROM USERCOUPON 		    		
+	 		WHERE ID=#{id}
+    	</select>
+    	
+		<select id="getSelectUserCoupon" parameterType="UserCouponVO" resultType="UserCouponVO">
+			SELECT * 
+			FROM USERCOUPON 		    		
+	 		WHERE ID=#{id} AND COUPONNUM=#{couponNum}
+    	</select>
+    	
+    	<delete id="setUserCouponDelete" parameterType="UserCouponVO">
+    		DELETE FROM USERCOUPON
+    		WHERE ID=#{id} AND COUPONNUM=#{couponNum}
+    	</delete>
 
     	<select id="getCouponTotalCount" parameterType="pager" resultType="Long">
 	 		SELECT COUNT(COUPONID) FROM COUPON 		    		

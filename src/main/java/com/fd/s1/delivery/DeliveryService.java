@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fd.s1.member.MemberVO;
 import com.fd.s1.menu.MenuMapper;
 import com.fd.s1.menu.MenuVO;
 import com.fd.s1.shop.ShopVO;
+import com.fd.s1.util.Pager;
 
 @Service
 public class DeliveryService {
@@ -56,6 +58,10 @@ public class DeliveryService {
 		return deliveryMapper.payAdd(paymentVO);
 	}
 	
+	public OrdersVO getOrder(OrdersVO ordersVO)throws Exception{
+		return deliveryMapper.getOrder(ordersVO);
+	}
+	
 	public int orderAdd(OrdersVO ordersVO)throws Exception{
 		int result = deliveryMapper.orderAdd(ordersVO);
 		ordersVO = deliveryMapper.getOrder(ordersVO);
@@ -71,8 +77,21 @@ public class DeliveryService {
 		orderDetailVO.setPayNum(ordersVO.getPayNum());
 		orderDetailVO.setShopNum(c.getShopNum());
 		result = deliveryMapper.orderDetailAdd(orderDetailVO);
+		result = deliveryMapper.delete(c);
 		}
 		return result;
+	}
+	
+	public List<OrdersVO> orderList(Pager pager,MemberVO memberVO)throws Exception{
+		pager.makeRow();
+		pager.setId(memberVO.getId());
+		pager.makeNum(deliveryMapper.getOrderTotal(pager));
+		List<OrdersVO> ar = deliveryMapper.orderList(pager);
+		return ar;
+	}
+	
+	public List<OrderDetailVO> getOrderDetail(OrderDetailVO orderDetailVO)throws Exception{
+		return deliveryMapper.getOrderDetail(orderDetailVO);
 	}
 
 

@@ -25,7 +25,6 @@ public class MemberInterceptor implements HandlerInterceptor {
 
 			request.setAttribute("message", "로그인이 필요합니다.");
 			request.setAttribute("path", "/member/login");
-			session.invalidate();
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/joinResult.jsp");
 			view.forward(request, response);
 			check = false;

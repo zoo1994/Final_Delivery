@@ -27,6 +27,53 @@ public class MemberController {
 	@Autowired
 	private MemberCheck memberCheck;
 	
+	@PostMapping("findPw")
+	public ModelAndView findPw(MemberVO memberVO,HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String path ="/"; 
+		String message = "입력정보와 일치하는 가입정보가 없습니다.";
+		memberVO =  memberService.findPw(memberVO);
+		if(memberVO!=null) {
+			session.setAttribute("checkPw", "ok");
+			session.setAttribute("id", memberVO.getId());
+			mv.setViewName("redirect:./pwChange");
+			return mv;
+		}
+		mv.addObject("path",path);
+		mv.addObject("message",message);
+		mv.setViewName("common/joinResult");
+		return mv;
+	}
+	
+	@GetMapping("findPw")
+	public ModelAndView findPw()throws Exception{
+		ModelAndView mv = new ModelAndView();		
+		mv.setViewName("member/findPw");
+		return mv;
+	}
+	
+	@PostMapping("findId")
+	public ModelAndView findId(MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String path ="/"; 
+		String message = "입력정보와 일치하는 가입정보가 없습니다.";
+		memberVO = memberService.findId(memberVO);
+		if(memberVO!=null) {
+			message="ID : "+memberVO.getId();
+		}
+		mv.addObject("path",path);
+		mv.addObject("message",message);
+		mv.setViewName("common/joinResult");
+		return mv;
+	}
+	
+	@GetMapping("findId")
+	public ModelAndView findId()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/findId");
+		return mv;
+	}
+	
 	@PostMapping("delMem")
 	public ModelAndView delMember(MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -105,6 +152,16 @@ public class MemberController {
 		String message = "비밀번호 변경이 완료되었습니다.";
 		if(memberCheck.pwChangeError(memberVO, bindingResult)) {
 			mv.setViewName("member/pwChange");
+			return mv;
+		}
+		if(session.getAttribute("checkPw").equals("ok")) {
+			memberVO.setId((String) session.getAttribute("id"));
+			memberService.setPwChange(memberVO);
+			mv.addObject("path",path);
+			mv.addObject("message",message);
+			mv.setViewName("common/joinResult");
+			session.removeAttribute("checkPw");
+			session.removeAttribute("id");
 			return mv;
 		}
 		String pw = memberVO.getPw();
@@ -293,8 +350,9 @@ public class MemberController {
 	}
 	
 	@GetMapping("login")
-	public ModelAndView login()throws Exception{
+	public ModelAndView login(HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		session.invalidate();
 		mv.setViewName("member/login");
 		return mv;
 	}

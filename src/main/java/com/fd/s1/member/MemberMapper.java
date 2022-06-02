@@ -21,6 +21,8 @@ public interface MemberMapper {
 	public int setNumCheck(PhoneCheckVO phoneCheckVO)throws Exception;
 	public MemberVO phoneCheck(MemberVO memberVO)throws Exception;
 	public MemberVO idCheck(MemberVO memberVO)throws Exception;
+	public MemberVO findId(MemberVO memberVO)throws Exception;
+	public MemberVO findPw(MemberVO memberVO)throws Exception;
 	public int join(MemberVO memberVO)throws Exception;
 	public  MemberVO login(MemberVO memberVO)throws Exception;
 	public int setCpRegister(UserCouponVO userCouponVO)throws Exception;

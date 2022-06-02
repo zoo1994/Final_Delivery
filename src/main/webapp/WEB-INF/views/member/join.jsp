@@ -23,7 +23,7 @@
 </head>
 <body>
 <c:import url="../temp/header.jsp"></c:import>
-	<div class="container mt-4">
+	<div class="container mt-4" style ="width:40%">
 		<div class="row mt-4">
 			<form:form modelAttribute="memberVO" id="joinForm" method="post">
 				<div class="row mt-4">
@@ -31,7 +31,7 @@
 						<label for="id" class="form-label">아이디</label>
 						<div class="input-group mb-3">
 						<form:input path="id" cssClass="form-control" id="id" />
-						<button type="button" id="idCheckBtn" class="col-2 btn btn-outline-success">아이디 중복검사</button>
+						<button type="button" id="idCheckBtn" class="col-3 btn btn-outline-success">아이디 중복검사</button>
 						</div>
 						<div id="idError"></div>
 						<div>
@@ -118,7 +118,7 @@
 						<div  id="phoneDiv">
 							<form:errors path="phone"></form:errors>
 						</div>
-						<div id="numBox"></div>
+						<div id="numBox" data-find=""></div>
 					</div>
 				</div>
 				<div class="input-group mb-3">

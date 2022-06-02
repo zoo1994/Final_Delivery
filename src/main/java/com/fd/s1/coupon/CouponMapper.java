@@ -32,4 +32,12 @@ public interface CouponMapper {
 
 	//update coupon Usagestatus
 	public int setExpiration()throws Exception;
+
+	//상품주문
+	public List<UserCouponVO> getUserCoupon(UserCouponVO userCouponVO)throws Exception;
+	
+	public UserCouponVO getSelectUserCoupon(UserCouponVO userCouponVO)throws Exception;
+	
+	public int setUserCouponDelete(UserCouponVO userCouponVO)throws Exception;
+	//상품주문 끝
 }

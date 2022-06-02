@@ -44,7 +44,7 @@ public class MessageController {
 // db에 휴대폰 번호가 있는지 확인
 	
 	@PostMapping("/send")
-	public ModelAndView sendMessage(MemberVO memberVO)throws Exception{
+	public ModelAndView sendMessage(MemberVO memberVO,String find)throws Exception{
 		ModelAndView mv  = new ModelAndView();
 		Random random = new Random();
 		int a = random.nextInt(10);
@@ -56,9 +56,12 @@ public class MessageController {
 		mv.setViewName("common/result");
 		//db에서 핸드폰번호중복검사
 		memberVO = memberService.phoneCheck(memberVO);
-		if(memberVO!=null) {
-			mv.addObject("result","이미 등록된 핸드폰번호입니다.");
-			return mv;
+		System.out.println(!find.equals("find"));
+		if(!find.equals("find")) {
+			if(memberVO!=null) {
+				mv.addObject("result","이미 등록된 핸드폰번호입니다.");
+				return mv;
+			}
 		}
 		//this.sendOne(phone, checkNum);
 		PhoneCheckVO phoneCheckVO = new PhoneCheckVO();

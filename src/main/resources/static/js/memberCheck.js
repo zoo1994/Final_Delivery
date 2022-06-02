@@ -1,5 +1,5 @@
 	let phoneCheck = false;
-	let numCheck = false;
+
 	let idCheck = false;
 	let idCheck2 = false;
 	let pwCheck = false;

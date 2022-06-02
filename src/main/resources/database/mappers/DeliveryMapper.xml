@@ -6,7 +6,7 @@
     <mapper namespace="com.fd.s1.delivery.DeliveryMapper">
     
     <select id="findShops" parameterType="Double" resultType="ShopVO">
-    	SELECT * FROM SHOP WHERE X_AXIS BETWEEN  #{minX}  AND #{maxX} AND Y_AXIS BETWEEN  #{minY}  AND #{maxY} AND SALE = 0
+    	SELECT * FROM SHOP WHERE X_AXIS BETWEEN  #{minX}  AND #{maxX} AND Y_AXIS BETWEEN  #{minY}  AND #{maxY} AND SALE = 1
     </select>
     
     <select id="getCart" parameterType="CartVO" resultType="CartVO">
@@ -21,7 +21,24 @@
     WHERE C.ID=#{id}
     </select>
     
-
+	<select id="orderList" parameterType="Pager" resultType="OrdersVO">
+	SELECT O.* 
+    FROM 
+    	(SELECT *
+    	FROM ORDERS
+    	WHERE DELINUM>0 
+    	AND ID=#{id}
+	    ORDER BY DELINUM DESC
+    	LIMIT #{startRow},#{perPage}) O
+    ORDER BY DELINUM DESC
+	</select>
+	
+		<select id="getOrderTotal" parameterType="Pager" resultType="Long">
+		SELECT COUNT(DELINUM) 
+		FROM ORDERS
+		WHERE DELINUM>0
+		AND ID=#{id}
+	</select>
     
     <insert id="setCartAdd" parameterType="CartVO">
     INSERT INTO CART(CARTNUM,ID,MENUNUM,SHOPNUM,COUNT,TOTALPRICE)
@@ -42,7 +59,6 @@
     DELETE FROM CART WHERE CARTNUM=#{cartNum}
     </delete>
     
-   
    <insert id="payAdd" parameterType="PaymentVO">
    	INSERT INTO PAYMENT VALUES(#{payNum},#{type},#{price},now())
    </insert>
@@ -59,4 +75,38 @@
    SELECT * FROM ORDERS WHERE PAYNUM=#{payNum}
    </select>
     
+    <select id="getOrderDetail" parameterType="OrderDetailVO" resultMap="OrderDetailResult">
+    SELECT *
+    FROM ORDERDETAIL
+    LEFT JOIN MENU
+    USING (MENUNUM)
+    WHERE DELINUM=#{deliNum}
+    </select>
+    
+    <resultMap id="OrderDetailResult" type="OrderDetailVO">
+    <id column="detailNum" property="detailNum"/>
+    <result column="deliNum" property="deliNum"/>
+    <result column="payNum" property="payNum"/>
+    <result column="menuNum" property="menuNum"/>
+    <result column="shopNum" property="shopNum"/>
+    <result column="orderCount" property="orderCount"/>
+    <result column="menuPrice" property="menuPrice"/>
+    <collection property="menuVO" javaType="MenuVO">
+    	<id column="menuNum" property="menuNum"/>
+    	<result column="menuName" property="menuName"/>
+    	<result column="price" property="price"/>
+    </collection>
+    </resultMap>
+    
+    
     </mapper>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

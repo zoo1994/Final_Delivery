@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fd.s1.coupon.CouponService;
+import com.fd.s1.coupon.CouponVO;
+import com.fd.s1.coupon.UserCouponVO;
 import com.fd.s1.member.MemberVO;
 import com.fd.s1.menu.MenuService;
 import com.fd.s1.menu.MenuVO;
@@ -26,7 +29,7 @@ import com.fd.s1.util.Pager;
 public class DeliveryController {
 	
 	@Autowired
-	private MenuService menuService;
+	private CouponService couponService;
 	@Autowired
 	private ShopService shopService;
 	@Autowired
@@ -81,7 +84,6 @@ public class DeliveryController {
 		}
 		//주문가능매장리스트 크기의 배열 생성
 		double [] a = new double[ar.size()];
-		System.err.println(ar.size());
 		for(int i =0; i<ar.size();i++) {
 			//각 점포마다 주문지와의 거리 계산 후 a배열에 삽입
 			double dis =this.distance(y,x,ar.get(i).getY_axis(),ar.get(i).getX_axis());
@@ -93,7 +95,7 @@ public class DeliveryController {
 		Double min = a[0];
 		int minName = 0;
 		//가장 가까운 매장 찾기
-		for(int j = 1 ; j<(a.length);j++) {
+		for(int j = 0 ; j<(a.length);j++) {
 			if (min>a[j]) {
 				min = a[j];
 				minName=j;
@@ -176,7 +178,17 @@ public class DeliveryController {
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		CartVO cartVO = new CartVO();
 		cartVO.setId(memberVO.getId());
+		UserCouponVO userCouponVO = new UserCouponVO();
+		userCouponVO.setId(memberVO.getId());
 		List<CartVO> ar = deliveryService.getCart(cartVO);
+		List<UserCouponVO> coupon = couponService.getUserCoupon(userCouponVO);
+		for(UserCouponVO vo:coupon) {
+			CouponVO couponVO = new CouponVO();
+			couponVO.setCouponId(vo.getCouponId());
+			couponVO = couponService.getDetail(couponVO);
+			vo.setCouponVO(couponVO);
+		}		
+		mv.addObject("coupon", coupon);
 		mv.addObject("list", ar);
 		mv.setViewName("delivery/order");
 		return mv;
@@ -190,6 +202,40 @@ public class DeliveryController {
 		int result= deliveryService.orderAdd(ordersVO);
 		mv.addObject("result", result);
 		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	@GetMapping("orderList")
+	public ModelAndView orderList(Pager pager, HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		List<OrdersVO> ar = deliveryService.orderList(pager,memberVO);
+		mv.addObject("list", ar);
+		mv.setViewName("delivery/orderList");
+		return mv;
+	}
+	
+	@GetMapping("orderDetail")
+	public ModelAndView getOrderDetail(OrderDetailVO orderDetailVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrderDetailVO> ar = deliveryService.getOrderDetail(orderDetailVO);
+		OrdersVO ordersVO = new OrdersVO();
+		ordersVO.setPayNum(ar.get(0).getPayNum());
+		ordersVO = deliveryService.getOrder(ordersVO);
+		if(ordersVO.getCoupon()>0) {
+			CouponVO couponVO = new CouponVO();
+			couponVO.setCouponId(ordersVO.getCoupon());
+			couponVO = couponService.getDetail(couponVO);
+			mv.addObject("coupon", couponVO);
+		}
+		
+		/*
+		 * for(OrderDetailVO vo:ar) { MenuVO menuVO = new MenuVO();
+		 * menuVO.setMenuNum(orderDetailVO.getMenuNum()); menuVO =
+		 * menuService.getDetail(menuVO); vo.setMenuVO(menuVO); }
+		 */
+		mv.addObject("list", ar);
+		mv.setViewName("delivery/orderDetail");
 		return mv;
 	}
 	
@@ -209,6 +255,70 @@ public class DeliveryController {
 		mv.setViewName("delivery/orderComplite");
 		return mv;
 	}
+	
+	@PostMapping("getPrice")
+	public ModelAndView getPrice(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		CartVO cartVO = new CartVO();
+		cartVO.setId(memberVO.getId());
+		List<CartVO> ar = deliveryService.getCart(cartVO);
+		Long price = 0L;
+		for(CartVO c:ar) {
+			price = price + c.getTotalPrice();
+		}
+		mv.setViewName("common/result");
+		mv.addObject("result", price);
+		return mv;
+	}
+	
+	@PostMapping("couponActive")
+	public ModelAndView couponActive(HttpSession session,String couponNum)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		UserCouponVO userCouponVO = new UserCouponVO();
+		userCouponVO.setId(memberVO.getId());
+		userCouponVO.setCouponNum(couponNum);
+		userCouponVO = couponService.getSelectUserCoupon(userCouponVO);
+		CouponVO couponVO = new CouponVO();
+		couponVO.setCouponId(userCouponVO.getCouponId());
+		couponVO = couponService.getDetail(couponVO);
+		Long discount = couponVO.getDiscount();
+		mv.setViewName("common/result");
+		mv.addObject("result", discount);
+		return mv;
+	}
+
+	@PostMapping("couponGet")
+	public ModelAndView couponGet(HttpSession session,String couponNum)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		UserCouponVO userCouponVO = new UserCouponVO();
+		userCouponVO.setId(memberVO.getId());
+		userCouponVO.setCouponNum(couponNum);
+		userCouponVO = couponService.getSelectUserCoupon(userCouponVO);
+		CouponVO couponVO = new CouponVO();
+		couponVO.setCouponId(userCouponVO.getCouponId());
+		couponVO = couponService.getDetail(couponVO);
+		Long couponId = couponVO.getCouponId();
+		mv.setViewName("common/result");
+		mv.addObject("result", couponId);
+		return mv;
+	}
+	
+	@PostMapping("userCouponDelete")
+	public ModelAndView userCouponDelete(HttpSession session, String couponNum)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		UserCouponVO userCouponVO = new UserCouponVO();
+		userCouponVO.setId(memberVO.getId());
+		userCouponVO.setCouponNum(couponNum);
+		int result = couponService.setUserCouponDelete(userCouponVO);
+		mv.setViewName("common/result");
+		mv.addObject("result", result);
+		return mv;
+	}
+	
     // 거리구하기 식
     private static double deg2rad(double deg) {
         return (deg * Math.PI / 180.0);

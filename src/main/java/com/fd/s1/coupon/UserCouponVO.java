@@ -17,7 +17,9 @@ public class UserCouponVO {
 	private String couponNum;
 	private Date downDate;
 	private Long usageStatus;
-	
+	private CouponVO couponVO;
+
 	//couponVO - activeDate
 	private Long activeDate;
+	
 }

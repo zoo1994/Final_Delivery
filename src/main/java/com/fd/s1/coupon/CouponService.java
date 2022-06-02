@@ -87,6 +87,19 @@ public class CouponService {
 
 		return couponMapper.getList(pager);
 	}
+	
+	public List<UserCouponVO> getUserCoupon(UserCouponVO userCouponVO)throws Exception{
+		return couponMapper.getUserCoupon(userCouponVO);
+	}
+	
+	public UserCouponVO getSelectUserCoupon(UserCouponVO userCouponVO)throws Exception{
+		return couponMapper.getSelectUserCoupon(userCouponVO);
+	}
+
+	public int setUserCouponDelete(UserCouponVO userCouponVO) throws Exception {
+		int result = couponMapper.setUserCouponDelete(userCouponVO);
+		return result;
+	}
 
 	public CouponVO getDetail(CouponVO couponVO) throws Exception {
 		return couponMapper.getDetail(couponVO);
