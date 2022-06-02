@@ -39,7 +39,7 @@ public class CouponService {
 		int cpLength = 8;//쿠폰 글자수
 		int cur =1;//생성 쿠폰 갯수
 		Long result=-1L;
-
+		
 		while(0<cur) {
 			StringBuffer sb = new StringBuffer();
 			for(int i=0;i<cpLength;i++) {
@@ -50,7 +50,8 @@ public class CouponService {
 			userCouponVO.setCouponNum(sb.toString());
 			result = couponMapper.getOverlap(userCouponVO);// --여기 바꿔야함
 			if(result==0) {
-				userCouponVO.setCouponNum(sb.toString());
+				userCouponVO.setCouponNum(sb.toString());				
+				userCouponVO.setActiveDate(couponMapper.getCouponActiveDate(userCouponVO));				
 				result = couponMapper.setUserCoupon(userCouponVO);
 //				System.out.println("에러나오는것");				
 				cur--;
@@ -109,6 +110,15 @@ public class CouponService {
 	public Long getTotal(Pager pager) throws Exception {
 		return couponMapper.getTotal(pager);
 	}
+	
+	public int setExpiration() throws Exception {
+		
+		
+		
+		
+		return couponMapper.setExpiration();
+	}
+	
 	
 	
 	/* String [] coupon= {};

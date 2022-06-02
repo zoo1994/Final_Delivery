@@ -27,9 +27,11 @@ public class CouponController {
 	@Autowired
 	private CouponService couponService;
 	
+	//쿠폰 기한만료 처리 - 이벤트스케줄
 	@Scheduled(cron = "0 0 0 * * *")
-	public void couponClonSchedule()throws Exception {
-		System.out.println("hi");
+	public void couponClonSchedule()throws Exception {	
+		int result = couponService.setExpiration();
+		System.out.println("result 오늘 이벤트만료 갯수 : " + result);
 	}
 	
 	

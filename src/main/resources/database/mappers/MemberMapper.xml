@@ -57,4 +57,12 @@
     	<select id="login" parameterType="MemberVO" resultType="MemberVO">
     		SELECT * FROM USER WHERE ID=#{id} AND PW = #{pw}
     	</select>
+    	
+    	<select id="cpCheck" parameterType="UserCouponVO" resultType="Integer">
+    		SELECT COUNT(*) FROM USERCOUPON WHERE ID IS NULL AND USAGESTATUS = 1 AND COUPONNUM =#{couponNum}
+    	</select>
+    	
+    	<update id="setCpRegister" parameterType="MemberVO">
+    		UPDATE USERCOUPON SET ID = #{id} WHERE ID IS NULL AND USAGESTATUS = 1 AND COUPONNUM =#{couponNum}
+    	</update>
     </mapper>

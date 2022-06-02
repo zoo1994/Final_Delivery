@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.fd.s1.coupon.UserCouponVO;
 import com.fd.s1.util.PhoneCheckVO;
 
 @Mapper
@@ -22,4 +23,7 @@ public interface MemberMapper {
 	public MemberVO idCheck(MemberVO memberVO)throws Exception;
 	public int join(MemberVO memberVO)throws Exception;
 	public  MemberVO login(MemberVO memberVO)throws Exception;
+	public int setCpRegister(UserCouponVO userCouponVO)throws Exception;
+	public int cpCheck(UserCouponVO userCouponVO)throws Exception;
+	
 }

@@ -1,7 +1,21 @@
 package com.fd.s1.admin;
 
-import java.util.List;
 
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +23,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fd.s1.coupon.CouponVO;
+import com.fd.s1.coupon.UserCouponVO;
+import com.fd.s1.email.EmailVO;
 import com.fd.s1.member.MemberVO;
 import com.fd.s1.shop.ShopMenuVO;
 import com.fd.s1.shop.ShopService;
@@ -82,6 +99,7 @@ public class AdminController {
 		return mv;
 		
 	}
+
 	
 	
 	//관리자 쿠폰관리
@@ -134,6 +152,49 @@ public class AdminController {
 		mv.setViewName("common/result");
 		return mv;
 	}
+	
+	//관리자 쿠폰"생성"
+	@GetMapping("couponCreate")
+	public ModelAndView getCouponCreate(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();		
+		/*
+		 * List<MemberVO> memberVOs = adminService.getMember(pager);
+		 * mv.addObject("list", memberVOs);
+		 */
+		mv.setViewName("admin/couponCreate");
+		return mv;
+	}
+	
+	
+	
+	//관리자 쿠폰 - 쿠폰번호생성(user null)
+	@PostMapping("cpCreate")
+	public ModelAndView setCouponCreate(HttpSession session, UserCouponVO userCouponVO, int number)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		if(memberVO == null) {
+			System.out.println("로그인 필요");
+			mv.setViewName("admin/couponCreate");
+			return mv;
+		}
+		if(memberVO.getUserType()==0) {
+			
+			
+		}
+		Long result = adminService.setCouponCreate(userCouponVO, number);
+		System.out.println(result);
+		mv.addObject("result", result);
+		mv.setViewName("common/result");
+
+		/*
+		 * List<MemberVO> memberVOs = adminService.getMember(pager);
+		 * mv.addObject("list", memberVOs);
+		 */
+		return mv;
+	}
+	
+	
 
 	//관리자 회원관리
 	@GetMapping("shop")
@@ -205,7 +266,126 @@ public class AdminController {
 		mv.setViewName("common/result");
 		return mv;
 	}
+
+	//관리자 알림
+	@GetMapping("notification")
+	public ModelAndView getNotification()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+
+		mv.setViewName("admin/notification");
+		return mv;		
+	}
 	
+	@PostMapping("email")
+	public ModelAndView getEmail(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		Long count = adminService.getEmailListCount(pager);	
+		List<EmailVO> emailVOs = adminService.getEmail(pager, count);
+		
+		for(int i = 0; i<emailVOs.size();i++ ) {
+			System.out.println(emailVOs.get(i).getSendDate());
+		}
+		
+		mv.addObject("count", count);
+		mv.addObject("list", emailVOs);
+		mv.addObject("pager", pager);
+		
+		mv.setViewName("admin/emailList");
+		return mv;		
+	}
+	
+	@PostMapping("emailMCheck")
+	public ModelAndView getEmailObj(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println(pager.getSearch());
+		Long count = adminService.getUserEmailCount(pager);
+		System.out.println(count);
+		mv.addObject("result", count);
+		mv.setViewName("common/result");
+		return mv;		
+	}
+	
+	@PostMapping("emailM")
+	@ResponseBody
+	public List<MemberVO> getEmailMList(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		List<MemberVO> memberVOs = adminService.getEmailMList(pager);				
+			/*[설 명]
+			 * 1. json-simple는 google에서 제공해주는 json사용 라이브러리 입니다
+			 * 2. jsonObject.put(key, value); 형태로 데이터를 삽입합니다
+			 * 3. jsonObjectParse.get(key); 형태로 데이터를 추출합니다
+			 * 4. jsonArray.add(value); 형태로 데이터를 삽입합니다
+			 * 5. jsonArray.get(배열 번지); 형태로 데이터를 추출합니다
+			 * 6. JSONParser 는 json 데이터 파싱을 도와주는 객체입니다
+			 * */		
+		return memberVOs;
+	}
+	
+	@PostMapping("test")
+	public ModelAndView test(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();		
+		List<MemberVO> memverVOs = adminService.getEmailMList(pager);		
+		mv.addObject("list", memverVOs);		
+		mv.setViewName("admin/test");
+		return mv;		
+	}
+	
+	@GetMapping("test2")
+	public ModelAndView test2(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("admin/test2");
+		return mv;		
+	}
+	
+	@PostMapping("send")
+	public ModelAndView setSend(EmailVO emailVO, String receivers, HttpSession session, String receiver_type)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println(receiver_type+"번 입니다.==============================");
+		
+		
+		Long result =0L;
+		System.out.println("aaa");
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		System.out.println("bbb");
+		if(memberVO != null) {
+			if(memberVO.getUserType()==0) {
+				String [] str=null;
+				if(receiver_type.equals("all")) {
+					System.out.println("all");
+					str = adminService.getAll();
+				}else if(receiver_type.equals("seller")) {
+					System.out.println("seller");
+					str = adminService.getSeller();
+				}else if(receiver_type.equals("user")) {
+					System.out.println("user");
+					str = adminService.getUser();
+				}else {
+					str = receivers.split(",");
+				}				
+				System.out.println("ccc");
+				System.out.println(111);
+				for(int i =0;i<str.length;i++) {
+					emailVO.setReceiver(str[i]);
+					result = adminService.setSend(emailVO, memberVO);
+				}			
+			}
+		}
+		
+//		private Long emailNum;
+//		private String receiver;
+//		private String title;
+//		private String contents;
+//		private Date sendDate;
+
+		mv.addObject("result", result);
+		
+		mv.setViewName("common/result");
+		return mv;		
+	}
 	
 /*
 	@PostMapping("delete")

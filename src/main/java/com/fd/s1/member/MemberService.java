@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fd.s1.coupon.UserCouponVO;
 import com.fd.s1.util.PhoneCheckVO;
 
 @Service
@@ -57,5 +58,14 @@ public class MemberService {
 	public MemberVO login(MemberVO memberVO)throws Exception{
 		return memberMapper.login(memberVO);
 	}
+	
+	public int setCpRegister(UserCouponVO userCouponVO)throws Exception{
+		
+//		int result = memberMapper.cpCheck(userCouponVO);
+//		return result;
+		
+		return memberMapper.setCpRegister(userCouponVO);
+	}
+	
 	
 }

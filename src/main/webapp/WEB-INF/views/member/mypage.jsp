@@ -80,6 +80,7 @@
 			</div>
 		</div>
 		<div class="row justify-content-end">
+			<a href="./cpRegister" class="col-2 btn btn-outline-success">쿠폰함</a>
 			<a href="./pwChange" class="col-2 btn btn-outline-success">비밀번호 변경</a> 
 			<a href="./updateCheck" class="col-2  btn btn-outline-success">개인정보 변경</a>
 			<c:if test="${member.userType eq 1}">

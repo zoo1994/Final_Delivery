@@ -23,6 +23,19 @@
 	 		(ID LIKE concat('%', #{search},'%') or
 	 		NAME LIKE concat('%', #{search},'%'))
     	</select>
+    	<select id="getUserEmailCount" parameterType="Pager" resultType="Long">
+			SELECT COUNT(ID) FROM USER    		    		
+	 		WHERE
+	 		EMAIL = #{search}
+    	</select>
+    	
+    	<select id="getEmailMList" parameterType="Pager" resultType="MemberVO">
+			SELECT * FROM USER    		    		
+	 		WHERE ID  is not null
+	 		AND
+	 		(ID LIKE concat('%', #{search},'%') or
+	 		NAME LIKE concat('%', #{search},'%'))
+    	</select>
     	
     	
     	 <select id="getCoupon" parameterType="Pager" resultType="CouponVO">
@@ -88,5 +101,58 @@
 		<update id="setShopUpdate" parameterType="ShopVO">
 			UPDATE SHOP SET ID=#{id},SHOPNAME=#{shopName},LOCATION=#{location},X_AXIS=#{x_axis},Y_AXIS=#{y_axis},SHOPPHONE=#{shopPhone},SALE=#{sale},OPEN=#{open}  WHERE SHOPNUM=#{shopNum}
     	</update>
+		
+		
+		<!-- email count -->
+		<select id="getEmailTotalCount" parameterType="pager" resultType="Long">
+	 		SELECT COUNT(EMAILNUM) FROM EMAIL		    		
+	 		WHERE
+	 		<choose>
+		 		<when test="kind == 'col1'">
+		 			RECEIVER LIKE concat('%', #{search},'%')
+		 		</when>
+		 		<when test="kind == 'col2'">
+		 			TITLE LIKE concat('%', #{search},'%')
+		 		</when>
+		 		<otherwise>
+			 		CONTENTS LIKE concat('%', #{search},'%')
+		 		</otherwise>
+		 	</choose>
+    	</select>
+		<!-- SUBSTR(CONTENTS,1,300)  -->
+		<select id="getEmail" parameterType="Pager" resultType="EmailVO">
+	 		SELECT EMAILNUM, RECEIVER, TITLE, CONTENTS, SENDDATE FROM EMAIL
+	 		WHERE EMAILNUM  is not null
+	 		AND
+			<choose>
+		 		<when test="kind == 'col1'">
+		 			RECEIVER LIKE concat('%', #{search},'%')
+		 		</when>
+		 		<when test="kind == 'col2'">
+		 			TITLE LIKE concat('%', #{search},'%')
+		 		</when>
+		 		<otherwise>
+			 		CONTENTS LIKE concat('%', #{search},'%')
+		 		</otherwise>
+		 	</choose>
+	    	ORDER BY EMAILNUM DESC LIMIT #{startRow}, #{perPage}
+    	</select>
+		
+		<select id="getAll" resultType="String">
+			SELECT EMAIL FROM USER
+    	</select>
+		
+		<select id="getSeller" resultType="String">
+			SELECT EMAIL FROM USER WHERE USERTYPE = 1
+    	</select>
+    	
+    	<select id="getUser" resultType="String">
+			SELECT EMAIL FROM USER WHERE USERTYPE = 2
+    	</select>
+		
+		<insert id="setSend" parameterType="EmailVO" useGeneratedKeys="true" keyProperty="emailNum">
+			INSERT INTO EMAIL (EMAILNUM,RECEIVER,TITLE,CONTENTS, SENDDATE)
+			VALUES (null,#{receiver},#{title},#{contents},NOW())
+		</insert>
 		
     </mapper>

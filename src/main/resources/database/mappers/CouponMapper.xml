@@ -10,12 +10,20 @@
     	</select>		
 		<select id="getCouponLog" parameterType="UserCouponVO" resultType="Long">
 			SELECT COUNT(ID) FROM USERCOUPON WHERE ID  is not null AND (ID = #{id} AND COUPONID = #{couponId})
+    	</select>
+    	<select id="getCouponActiveDate" parameterType="UserCouponVO" resultType="Long">
+			SELECT ACTIVEDATE FROM COUPON WHERE COUPONID = #{couponId}
     	</select>	
 		
+		<!-- userCoupon 기한만료 처리 이벤트스케줄 -->
+		<!-- UPDATE USERCOUPON SET USAGESTATUS = 2 WHERE DUEDATE = DATE_ADD(DATE_FORMAT(NOW(), '%Y-%m-%d'), INTERVAL -1 DAY) AND USAGESTATUS =1 -->
+		<update id="setExpiration">
+			UPDATE USERCOUPON SET USAGESTATUS = 2 WHERE DUEDATE <![CDATA[ < ]]> DATE_FORMAT(NOW(), '%Y-%m-%d') AND USAGESTATUS =1
+    	</update>
 		
 		<insert id="setUserCoupon" parameterType="UserCouponVO" useGeneratedKeys="true" keyProperty="num">
-			INSERT INTO USERCOUPON (NUM,ID,COUPONID,COUPONNUM,DOWNDATE,USAGESTATUS)
-			VALUES (#{num},#{id},#{couponId},#{couponNum},now(),1)
+			INSERT INTO USERCOUPON (NUM,ID,COUPONID,COUPONNUM,DOWNDATE,DUEDATE,USAGESTATUS)
+			VALUES (null,#{id},#{couponId},#{couponNum},now(), DATE_ADD(NOW(), INTERVAL #{activeDate} DAY),1)
 		</insert>
 		
 		<select id="getCoupon" parameterType="Pager" resultType="CouponVO">

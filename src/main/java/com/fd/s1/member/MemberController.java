@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fd.s1.coupon.UserCouponVO;
+
 
 @Controller
 @RequestMapping("member/*")
@@ -39,6 +41,55 @@ public class MemberController {
 		mv.setViewName("common/joinResult");
 		return mv;
 	}
+//	mypage - coupon 등록
+	@GetMapping("cpRegister")
+	public ModelAndView cpRegister(@ModelAttribute UserCouponVO userCouponVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/cpRegister");
+		return mv;
+	}
+	
+	@PostMapping("cpRegister")
+	public ModelAndView cpRegister(@Valid UserCouponVO userCouponVO, BindingResult bindingResult, HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		if(userCouponVO.getCouponNum().length() !=8) {
+			bindingResult.rejectValue("couponNum","member.couponNum.size");
+			mv.setViewName("member/cpRegister");
+			return mv;
+		}
+		MemberVO memberVO = (MemberVO)(session.getAttribute("member"));
+		userCouponVO.setId(memberVO.getId());
+		int result = memberService.setCpRegister(userCouponVO);
+		
+		if(result==0) {
+			bindingResult.rejectValue("couponNum","member.couponNum.fail");
+			mv.setViewName("member/cpRegister");
+			return mv;
+		}
+		
+		
+		bindingResult.rejectValue("couponNum","member.couponNum.success");
+		mv.setViewName("member/cpRegister");
+		
+/*		
+		String path = "/"; String message = "비밀번호 변경이 완료되었습니다.";
+		  
+		String pw = memberVO.getPw(); MemberVO memberVO2 =
+		(MemberVO)session.getAttribute("member"); memberVO.setPw(password);
+		memberVO.setId(memberVO2.getId()); memberVO = memberService.login(memberVO);
+		int result = 0; if(memberVO!=null) { memberVO.setPw(pw); result =
+		memberService.setPwChange(memberVO); }else { path="./pwChange";
+		message="기존 비밀번호가 틀립니다."; mv.addObject("path",path);
+		mv.addObject("message",message); mv.setViewName("common/joinResult"); return
+		mv; } if(result<1) { path="member/pwChange"; message="비밀번호 변경 실패"; }
+		mv.addObject("path",path); mv.addObject("message",message);
+		mv.setViewName("common/joinResult");
+*/		System.out.println("result : "+result);
+		return mv;
+	}
+//	mypage - coupon 등록	end
+	
 	
 	@GetMapping("pwChange")
 	public ModelAndView pwChange(@ModelAttribute MemberVO memberVO)throws Exception{

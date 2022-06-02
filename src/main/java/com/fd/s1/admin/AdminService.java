@@ -2,12 +2,24 @@ package com.fd.s1.admin;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fd.s1.coupon.CouponMapper;
 import com.fd.s1.coupon.CouponVO;
+import com.fd.s1.coupon.UserCouponVO;
+import com.fd.s1.email.EmailVO;
 import com.fd.s1.member.MemberVO;
 import com.fd.s1.shop.ShopVO;
 import com.fd.s1.util.Pager;
@@ -18,7 +30,9 @@ public class AdminService {
 
 	@Autowired
 	private AdminMapper adminMapper;
-
+	@Autowired
+	private CouponMapper couponMapper;		
+	
 	public ShopVO getShopDetail(ShopVO shopVO) throws Exception {
 		return adminMapper.getShopDetail(shopVO);
 	}
@@ -70,7 +84,6 @@ public class AdminService {
 		return adminMapper.getTotalCount(pager);
 	}
 	
-	
 	public int setMemberGrade(MemberVO memberVO)throws Exception{
 
 		if(memberVO != null) {
@@ -104,6 +117,136 @@ public class AdminService {
 	public int setCouponDelete(CouponVO couponVO) throws Exception{	
 		return adminMapper.setCouponDelete(couponVO);
 	}
+	
+	
+	//관리자 이메일 - count
+	public Long getEmailListCount(Pager pager) throws Exception{	
+		return adminMapper.getEmailTotalCount(pager);
+	}
+	
+	//관리자 이메일 - 리스트
+	public List<EmailVO> getEmail(Pager pager, Long count)throws Exception{		
+		pager.makeRow();
+		pager.makeNum(count);
+		System.out.println(pager.getPerPage());
+		return adminMapper.getEmail(pager);
+	}
+	
+	//관리자 이메일멤버 - userEmail
+	public Long getUserEmailCount(Pager pager) throws Exception{	
+		return adminMapper.getUserEmailCount(pager);
+	}
+	//관리자 이메일멤버 - userEmail
+	public List<MemberVO> getEmailMList(Pager pager) throws Exception{	
+		return adminMapper.getEmailMList(pager);
+	}
+	
+	
+	
+	public String [] getAll()throws Exception{
+		return adminMapper.getAll();
+	}
+	public String [] getSeller()throws Exception{
+		return adminMapper.getSeller();
+	}
+	public String [] getUser()throws Exception{
+		return adminMapper.getUser();
+	}
+	
+	
+	
+	//관리자 이메일 - send
+	public Long setSend(EmailVO emailVO, MemberVO memberVO)throws Exception{		
+		System.out.println(222);
+       	String user = memberVO.getEmail(); // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
+        String password = "jgfsxeczynjbxfdc"; // 패스워드
+        
+        // SMTP 서버 정보를 설정한다.
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com"); 
+        prop.put("mail.smtp.port", 465); 
+        prop.put("mail.smtp.auth", "true"); 
+        prop.put("mail.smtp.ssl.enable", "true"); 
+        prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        prop.put("mail.smtp.ssl.protocols", "TLSv1.2");
+        prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        
+        Session session = Session.getInstance(prop, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(user, password);
+            }
+        });
+
+
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(user));            //수신자메일주소
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailVO.getReceiver())); 
+
+        // Subject
+        message.setSubject(emailVO.getTitle()); //메일 제목을 입력
+
+        // Text
+//        message.setText(emailVO.getContents());    //메일 내용을 입력
+        message.setContent(emailVO.getContents(),"text/html; charset=euc-kr");
+        // send the message
+        System.out.println(4);
+        
+        Transport.send(message); ////전송
+        System.out.println("message sent successfully...");
+		
+		
+		
+		System.out.println("받는이 : "+emailVO.getReceiver());
+		return adminMapper.setSend(emailVO);
+	}
+
+	
+	public Long setCouponCreate(UserCouponVO userCouponVO, int number) throws Exception {
+		
+		String [] randCharacter = {	"0","1","2","3","4",
+									"5","6","7","8","9",
+									"A","B","C","D","E",
+									"F","G","H","I","J",
+									"K","L","M","N","O",
+									"P","Q","R","S","T",
+									"U","V","W","X","Y","Z"};
+
+		Random rd = new Random();
+
+		int cpLength = 8;//쿠폰 글자수
+		int cur =number;//생성 쿠폰 갯수
+		Long result=-1L;
+
+		while(0<cur) {
+			StringBuffer sb = new StringBuffer();
+			for(int i=0;i<cpLength;i++) {
+				sb.append(randCharacter[rd.nextInt(36)]);//randCharacter[rd.nextInt(36)]
+			}
+
+//			System.out.println("couponNUM : "+sb.toString());
+			userCouponVO.setCouponNum(sb.toString());
+			result = couponMapper.getOverlap(userCouponVO);// --여기 바꿔야함
+			if(result==0) {
+				userCouponVO.setCouponNum(sb.toString());				
+				userCouponVO.setActiveDate(30L);//수신한 쿠폰번호는 30일동안 등록가능
+				result = couponMapper.setUserCoupon(userCouponVO);
+//				System.out.println("에러나오는것");				
+				cur--;
+			}
+//			else if(result==-5L){return result;}
+			else {
+				System.out.println("실패");
+			}
+		}
+
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 /*	public int setDelete(AdminVO faqVO, MemberVO memberVO)throws Exception{	

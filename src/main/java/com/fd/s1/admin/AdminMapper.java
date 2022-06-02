@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.fd.s1.coupon.CouponVO;
+import com.fd.s1.email.EmailVO;
 import com.fd.s1.member.MemberVO;
 import com.fd.s1.shop.ShopVO;
 import com.fd.s1.util.Pager;
@@ -24,7 +25,14 @@ public interface AdminMapper {
 	public Long getShopTotalCount(Pager pager)throws Exception;
 	public List<ShopVO> getShopMaster()throws Exception;
 	public ShopVO getShopDetail(ShopVO shopVO) throws Exception;
-	
+	public Long getEmailTotalCount(Pager pager)throws Exception;
+	public List<EmailVO> getEmail(Pager pager)throws Exception;
+	public Long setSend(EmailVO emailVO)throws Exception;
+	public Long getUserEmailCount(Pager pager)throws Exception;
+	public List<MemberVO> getEmailMList(Pager pager)throws Exception;
+	public String [] getAll()throws Exception;
+	public String [] getSeller()throws Exception;
+	public String [] getUser()throws Exception;
 //	public int setCouponDelete(CouponVO couponVO)throws Exception;
 	
 	

@@ -13,6 +13,7 @@ public interface CouponMapper {
 	public List<CouponVO> getCoupon(Pager pager)throws Exception;
 	public Long getCouponTotalCount(Pager pager)throws Exception;
 	
+	public Long getCouponActiveDate(UserCouponVO userCouponVO)throws Exception;
 	public Long setUserCoupon(UserCouponVO userCouponVO)throws Exception;	
 	public Long getOverlap(UserCouponVO userCouponVO)throws Exception;
 	public Long getCouponLog(UserCouponVO userCouponVO)throws Exception;
@@ -28,4 +29,7 @@ public interface CouponMapper {
 	public int setUpdate(CouponVO couponVO)throws Exception;
 	
 	public int setDelete(CouponVO couponVO)throws Exception;
+
+	//update coupon Usagestatus
+	public int setExpiration()throws Exception;
 }

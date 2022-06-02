@@ -1,0 +1,93 @@
+.dh_layer {
+    overflow: hidden;
+    position: absolute;
+    zoom: 1;
+    z-index: 30;
+    box-shadow: 1px 1px 1px rgb(0 0 0 / 10%);
+    	
+}
+
+.dh_layer .autoBook {
+    position: relative;
+    padding-bottom: 27px;
+    width: auto;
+    min-width: 250px;
+}
+.dh_layer .type_a {
+    overflow: hidden;
+    float: left;
+}
+.basic_calendar, .color-picker, .dh_layer .ly_alert, .dh_layer .ly_tooltip, .dh_layer .type_a, .dh_layer .type_b, .dh_layer .type_c .layer_content, .ly_pop .ly_pop_inner, .pop_reserve, .section_captcha, .setup_layer {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d9d9d9 #bfbfbf #b6b6b6 #d5d5d5;
+    background: #fff;
+}
+
+.dh_layer .autoAddr {
+    position: relative;
+    overflow: auto;
+    overflow-x: hidden;
+    border-bottom: 1px solid #e1e1e1;
+    background: #fff;
+    max-height: 241px;
+    min-width: 300px;
+}
+
+div.dh_layer .autoAddr .selected {
+    background: 0 0;
+}
+
+.dh_layer .autoAddr li {
+    padding: 0;
+    display: block;
+    height: auto;
+    white-space: nowrap;
+    position: relative;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+.dh_layer .autoAddr li {
+    padding: 0;
+    display: block;
+    height: auto;
+    white-space: nowrap;
+    position: relative;
+    cursor: pointer;
+    vertical-align: top;
+}
+
+.dh_layer .autoAddr li a {
+    padding: 7px 35px 4px 7px;
+    white-space: nowrap;
+    line-height: 14px;
+    vertical-align: top;
+    display: block;
+    color: #333;
+    text-decoration: none;
+}
+.autoAddr .selected a {
+    background: #e5f3fe;
+}
+
+.dh_layer .autoAddr .name {
+    margin-right: 1px;
+}
+
+.dh_layer .autoAddr .email {
+    color: #666;
+}
+.email{
+	font-weight: 400;
+}
+.dh_layer .autoAddr li strong {
+    text-decoration: underline;
+}
+.list_addrobj > li {
+	display: inline-block;
+}
+
+.selected span{
+	background-color: #e5f3fe;
+}
