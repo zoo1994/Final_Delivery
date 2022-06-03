@@ -16,7 +16,7 @@ public class MenuVO {
 	@NotBlank(message = "영문 이름을 입력해주세요.")
 	private String menuEng;
 	@NotNull(message = "가격을 입력해주세요.")
-	private Integer price;
+	private Long price;
 	@NotBlank(message = "메뉴 설명을 기입해주세요.")
 	private String menuDetail;
 	private Integer menuSale;

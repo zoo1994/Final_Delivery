@@ -11,7 +11,7 @@ public class OrderDetailVO {
 	private Long deliNum;
 	private String payNum;
 	private Integer menuNum;
-	private Long shopNum;
+	private Integer shopNum;
 	private Long orderCount;
 	private Long menuPrice;
 	

@@ -11,17 +11,21 @@
 			pay.innerHTML = count;
 		}
 
-		$('.cartCount')
-				.each(
+		$('.cartCount').each(
 			function() {
 				$('.cartCount').change(
 					function() {
-						let formData = new FormData();
 						let cartCount = '#cartCount'+ $(this).attr("data-num");
 						let price = '#price'+ $(this).attr("data-num");
 						let cartPrice = '#cartPrice'+ $(this).attr("data-num");
 						let receiptCount = '#receiptCount'+ $(this).attr("data-num");
 						let receiptPrice = '#receiptPrice'+ $(this).attr("data-num");
+						if($(cartCount).val()<=0){
+							alert("0이나 음수를 입력할 수 없습니다.");
+							$(cartCount).val(1);
+							return;
+						}
+						let formData = new FormData();
 						formData.append("cartNum", $(this).attr("data-num"));
 						formData.append("count", $(cartCount).val());
 						formData.append("totalPrice",Number($(price).html())* Number($(cartCount).val()));

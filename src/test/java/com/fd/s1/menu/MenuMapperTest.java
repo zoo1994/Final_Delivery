@@ -25,7 +25,7 @@ class MenuMapperTest {
 		MenuVO menuVO = new MenuVO();
 		menuVO.setMenuNum(1);
 		menuVO.setMenuName("1955® 버거");
-		menuVO.setPrice(8200);
+		menuVO.setPrice(8200L);
 		menuVO.setMenuDetail("113g 두툼한 순 쇠고기 패티, 특별한 1955 소스에 깊은 풍미의 그릴드 어니언까지! 맥도날드가 처음 생긴 1955년의 맛을 담은 영원한 오리지널 1955 버거");
 		menuVO.setMenuSale(0);
 		menuVO.setCategory(1);

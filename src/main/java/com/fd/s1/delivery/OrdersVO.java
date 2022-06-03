@@ -17,5 +17,6 @@ public class OrdersVO {
 	private Long coupon;
 	private Date orderDate;
 	private Long totalPrice;
+	private Integer shopNum;
 	private List<OrderDetailVO> detailVOs;
 }

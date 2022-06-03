@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fd.s1.delivery.OrdersVO;
 import com.fd.s1.member.MemberVO;
 
 @Service
@@ -59,6 +60,14 @@ public class ShopService {
 		map.put("category", category);
 		map.put("shopVO", shopVO);
 		return shopMapper.getShopInfo(map);
+	}
+	
+	public List<OrdersVO> getShopOrderList(OrdersVO ordersVO)throws Exception{
+		return shopMapper.getShopOrderList(ordersVO);
+	}
+	
+	public List<SettlementVO> getSettlement(SettlementVO settlementVO)throws Exception{
+		return shopMapper.getSettlement(settlementVO);
 	}
 
 }

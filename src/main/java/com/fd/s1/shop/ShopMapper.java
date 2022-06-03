@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import com.fd.s1.delivery.OrdersVO;
 import com.fd.s1.member.MemberVO;
 
 @Mapper
@@ -29,5 +31,9 @@ public interface ShopMapper {
 
 	public int setUpdateShopSystem(ShopVO shopVO) throws Exception;
 	
+	public List<OrdersVO> getShopOrderList(OrdersVO ordersVO)throws Exception;
+	
 	public List<ShopMenuVO> getShopInfo(Map<Object, Object> map) throws Exception;
+	
+	public List<SettlementVO> getSettlement(SettlementVO settlementVO)throws Exception;
 }
