@@ -5,6 +5,14 @@
  
 <mapper namespace="com.fd.s1.menu.MenuMapper">
     
+    <select id="getTotal" parameterType="Pager" resultType="Long">
+    	SELECT COUNT(MENUNUM) FROM MENU 
+    	WHERE  MENUNUM > 0
+    	AND
+	 	(MENUNAME LIKE concat('%', #{search},'%') or
+	 	MENUDETAIL LIKE concat('%', #{search},'%'))
+    </select>
+    
 	<update id="setUpdateSale" parameterType="MenuVo">
 		UPDATE MENU SET MENUSALE=#{menuSale} WHERE MENUNUM=#{menuNum}
 	</update>

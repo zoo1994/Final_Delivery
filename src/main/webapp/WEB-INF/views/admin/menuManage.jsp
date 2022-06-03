@@ -108,7 +108,7 @@ thead tbody {
 
 	
 		<div class="col-2">
-			<a href="./add" type="button" class="btn btn-primary">메뉴 추가</a>
+			<a href="../menu/add" type="button" class="btn btn-primary">메뉴 추가</a>
 		</div>
 
 	</div>

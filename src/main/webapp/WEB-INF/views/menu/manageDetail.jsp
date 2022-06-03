@@ -22,15 +22,15 @@
 <body>
 
 	<c:import url="./detail.jsp"></c:import>
-	<div class="container">
-		<div>
-			<a href="./update?menuNum=${vo.menuNum}" class="btn btn-primary">수정</a>
-			<a onclick="return confirm('정말 삭제하시겠습니까?');" href="./delete?menuNum=${vo.menuNum}" class="btn btn-danger">메뉴삭제</a>
+	<div class="container" style="float: none; margin:100 auto;">
+		<div class="updateBtn row">
+			<a href="./update?menuNum=${vo.menuNum}" class="btn btn-primary mt-4 col-md-2" style="float: none; margin:0 auto;">메뉴 정보 수정</a>
 		</div>
 	</div>
 	
 <script type="text/javascript">
-	$(".footer").remove();
+	$(".cateBanner").remove();
+	$('.updateBtn').insertBefore('.menuDetail');
 </script>
 
 </body>

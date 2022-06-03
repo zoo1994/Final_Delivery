@@ -33,9 +33,11 @@
 </head>
 <body>
 <c:import url="../temp/header.jsp"></c:import>
+<div class="cateBanner">
 	<c:import url="../common/categoryBenner.jsp"></c:import>
+</div>	
 	<div class="container">
-		<div class="row mt-4">
+		<div class="row mt-4 menuDetail">
 			<h2 class="text-center fw-bolder">${vo.menuName}</h2>
 			<h5 class="text-center text-muted">${vo.menuEng}</h5>
 

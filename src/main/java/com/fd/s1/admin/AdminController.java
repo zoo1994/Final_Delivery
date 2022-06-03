@@ -6,10 +6,12 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fd.s1.coupon.CouponVO;
@@ -253,8 +255,52 @@ public class AdminController {
 		
 		return mv;
 	}
-		
 	
+	@GetMapping("bannerManage")
+	public ModelAndView getBannerManage() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<BannerFileVO> list = adminService.getBannerFileList();
+		mv.addObject("list", list);
+		mv.setViewName("admin/bannerManage");
+		return mv;
+	}
+	
+	@GetMapping("bannerAdd")
+	public ModelAndView getBannerAdd() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<BannerFileVO> list = adminService.getBannerFileList();
+		mv.addObject("list", list);
+		mv.addObject("admin/bannerAdd");
+		
+		return mv;
+	}
+	
+	@PostMapping("bannerAdd")
+	public ModelAndView getBannerAdd(MultipartFile [] files) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = adminService.setBannerFileAdd(files);
+		mv.setViewName("redirect:./bannerManage");
+		return mv;
+	}
+	
+	@GetMapping("bannerUpdate")
+	public ModelAndView getBannerUpdate() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<BannerFileVO> list = adminService.getBannerFileList();
+		mv.addObject("list", list);
+		mv.addObject("admin/bannerUpdate");
+		
+		return mv;
+	}
+	
+	@PostMapping("fileDelete")
+	public ModelAndView setBannerFileDelete(BannerFileVO bannerFileVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = adminService.setBannerFileDelete(bannerFileVO);
+		mv.setViewName("common/result");
+		mv.addObject("result", result);
+		return mv;
+	}
 	
 /*
 	@PostMapping("delete")

@@ -90,4 +90,16 @@
 			UPDATE SHOP SET ID=#{id},SHOPNAME=#{shopName},LOCATION=#{location},X_AXIS=#{x_axis},Y_AXIS=#{y_axis},SHOPPHONE=#{shopPhone},SALE=#{sale},OPEN=#{open}  WHERE SHOPNUM=#{shopNum}
     	</update>
 		
+		<select id="getBannerFileList" resultType="BannerFileVO">
+    		SELECT * FROM BANNERFILE
+    	</select>
+    	
+    	<insert id="setBannerFileAdd" parameterType="BannerFileVO">
+    		INSERT INTO BANNERFILE
+    		VALUES (NULL, #{fileName}, #{oriName})
+    	</insert>
+    	
+    	<delete id="setBannerFileDelete" parameterType="BannerFileVO">
+    		DELETE FROM BANNERFILE WHERE FILENUM=#{fileNum}
+    	</delete>
     </mapper>

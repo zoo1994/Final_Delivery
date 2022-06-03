@@ -8,7 +8,7 @@
 		<div class="rounded-pill mt-5 " style="/* background-color: green; */ width: 100%; height: 60%;">
 			<ul class=" justify-content-start" style="margin: 0; padding: 0;">
 				<li class="rounded-pill" style="display: block ; background-color: #db0007; color: #fff; text-align: center; width: 100px; height: 30px;">
-					<a class="" href="#" style="">배너관리</a>
+					<a class="" href="/admin/bannerManage" style="">배너관리</a>
 				</li>
 				<li class="rounded-pill" style="display: block ; background-color: #ad1457; color: #fff; text-align: center; width: 100px; height: 30px;">
 					<a class="" href="/admin/shop" style="">점포관리</a>

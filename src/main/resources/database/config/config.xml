@@ -38,5 +38,6 @@
 		<typeAlias type="com.fd.s1.delivery.OrdersVO" alias="OrdersVO"/>
 		<typeAlias type="com.fd.s1.delivery.OrderDetailVO" alias="OrderDetailVO"/>
 		<typeAlias type="com.fd.s1.delivery.PaymentVO" alias="PaymentVO"/>
+		<typeAlias type="com.fd.s1.admin.BannerFileVO" alias="BannerFileVO"/>
 	</typeAliases>
 </configuration>

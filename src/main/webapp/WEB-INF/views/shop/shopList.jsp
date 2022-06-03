@@ -126,7 +126,7 @@
 				<thead class="table-warning">
 					<tr>
 						<th class="col text-center align-items-center" style="">매장이름</th>
-						<th class="col text-center align-items-center" style="">매장위치</th>
+						<th class="col text-center align-items-center" style="">매장위치(도로명주소)</th>
 						<th class="col text-center align-items-center" style="">전화번호</th>
 						<th class="col text-center align-items-center" style="">운영시간</th>
 					</tr>
