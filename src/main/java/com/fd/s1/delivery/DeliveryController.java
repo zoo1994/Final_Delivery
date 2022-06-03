@@ -130,6 +130,15 @@ public class DeliveryController {
 		mv.setViewName("delivery/addAddress");
 		return mv;
 	}
+	@GetMapping("packagingAddress")
+	public ModelAndView packagingAddress(HttpSession session,Pager pager) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<ShopVO> ar = deliveryService.shopList(pager);
+		mv.addObject("list",ar);
+		mv.addObject("pager",pager);
+		mv.setViewName("delivery/packagingAddress");
+		return mv;
+	}
 	
 	@GetMapping("cart")
 	public ModelAndView cart(HttpSession session) throws Exception {

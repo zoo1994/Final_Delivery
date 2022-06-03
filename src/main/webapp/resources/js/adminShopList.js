@@ -142,6 +142,7 @@ $("#modalSave").click(function() {
 						$("#shop_name").val("");
 						$("#shop_location").val("");
 						$("#shop_phone").val("");
+						$("#guide").empty();
 					} else {
 						alert("매장 등록 실패");
 					}
@@ -202,6 +203,7 @@ $("#modalSave2").click(function() {
 						$("#shop_phone2").val("");
 						$("#shop_sale2").val("");
 						$("#shop_open2").val("");
+						$("#guide1").empty();
 
 					} else {
 						alert("매장 수정 실패");

@@ -5,6 +5,17 @@
  
     <mapper namespace="com.fd.s1.delivery.DeliveryMapper">
     
+    <select id="shopList" parameterType="Pager" resultType="ShopVO">
+    	SELECT * FROM SHOP WHERE SHOPNAME LIKE concat('%', #{search},'%') or
+	 		LOCATION LIKE concat('%', #{search}, '%') 
+	 		ORDER BY SHOPNAME DESC LIMIT #{startRow}, #{perPage}
+    </select>
+    
+    <select id="getShopTotal" resultType="Long">
+		SELECT COUNT(SHOPNUM) FROM SHOP WHERE SHOPNAME LIKE concat('%', #{search},'%') or
+	 		LOCATION LIKE concat('%', #{search}, '%') 
+	</select>
+    
     <select id="findShops" parameterType="Double" resultType="ShopVO">
     	SELECT * FROM SHOP WHERE X_AXIS BETWEEN  #{minX}  AND #{maxX} AND Y_AXIS BETWEEN  #{minY}  AND #{maxY} AND SALE = 0
     </select>
@@ -33,7 +44,7 @@
     ORDER BY DELINUM DESC
 	</select>
 	
-		<select id="getOrderTotal" parameterType="Pager" resultType="Long">
+	<select id="getOrderTotal" parameterType="Pager" resultType="Long">
 		SELECT COUNT(DELINUM) 
 		FROM ORDERS
 		WHERE DELINUM>0

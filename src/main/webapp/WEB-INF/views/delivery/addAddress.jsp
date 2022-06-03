@@ -25,7 +25,7 @@
 				<input type="hidden" id="jibunAddress"> <input type="hidden"
 					id="extraAddress"> 
 					
-				<input type="text" id="postcode" class="form-control my-1" readonly style="width: 200px" value="${vo.postcode}">
+				<input type="hidden"" id="postcode" class="form-control my-1" readonly style="width: 200px" value="${vo.postcode}">
 				<div class="input-group mb-2 my-1"
 					style="padding-left: 0; padding-right: 0;">
 					
