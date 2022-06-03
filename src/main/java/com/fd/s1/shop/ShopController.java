@@ -12,12 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fd.s1.admin.AdminService;
+import com.fd.s1.delivery.DeliveryService;
+import com.fd.s1.delivery.OrderDetailVO;
+import com.fd.s1.delivery.OrdersVO;
 import com.fd.s1.member.MemberVO;
 import com.fd.s1.util.Pager;
 
@@ -30,6 +34,9 @@ public class ShopController {
 	private ShopService shopService;
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private DeliveryService deliveryService;
+	
 	
 	@GetMapping("sellerMain")
 	public ModelAndView getMain() throws Exception {
@@ -209,4 +216,46 @@ public class ShopController {
 		return mv;
 
 	}
+	
+	@GetMapping("shopOrderList")
+	public ModelAndView getShopOrderList(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		OrdersVO ordersVO = new OrdersVO();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		ShopVO shopVO = shopService.getShopNum(memberVO);
+		ordersVO.setShopNum(shopVO.getShopNum());
+		List<OrdersVO> ar = shopService.getShopOrderList(ordersVO);
+		mv.setViewName("shop/shopOrderList");
+		mv.addObject("list", ar);
+		return mv;
+	}
+	
+	@GetMapping("shopOrderDetail")
+	public ModelAndView getShopOrderDetail(OrderDetailVO orderDetailVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<OrderDetailVO> ar = deliveryService.getOrderDetail(orderDetailVO);
+		mv.setViewName("shop/shopOrderDetail");
+		mv.addObject("list", ar);
+		return mv;
+	}
+	
+	@GetMapping("settlement")
+	public ModelAndView settlementList()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("shop/settlement");
+		return mv;
+	}
+	@PostMapping("settlementList")
+	public ModelAndView settlementList(SettlementVO settlementVO, HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		ShopVO shopVO = shopService.getShopNum(memberVO);
+		settlementVO.setShopNum(shopVO.getShopNum());
+		List<SettlementVO> ar = shopService.getSettlement(settlementVO);
+		mv.addObject("list", ar);
+		mv.setViewName("common/settlementResult");
+		return mv;
+	}
+	
+	
 }

@@ -5,12 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>DELIVERY HOME</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+	<link href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/200px-McDonald%27s_Golden_Arches.svg.png" rel="shortcut icon" type="image/x-icon">
 
 </head>
 <body>
@@ -69,8 +70,7 @@
 									class="card-img-top" alt="...">
 								<div class="card-body">
 									<p class="card-text">${vo.menuVO.menuName}</p>
-									<p class="card-text price" id="menu${vo.menuNum}">가격 ₩
-										${vo.menuVO.price}</p>
+									<p class="card-text price" id="menu${vo.menuNum}">가격 ₩  ${vo.menuVO.price}</p>
 									<c:if test="${not empty member}">
 										<button class="btn btn-success cartAdd"
 											data-num="${vo.menuNum}">카트에 담기</button>
@@ -93,7 +93,6 @@
 			let price = '#menu' + $(this).attr('data-num');
 			let formData = new FormData();
 			formData.append("menuNum", menuNum);
-			formData.append("totalPrice", $(price).html());
 			formData.append("shopNum", $("#shopNum").val());
 
 			$.ajax({

@@ -10,7 +10,7 @@ public class CartVO {
 	private Long cartNum;
 	private String id;
 	private Integer menuNum;
-	private Long shopNum;
+	private Integer shopNum;
 	private Long count;
 	private Long totalPrice;
 	

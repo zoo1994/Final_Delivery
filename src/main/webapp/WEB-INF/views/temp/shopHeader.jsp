@@ -41,10 +41,10 @@
                             <span class="material-symbols-outlined">request_quote</span><span class="ms-1 d-none d-sm-inline">주문정산</span> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">&nbsp;&nbsp;주문내역</span></a>
+                                <a href="./shopOrderList" class="nav-link px-0"> <span class="d-none d-sm-inline">&nbsp;&nbsp;주문내역</span></a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">&nbsp;&nbsp;정산내역</span></a>
+                                <a href="./settlement" class="nav-link px-0"> <span class="d-none d-sm-inline">&nbsp;&nbsp;정산내역</span></a>
                             </li>
                         </ul>
                     </li>

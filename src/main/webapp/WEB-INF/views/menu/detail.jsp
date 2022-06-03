@@ -29,7 +29,8 @@
 }
 
 </style>
-<title>Insert title here</title>
+<title>메뉴상세</title>
+<link href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/200px-McDonald%27s_Golden_Arches.svg.png" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
 <c:import url="../temp/header.jsp"></c:import>

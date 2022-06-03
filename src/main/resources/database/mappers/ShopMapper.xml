@@ -88,6 +88,26 @@
 	 		</association>
 		</resultMap>
     	
+    	<select id="getShopOrderList" parameterType="OrdersVO" resultType="OrdersVO">
+    	SELECT * 
+    	FROM ORDERS
+    	WHERE SHOPNUM=#{shopNum}
+    	ORDER BY DELINUM DESC
+    	</select>
+    	
+    	<select id="getSettlement" parameterType="SettlementVO" resultType="SettlementVO">
+    	SELECT M.MENUNAME MENUNAME,SUM(OD.ORDERCOUNT) SUMC,SUM(OD.MENUPRICE) SUMP  
+		FROM ORDERDETAIL OD
+		LEFT JOIN ORDERS O
+		USING (DELINUM)
+		LEFT JOIN MENU M 
+		USING (MENUNUM)
+		WHERE O.SHOPNUM = #{shopNum} AND
+		O.ORDERDATE BETWEEN #{startDate} AND #{endDate}
+		GROUP BY M.MENUNUM
+		ORDER BY SUM(OD.MENUPRICE) ASC
+    	</select>
+    	
     	
     	<update id="setUpdateSale" parameterType="ShopMenuVO">
     		UPDATE SHOPMENU SET SALE=#{sale} WHERE SHOPNUM=#{shopNum} and MENUNUM=#{menuNum}

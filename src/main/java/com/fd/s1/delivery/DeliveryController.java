@@ -31,6 +31,8 @@ public class DeliveryController {
 	@Autowired
 	private CouponService couponService;
 	@Autowired
+	private MenuService menuService;
+	@Autowired
 	private ShopService shopService;
 	@Autowired
 	private DeliveryService deliveryService;
@@ -148,6 +150,10 @@ public class DeliveryController {
 		ModelAndView mv = new ModelAndView();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		cartVO.setId(memberVO.getId());
+		MenuVO menuVO = new MenuVO();
+		menuVO.setMenuNum(cartVO.getMenuNum());
+		menuVO = menuService.getDetail(menuVO);
+		cartVO.setTotalPrice(menuVO.getPrice());
 		int result = deliveryService.setCartAdd(cartVO);
 		mv.addObject("result", result);		
 		mv.setViewName("common/result");
@@ -199,6 +205,11 @@ public class DeliveryController {
 		ModelAndView mv = new ModelAndView();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		ordersVO.setId(memberVO.getId());
+		CartVO cartVO = new CartVO();
+		cartVO.setId(memberVO.getId());
+		List<CartVO> ar = deliveryService.getCart(cartVO);
+		int shopNum = ar.get(0).getShopNum();
+		ordersVO.setShopNum(shopNum);
 		int result= deliveryService.orderAdd(ordersVO);
 		mv.addObject("result", result);
 		mv.setViewName("common/result");
