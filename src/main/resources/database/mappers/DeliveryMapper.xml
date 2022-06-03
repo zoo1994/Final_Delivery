@@ -6,11 +6,14 @@
     <mapper namespace="com.fd.s1.delivery.DeliveryMapper">
     
     <select id="shopList" parameterType="Pager" resultType="ShopVO">
-    	SELECT * FROM SHOP
+    	SELECT * FROM SHOP WHERE SHOPNAME LIKE concat('%', #{search},'%') or
+	 		LOCATION LIKE concat('%', #{search}, '%') 
+	 		ORDER BY SHOPNAME DESC LIMIT #{startRow}, #{perPage}
     </select>
     
     <select id="getShopTotal" resultType="Long">
-		SELECT COUNT(SHOPNUM) FROM SHOP
+		SELECT COUNT(SHOPNUM) FROM SHOP WHERE SHOPNAME LIKE concat('%', #{search},'%') or
+	 		LOCATION LIKE concat('%', #{search}, '%') 
 	</select>
     
     <select id="findShops" parameterType="Double" resultType="ShopVO">

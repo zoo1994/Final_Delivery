@@ -1,13 +1,13 @@
 const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 const geocoder = new kakao.maps.services.Geocoder();
 let shopList = document.getElementsByClassName("shopList");
+let selectShop = document.getElementsByClassName("selectShop");
 let x = 126.979502322878;
 let y = 37.5668136314671;
-
-
-for(const i of shopList){
-	console.log(i.innerText);
-	console.log(i.getAttribute("data-x"));
+//검색한 경우 지도의 중심좌표 첫번쨰 매장으로 바꿔주기
+if(shopList[0].getAttribute("data-search")!=""){
+	x = shopList[0].getAttribute("data-x");
+	y = shopList[0].getAttribute("data-y");
 }
 
 let options = { //지도를 생성할 때 필요한 기본 옵션
@@ -15,59 +15,31 @@ let options = { //지도를 생성할 때 필요한 기본 옵션
 		level: 4 //지도의 레벨(확대, 축소 정도)
 	}
 let map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-		
-			
-function showPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 참고 항목 변수
+const imageSrc = "../resources/image/logoMap.png";
+    
+for (const i of shopList) {
+    
+    // 마커 이미지의 이미지 크기 입니다
+    const imageSize = new kakao.maps.Size(32, 32); 
+    
+    // 마커 이미지를 생성합니다    
+    const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+    
+    // 마커를 생성합니다
+    const marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: new kakao.maps.LatLng(i.getAttribute("data-y"), i.getAttribute("data-x")), // 마커를 표시할 위치
+        title : i.innerText, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지 
+    }); 
 
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
+}
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("postcode").value = data.zonecode;
-                document.getElementById("roadAddress").value = roadAddr;
-                document.getElementById("jibunAddress").value = data.jibunAddress;
-                
-                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                if(roadAddr !== ''){
-                    document.getElementById("extraAddress").value = extraRoadAddr;
-                } else {
-                    document.getElementById("extraAddress").value = '';
-                }
+for(const i of selectShop){
+	i.addEventListener("click",function(){
+		console.log(i.getAttribute("data-shopName"))
+	});
+}
 
-                var guideTextBox = document.getElementById("guide");
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    guideTextBox.style.display = 'block';
 
-                } else if(data.autoJibunAddress) {
-                    var expJibunAddr = data.autoJibunAddress;
-                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                    guideTextBox.style.display = 'none';
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
-            }
-        }).open();
-    }
