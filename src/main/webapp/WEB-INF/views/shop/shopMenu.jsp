@@ -28,11 +28,15 @@
 		    <div class="row flex-nowrap">
 		  <c:import url="../temp/shopHeader.jsp"></c:import> 
 
-        <div class="col-6 py-3">
+	<div class="container" style="margin-left:220px; margin-top:20px;">
+        <div class="col-8 py-3">
         <div class="row">
-        	<h1>맥도날드 ${shopMaster.shopName}점, ${member.id}님</h1>
+        	<h1>[맥도날드] ${shopMaster.shopName}점, ${member.id}님</h1>
         </div>
-      <table class="table table-hover">
+        <div class="d-grid gap-3">
+ 			 <div class="p-2 bg-light border" style="margin-bottom:15px;">프랜차이즈 본사 메뉴판이 연동되어 있는 점포로, 메뉴 판매 상태 변경만 가능합니다.</div>
+		</div>
+      <table class="table table-hover ">
 	<thead>
 		<tr class="table-success">
 			<th>Num</th>
@@ -46,7 +50,7 @@
             <c:forEach items="${allMenuList}" var="vo">
 			<tr>
 				<td>${vo.menuNum}</td>
-				<td class="detail" data-num="${vo.menuNum}">${vo.menuVO.menuName}</td>
+				<td class="detail fw-bolder" data-num="${vo.menuNum}">${vo.menuVO.menuName}</td>
 				<td>${vo.menuVO.price}원</td>	
 
 				<%-- <td>
@@ -75,6 +79,7 @@
 	</tbody>
 </table>
        		          </div> 
+       		          </div>
         </div>
     </div>
 <script type="text/javascript">

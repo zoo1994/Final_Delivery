@@ -15,6 +15,7 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fd.s1.coupon.CouponMapper;
 import com.fd.s1.coupon.CouponVO;
@@ -22,6 +23,7 @@ import com.fd.s1.coupon.UserCouponVO;
 import com.fd.s1.email.EmailVO;
 import com.fd.s1.member.MemberVO;
 import com.fd.s1.shop.ShopVO;
+import com.fd.s1.util.FileManager;
 import com.fd.s1.util.Pager;
 
 @Service
@@ -32,6 +34,8 @@ public class AdminService {
 	private AdminMapper adminMapper;
 	@Autowired
 	private CouponMapper couponMapper;		
+	@Autowired
+	private FileManager fileManager;
 	
 	public ShopVO getShopDetail(ShopVO shopVO) throws Exception {
 		return adminMapper.getShopDetail(shopVO);
@@ -118,6 +122,40 @@ public class AdminService {
 		return adminMapper.setCouponDelete(couponVO);
 	}
 	
+	public List<BannerFileVO> getBannerFileList() throws Exception {
+		return adminMapper.getBannerFileList();
+	}
+	
+	public int setBannerFileAdd(MultipartFile [] files) throws Exception {
+		int result = 0;
+		if(files != null) {
+			for(MultipartFile f : files) {
+				if(f.isEmpty()) {
+					continue;
+				}
+				String fileName = fileManager.fileSave(f, "resources/upload/banner/");
+				BannerFileVO bannerFileVO = new BannerFileVO();
+				bannerFileVO.setFileName(fileName);
+				bannerFileVO.setOriName(f.getOriginalFilename());
+				result = adminMapper.setBannerFileAdd(bannerFileVO);
+				if(result < 1) {
+					throw new Exception();
+				}
+			}
+		}
+		return result;
+	}
+	
+	public int setBannerFileDelete(BannerFileVO bannerFileVO) throws Exception {
+		String fileName = bannerFileVO.getFileName();
+		String path = "resources/upload/banner/";
+		int result = 0;
+		boolean check = fileManager.remove(fileName, path);
+		if(check) {
+			result = adminMapper.setBannerFileDelete(bannerFileVO);
+		}
+		return result;
+	}
 	
 	//관리자 이메일 - count
 	public Long getEmailListCount(Pager pager) throws Exception{	

@@ -38,4 +38,6 @@ public interface MenuMapper {
 	public int setIngredientUpdate(IngredientVO ingredientVO) throws Exception;
 	
 	public int setShopMenuAdd(ShopMenuVO shopMenuVO) throws Exception;
+	
+	public Long getTotal(Pager pager)throws Exception;
 }

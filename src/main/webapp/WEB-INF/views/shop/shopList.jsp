@@ -86,6 +86,9 @@
 		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
 }
 
+	.shopList {
+		cursor:pointer;
+	}
 </style>
 </head>
 <body>
@@ -120,32 +123,21 @@
 		<div class="row mt-4" id="shopListResult">
 			<%-- 			<input type="hidden" id="admin_shop_count" value="${count}"> --%>
 			<table class="table" style="">
-				<thead class="table-light">
+				<thead class="table-warning">
 					<tr>
 						<th class="col text-center align-items-center" style="">매장이름</th>
-						<th class="col text-center align-items-center" style="">매장위치</th>
+						<th class="col text-center align-items-center" style="">매장위치(도로명주소)</th>
 						<th class="col text-center align-items-center" style="">전화번호</th>
-						<th class="col text-center align-items-center" style="">오픈시간</th>
-						<th class="col text-center align-items-center" style="">마감시간</th>
-						<th class="col text-center align-items-center" style="">운영여부</th>
+						<th class="col text-center align-items-center" style="">운영시간</th>
 					</tr>
 				</thead>
 				<tbody class="table-light">
 					<c:forEach items="${list}" var="vo">
-						<tr style="height: 60px;">
+						<tr style="height: 60px;" data-x="${vo.x_axis}" data-y="${vo.y_axis}" class="shopList">
 							<td class="col text-center align-items-center fw-bolder" style="">${vo.shopName}</td>
 							<td class="col text-center align-items-center" style="">${vo.location}</td>
 							<td class="col text-center align-items-center" style="">${vo.shopPhone}</td>
-							<td class="col text-center align-items-center" style="">${vo.openTime}</td>
-							<td class="col text-center align-items-center" style="">${vo.closeTime}</td>
-							<td class="col text-center align-items-center" style=""><c:choose>
-									<c:when test="${vo.open eq 0}">
-							    				운영중
-							    			</c:when>
-									<c:otherwise>
-							    				운영중지
-							    			</c:otherwise>
-								</c:choose></td>
+							<td class="col text-center align-items-center" style="">${vo.openTime}시 ~ ${vo.closeTime}시</td>
 						</tr>
 					</c:forEach>
 
@@ -296,7 +288,16 @@
 		// 지도의 우측에 확대 축소 컨트롤을 추가한다
 		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-
+		//목록에서 매장 클릭시 해당 매장 좌표로 이동
+		$(".shopList").click(function() {
+			let x_axis = $(this).attr("data-x");
+			let y_axis = $(this).attr("data-y");
+			let moveLatLon = new kakao.maps.LatLng(y_axis,
+					x_axis);
+			 map.panTo(moveLatLon);   
+						
+		})
+		
 	</script>
 </body>
 </html>

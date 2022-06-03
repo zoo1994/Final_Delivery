@@ -3,6 +3,7 @@ package com.fd.s1.admin;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fd.s1.coupon.CouponVO;
 import com.fd.s1.email.EmailVO;
@@ -33,6 +34,10 @@ public interface AdminMapper {
 	public String [] getAll()throws Exception;
 	public String [] getSeller()throws Exception;
 	public String [] getUser()throws Exception;
+	public List<BannerFileVO> getBannerFileList() throws Exception;
+	public int setBannerFileAdd(BannerFileVO bannerFileVO) throws Exception;
+	public int setBannerFileDelete(BannerFileVO bannerFileVO) throws Exception;
+	
 //	public int setCouponDelete(CouponVO couponVO)throws Exception;
 	
 	

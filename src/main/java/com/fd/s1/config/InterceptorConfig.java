@@ -25,13 +25,15 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(adminInterceptor)
-				.addPathPatterns("/menu/menuManage");
-		
+
 		registry.addInterceptor(memberInterceptor)
 				.addPathPatterns("/member/*")
 				.addPathPatterns("/delivery/*")
 				.addPathPatterns("/qna/*")
+				.addPathPatterns("/admin/menuManage")
+				.addPathPatterns("/menu/manageDetail")
+				.addPathPatterns("/menu/update")
+				.addPathPatterns("admin/bannerManage")
 				.excludePathPatterns("/member/join")
 				.excludePathPatterns("/member/login")
 				.excludePathPatterns("/member/idCheck")
@@ -39,8 +41,16 @@ public class InterceptorConfig implements WebMvcConfigurer{
 				.excludePathPatterns("/member/findPw")
 				.excludePathPatterns("/member/pwChange");
 		
-		registry.addInterceptor(sellerInterceptor) 
-				.addPathPatterns("/shop/shopMenu");
+		registry.addInterceptor(adminInterceptor)
+				.addPathPatterns("/admin/menuManage")
+				.addPathPatterns("/menu/update")
+				.addPathPatterns("/menu/delete")
+				.addPathPatterns("/admin/bannerManage")
+				;
+		
+		registry.addInterceptor(sellerInterceptor)
+				.addPathPatterns("/shop/shopMenu")
+				.addPathPatterns("/shop/shopSystem");
 		
 		registry.addInterceptor(locationInterceptor)
 				.addPathPatterns("/delivery/*")

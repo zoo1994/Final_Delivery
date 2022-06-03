@@ -27,10 +27,12 @@
 	<div class="container-fluid">
 		<div class="row flex-nowrap">
 		  <c:import url="../temp/shopHeader.jsp"></c:import> 
-		         <div class="col-6 py-3">
+		  <div class="container" style="width:100%; border:1px solid black;">
+		         <div class="col-8 py-3">
+		         <div style="margin-left:180px; width:100%; text-align: center">
 		<div class="row">
 			<h1>맥도날드 ${vo.shopName}점</h1>
-			      <div class="row mt-4 col-5">
+			      <div class="row mt-4 col-5" style="background-color:#FFF8DC; margin:0 auto;">
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
 				    <span class="input-group-text" id="inputGroup-sizing-default11">매장번호</span>
@@ -147,11 +149,13 @@
 				</div>
 				<div id="distanceError"></div>
 				
+			</div>
 				<div>
 					<button type="button" id="updateBtn" class="btn btn-primary">변경하기</button>				
 				</div>
 				
 				
+			</div>
 			</div>
 			</div>
 			</div>
