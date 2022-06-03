@@ -67,12 +67,12 @@ public class MenuController {
 	
 	//전체메뉴용
 	@GetMapping("list1")
-	public ModelAndView getList1(MenuVO menuVO, Pager pager, HttpSession session, Integer category) throws Exception {
+	public ModelAndView getList1(MenuVO menuVO, Pager pager, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		pager.setCategory(menuVO.getCategory());
-		System.out.println("category : "+category);
+		System.out.println("category : "+pager.getCategory());
 		pager.setPerPage(6);
-		Long count = menuService.getTotal(pager);
+		Long count = menuService.getTotalCount(pager);
+		System.out.println("count : "+count);
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		if(memberVO == null) {
 			pager.setUserType(2L);
@@ -85,7 +85,7 @@ public class MenuController {
 		mv.addObject("list", ar);
 		mv.addObject("count",count);
 		mv.addObject("pager",pager);
-		mv.addObject("category",menuVO.getCategory());
+		mv.addObject("category",pager.getCategory());
 		mv.setViewName("menu/menuList");
 		return mv;
 	}
@@ -198,7 +198,7 @@ public class MenuController {
 			result = menuService.setIngredientUpdate(ingredientVO);
 		}
 		
-		mv.setViewName("redirect:./menuManage");
+		mv.setViewName("redirect:../admin/menuManage");
 		
 		return mv;
 	}

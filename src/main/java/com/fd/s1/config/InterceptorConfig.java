@@ -46,6 +46,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
 				.addPathPatterns("/menu/update")
 				.addPathPatterns("/menu/delete")
 				.addPathPatterns("/admin/bannerManage")
+				.addPathPatterns("/menu/manageDetail")
+				.addPathPatterns("/menu/add")
 				;
 		
 		registry.addInterceptor(sellerInterceptor)

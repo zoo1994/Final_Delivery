@@ -29,28 +29,21 @@
 		  <c:import url="../temp/shopHeader.jsp"></c:import> 
 		  <div class="container" style="width:100%; border:1px solid black;">
 		         <div class="col-8 py-3">
-		         <div style="margin-left:180px; width:100%; text-align: center">
+		         <div class="row text-center" style="margin-left:340px;">
+		         	<h1>해당 점포 정보</h1>
+		         </div>
+		         <div style="margin-left:180px; width:100%; text-align: center; background-color:#FFFAF0; height:800px; ">
 		<div class="row">
-			<h1>맥도날드 ${vo.shopName}점</h1>
-			      <div class="row mt-4 col-5" style="background-color:#FFF8DC; margin:0 auto;">
-				<div class="input-group mb-3">
-				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default11">매장번호</span>
-				  </div>
-				  <input readonly type="text" id="shopNum" value="${vo.shopNum}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			<h3 class="mt-4">맥도날드 [${vo.shopName}]점</h3>
+			      <div class="row mt-4 col-5" style=" margin:0 auto;">
+				
+				<div class="input-group mb-5">
+				    <label for="id" class="form-label me-2">점주</label>
+				  <input readonly type="text" id="id" value="${vo.id}" class="form-control" aria-label="Sizing example input">
 				</div>
 				
-				<div class="input-group mb-3">
-				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default22">점주　　</span>
-				  </div>
-				  <input readonly type="text" id="id" value="${vo.id}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				</div>
-				
-				<div class="input-group mb-3">
-				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default33">매장이름</span>
-				  </div>
+				<div class="input-group mb-5">
+				   <label for="shopName" class="form-label me-2">점포명</label>
 				  <input type="text" id="shopName" value="${vo.shopName}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				
@@ -60,10 +53,8 @@
 				  </div>
 				  <input type="text" id="location" value="${vo.location}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div> --%>
-				<div class="input-group mb-3">
-				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default55">전화번호</span>
-				  </div>
+				<div class="input-group mb-5">
+				   <label for="shopPhone" class="form-label me-2">매장번호</label>
 				  <input type="text" id="shopPhone" value="${vo.shopPhone}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				
@@ -82,10 +73,8 @@
 				  	</div>
 				</div>				 --%>
 				
-				<div class="input-group mb-3">
-				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default33">매장 운영시간</span>
-				  </div>
+				<div class="input-group mb-5">
+				   <label for="time" class="form-label me-2">매장 운영시간</label>
 				 <select class="form-select" aria-label="Default select example" name="openTime" id="openTime">
 				 	  <option>오픈시간</option>
 				 	  <option value="0">00:00</option>
@@ -141,17 +130,15 @@
 					  <option value="23">23:00</option>
 					</select>
 				</div>
-				<div class="input-group mb-3">
-				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default33">배달거리(m)</span>
-				  </div>
+				<div class="input-group mb-5">
+				  <label for="distance" class="form-label me-2">배달거리(m)</label>
 					<input type="text" id="distance" value="${vo.distance}" placeholder="m단위로 입력" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				<div id="distanceError"></div>
 				
 			</div>
 				<div>
-					<button type="button" id="updateBtn" class="btn btn-primary">변경하기</button>				
+					<button type="button" id="updateBtn" class="btn btn-info mt-4">변경하기</button>				
 				</div>
 				
 				

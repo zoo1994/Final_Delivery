@@ -25,6 +25,10 @@ public class MenuService {
 	@Autowired
 	private AdminMapper adminMapper;
 	
+	public Long getTotalCount(Pager pager) throws Exception {
+		return menuMapper.getTotalCount(pager);
+	}
+	
 	public Long getTotal(Pager pager) throws Exception {
 		return menuMapper.getTotal(pager);
 	}

@@ -145,34 +145,22 @@
 			</table>
 		</div>
 
-		<nav aria-label="Page navigation example mt-5 bs-warning"
-			style="margin-top: 20px;">
-			<span class="col-2" style="display: inline-block;"></span> <span
-				class="col-8" style="display: inline-block;">
-				<ul class="pagination justify-content-center"
-					style="display: flex; width: 90%; margin: 0 auto;">
-					<%-- <li class="page-item"><button class="page-link" href="./list?pn=${pager.startNum-1}"><<</button></li> --%>
-					<c:if test="${pager.pre}">
-						<li class="page-item"><button class="page-link"
-								data-page="${pager.startNum-1}" data-search="${pager.search}">prev</button></li>
+			<div class="d-flex justify-content-center">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							<li class="page-item"><a class="page-link"
+								href="./shopList?pn=${pager.pre?pager.startNum-1:1}&kind=${kind}&search=${search}">&lt;</a></li>
+							<c:forEach begin="${pager.startNum}" end="${pager.lastNum}"
+								var="i">
+								<li class="page-item"><a class="page-link"
+									href="./shopList?pn=${i}&kind=${kind}&search=${search}">${i}</a></li>
+							</c:forEach>
 
-
-					</c:if>
-					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<!--  data-page="${pager.startNum-1}" data-kind="${pager.kind}" data-search="=${pager.search} -->
-						<li class="page-item"><button class="page-link"
-								data-page="${i}" data-search="${pager.search}">${i}</button></li>
-					</c:forEach>
-					<c:if test="${pager.next}">
-						<li class="page-item"><button class="page-link"
-								data-page="${pager.lastNum+1}" data-search="${pager.search}">next</button></li>
-					</c:if>
-					<%--  <li class="page-item"><button class="page-link" href="./list?pn=${pager.lastNum+1}">>></button></li> --%>
-				</ul>
-			</span> <span class="col-2"
-				style="display: inline-block; text-align: end; width: 15%;">
-			</span>
-		</nav>
+							<li class="page-item"><a class="page-link"
+								href="./shopList?pn=${pager.next? pager.lastNum+1:pager.lastNum}&kind=${kind}&search=${search}">&gt;</a></li>
+						</ul>
+					</nav>
+				</div>
 
 
 	</div>

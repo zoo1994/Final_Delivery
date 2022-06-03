@@ -74,7 +74,10 @@
 				    </div>
 				  </div>		
 				  
+						  
 			<div class="row mb-3">
+				<h6 class="col-2">판매상태</h6> 
+			<div class="col-10">
 			<div class="form-check">
 			  <!-- <input class="form-check-input sale" type="radio" value="1" name="sale"> -->
 			  <form:radiobutton path="menuSale" cssClass="form-check-input sale" value="1" id="flexRadioDefault1"/>
@@ -100,11 +103,12 @@
 		      	<form:errors path="menuSale"></form:errors>
 		      </div>
 		  </div>
+		  </div>
 	
-		  	<button id="fileAdd" type="button" class="btn btn-danger d-block my-4">FileADD</button>  
+		  	<button id="fileAdd" type="button" class="btn btn-success d-block my-4">새로운 이미지 추가</button>  
 		  		<div>
 					<c:if test="${not empty menuVO.menuFileVO}">
-						<h4>${menuVO.menuFileVO.oriName}<button class="del btn btn-danger" type="button" data-num="${menuVO.menuFileVO.fileNum}">DELETE</button></h4>
+						<h4>기존 파일 : ${menuVO.menuFileVO.oriName}<button class="del btn btn-danger" type="button" data-num="${menuVO.menuFileVO.fileNum}">삭제</button></h4>
 					</c:if>
 				</div>  
 				
@@ -139,14 +143,16 @@
 				  </tbody>
 				</table>
 		  </div>
-		  
-		  	  <button type="submit" class="btn btn-primary" id="updateBtn">수정하기</button>
+		  <div class="row">
+		  	  <button type="submit" class="btn btn-primary" id="updateBtn" style="width:200px; margin:0 auto;">수정하기</button>
+			</div>
 		</form:form>
 	
 	
-	<c:import url="../temp/footer.jsp"></c:import>
 	
 </div>	
+</div>
+	<c:import url="../temp/footer.jsp"></c:import>
 	
 	
 	
