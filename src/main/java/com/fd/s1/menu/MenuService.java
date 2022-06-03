@@ -25,6 +25,10 @@ public class MenuService {
 	@Autowired
 	private AdminMapper adminMapper;
 	
+	public Long getTotal(Pager pager) throws Exception {
+		return menuMapper.getTotal(pager);
+	}
+	
 	public int setDeleteMenu(ShopMenuVO shopMenuVO) throws Exception {
 		return menuMapper.setDeleteMenu(shopMenuVO);
 	}

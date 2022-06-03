@@ -5,7 +5,7 @@
  	$(".detail").click(function() {
 		console.log("click");
 		let num = $(this).attr("data-num");
-		location.href="./manageDetail?menuNum="+num;
+		location.href="../menu/manageDetail?menuNum="+num;
 	});
 	
 	$(".updateBtn").click(function() {
@@ -31,5 +31,31 @@
 				
 			}
 		});   
+	});
+	
+	$(".deleteBtn").click(function() {
+		let num = $(this).attr("data-num");
+		let selector = $(this);
+		if(confirm("정말 삭제하시겠습니까?")) {	
+			$.ajax({
+				type:"get",
+				url:"../menu/delete",
+				data:{
+					menuNum:num
+				},
+				success:function(data) {
+					if(data.trim() == 1) {
+						alert("삭제되었습니다.");
+						$(selector).parent().parent().remove();		
+					}else {
+						alert("삭제 실패했습니다.");
+					}
+					
+				}
+			});
+		}else {	
+      	  return false;
+		}
+		
 	});
 	

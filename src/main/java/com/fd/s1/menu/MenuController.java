@@ -44,6 +44,7 @@ public class MenuController {
 		return mv;
 	}
 	
+	//관리자 메뉴 관리용
 	@GetMapping("list")
 	public ModelAndView getList(MenuVO menuVO, Pager pager, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -64,47 +65,32 @@ public class MenuController {
 		return mv;
 	}
 	
-	//관리자 메뉴 list
-	@GetMapping("menuManage")
-	public ModelAndView getMenuManage(MenuVO menuVO,Pager pager, HttpSession session) throws Exception {
+	//전체메뉴용
+	@GetMapping("list1")
+	public ModelAndView getList1(MenuVO menuVO, Pager pager, HttpSession session, Integer category) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		pager.setUserType(memberVO.getUserType());			
 		pager.setCategory(menuVO.getCategory());
+		System.out.println("category : "+category);
+		pager.setPerPage(6);
+		Long count = menuService.getTotal(pager);
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		if(memberVO == null) {
+			pager.setUserType(2L);
+		}else if(memberVO.getUserType() == 0L) {
+			pager.setUserType(memberVO.getUserType());			 
+		}else {
+			pager.setUserType(1L);
+		}
 		List<MenuVO> ar = menuService.getList(pager);
-		mv.addObject("list",ar);
-		mv.setViewName("menu/menuManage");
+		mv.addObject("list", ar);
+		mv.addObject("count",count);
+		mv.addObject("pager",pager);
+		mv.addObject("category",menuVO.getCategory());
+		mv.setViewName("menu/menuList");
 		return mv;
 	}
 	
-	//메뉴 상태 변경용 ajax
-	@PostMapping("menuManage")
-	public ModelAndView getMenuManage(MenuVO menuVO, Pager pager) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		int result = menuService.setUpdateSale(menuVO);
-		Long count = adminService.getShopListCount(pager);
-		System.out.println("count : "+count);
-		List<ShopVO> ar = adminService.getShop(pager, count);
-		if(menuVO.getMenuSale() != 1) {
-			for(int i = 0; i<ar.size();i++) {
-				ShopMenuVO shopMenuVO = new ShopMenuVO();
-				shopMenuVO.setMenuNum(menuVO.getMenuNum());
-				result = menuService.setDeleteMenu(shopMenuVO);
-			}
-		}else {
-			for(int i = 0; i<ar.size();i++) {
-				ShopMenuVO shopMenuVO = new ShopMenuVO();
-				shopMenuVO.setMenuNum(menuVO.getMenuNum());
-				shopMenuVO.setShopNum(ar.get(i).getShopNum());
-				result = menuService.setShopMenuAdd(shopMenuVO);
-			}
-		}
-		
-		mv.setViewName("common/result");
-		mv.addObject("result",result);
-		
-		return mv;
-	}
+
 
 	
 	@GetMapping("detail")
@@ -173,7 +159,7 @@ public class MenuController {
 				result = menuService.setShopMenuAdd(shopMenuVO);
 			}
 		}
-		mv.setViewName("redirect:./menuManage");
+		mv.setViewName("redirect:../admin/menuManage");
 		
 		return mv;
 	}
@@ -220,8 +206,10 @@ public class MenuController {
 	@GetMapping("delete")
 	public ModelAndView setDeleAndView(MenuVO menuVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		System.out.println(menuVO.getMenuNum());
 		int result = menuService.setDelete(menuVO);
-		mv.setViewName("redirect:./menuManage");
+		mv.setViewName("common/result");
+		mv.addObject("result",result);
 		
 		return mv;
 	}
