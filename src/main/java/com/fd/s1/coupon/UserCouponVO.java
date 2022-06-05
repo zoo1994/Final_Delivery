@@ -16,9 +16,10 @@ public class UserCouponVO {
 //	@NotBlank(message = "쿠폰 8자를 입력하세요.")	//@Size(max = 8, min = 8)
 	private String couponNum;
 	private Date downDate;
+	private Date dueDate;
 	private Long usageStatus;
 	private CouponVO couponVO;
-
+	
 	//couponVO - activeDate
 	private Long activeDate;
 	

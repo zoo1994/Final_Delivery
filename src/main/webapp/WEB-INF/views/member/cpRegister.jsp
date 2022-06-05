@@ -32,16 +32,45 @@
 				</div>
 								
 				<div class="row justify-content-end">
-					<button type="submit" id="cpRegisterBtn" class="col-2 btn btn-outline-success" class="btn btn-primary">등록</button>
+					<button type="button" id="cpRegisterBtn" class="col-2 btn btn-outline-success" class="btn btn-primary">등록</button>
 				</div>
 				
 			</form:form>
 		</div>
 	</div>
 	<div class="container mt-5">
-		couponList
+		<div class="mb-3 container" id="userCouponResult">
 		
-							<div class="">
+		<c:forEach items="${list}" var="vo" varStatus="i">
+			<div style="display:inline-block; width: 30%; margin: 5px 1%; height: 180px; min-width:300px;  border: rgb(224,228,232) solid 2px; border-radius :5px;">
+				<div class="" style="display:inline-block; width: 70%;">
+					<input hidden id="couponId" value="213">
+					<strong style="text-align: left; margin: 0 20px; ">${vo.couponVO.couponName}</strong>
+					<div style="display: block; margin-top:30px; text-align:left; line-height: 33px;">
+						<p style="margin: -10px 25px;">할인금액 : ${vo.couponVO.discount}원</p>							
+						<p style="margin: -10px 25px;">~${vo.dueDate}</p>
+					</div>
+				</div>
+				<div class="" style="display:inline-block; text-align:center; height:100%; border-left:1px dashed; width: 27%;">
+					<div style=" margin: 50% 0; color: rgb(221,59,74); font-weight: bold; border-radius: 5px;">
+						<p><span>${vo.activeDate}</span>일</p>
+						<p>남음</p>
+					</div>
+				</div>
+			</div>		
+		</c:forEach>
+		
+																			
+		
+		
+		</div>					
+	</div>	
+	<!-- 					
+							<div class="" style="position: relative; width: 30%; min-width:200px; height:100px; border: 1px solid; background-color: #f8f9fa;">1</div>
+							<div class="" style="position: relative;  width: 30%; min-width:200px; border: 1px solid; background-color: #f8f9fa; ">2</div>
+							<div class="" style="position: relative;  width: 30%; min-width:200px; border: 1px solid; background-color: #f8f9fa; ">3</div> -->
+		
+					<div class="">
 						<article class="bbsCon">
 							<div class="bannerImg" style="text-align: center;">
 							    <c:forEach items="${vo.filesVO}" var="i">
@@ -86,6 +115,7 @@
 					</div>
 	</div>
 <c:import url="../temp/footer.jsp"></c:import>
+<script src="../resources/js/cpRegister.js"></script>
 <!-- 	<script type="text/javascript" src="../js/pwChange.js"></script> -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
