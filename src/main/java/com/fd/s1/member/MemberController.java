@@ -2,6 +2,7 @@ package com.fd.s1.member;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -90,8 +91,39 @@ public class MemberController {
 	}
 //	mypage - coupon 등록
 	@GetMapping("cpRegister")
-	public ModelAndView cpRegister(@ModelAttribute UserCouponVO userCouponVO)throws Exception{
+	public ModelAndView cpRegister(@ModelAttribute UserCouponVO userCouponVO, HttpSession session)throws Exception{				
 		ModelAndView mv = new ModelAndView();
+
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		if(memberVO == null) {
+			mv.setViewName("member/cpRegister");
+			return mv;
+		}
+
+
+		userCouponVO.setId(memberVO.getId());
+		List<UserCouponVO> userCouponVOs =  memberService.getUserCoupon(userCouponVO);
+
+		mv.addObject("list",userCouponVOs);
+		mv.setViewName("member/cpRegister");
+		return mv;
+	}
+
+	@GetMapping("cpRegister2")
+	public ModelAndView cpRegister2(@ModelAttribute UserCouponVO userCouponVO, HttpSession session)throws Exception{				
+		ModelAndView mv = new ModelAndView();
+
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		if(memberVO == null) {
+			mv.setViewName("member/cpRegister");
+			return mv;
+		}
+
+
+		userCouponVO.setId(memberVO.getId());
+		List<UserCouponVO> userCouponVOs =  memberService.getUserCoupon(userCouponVO);
+
+		mv.addObject("list",userCouponVOs);
 		mv.setViewName("member/cpRegister");
 		return mv;
 	}
@@ -99,25 +131,28 @@ public class MemberController {
 	@PostMapping("cpRegister")
 	public ModelAndView cpRegister(@Valid UserCouponVO userCouponVO, BindingResult bindingResult, HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		
+/*		
 		if(userCouponVO.getCouponNum().length() !=8) {
 			bindingResult.rejectValue("couponNum","member.couponNum.size");
 			mv.setViewName("member/cpRegister");
 			return mv;
 		}
+*/
+		
 		MemberVO memberVO = (MemberVO)(session.getAttribute("member"));
 		userCouponVO.setId(memberVO.getId());
 		int result = memberService.setCpRegister(userCouponVO);
-		
+
+/*
 		if(result==0) {
 			bindingResult.rejectValue("couponNum","member.couponNum.fail");
 			mv.setViewName("member/cpRegister");
 			return mv;
 		}
+*/	
 		
-		
-		bindingResult.rejectValue("couponNum","member.couponNum.success");
-		mv.setViewName("member/cpRegister");
+//		bindingResult.rejectValue("couponNum","member.couponNum.success");
+		mv.setViewName("common/result");
 		
 /*		
 		String path = "/"; String message = "비밀번호 변경이 완료되었습니다.";

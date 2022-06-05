@@ -75,5 +75,8 @@ public class MemberService {
 		return memberMapper.setCpRegister(userCouponVO);
 	}
 	
+	public List<UserCouponVO> getUserCoupon(UserCouponVO userCouponVO)throws Exception{
+		return memberMapper.getUserCoupon(userCouponVO);
+	}
 	
 }
