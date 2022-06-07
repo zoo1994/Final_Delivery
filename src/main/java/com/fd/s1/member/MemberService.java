@@ -66,6 +66,10 @@ public class MemberService {
 	public MemberVO login(MemberVO memberVO)throws Exception{
 		return memberMapper.login(memberVO);
 	}
+	public int setUserLog(MemberVO memberVO)throws Exception{		
+		return memberMapper.setUserLog(memberVO);
+	}	
+	
 	
 	public int setCpRegister(UserCouponVO userCouponVO)throws Exception{
 		

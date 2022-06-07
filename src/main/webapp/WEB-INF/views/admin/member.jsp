@@ -27,11 +27,11 @@
 	<!-- 사이드바 끝 -->
 	
 	
-	<div class="d-flex" style="height: 2000px;">
+	<div class="d-flex" style="min-height : 1000px;">
 		<div class="" style="position: relative; width: 200px; min-width:150px; background-color: gray;"></div>
 		<div class="" style="position: relative;  width: 100%; border: 1px solid;">
 			<div style="width: 100%; height:100%; background-color: #dee2e6;">
-				<div class="container">
+				<div class="container" style=" margin-bottom: 200px;">
 					<div class="d-flex mb-3">
 						<input hidden name="category" type="text" id="categoryResult" value="1">
 						<span class="col-9  mt-5">
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 	</div>
-	<div style="height: 1500px; width: 4000px;"></div>
+	<div style=""></div>
 <div style="margin-bottom: 200px;"></div>
 
 

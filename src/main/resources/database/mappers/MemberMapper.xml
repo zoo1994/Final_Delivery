@@ -66,6 +66,11 @@
     		SELECT * FROM USER WHERE ID=#{id} AND PW = #{pw}
     	</select>
     	
+    	<insert id="setUserLog" parameterType="MemberVO">
+    		INSERT INTO USERLOG (LOGNUM,ID,ACCESS)
+    		VALUES (NULL,#{id},NOW())
+    	</insert>
+    	
     	<select id="cpCheck" parameterType="UserCouponVO" resultType="Integer">
     		SELECT COUNT(*) FROM USERCOUPON WHERE ID IS NULL AND USAGESTATUS = 1 AND COUPONNUM =#{couponNum}
     	</select>

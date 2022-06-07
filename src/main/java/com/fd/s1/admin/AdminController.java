@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -391,6 +392,54 @@ public class AdminController {
 		return mv;		
 	}
 	
+	
+	//관리자 - 통계분석
+	@GetMapping("analytics")
+	public ModelAndView cpRegister()throws Exception{				
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("admin/analytics");
+		return mv;
+	}
+	
+	@GetMapping("salesTrend")
+	@ResponseBody
+	public List<AnalysisVO> getSalesTrend()throws Exception{				
+		List<AnalysisVO> analysisVOs = adminService.getSalesTrend();		
+		return analysisVOs;
+	}
+	
+	@GetMapping("HAU")
+	@ResponseBody
+	public List<AnalysisVO> getHAU()throws Exception{				
+		List<AnalysisVO> analysisVOs = adminService.getHAU();
+		return analysisVOs;
+	}
+	
+	
+	@GetMapping("shopSalesTrend")
+	@ResponseBody
+	public List<AnalysisVO> getShopSalesTrend()throws Exception{				
+		List<AnalysisVO> analysisVOs = adminService.getShopSalesTrend();		
+		return analysisVOs;
+	}
+	
+	@GetMapping("gender")
+	@ResponseBody
+	public List<AnalysisVO> getGender()throws Exception{				
+		List<AnalysisVO> analysisVOs = adminService.getGender();
+		return analysisVOs;
+	}
+	
+	@GetMapping("age")
+	@ResponseBody
+	public List<AnalysisVO> getAge()throws Exception{				
+		List<AnalysisVO> analysisVOs = adminService.getAge();
+		return analysisVOs;
+	}	
+	
+	
+	
 	//관리자 메뉴 list
 	@GetMapping("menuManage")
 	public ModelAndView getMenuManage(MenuVO menuVO,Pager pager, HttpSession session) throws Exception {
@@ -480,85 +529,10 @@ public class AdminController {
 		return mv;
 	}
 	
+	
+	
+	
+	
 }
 	
-/*
-	@PostMapping("delete")
-	public ModelAndView setDelete(FaqVO faqVO, MemberVO memberVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		int result = faqService.setDelete(faqVO, memberVO);
-		mv.addObject("result", result);
-		mv.setViewName("common/result");
-		return mv;
-		
-	}
-	
-	@PostMapping("update")
-	public ModelAndView setUpdate(@Valid FaqVO faqVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		int result = faqService.setUpdate(faqVO);
-		mv.setViewName("redirect:./list");
-		
-		return mv;
-	}
-	
-	@GetMapping("update")
-	public ModelAndView setUpdate(@ModelAttribute FaqVO faqVO, ModelAndView mv)throws Exception{
-		faqVO = faqService.getDetail(faqVO);
-		mv.setViewName("faq/update");
-		mv.addObject("faqVO", faqVO);
-		return mv;
-	}
-	
-	@GetMapping("detail")
-	public ModelAndView getDetail(FaqVO faqVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		System.out.println(faqVO.getNum());
-		mv.setViewName("faq/detail");
-		faqVO = faqService.getDetail(faqVO);
-		
-		mv.addObject("vo", faqVO);
-		return mv;
-	}
-	
-	@PostMapping("add")
-	public ModelAndView setAdd(@Valid FaqVO faqVO, ModelAndView mv)throws Exception{
 
-		int result = faqService.setAdd(faqVO);
-		
-		mv.setViewName("redirect:./list");
-		return mv;		
-	}
-	
-	@GetMapping("add")
-	public String setAdd(@ModelAttribute FaqVO faqVO)throws Exception{
-		
-		return "faq/add";
-	}
-	
-	@GetMapping("list")
-	public ModelAndView getList(Pager pager, FaqVO faqVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		List<FaqVO> ar = faqService.getList(pager, faqVO);
-		mv.setViewName("faq/list");
-		Long count = faqService.getListCount(pager, faqVO);
-		mv.addObject("count", count);
-		mv.addObject("list", ar);
-		mv.addObject("pager", pager);		
-		return mv;
-	}
-	
-	@GetMapping("list1")
-	public ModelAndView getList1(Pager pager, FaqVO faqVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		List<FaqVO> ar = faqService.getList(pager, faqVO);
-		mv.setViewName("faq/faqResult");
-		Long count = faqService.getListCount(pager, faqVO);
-		pager.setKind(""+faqVO.getCategory());
-		mv.addObject("count", count);
-		mv.addObject("list", ar);
-		mv.addObject("pager", pager);		
-		return mv;
-	}	
-*/	

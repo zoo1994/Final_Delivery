@@ -27,11 +27,11 @@
 	<c:import url="./admin_sidebar.jsp"></c:import>
 	<!-- 사이드바 끝 -->
 
-	<div class="d-flex" style="height: 2000px;">
+	<div class="d-flex" style="min-height: 1000px;">
 		<div class="" style="position: relative; width: 200px; min-width:150px; background-color: gray;"></div>
 		<div class="" style="position: relative;  width: 100%; border: 1px solid;">
 			<div style="width: 100%; height:100%; background-color: #dee2e6;">
-				<div class="container">
+				<div class="container" style=" margin-bottom: 200px;">
 					<div class="d-flex mb-3">
 						<input hidden name="category" type="text" id="categoryResult" value="1">
 						<span class="col-7  mt-5">
@@ -134,15 +134,15 @@
 		
 		
 		
-					<div class="mb-3 container d-flex justify-content-around" style="height: 500px;">
+<!-- 					<div class="mb-3 container d-flex justify-content-around" style="height: 500px;">
 						<div class="" style="position: relative; width: 40%; min-width:500px; border: 1px solid; background-color: #f8f9fa;">1</div>
 						<div class="" style="position: relative;  width: 40%; min-width:500px; border: 1px solid; background-color: #f8f9fa; ">2</div>
-					</div>					
+					</div>	 -->				
 				</div>
 			</div>
 		</div>
 	</div>
-	<div style="height: 1500px; width: 100%;"></div>
+	<div style=""></div>
 <div style="margin-bottom: 200px;"></div>
 
 

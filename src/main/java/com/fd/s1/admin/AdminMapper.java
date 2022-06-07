@@ -37,6 +37,12 @@ public interface AdminMapper {
 	public List<BannerFileVO> getBannerFileList() throws Exception;
 	public int setBannerFileAdd(BannerFileVO bannerFileVO) throws Exception;
 	public int setBannerFileDelete(BannerFileVO bannerFileVO) throws Exception;
+	public List<AnalysisVO> getSalesTrend()throws Exception;
+	public List<AnalysisVO> getHAU()throws Exception;
+	public List<AnalysisVO> getShopSalesTrend()throws Exception;
+	public List<AnalysisVO> getGender()throws Exception;
+	public List<AnalysisVO> getAge()throws Exception;
+	
 	
 //	public int setCouponDelete(CouponVO couponVO)throws Exception;
 	

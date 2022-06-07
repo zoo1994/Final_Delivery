@@ -25,6 +25,9 @@
 				<li class="rounded-pill" style="display: block ; background-color: #283593; color: #fff; text-align: center; width: 100px; height: 30px;">
 					<a class="" href="/admin/couponCreate" style="">쿠폰생성</a>
 				</li>
+				<li class="rounded-pill" style="display: block ; background-color: #283593; color: #fff; text-align: center; width: 100px; height: 30px;">
+					<a class="" href="/admin/analytics" style="">통계분석</a>
+				</li>
 				<li class="rounded-pill" style="display: block ; background-color: #4a148c; color: #fff; text-align: center; width: 100px; height: 30px;">
 					<a class="" href="/admin/notification" style="">정보알림</a>
 				</li>

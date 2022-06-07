@@ -281,61 +281,27 @@ public class AdminService {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-/*	public int setDelete(AdminVO faqVO, MemberVO memberVO)throws Exception{	
-				
-		if(memberVO != null) {
-			memberVO = memberMapper.idCheck(memberVO);
-		}else {
-			return 0;
-		}
-		
-		if(memberVO.getUserType() == 2L) {
-			return adminMapper.setDelete(faqVO);
-		}else {
-			return 0;
-		}
-		
-		
-	}
-	
-	public int setUpdate(AdminVO faqVO)throws Exception{			
-		return adminMapper.setUpdate(faqVO);
-	}
-	
-	public AdminVO getDetail(AdminVO faqVO)throws Exception{
-		return adminMapper.getDetail(faqVO);
-	}
-	
-	public int setAdd(AdminVO faqVO)throws Exception{		
-		return adminMapper.setAdd(faqVO);
-	}
-	
-	public List<AdminVO> getList(Pager pager, AdminVO faqVO)throws Exception{
-		EtcVO etcVO = new EtcVO();
-		etcVO.setCategory(faqVO.getCategory());
-		etcVO.setSearch(pager.getSearch());
-
-		
-		pager.makeRow();
-		pager.makeNum(adminMapper.getTotalCount(etcVO));
-		
-		etcVO.setPerPage(pager.getPerPage());
-		etcVO.setStartRow(pager.getStartRow());
-		
-		return adminMapper.getList(etcVO);
-	}
-	
-	public Long getListCount(Pager pager, AdminVO faqVO) throws Exception{	
-		EtcVO etcVO = new EtcVO();
-		etcVO.setCategory(faqVO.getCategory());
-		etcVO.setSearch(pager.getSearch());
-		return adminMapper.getTotalCount(etcVO);
+	//관리자 분석 - 전체 점포 매출
+	public List<AnalysisVO> getSalesTrend()throws Exception{		
+		return adminMapper.getSalesTrend();
 	}	
-*/	
+	
+	//관리자 분석 - Hour Active User
+	public List<AnalysisVO> getHAU()throws Exception{		
+		return adminMapper.getHAU();
+	}
+	
+	//관리자 분석 - 점포별 매출&주문건수
+	public List<AnalysisVO> getShopSalesTrend()throws Exception{		
+		return adminMapper.getShopSalesTrend();
+	}	
+	//관리자 분석 - 일반회원 성비
+	public List<AnalysisVO> getGender()throws Exception{		
+		return adminMapper.getGender();
+	}	
+	//관리자 분석 - 일반회원 나이대
+	public List<AnalysisVO> getAge()throws Exception{		
+		return adminMapper.getAge();
+	}	
+	
 }

@@ -28,4 +28,5 @@ public interface MemberMapper {
 	public int setCpRegister(UserCouponVO userCouponVO)throws Exception;
 	public int cpCheck(UserCouponVO userCouponVO)throws Exception;
 	public List<UserCouponVO> getUserCoupon(UserCouponVO userCouponVO)throws Exception;
+	public int setUserLog(MemberVO memberVO)throws Exception;		
 }
