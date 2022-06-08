@@ -179,6 +179,10 @@
 	    	ORDER BY SHOPNUM DESC LIMIT #{startRow}, #{perPage}
     	</select>
     	
+    	<select id="getShopList" resultType="ShopVO">
+    		SELECT * FROM SHOP
+    	</select>
+    	
     	<select id="getShopMaster" resultType="ShopVO">
     		SELECT ID FROM SHOP
     	</select>

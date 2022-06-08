@@ -53,8 +53,7 @@ public interface AdminMapper {
 	public CouponIssuanceLogVO getUserCoupon(CouponIssuanceLogVO couponLogVO) throws Exception;
 	public int setUserCouponDelete(UserCouponVO userCouponVO)throws Exception;
 	public int setCouponLogDelete(CouponIssuanceLogVO couponLogVO)throws Exception;
-	
-	
+	public List<ShopVO> getShopList() throws Exception;
 //	public int setCouponDelete(CouponVO couponVO)throws Exception;
 	
 	

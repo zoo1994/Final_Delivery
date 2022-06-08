@@ -5,6 +5,10 @@
  
     <mapper namespace="com.fd.s1.delivery.DeliveryMapper">
     
+    <select id="findShop" parameterType="ShopVO" resultType="ShopVO">
+    	SELECT * FROM SHOP WHERE SHOPNUM=#{shopNum}
+    </select>
+    
     <select id="shopList" parameterType="Pager" resultType="ShopVO">
     	SELECT * FROM SHOP WHERE SHOPNAME LIKE concat('%', #{search},'%') or
 	 		LOCATION LIKE concat('%', #{search}, '%') 
@@ -75,8 +79,8 @@
    </insert>
 
    <insert id="orderAdd" parameterType="OrdersVO">
-   	INSERT INTO ORDERS (DELINUM,PAYNUM,ID,ADDRESS,PHONE,REQUEST,COUPON,ORDERDATE,TOTALPRICE)
-   	VALUES(null,#{payNum},#{id},#{address},#{phone},#{request},#{coupon},now(),#{totalPrice})
+   	INSERT INTO ORDERS (DELINUM,PAYNUM,ID,ADDRESS,PHONE,REQUEST,COUPON,ORDERDATE,TOTALPRICE,SHOPNUM)
+   	VALUES(null,#{payNum},#{id},#{address},#{phone},#{request},#{coupon},now(),#{totalPrice},#{shopNum})
    </insert>
    <insert id="orderDetailAdd" parameterType="OrderDetailVO">
    	INSERT INTO ORDERDETAIL VALUES(null,#{deliNum},#{payNum},#{menuNum},#{shopNum},#{orderCount},#{menuPrice})

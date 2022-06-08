@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.fd.s1.delivery.OrdersVO;
 import com.fd.s1.member.MemberVO;
+import com.fd.s1.util.Pager;
 
 @Mapper
 public interface ShopMapper {
@@ -31,9 +32,12 @@ public interface ShopMapper {
 
 	public int setUpdateShopSystem(ShopVO shopVO) throws Exception;
 	
-	public List<OrdersVO> getShopOrderList(OrdersVO ordersVO)throws Exception;
+	public List<OrdersVO> getShopOrderList(Pager pager)throws Exception;
 	
+	public Long getOrderTotal(Pager pager)throws Exception;
+
 	public List<ShopMenuVO> getShopInfo(Map<Object, Object> map) throws Exception;
 	
 	public List<SettlementVO> getSettlement(SettlementVO settlementVO)throws Exception;
+	
 }

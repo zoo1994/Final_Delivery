@@ -18,14 +18,14 @@
 	<c:import url="../temp/header_script.jsp"></c:import>
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<div class="container mt-4" style="width: 50rem; margin: 0 auto;">
+	<div class="container mt-4" style="width: 50rem; margin: 0 auto; min-height: 700px">
 		<div class="row mt-4">
 			<h3>입력하신 주소로 배달하시겠습니까?</h3>
 			<div class="row mt-4">
 				<input type="hidden" id="jibunAddress"> <input type="hidden"
 					id="extraAddress"> 
 					
-				<input type="hidden"" id="postcode" class="form-control my-1" readonly style="width: 200px" value="${vo.postcode}">
+				<input type="hidden" id="postcode" class="form-control my-1" readonly style="width: 200px" value="${vo.postcode}">
 				<div class="input-group mb-2 my-1"
 					style="padding-left: 0; padding-right: 0;">
 					
@@ -49,11 +49,11 @@
 		</div>
 	</div>
 	<form action="./goDeli" method="post" id="goDeli">
-		<input type="hidden" id="x" name="x"> <input type="hidden"
-			id="y" name="y"> <input type="hidden" id="input_postcode"
-			name="postcode"> <input type="hidden" id="location"
-			name="location"> <input type="hidden" id="detailLocation"
-			name="detailLocation">
+		<input type="hidden" id="x" name="x"> 
+		<input type="hidden"id="y" name="y"> 
+		<input type="hidden" id="input_postcode" name="postcode">
+		<input type="hidden" id="location" name="location"> 
+		<input type="hidden" id="detailLocation"name="detailLocation">
 	</form>
 	</div>
 	<script type="text/javascript"

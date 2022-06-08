@@ -71,6 +71,7 @@ public class DeliveryService {
 	public int orderAdd(OrdersVO ordersVO)throws Exception{
 		
 		
+		System.out.println(ordersVO);
 		int result = deliveryMapper.orderAdd(ordersVO);
 		ordersVO = deliveryMapper.getOrder(ordersVO);
 		CartVO cartVO = new CartVO();
@@ -100,6 +101,10 @@ public class DeliveryService {
 	
 	public List<OrderDetailVO> getOrderDetail(OrderDetailVO orderDetailVO)throws Exception{
 		return deliveryMapper.getOrderDetail(orderDetailVO);
+	}
+	
+	public ShopVO findShop(ShopVO shopVO)throws Exception{
+		return deliveryMapper.findShop(shopVO);
 	}
 
 

@@ -106,8 +106,12 @@
 	
 	<insert id="setShopMenuAdd" parameterType="ShopMenuVO">
 		INSERT INTO SHOPMENU (MENUNUM, SHOPNUM, SALE)
-		VALUES (#{menuNum}, #{shopNum}, 1)
+		VALUES (#{menuNum}, #{shopNum}, #{sale})
 	</insert>
+	
+	<update id="setShopMenuUpdate" parameterType="ShopMenuVO">
+		UPDATE SHOPMENU SET SALE=#{sale} WHERE MENUNUM=#{menuNum} AND SHOPNUM=#{shopNum}
+	</update>
 	
 	<delete id="setDeleteMenu" parameterType="ShopMenuVO">
     	DELETE FROM SHOPMENU WHERE MENUNUM=#{menuNum}

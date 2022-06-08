@@ -48,11 +48,11 @@ thead tbody {
 		<div class="row mb-4 searchForm">
 			<form action="./menuManage" method="get" class="d-flex">
 
-				<select name="kind">
+				<select name="kind" class="col-1 me-1">
 					<option value="col1">메뉴이름</option>
 					<option value="col2">메뉴설명</option>
 				</select> 
-				<input type="search" name="search" value="${pager.search}" placeholder="검색어를 입력하세요." class="col-2">
+				<input type="search" name="search" value="${pager.search}" placeholder="검색어를 입력하세요." class="col-2 me-2">
 				<button type="submit" class="btn btn-outline-success">Search</button>
 
 			</form>

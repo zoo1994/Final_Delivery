@@ -34,7 +34,7 @@
 	<div class="container-fluid">
 		<div class="row flex-nowrap">
 			<c:import url="../temp/shopHeader.jsp"></c:import>
-
+			<div class="col-2"></div>
 			<div class="col-6 py-3">
 				<div class="row">
 					<h1>맥도날드 ${shopMaster.shopName}점, ${member.id}님</h1>
