@@ -20,10 +20,10 @@
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<div style="text-align: center; margin-top: 100px">
 		<a href="./addAddress">
-		<img alt="" src="/resources/image/del.png">
+		<img alt="" src="/resources/image/del.png" style="width: 300px;height: 300px">
 		</a>
 		<a href="./packagingAddress">
-		<img alt="" src="/resources/image/take.png" style="margin-left: 20px">
+		<img alt="" src="/resources/image/take.png" style="margin-left: 20px;width: 300px;height: 300px">
 		</a>
 	</div>
 	<script type="text/javascript"
