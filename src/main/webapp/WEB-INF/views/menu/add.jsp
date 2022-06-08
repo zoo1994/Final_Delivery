@@ -13,17 +13,22 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <title>매뉴추가</title>
 <link href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/200px-McDonald%27s_Golden_Arches.svg.png" rel="shortcut icon" type="image/x-icon">
+<style type="text/css">
+	input {
+  width:150px;
+}
+</style>
 </head>
 <body>
 <c:import url="../temp/header.jsp"></c:import>
 	<div class="container">
-	<h1 class="fw-bolder">새로운 메뉴 추가</h1>
+	<h1 class="fw-bolder mt-4">새로운 메뉴 추가</h1>
 		<div class="row mt-4">	
 	
 			<form:form method="POST" enctype="multipart/form-data" modelAttribute="menuVO">
 				<div class="mb-3 row">
 				 <label for="form-select" class="col-sm-2 col-form-label">카테고리</label>
-					<div class="col-sm-10">
+					<div class="col-sm-2">
 						<form:select path="category" cssClass="form-select">
 							<form:option value="1">버거</form:option>
 							<form:option value="2">맥런치</form:option>
@@ -38,7 +43,7 @@
 				
 				 <div class="mb-3 row">
 				    <label for="staticText" class="col-sm-2 col-form-label">메뉴이름</label>
-				    <div class="col-sm-10">
+				    <div class="col-sm-3">
 				    	<form:input path="menuName" cssClass="form-control" id="menuName"/>
 					    <div>
 					    	<form:errors path="menuName"></form:errors>
@@ -48,7 +53,7 @@
 				  
 				   <div class="mb-3 row">
 				    <label for="staticText" class="col-sm-2 col-form-label">메뉴영문이름</label>
-				    <div class="col-sm-10">
+				    <div class="col-sm-3">
 				    	<form:input path="menuEng" cssClass="form-control" id="menuEng"/>
 					    <div>
 					    	<form:errors path="menuEng"></form:errors>
@@ -58,7 +63,7 @@
 				  
 				  <div class="mb-3 row">
 				    <label for="staticText" class="col-sm-2 col-form-label">가격</label>
-				    <div class="col-sm-10">
+				    <div class="col-sm-2">
 					    <form:input path="price" cssClass="form-control" id="price"/>
 						    <div>
 						    	<form:errors path="price"></form:errors>
@@ -76,7 +81,11 @@
 				    </div>
 				  </div>		
 				  
+				  <hr>
+				  
 			<div class="row mb-3">
+				<h6 class="col-2">판매상태</h6> 
+			<div class="col-10">
 			<div class="form-check">
 			  <!-- <input class="form-check-input sale" type="radio" value="1" name="sale"> -->
 			  <form:radiobutton path="menuSale" cssClass="form-check-input sale" value="1" id="flexRadioDefault1" checked="checked"/>
@@ -102,9 +111,9 @@
 		      	<form:errors path="menuSale"></form:errors>
 		      </div>
 		  </div>
-				
+				</div>
 				<div class="row mb-3 image-container">
-					<label for="files" class="col-sm-2 col-form-label">File</label>
+					<label for="files" class="col-sm-2 col-form-label">메뉴 이미지</label>
 					<div class="col-sm-10">
 						<input type="file" name="file" class="form-control" id="input-image">
 						<img style="width: 500px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
@@ -113,8 +122,9 @@
 				
 
 
-					
-				<table class="table">
+				<div class="row">
+				영양정보
+				<table class="table" style="">
 				  <thead>
 				    <tr>
 				    	<th scope="col">중량(g)</th>
@@ -141,7 +151,7 @@
 				  </tbody>
 				</table>
 				
-		
+			</div>	
 				
 			  
 			    <button type="submit" class="btn btn-primary" id="add">메뉴 추가</button>
@@ -152,7 +162,7 @@
 	</div>
 	
 	
-	
+<c:import url="../temp/footer.jsp"></c:import>
 	
 <!-- bootStrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

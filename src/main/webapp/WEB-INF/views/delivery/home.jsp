@@ -26,9 +26,14 @@
 							<ul class="secondary-menu">
 								<li class="secondary-menu-item "><a
 									class="secondary-menu-item-target" href="./home"> <span>전체메뉴</span></a></li>
-								<li class="secondary-menu-item "><a
-									class="secondary-menu-item-target" href="./home?category=1"><i
-										class="fa fa-circle"></i> <span>버거</span></a></li>
+									
+								<li class="secondary-menu-item ">
+									<a class="secondary-menu-item-target" href="./home?category=1">
+										<i class="fa fa-circle"></i> 
+											<span>버거</span>
+									</a>
+								</li>
+								
 								<li class="secondary-menu-item "><a
 									class="secondary-menu-item-target" href="./home?category=2"><i
 										class="fa fa-circle"></i> <span>맥런치</span></a></li>
@@ -46,10 +51,7 @@
 										class="fa fa-circle"></i> <span>맥카페 & 음료</span></a></li>
 								<li class="secondary-menu-item "><a
 									class="secondary-menu-item-target" href="./home?category=7"><i
-										class="fa fa-circle"></i> <span>해피밀®</span></a></li>
-
-							
-						
+										class="fa fa-circle"></i> <span>해피밀®</span></a></li>	
 					</ul>
 				</div>
 			</div>

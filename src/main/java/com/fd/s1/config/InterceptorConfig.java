@@ -42,7 +42,9 @@ public class InterceptorConfig implements WebMvcConfigurer{
 				.excludePathPatterns("/member/pwChange");
 		
 		registry.addInterceptor(adminInterceptor)
-				.addPathPatterns("/admin/menuManage")
+				.addPathPatterns("/admin/menuManage")				
+				.addPathPatterns("/menu/manageDetail")
+				.addPathPatterns("/menu/add")
 				.addPathPatterns("/menu/update")
 				.addPathPatterns("/menu/delete")
 				.addPathPatterns("/admin/bannerManage")				

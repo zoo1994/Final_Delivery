@@ -72,6 +72,9 @@
 					MENUDETAIL
 				</otherwise>
 			</choose>
+			<if test="category != null">
+				and CATEGORY = #{category}
+			</if>
 			LIKE CONCAT('%',#{search},'%')
  	</select>
 	

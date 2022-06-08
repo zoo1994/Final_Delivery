@@ -25,28 +25,11 @@
 
 	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
   	<div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
-    </button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
+  		<c:forEach items="${list}" var="v" varStatus="i">
+  			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i.index}" aria-label="Slide ${i.index+1}" <c:if test="${i.index eq 0}">class="active"</c:if>></button>
+  		</c:forEach>
+ 	 </div>
   <div class="carousel-inner">
-   <!--  <div class="carousel-item active">
-      <a href="#">
-      <img src="https://www.mcdonalds.co.kr/upload/main/banner/1646731135357.png" class="d-block w-100" alt="...">
-      </a> 
-    </div>
-    <div class="carousel-item">
-      <a href="#">
-      <img src="https://www.mcdonalds.co.kr/upload/main/banner/1651049844415.png" class="d-block w-100" alt="...">
-      </a> 
-    </div>
-    <div class="carousel-item">
-      <a href="#">
-      <img src="https://www.mcdonalds.co.kr/upload/main/banner/1645007676428.png" class="d-block w-100" alt="...">
-      </a> 
-    </div>  -->
-    
     <!-- 배너 테이블에 이미지가 하나도 없을 경우 프리뷰 이미지 띄우기 -->
     <c:choose>
     	<c:when test="${fn:length(list) eq 0}">

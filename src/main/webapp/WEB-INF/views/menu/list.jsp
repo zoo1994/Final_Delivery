@@ -35,7 +35,7 @@
 			<div class="inner">
 				<div class="container">
 					
-				
+					
 					<div class="" style="width: 1168px; margin: 0 auto;">
 						<div class="mb-4 d-flex">
 								<select name="kind" class="col-1 me-1">
@@ -96,7 +96,7 @@
 
 	const category = urlParams.get('category');
 	
-	
+	console.log(category);
 	let pageMore = 0;
 	getList();
 	pageMore++;
