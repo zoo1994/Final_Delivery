@@ -122,6 +122,13 @@ public class DeliveryController {
 		return mv;
 	}
 	
+	@GetMapping("select")
+	public ModelAndView select() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("delivery/select");
+		return mv;
+	}
+	
 	@GetMapping("addAddress")
 	public ModelAndView addAddress(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
