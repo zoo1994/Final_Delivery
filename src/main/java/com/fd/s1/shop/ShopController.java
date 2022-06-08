@@ -218,31 +218,38 @@ public class ShopController {
 	}
 	
 	@GetMapping("shopOrderList")
-	public ModelAndView getShopOrderList(HttpSession session)throws Exception{
+	public ModelAndView getShopOrderList(HttpSession session, Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		OrdersVO ordersVO = new OrdersVO();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		ShopVO shopVO = shopService.getShopNum(memberVO);
-		ordersVO.setShopNum(shopVO.getShopNum());
-		List<OrdersVO> ar = shopService.getShopOrderList(ordersVO);
+		pager.setShopNum(shopVO.getShopNum());
+		List<OrdersVO> ar = shopService.getShopOrderList(pager);
 		mv.setViewName("shop/shopOrderList");
 		mv.addObject("list", ar);
+		mv.addObject("shopMaster", shopVO);
 		return mv;
 	}
 	
 	@GetMapping("shopOrderDetail")
-	public ModelAndView getShopOrderDetail(OrderDetailVO orderDetailVO)throws Exception{
+	public ModelAndView getShopOrderDetail(OrderDetailVO orderDetailVO, HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<OrderDetailVO> ar = deliveryService.getOrderDetail(orderDetailVO);
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		ShopVO shopVO = shopService.getShopNum(memberVO);
 		mv.setViewName("shop/shopOrderDetail");
 		mv.addObject("list", ar);
+		mv.addObject("shopMaster", shopVO);
 		return mv;
 	}
 	
 	@GetMapping("settlement")
-	public ModelAndView settlementList()throws Exception{
+	public ModelAndView settlementList(HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		ShopVO shopVO = shopService.getShopNum(memberVO);
 		mv.setViewName("shop/settlement");
+		mv.addObject("shopMaster", shopVO);
 		return mv;
 	}
 	@PostMapping("settlementList")

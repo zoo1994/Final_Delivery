@@ -88,12 +88,23 @@
 	 		</association>
 		</resultMap>
     	
-    	<select id="getShopOrderList" parameterType="OrdersVO" resultType="OrdersVO">
-    	SELECT * 
+    	<select id="getShopOrderList" parameterType="Pager" resultType="OrdersVO">
+    	SELECT O.* 
+   		FROM 
+    	(SELECT * 
     	FROM ORDERS
     	WHERE SHOPNUM=#{shopNum}
     	ORDER BY DELINUM DESC
+    	LIMIT #{startRow},#{perPage}) O
+    	ORDER BY DELINUM DESC
     	</select>
+    	
+    	<select id="getOrderTotal" parameterType="Pager" resultType="Long">
+		SELECT COUNT(DELINUM) 
+		FROM ORDERS
+		WHERE DELINUM>0
+		AND SHOPNUM=#{shopNum}
+		</select>
     	
     	<select id="getSettlement" parameterType="SettlementVO" resultType="SettlementVO">
     	SELECT M.MENUNAME MENUNAME,SUM(OD.ORDERCOUNT) SUMC,SUM(OD.MENUPRICE) SUMP  

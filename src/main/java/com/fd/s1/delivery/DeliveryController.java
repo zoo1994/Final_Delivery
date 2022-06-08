@@ -113,6 +113,15 @@ public class DeliveryController {
 			return mv;
 		}
 		int category = 0;
+		
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		CartVO cartVO = new CartVO();
+		cartVO.setId(memberVO.getId());
+		List<CartVO> list = deliveryService.getCart(cartVO);
+		for(CartVO c:list) {
+			deliveryService.delete(c);
+		}
+		
 		mv.addObject(category);
 		session.setAttribute("shop", ar.get(minName));
 		session.setAttribute("location", location);
