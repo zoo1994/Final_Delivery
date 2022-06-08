@@ -18,7 +18,7 @@
 	<c:import url="../temp/header_script.jsp"></c:import>
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<div class="container mt-4" style="width: 50rem; margin: 0 auto;">
+	<div class="container mt-4" style="width: 50rem; margin: 0 auto; min-height: 700px">
 		<div class="row mt-4">
 			<h3>입력하신 주소로 배달하시겠습니까?</h3>
 			<div class="row mt-4">
