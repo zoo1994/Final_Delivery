@@ -77,6 +77,7 @@ public class EventService {
 	}
 
 	public EventVO getDetail(EventVO eventVO) throws Exception {
+		eventMapper.setHit(eventVO);
 		return eventMapper.getDetail(eventVO);
 	}
 	public List<EventFilesVO> getThumb(EventVO eventVO) throws Exception {
@@ -126,9 +127,19 @@ public class EventService {
 	}
 
 	public int setUpdate(EventVO eventVO, Event_couponVO event_couponVO) throws Exception {
-		int result = eventMapper.setUpdate(eventVO);		
+		int result = eventMapper.setUpdate(eventVO);
+		System.out.println(">>>>>"+result);
 		if(result==1) {
-			eventMapper.setUpdateCoupon(event_couponVO);
+			if(event_couponVO.getCouponId()==null) {
+				eventMapper.setEventCouponDelete(event_couponVO);
+			}else {
+				int check = eventMapper.getUpdateCouponSearch(event_couponVO);			
+				if(check==1) {
+					eventMapper.setUpdateCoupon(event_couponVO);
+				}else if(check==0) {
+					eventMapper.setEventCouponAdd(event_couponVO);
+				}	
+			}					
 		}
 		return result;
 	}

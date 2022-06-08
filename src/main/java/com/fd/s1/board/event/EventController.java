@@ -81,17 +81,7 @@ public class EventController {
 	
 	@PostMapping("add")
 	public ModelAndView setAdd(@Valid EventVO eventVO,BindingResult bindingResult,MultipartFile[] files, MultipartFile[] thumbFiles, Event_couponVO ecVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		System.out.println();
-//		if(ecVO.getEventSchedule() == null) {
-//			System.out.println("fffff");     
-//			String dateStr = "9999-12-31";         
-//			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); 
-//			Date date = (Date) formatter.parse(dateStr); 
-//			ecVO.setEventSchedule(date);
-//		}
-		System.out.println(ecVO.getEventSchedule());
-		
+		ModelAndView mv = new ModelAndView();		
 		if(bindingResult.hasErrors()) {
 			mv.setViewName("board/event/add");
 			return mv;
@@ -102,8 +92,6 @@ public class EventController {
 			ecVO.setEventNum(eventVO.getEventNum());
 			eventService.setEventCouponAdd(ecVO);
 		}
-
-//		System.out.println("EventNum : "+eventVO.getEventNum());
 				
 		mv.setViewName("redirect:./list");
 		return mv;

@@ -21,39 +21,44 @@
 
 	<c:import url="../temp/header.jsp"></c:import>
 	<c:import url="../temp/header_script.jsp"></c:import>
-	<div style="margin-top: 200px;"></div>
+<!-- 	<div style="margin-top: 200px;"></div> -->
 	
 	<!-- 사이드바 -->
 	<c:import url="./admin_sidebar.jsp"></c:import>
 	<!-- 사이드바 끝 -->
 	
 	
-	<div class="d-flex" style="height: 2000px;">
+	<div class="d-flex" style="min-height : 1000px;">
 		<div class="" style="position: relative; width: 200px; min-width:150px; background-color: gray;"></div>
 		<div class="" style="position: relative;  width: 100%; border: 1px solid;">
 			<div style="width: 100%; height:100%; background-color: #dee2e6;">
-				<div class="container">
-					<div class="d-flex mb-3">
-						<input hidden name="category" type="text" id="categoryResult" value="1">
-						<span class="col-9  mt-5">
-							<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 개의</span> 점포가 검색되었습니다.</legend>
-						</span>
-						<span class="col-2 mt-5"  style="margin-right:10px;">
-							<input id="admin_shop_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {getList();}" placeholder="Search" aria-label="Search">
-						</span>
-						<span class="col-1 mt-5">
-							<button class="btn btn-outline-success rounded-pill" id="admin_shop_search_btn"  style="width: 80px;" type="submit">검색</button>
-						</span>
-					</div>
-					<div id="adminShopListReusult">
-						
+				<div class="container" style=" margin-bottom: 200px;">
+					<div>
+						<p class="" style="padding-bottom: 20px; padding-top: 40px; font-size: 25px; font-weight: bold;"><i style="float: left; margin: 10px 5px; width: 15px; height: 15px; border: 5px solid orange; border-radius: 100%;"></i>
+							점포관리
+						</p>					
+						<div class="d-flex mb-3">
+							<input hidden name="category" type="text" id="categoryResult" value="1">
+							<span class="col-9">
+								<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 개의</span> 점포가 검색되었습니다.</legend>
+							</span>
+							<span class="col-2"  style="margin-right:10px;">
+								<input id="admin_shop_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {getList();}" placeholder="Search" aria-label="Search">
+							</span>
+							<span class="col-1">
+								<button class="btn btn-outline-success rounded-pill" id="admin_shop_search_btn"  style="width: 80px;" type="submit">검색</button>
+							</span>
+						</div>
+						<div id="adminShopListReusult">
+							
+						</div>	
 					</div>	
 				</div>
 			</div>
 		</div>
 	</div>
-	<div style="height: 1500px; width: 4000px;"></div>
-<div style="margin-bottom: 200px;"></div>
+	<div style=""></div>
+<!-- <div style="margin-bottom: 200px;"></div> -->
 
 
 
@@ -77,8 +82,9 @@
 				    <span class="input-group-text" id="inputGroup-sizing-default1">점주</span>
 				  </div>
 				  <input type="text" id="shop_id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  
 				</div>
-				
+				<div id="shop_id_error" style="margin-left: 60px;"></div>
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
 				    <span class="input-group-text" id="inputGroup-sizing-default2">매장이름</span>
@@ -99,7 +105,7 @@
 				  <div class="input-group-prepend">
 				    <span class="input-group-text" id="inputGroup-sizing-default4">매장전화번호</span>
 				  </div>
-				  <input type="text" id="shop_phone" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input type="text" onkeypress='return checkNumber(event)' id="shop_phone" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				
 			</div>
@@ -137,7 +143,7 @@
 				  </div>
 				  <input type="text" id="shop_id2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
-				
+				<div id="shop_id2_error"></div>
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
 				    <span class="input-group-text" id="inputGroup-sizing-default33">매장이름1</span>
@@ -158,7 +164,7 @@
 				  <div class="input-group-prepend">
 				    <span class="input-group-text" id="inputGroup-sizing-default55">전화번호</span>
 				  </div>
-				  <input type="text" id="shop_phone2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input type="text" onkeypress='return checkNumber(event)' id="shop_phone2" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 <!-- 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
@@ -216,11 +222,6 @@
 <input type="hidden"id="y_axis">
 
 <c:import url="../temp/footer.jsp"></c:import>
-<script type="text/javascript">
-
-
-
-</script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a58574ac7b94ffdb63ca1f5c17c22c7&libraries=services"></script>
 <script src="../resources/js/map2.js"></script>
 <script src="../resources/js/map3.js"></script>

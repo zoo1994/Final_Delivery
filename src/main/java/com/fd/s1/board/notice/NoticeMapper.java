@@ -24,6 +24,8 @@ public interface NoticeMapper {
 	
 	public NoticeVO getDetail(NoticeVO noticeVO)throws Exception;
 	
+	public int setHit(NoticeVO noticeVO)throws Exception;
+	
 	public int setAdd(NoticeVO noticeVO)throws Exception;
 	
 	public int setUpdate(NoticeVO noticeVO)throws Exception;

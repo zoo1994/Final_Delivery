@@ -66,6 +66,11 @@
     		SELECT * FROM USER WHERE ID=#{id} AND PW = #{pw}
     	</select>
     	
+    	<insert id="setUserLog" parameterType="MemberVO">
+    		INSERT INTO USERLOG (LOGNUM,ID,ACCESS)
+    		VALUES (NULL,#{id},NOW())
+    	</insert>
+    	
     	<select id="cpCheck" parameterType="UserCouponVO" resultType="Integer">
     		SELECT COUNT(*) FROM USERCOUPON WHERE ID IS NULL AND USAGESTATUS = 1 AND COUPONNUM =#{couponNum}
     	</select>
@@ -73,4 +78,30 @@
     	<update id="setCpRegister" parameterType="MemberVO">
     		UPDATE USERCOUPON SET ID = #{id} WHERE ID IS NULL AND USAGESTATUS = 1 AND COUPONNUM =#{couponNum}
     	</update>
+    	
+    	
+    	<select id="getUserCoupon" parameterType="UserCouponVO" resultMap="userCouponDetailResult">
+			SELECT UC.*, C.COUPONID, C.COUPONNAME, C.DISCOUNT, DATEDIFF(DUEDATE,DATE_FORMAT(NOW(), '%Y-%m-%d')) AS ACTIVEDATE FROM USERCOUPON UC
+			LEFT JOIN
+			COUPON C
+			ON (UC.COUPONID = C.COUPONID)
+			WHERE UC.ID = #{id} AND USAGESTATUS = 1
+			ORDER BY ACTIVEDATE ASC
+    	</select> 	
+    	<resultMap type="UserCouponVO" id="userCouponDetailResult">
+    		<id column="num" property="num"/>
+    		<result column="id" property="id"/>
+    		<result column="couponId" property="couponId"/>
+    		<result column="couponNum" property="couponNum"/>
+    		<result column="downDate" property="downDate"/>
+    		<result column="dueDate" property="dueDate"/>
+    		<result column="usageStatus" property="usageStatus"/>
+    		<result column="activeDate" property="activeDate"/>
+    		<association property="couponVO" javaType="CouponVO">
+    			<id column="couponId" property="couponId"/>
+    			<result column="couponName" property="couponName"/>
+    			<result column="discount" property="discount"/>
+    		</association>
+    	</resultMap>
+    	
     </mapper>

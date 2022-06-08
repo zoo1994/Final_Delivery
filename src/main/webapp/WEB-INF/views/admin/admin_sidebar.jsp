@@ -19,14 +19,14 @@
 				<li class="rounded-pill" style="display: block ; background-color: #264a36; color: #fff; text-align: center; width: 100px; height: 30px;">
 					<a class="" href="/admin/menuManage" style="">메뉴관리</a>
 				</li>
-				<li class="rounded-pill" style="display: block ; background-color: #3f51b5; color: #fff; text-align: center; width: 100px; height: 30px;">
-					<a class="" href="/admin/coupon" style="">쿠폰발급</a>
-				</li>
 				<li class="rounded-pill" style="display: block ; background-color: #283593; color: #fff; text-align: center; width: 100px; height: 30px;">
-					<a class="" href="/admin/couponCreate" style="">쿠폰생성</a>
+					<a class="" href="/admin/coupon" style="">쿠폰관리</a>
 				</li>
 				<li class="rounded-pill" style="display: block ; background-color: #4a148c; color: #fff; text-align: center; width: 100px; height: 30px;">
 					<a class="" href="/admin/notification" style="">정보알림</a>
+				</li>
+				<li class="rounded-pill" style="display: block ; background-color: #3e2723; color: #fff; text-align: center; width: 100px; height: 30px;">
+					<a class="" href="/admin/analytics" style="">통계분석</a>
 				</li>
 			</ul>
 		</div>

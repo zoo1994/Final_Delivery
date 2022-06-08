@@ -77,6 +77,25 @@ $('#modalHideX').click(function(e){
 
 $('#modalSave').click(function(e){
 /* 	console.log($("#modal_emailID").text()); */
+
+
+$("#receivers").val();
+$("#title").val();
+$("#contents").val();
+
+let receiversCheck = false;
+let titleCheck = false;
+let contentsCheck = false;
+if ($("#receivers").val() == "") { receiversCheck = true; }
+if ($("#title").val() == "") { titleCheck = true; }
+if ($("#contents").val() == "") { contentsCheck = true; }
+
+if (receiversCheck||titleCheck||contentsCheck) {
+	alert("정보를 입력하세요")
+	return;
+}
+
+
  		$.ajax({
 			type:"POST",
 			url:"./send",

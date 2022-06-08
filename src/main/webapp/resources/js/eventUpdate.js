@@ -1,5 +1,5 @@
 const thumbCount = document.querySelector("thumbCount");
-
+const es = document.querySelector("#es");
 getList();
 
 function getList(){
@@ -107,7 +107,8 @@ $('#resetBtn').click(function(event){
 
 	couponName.setAttribute("value","");
 	couponId.setAttribute("value", "");
-	eventSchedule.setAttribute("value", "");
+	es.innerHTML='';
+//	eventSchedule.setAttribute("value", "");
 	event_coupon_search.value = "";
 	alert("쿠폰 초기화 되었습니다");
 	getList();
@@ -196,7 +197,7 @@ $("#modalSave").click(function() {
 		alert("쿠폰을 선택해주세요");
 	}
 
-});
+});					//<input id="eventSchedule" name="eventSchedule" class="form-control" hidden type="text" value="${eventVO.ecVO.eventSchedule}"> 
 $("#modalSave2").click(function() {
     $(".cpRadio").each(function(idx, item) {
         if($(item).prop("checked")){
@@ -205,9 +206,14 @@ $("#modalSave2").click(function() {
             couponName.setAttribute("value", $(item).prop("title"));
             couponId.setAttribute("value", $(item).prop("value").substr(6));
             if($(datepicker).prop("value")==""){
-				eventSchedule.setAttribute("value", "9999-12-31");
+				es.innerHTML ='<input id="eventSchedule" name="eventSchedule" class="form-control" hidden type="text" value="9999-12-31">';
+//				eventSchedule.setAttribute("value", "9999-12-31");
+//<input id="eventSchedule" name="eventSchedule" class="form-control" hidden type="text" value="9999-12-31"> 				
 			}else{
-				eventSchedule.setAttribute("value", $(datepicker).prop("value"));
+//				eventSchedule.setAttribute("value", $(datepicker).prop("value"));
+				let html1 = '<input id="eventSchedule" name="eventSchedule" class="form-control" hidden value="';
+				let html2 = '" type="text">';
+				es.innerHTML = html1+$(datepicker).prop("value")+html2;
 			}
 			console.log($(datepicker).prop("value"));
             return;

@@ -15,11 +15,5 @@ public class Event_couponVO {
 	private Long couponId;
 	private Date eventSchedule;
 	private CouponVO couponVO;
-	
-	public Date getEventSchedule(Date eventSchedule) {
-		
-		
-		
-		return eventSchedule;
-	}
+
 }

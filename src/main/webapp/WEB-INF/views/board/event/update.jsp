@@ -20,7 +20,7 @@
 	<c:import url="../../temp/header_script.jsp"></c:import>
 	<div class="container mt-4">
 		<div class="row mt-4">
-			<form:form modelAttribute="eventVO" method="post" enctype="multipart/form-data">
+			<form:form modelAttribute="eventVO" method="post" id="addForm" enctype="multipart/form-data">
 				<form:hidden path="eventNum" />
 				<div class="row mt-4">
 					<div class="mb-3">
@@ -61,8 +61,12 @@
 						<input id="couponName" class="form-control" readonly="readonly" type="text" value="${eventVO.couponVO.couponName}"> 
 					</div>
 					<input id="couponId" name="couponId" class="form-control" hidden type="text" value="${eventVO.ecVO.couponId}"> 
-					<input id="eventSchedule" name="eventSchedule" class="form-control" hidden type="text" value="${eventVO.ecVO.eventSchedule}"> 
 					
+					<div id="es">
+						<c:if test="${eventVO.ecVO.eventSchedule != null}">
+							<input id="eventSchedule" name="eventSchedule" class="form-control" hidden type="text" value="${eventVO.ecVO.eventSchedule}">
+						</c:if>
+					</div>
 					<c:forEach items="${thumbFilesVO}" var="i">
 						<input class="thumbCount" hidden>
 					</c:forEach>
@@ -91,7 +95,7 @@
 					</div>
 				</div>
 		<div class="row justify-content-end">
-			<button type="submit" class="col-1 btn btn-outline-success">수정</button>
+			<button type="button" id="addBtn" class="col-1 btn btn-outline-success">수정</button>
 		</div>
 		</form:form>
 		</div>
@@ -172,6 +176,7 @@
 	<c:import url="../../temp/footer.jsp"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>	
 	<script src="../resources/js/eventUpdate.js"></script>
+	<script src="../../resources/js/addBoard.js"></script>
 <script>
 var picker = new Pikaday({
     field: document.getElementById('datepicker'),

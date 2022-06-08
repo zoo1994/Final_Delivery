@@ -18,12 +18,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class notificationTest2{
 	
-	//@Test
+	@Test
 	public void test()throws Exception{
-		String a = "dddd";
+		String a = "dddd,ddd";
 		String [] b = a.split(",");
 		System.out.println(b.length);
-		
+		String [] c = {"0","1","2"};
+		System.out.println(c.length);
 		for(int i=0;i<b.length;i++) {
 			System.out.println(b[i]);
 		}
@@ -33,7 +34,7 @@ public class notificationTest2{
 	
 	
 	
-	@Test
+	//@Test
 	public void getnotification()throws Exception{
 	       	String user = "macdomanager@gmail.com"; // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
 	        String password = "jgfsxeczynjbxfdc"; // 패스워드

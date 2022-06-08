@@ -4,8 +4,8 @@ const event_coupon_search = document.querySelector("#event_coupon_search");
 const couponListSelect = document.querySelector("#couponListSelect");
 const couponId = document.querySelector("#couponId");
 const couponName = document.querySelector("#couponName");
-const eventSchedule = document.querySelector("#eventSchedule");
-
+//const eventSchedule = document.querySelector("#eventSchedule");
+const es = document.querySelector("#es");
 getList();
 
 function getList(){
@@ -23,7 +23,7 @@ function getList(){
 	});
     
 }
-
+//<input id="eventSchedule" name="eventSchedule" class="form-control" hidden type="text">
 $('#resetBtn').click(function(event){
     console.log(event.target);
 	if(event.target.classList.contains('modalBtn')){
@@ -32,7 +32,8 @@ $('#resetBtn').click(function(event){
 
 	couponName.setAttribute("value","");
 	couponId.setAttribute("value", "");
-	eventSchedule.setAttribute("value", "");
+	es.innerHTML='';
+//	eventSchedule.setAttribute("value", "");
 	event_coupon_search.value = "";
 	alert("쿠폰 초기화 되었습니다");
 	getList();
@@ -130,9 +131,12 @@ $("#modalSave2").click(function() {
             couponName.setAttribute("value", $(item).prop("title"));
             couponId.setAttribute("value", $(item).prop("value").substr(6));
 			if($(datepicker).prop("value")==""){
-				eventSchedule.setAttribute("value", "9999-12-31");
+				es.innerHTML ='<input id="eventSchedule" name="eventSchedule" class="form-control" hidden value="9999-12-31" type="text">';
 			}else{
-				eventSchedule.setAttribute("value", $(datepicker).prop("value"));
+//				eventSchedule.setAttribute("value", $(datepicker).prop("value"));
+				let html1 = '<input id="eventSchedule" name="eventSchedule" class="form-control" hidden value="';
+				let html2 = '" type="text">';
+				es.innerHTML = html1+$(datepicker).prop("value")+html2;
 			}
             return;
         }
