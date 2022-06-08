@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fd.s1.coupon.UserCouponVO;
+import com.fd.s1.delivery.CartVO;
+import com.fd.s1.delivery.DeliveryService;
 
 
 @Controller
@@ -27,6 +29,8 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private MemberCheck memberCheck;
+	@Autowired
+	private DeliveryService deliveryService;
 	
 	@PostMapping("findPw")
 	public ModelAndView findPw(MemberVO memberVO,HttpSession session)throws Exception{
@@ -339,6 +343,12 @@ public class MemberController {
 			message="로그인 성공";
 			path = "/";
 			session.setAttribute("member",memberVO);
+			CartVO cartVO = new CartVO();
+			cartVO.setId(memberVO.getId());
+			List<CartVO> ar = deliveryService.getCart(cartVO);
+			for(CartVO c:ar) {
+				deliveryService.delete(c);
+			}
 		}
 		mv.addObject("path",path);
 		mv.addObject("message",message);

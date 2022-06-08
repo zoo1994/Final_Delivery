@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fd.s1.delivery.OrdersVO;
 import com.fd.s1.member.MemberVO;
+import com.fd.s1.util.Pager;
 
 @Service
 public class ShopService {
@@ -62,8 +63,10 @@ public class ShopService {
 		return shopMapper.getShopInfo(map);
 	}
 	
-	public List<OrdersVO> getShopOrderList(OrdersVO ordersVO)throws Exception{
-		return shopMapper.getShopOrderList(ordersVO);
+	public List<OrdersVO> getShopOrderList(Pager pager)throws Exception{
+		pager.makeRow();
+		pager.makeNum(shopMapper.getOrderTotal(pager));
+		return shopMapper.getShopOrderList(pager);
 	}
 	
 	public List<SettlementVO> getSettlement(SettlementVO settlementVO)throws Exception{

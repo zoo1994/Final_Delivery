@@ -8,6 +8,7 @@ public class Pager {
 	private Integer category;
 	private Long userType;
 	private String id;
+	private Integer shopNum;
 	private Integer perPage;
 	private Integer startRow;
 	private Integer pn;
