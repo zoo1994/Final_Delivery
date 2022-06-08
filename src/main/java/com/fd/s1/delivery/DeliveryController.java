@@ -217,11 +217,11 @@ public class DeliveryController {
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		CartVO cartVO = new CartVO();
 		cartVO.setId(memberVO.getId());
-		UserCouponVO userCouponVO = new UserCouponVO();
+		UserCouponVO userCouponVO = new UserCouponVO(); 
 		userCouponVO.setId(memberVO.getId());
 		List<CartVO> ar = deliveryService.getCart(cartVO);
 		List<UserCouponVO> coupon = couponService.getUserCoupon(userCouponVO);
-		for(UserCouponVO vo:coupon) {
+		for(UserCouponVO vo:coupon){
 			CouponVO couponVO = new CouponVO();
 			couponVO.setCouponId(vo.getCouponId());
 			couponVO = couponService.getDetail(couponVO);
