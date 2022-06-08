@@ -101,6 +101,10 @@ public class DeliveryService {
 	public List<OrderDetailVO> getOrderDetail(OrderDetailVO orderDetailVO)throws Exception{
 		return deliveryMapper.getOrderDetail(orderDetailVO);
 	}
+	
+	public ShopVO findShop(ShopVO shopVO)throws Exception{
+		return deliveryMapper.findShop(shopVO);
+	}
 
 
 	

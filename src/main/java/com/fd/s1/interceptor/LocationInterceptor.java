@@ -21,6 +21,11 @@ public class LocationInterceptor implements HandlerInterceptor{
 		
 		HttpSession session = request.getSession();
 		String location = (String)session.getAttribute("location");
+		String pick = (String)session.getAttribute("pickup");
+		
+		if(pick != null) {
+			check = true;
+		}
 		
 		if(location != null) {
 				check = true;

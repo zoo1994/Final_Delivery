@@ -61,7 +61,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
 				.excludePathPatterns("/delivery/orderList*")
 				.excludePathPatterns("/delivery/orderDetail")
 				.excludePathPatterns("/delivery/packagingAddress")
-				.excludePathPatterns("/delivery/select");
+				.excludePathPatterns("/delivery/select")
+				.excludePathPatterns("/delivery/goPickup");
 		
 	}
 }
