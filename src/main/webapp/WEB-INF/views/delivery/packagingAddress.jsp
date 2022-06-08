@@ -50,9 +50,9 @@
 				</thead>
 				<tbody class="table-light">
 					<c:forEach items="${list}" var="vo">
-						<tr style="height: 60px;" class="selectShop" data-shopName="${vo.shopName}">
+						<tr style="height: 60px;" class="selectShop" data-shopName="${vo.shopName}" data-num="${vo.shopNum}">
 							<td class="col text-center align-items-center fw-bolder shopList"
-								data-x="${vo.x_axis}" data-y="${vo.y_axis}" data-search="${pager.search}" style="">${vo.shopName}</td>
+								data-x="${vo.x_axis}" data-y="${vo.y_axis}" data-search="${pager.search}" data-num="${vo.shopNum}">${vo.shopName}</td>
 							<td class="col text-center align-items-center " style="">${vo.location}</td>
 							<td class="col text-center align-items-center" style="">${vo.shopPhone}</td>
 							<td class="col text-center align-items-center" style="">${vo.openTime}시</td>

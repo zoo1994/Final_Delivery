@@ -5,6 +5,10 @@
  
     <mapper namespace="com.fd.s1.delivery.DeliveryMapper">
     
+    <select id="findShop" parameterType="ShopVO" resultType="ShopVO">
+    	SELECT * FROM SHOP WHERE SHOPNUM=#{shopNum}
+    </select>
+    
     <select id="shopList" parameterType="Pager" resultType="ShopVO">
     	SELECT * FROM SHOP WHERE SHOPNAME LIKE concat('%', #{search},'%') or
 	 		LOCATION LIKE concat('%', #{search}, '%') 

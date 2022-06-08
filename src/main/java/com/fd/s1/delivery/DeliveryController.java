@@ -61,6 +61,15 @@ public class DeliveryController {
 			
 		return mv;
 	}
+	@GetMapping("goPickup")
+	public ModelAndView goPickup(ShopVO shopVO,HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		shopVO=deliveryService.findShop(shopVO);
+		session.setAttribute("shop", shopVO);
+		session.setAttribute("pickup", "d");
+		mv.setViewName("redirect:./home");
+		return mv;
+	}
 	
 	@PostMapping("goDeli")
 	public ModelAndView goDeli(Double x, Double y,String postcode,String location,String detailLocation, HttpSession session) throws Exception {
@@ -103,7 +112,6 @@ public class DeliveryController {
 				minName=j;
 			}
 		}
-//		System.out.println("마지막 매장 : "+a[a.length-1]);
 		if(a[minName]>5000) {
 			String message= "주문가능한 매장이 없습니다";
 			String path = "/";
@@ -112,8 +120,6 @@ public class DeliveryController {
 			mv.setViewName("common/joinResult");
 			return mv;
 		}
-		int category = 0;
-		mv.addObject(category);
 		session.setAttribute("shop", ar.get(minName));
 		session.setAttribute("location", location);
 		session.setAttribute("detailLocation", detailLocation);

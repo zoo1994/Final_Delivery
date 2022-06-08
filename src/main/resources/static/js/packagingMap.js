@@ -17,7 +17,7 @@ let options = { //지도를 생성할 때 필요한 기본 옵션
 let map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
 const imageSrc = "../resources/image/logoMap.png";
-    
+
 for (const i of shopList) {
     
     // 마커 이미지의 이미지 크기 입니다
@@ -33,12 +33,15 @@ for (const i of shopList) {
         title : i.innerText, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
         image : markerImage // 마커 이미지 
     }); 
-
+    kakao.maps.event.addListener(marker, 'click', function() {
+      window.location.href="./goPickup?shopNum="+i.getAttribute("data-num");
+});
 }
+
 
 for(const i of selectShop){
 	i.addEventListener("click",function(){
-		console.log(i.getAttribute("data-shopName"))
+		window.location.href="./goPickup?shopNum="+i.getAttribute("data-num");
 	});
 }
 

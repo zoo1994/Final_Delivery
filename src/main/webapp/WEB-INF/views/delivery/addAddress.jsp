@@ -49,11 +49,11 @@
 		</div>
 	</div>
 	<form action="./goDeli" method="post" id="goDeli">
-		<input type="hidden" id="x" name="x"> <input type="hidden"
-			id="y" name="y"> <input type="hidden" id="input_postcode"
-			name="postcode"> <input type="hidden" id="location"
-			name="location"> <input type="hidden" id="detailLocation"
-			name="detailLocation">
+		<input type="hidden" id="x" name="x"> 
+		<input type="hidden"id="y" name="y"> 
+		<input type="hidden" id="input_postcode" name="postcode">
+		<input type="hidden" id="location" name="location"> 
+		<input type="hidden" id="detailLocation"name="detailLocation">
 	</form>
 	</div>
 	<script type="text/javascript"

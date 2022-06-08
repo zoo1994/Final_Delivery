@@ -27,31 +27,34 @@
 
 			<div class="user d-flex justify-content-center">
 				<c:choose>
+					<c:when test="${not empty pickup}">
+						<div>포장 매장 :</div>
+						<div class="mx-3" style="display: inline; bottom: 0;">${shop.shopName}</div>
+						<a class="btn btn-warning m-2" href="./cart" style="height: 40px; color: green;">장바구니</a>
+					</c:when>
 					<c:when test="${not empty location && not empty member}">
-					<div>
-				배달 매장 :
-					</div>
-				<div class="mx-3" style="display: inline; bottom: 0;" id="shopName">
-				 ${shop.shopName}
-				</div>
-					<div>
-				현재 주소지 :
-					</div>
-				<div class="mx-3" style="display: inline; bottom: 0;">
-				 <p>${location}</p>
-				 <div class="d-flex justify-content-between">
-				 <div style="display: inline;"> ${detailLocation}</div>
-				 <div style="display: inline;"> ${postcode} </div> 
-				 </div>
-				</div>
-				<a class="btn btn-success m-2" href="./addAddress" style="height: 40px;color:white;">주소변경</a>				
-				<a class="btn btn-warning m-2" href="./cart" style="height: 40px;color:green;">장바구니</a>				
-			</c:when>
-			
-			<c:when test="${not empty member && empty location}">
-				<div>주소를 입력해주세요</div>
-				<a class="btn btn-warning m-2" href="./addAddress" style="height: 40px;color:green;">주소입력</a>				
-			</c:when>
+						<div>배달 매장 :</div>
+						<div class="mx-3" style="display: inline; bottom: 0;"
+							id="shopName">${shop.shopName}</div>
+						<div>현재 주소지 :</div>
+						<div class="mx-3" style="display: inline; bottom: 0;">
+							<p>${location}</p>
+							<div class="d-flex justify-content-between">
+								<div style="display: inline;">${detailLocation}</div>
+								<div style="display: inline;">${postcode}</div>
+							</div>
+						</div>
+						<a class="btn btn-success m-2" href="./addAddress"
+							style="height: 40px; color: white;">주소변경</a>
+						<a class="btn btn-warning m-2" href="./cart"
+							style="height: 40px; color: green;">장바구니</a>
+					</c:when>
+
+					<c:when test="${not empty member && empty location}">
+						<div>주소를 입력해주세요</div>
+						<a class="btn btn-warning m-2" href="./addAddress"
+							style="height: 40px; color: green;">주소입력</a>
+					</c:when>
 					<c:otherwise>
 						<a href="../member/login"> 로그인을 해주세요. </a>
 					</c:otherwise>

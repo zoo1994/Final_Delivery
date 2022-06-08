@@ -80,13 +80,14 @@
 				</blockquote>
 			</div>
 		</div>
-		<div class="row justify-content-end">
-			<a href="./cpRegister" class="col-2 btn btn-outline-success">쿠폰함</a>
-			<a href="./pwChange" class="col-2 btn btn-outline-success">비밀번호 변경</a> 
-			<a href="./updateCheck" class="col-2  btn btn-outline-success">개인정보 변경</a>
+		<div class="row mt-4 justify-content-end" style="margin:0; padding: 0;">
 			<c:if test="${member.userType eq 1}">
-				<a href="../shop/shopMenu" class="col-2  btn btn-outline-success">매장 관리</a>		
+				<a href="../shop/shopMenu" class="col-2  btn btn-outline-success me-2">매장 관리</a>		
 			</c:if>
+			<a href="./cpRegister" class="col-2 btn btn-outline-success me-2" >쿠폰함</a>
+			<a href="./pwChange" class="col-2 btn btn-outline-success me-2">비밀번호 변경</a> 
+			<a href="./updateCheck" class="col-2  btn btn-outline-success">개인정보 변경</a>
+
 		</div>
 	</div>
 	<c:import url="../temp/footer.jsp"></c:import>

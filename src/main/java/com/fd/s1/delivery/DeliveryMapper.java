@@ -40,4 +40,6 @@ public interface DeliveryMapper {
 	
 	public List<OrderDetailVO> getOrderDetail(OrderDetailVO orderDetailVO)throws Exception;
 	
+	public ShopVO findShop(ShopVO shipVO)throws Exception;
+	
 }
