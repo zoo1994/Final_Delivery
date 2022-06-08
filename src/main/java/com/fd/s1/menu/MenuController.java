@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -90,8 +91,61 @@ public class MenuController {
 		return mv;
 	}
 	
-
-
+	//맥모닝 판매시작
+	@Scheduled(cron="0 0 4 * * *")
+	public void menuOpenTimeSetting() throws Exception {
+		Pager pager = new Pager();
+		pager.setCategory(3);
+		pager.setUserType(0L);
+		
+		List<ShopVO> shopList = adminService.getShopList();
+		List<MenuVO> ar = menuService.getList(pager);
+		int result = 0;
+		MenuVO menuVO = new MenuVO();
+		menuVO.setMenuSale(1);
+		for(int i =0;i<ar.size();i++) {
+			menuVO.setMenuNum(ar.get(i).getMenuNum());
+			result = menuService.setUpdateSale(menuVO);
+		}
+		
+		for(int i=0;i<shopList.size();i++) {
+			for(int j=0;j<ar.size();j++) {			
+				ShopMenuVO shopMenuVO = new ShopMenuVO();
+				shopMenuVO.setMenuNum(ar.get(j).getMenuNum());
+				shopMenuVO.setSale(1);
+				shopMenuVO.setShopNum(shopList.get(i).getShopNum());
+				result = menuService.setShopMenuUpdate(shopMenuVO);
+			}				
+		}
+	}
+	
+	//맥모닝 판매종료
+	@Scheduled(cron="0 30 10 * * *")
+	public void menuCloseTimeSetting() throws Exception {
+		Pager pager = new Pager();
+		pager.setCategory(3); //맥모닝 카테고리
+		pager.setUserType(0L);		
+		List<MenuVO> ar = menuService.getList(pager);
+		List<ShopVO> shopList = adminService.getShopList();
+		System.out.println("size : "+ar.size());
+		int result = 0;
+		MenuVO menuVO = new MenuVO();
+		menuVO.setMenuSale(0);
+		for(int i =0;i<ar.size();i++) {
+			menuVO.setMenuNum(ar.get(i).getMenuNum());
+			result = menuService.setUpdateSale(menuVO);
+		}
+		
+		for(int i=0;i<shopList.size();i++) {
+			for(int j=0;j<ar.size();j++) {			
+				ShopMenuVO shopMenuVO = new ShopMenuVO();
+				shopMenuVO.setMenuNum(ar.get(j).getMenuNum());
+				shopMenuVO.setSale(0);
+				shopMenuVO.setShopNum(shopList.get(i).getShopNum());
+				result = menuService.setShopMenuUpdate(shopMenuVO);
+			}				
+		}
+	}
 	
 	@GetMapping("detail")
 	public ModelAndView getDetail(MenuVO menuVO) throws Exception {
@@ -130,10 +184,7 @@ public class MenuController {
 			return mv;
 		}
 		//System.out.println("controller : "+file.getBytes()+".");
-		Long count = adminService.getShopListCount(pager);
-		System.out.println("count : "+count);
-		List<ShopVO> ar = adminService.getShop(pager, count);
-		System.out.println("shop Count : "+ar.size());
+		List<ShopVO> ar = adminService.getShopList();
 		int result = menuService.setAdd(menuVO, file);
 		//메뉴추가 성공했다면, 영양정보도 추가
 		if(result > 0) {
@@ -156,6 +207,7 @@ public class MenuController {
 				ShopMenuVO shopMenuVO = new ShopMenuVO();
 				shopMenuVO.setMenuNum(menuVO.getMenuNum());
 				shopMenuVO.setShopNum(ar.get(i).getShopNum());
+				shopMenuVO.setSale(menuVO.getMenuSale());
 				result = menuService.setShopMenuAdd(shopMenuVO);
 			}
 		}
@@ -175,15 +227,25 @@ public class MenuController {
 	}
 	
 	@PostMapping("update")
-	public ModelAndView setUpdate(@Valid MenuVO menuVO, BindingResult bindingResult, MultipartFile file) throws Exception {
+	public ModelAndView setUpdate(@Valid MenuVO menuVO, BindingResult bindingResult, MultipartFile file, Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		if(bindingResult.hasErrors()) {
 			mv.setViewName("menu/update");
 			return mv;
 		}
-		
+		List<ShopVO> ar = adminService.getShopList();
 		int result = menuService.setUpdate(menuVO, file);
+		
+		if(result > 0) {
+			for(int i=0;i<ar.size();i++) {				
+			ShopMenuVO shopMenuVO = new ShopMenuVO();
+			shopMenuVO.setSale(menuVO.getMenuSale());
+			shopMenuVO.setMenuNum(menuVO.getMenuNum());
+			shopMenuVO.setShopNum(ar.get(i).getShopNum());
+			menuService.setShopMenuUpdate(shopMenuVO);
+			}
+		}
 		if(result > 0) {
 			IngredientVO ingredientVO = new IngredientVO();
 			ingredientVO.setMenuNum(menuVO.getMenuNum());

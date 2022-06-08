@@ -185,7 +185,7 @@
 		// 마커가 지도 위에 표시되도록 설정
 		//marker.setMap(map);
 
-		let imageSrc = '../resources/image/pngwing.com.png'; // 마커이미지 주소
+		let imageSrc = 'https://ifh.cc/g/zsbs7D.png'; // 마커이미지 주소
 		imageSize = new kakao.maps.Size(34, 36); // 마커이미지의 크기
 		imageOption = {
 			offset : new kakao.maps.Point(17, 36)

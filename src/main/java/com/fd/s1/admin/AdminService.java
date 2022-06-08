@@ -337,6 +337,9 @@ public class AdminService {
 		return result;
 	}
 	
+	public List<ShopVO> getShopList() throws Exception {
+		return adminMapper.getShopList();
+	}
 	
 	//관리자 분석 - 전체 점포 매출
 	public List<AnalysisVO> getSalesTrend()throws Exception{		
