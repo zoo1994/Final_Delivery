@@ -27,6 +27,7 @@ thead tbody {
 
 
 </style>
+<link rel="stylesheet" href="../css/tableRadius.css" />
 </head>
 <body>
 

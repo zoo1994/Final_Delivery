@@ -4,15 +4,15 @@
 
 					<input hidden id="admin_email_count" value="${count}">
 
-					<div class="accordion" id="accordionExample" style="border-top: 1px solid black;">
+					<div class="accordion" id="accordionExample" style="border-top: 1px solid black; word-break:break-all; border-radius: 7px;">
 						<c:forEach items="${list}" var="vo" varStatus="i">
 			  				<div class="accordion-item" style="border-bottom: 1px solid black;">
 						    <h2 class="accordion-header" id="headingOne">
-						      <button class="accordion-button bg-light collapsed " style="font-weight: bold; background-color: rgb(190,194,199);" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i.count}" aria-expanded="false" aria-controls="collapseOne">
+						      <button class="accordion-button bg-light collapsed " style=" background-color: rgb(190,194,199);" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${i.count}" aria-expanded="false" aria-controls="collapseOne">
 						        <span class="col-1" style="padding: 0 auto;">${vo.emailNum}</span> 
 						        <span class="col-3">${vo.receiver}</span>
-						        <span class="col-6">${vo.title}</span> 				       
-						        <span class="col-1">${vo.sendDate}</span>
+						        <span class="col-6 mx-2" style="">${vo.title}</span> 				       
+						        <span class="col-1 mx-4">${vo.sendDate}</span>
 						      </button>
 						    </h2>
 						    <div id="collapse${i.count}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -25,45 +25,6 @@
 						  </div>
 					  	</c:forEach>
 					</div>
-					
-					
-					
-					
-					
-<%-- 					<table class="table">
-					  <thead class="table-light">
-					    <tr class="row" style="height: 45px;">
-					    	<th class="col-1 text-center d-flex align-items-center" style="padding: 0 auto;">NUM</th>
-							<th class="col-1 text-center d-flex align-items-center"  style="">수신자</th>
-							<th class="col-2 text-center d-flex align-items-center"  style="">제목</th>
-							<th class="col-6 text-center d-flex align-items-center"  style="">내용</th>
-							<th class="col-1 text-center d-flex align-items-center"  style="">발신일</th>
-							<th class="col-1 text-center d-flex align-items-center"  style="">기타</th>
-					    </tr>
-					  </thead>
-					  <tbody class="table-light">
-							<c:forEach items="${list}" var="vo">
-								<tr class="row" style="">
-							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.emailNum}</td>
-							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.receiver}</td>
-							    	<td class="col-2 text-center d-flex align-items-center" style=" ">${vo.title}</td>		
-							    	<td class="col-6 text-center d-flex align-items-center" style=" ">${vo.contents}</td>
-							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.sendDate}</td>
-
-							    	<td class="col-1 text-center d-flex align-items-center" style=" ">
-							    		<!-- Button trigger modal -->
-										<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn${vo.emailNum}" data-name="" data-type="" class="modalBtn btn btn-info" data-toggle="modal" data-target="#modal">
-										  변경
-										</button>
-							    	</td>
-							    </tr>
-							</c:forEach>
-
-					  </tbody>				  
-					  <tfoot class="table-light">
-					    <tr></tr>
-					  </tfoot>
-					</table> --%>
 					
 						<nav aria-label="Page navigation example mt-5 bs-warning" style="margin-top: 20px;">
 							<span class="col-2" style="display: inline-block;"></span>

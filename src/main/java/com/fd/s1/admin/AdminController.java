@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,7 +49,7 @@ public class AdminController {
 		
 	}
 	
-	
+
 	//관리자 회원관리
 	@GetMapping("member")
 	public ModelAndView getMember(Pager pager)throws Exception{
@@ -361,6 +362,11 @@ public class AdminController {
 		return mv;		
 	}
 	
+	@Value("${emailID}")
+	private String emailID;	
+	@Value("${emailPW}")
+	private String emailPW;
+	
 	@PostMapping("send")
 	public ModelAndView setSend(EmailVO emailVO, String receivers, HttpSession session, String receiver_type)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -390,7 +396,7 @@ public class AdminController {
 				System.out.println(111);
 				for(int i =0;i<str.length;i++) {
 					emailVO.setReceiver(str[i]);
-					result = adminService.setSend(emailVO, memberVO);
+					result = adminService.setSend(emailVO, memberVO, emailID, emailPW);
 				}			
 			}
 		}

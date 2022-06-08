@@ -147,36 +147,12 @@
 		</div>
 	</div>
 	<div style=""></div>
-<!-- <div style="margin-bottom: 200px;"></div> -->
-
-
-
-<!--     <header>-
-        <h1>검색하기</h1>
-        <input class="keyword" id="keyword" autocomplete="off" />
-    </header>
-    <div class="keywords" id="keywords">
-
-    </div>
-    <div class="search-results">
-        <table border=1>
-            <tr>
-                <th width="120px" height="50px">가</th>
-                <th width="120px" height="50px">나</th>
-                <th width="120px" height="50px">다</th>
-                <th width="120px" height="50px">라</th>
-                <th width="120px" height="50px">마</th>
-            </tr>
-        </table>
-    </div> -->
-
-
 <!-- Modal -->
 <div class="modal  fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content" style="height: 100%; width: 1000px;">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">이메일 전송</h5>
+        <h5 class="modal-title" id="exampleModalLabel">메일 발송</h5>
         <button type="button" id="modalHideX" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -194,7 +170,7 @@
 				  	
 				  	
 				  	<div id="toDiv" style="cursor:text;" class="mInput_holder mInput_over" onclick="$(this).children().children().last().children().children().children().focus(); console.log('hi'); ">
-                		전체<input type="radio" class="receiver_type" name="receiver_type" value="all">
+                		　전체<input type="radio" class="receiver_type" name="receiver_type" value="all">
                 		셀러<input type="radio" class="receiver_type" name="receiver_type" value="seller">
                 		일반회원<input type="radio" class="receiver_type" name="receiver_type" value="user">
                 		개별선택<input checked="checked" type="radio" class="receiver_type" name="receiver_type" value="select">
@@ -209,22 +185,13 @@
 									</div>									
 									<span class="drag_guide"></span>
 									<div style="position:absolute;top:-1000px;left:-1000px;">
-										<span id="toInputMeasure">mi</span>
+										<span id="toInputMeasure"></span>
 									</div>
 								</div>
 							</li>	
 											
 						</ul>
-						<button>주소록</button>
-<%-- 						<div class="dh_layer">
-	                        <div id="atcp" class="type_a autoBook">
-	                            <ul class="autoAddr" style="height: 234px; padding: 0;">
-	                            	<li class="selected"><div><a title="고기범" onclick="maCore.onMouseClick(this, &quot;to&quot;);return false;" onmousemove="maCore.onMouseMove(this, &quot;to&quot;);return false;"><span class="name_cover"><span class="name">고기범 </span><span></span><span></span><span></span><span></span></span><span class="info_cover"><span></span><span></span><span></span><span class="email">kokibum89@n<strong>a</strong>ver.com </span></span></a><input type="hidden" officer="" sn="" grouptype="" value="&quot;고기범&quot;<kokibum89@naver.com>"></div><img src="https://ssl.pstatic.net/static/pwe/nm/b.gif" width="8" height="7" title="" class="deleteBtn2" style="display:none;"></li>
-	                            	<li><div><a title="고종욱교수님" onclick="maCore.onMouseClick(this, &quot;to&quot;);return false;" onmousemove="maCore.onMouseMove(this, &quot;to&quot;);return false;"><span class="name_cover"><span class="name">고종욱교수님 </span><span></span><span></span><span></span><span></span></span><span class="info_cover"><span></span><span></span><span></span><span class="email">jwk<strong>a</strong>y@hanmail.net </span></span></a><input type="hidden" officer="" sn="" grouptype="" value="&quot;고종욱교수님&quot;<jwkay@hanmail.net>"></div><img src="https://ssl.pstatic.net/static/pwe/nm/b.gif" width="8" height="7" title="" class="deleteBtn2" style="display:none;"></li>
-	                            	<li><div><a title="김래찬" onclick="maCore.onMouseClick(this, &quot;to&quot;);return false;" onmousemove="maCore.onMouseMove(this, &quot;to&quot;);return false;"><span class="name_cover"><span class="name">김래찬 </span><span></span><span></span><span></span><span></span></span><span class="info_cover"><span></span><span></span><span></span><span class="email">ch<strong>a</strong>n3067@gmail.com </span></span></a><input type="hidden" officer="" sn="" grouptype="" value="&quot;김래찬&quot;<chan3067@gmail.com>"></div><img src="https://ssl.pstatic.net/static/pwe/nm/b.gif" width="8" height="7" title="" class="deleteBtn2" style="display:none;"></li>
-	                            </ul>           
-	                        </div>
-						</div> --%>
+
 						<div class="keywords" id="keywords">
 							
    						</div>
@@ -255,14 +222,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="modalHide" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="modalSave" class="btn btn-primary">Add</button>
+        <button type="button" id="modalSave" class="btn btn-primary">발송</button>
       </div>
     </div>
   </div>
 </div>
-<!-- 	권한등급별
-		수신동의별
-		 -->
 
 <c:import url="../temp/footer.jsp"></c:import>
 <script src="../resources/js/adminEmailList.js"></script>
@@ -274,6 +238,6 @@
 		height : 400
 	});
 </script>
-
+<script src="../resources/js/footerNoMargin.js"></script>
 </body>
 </html>

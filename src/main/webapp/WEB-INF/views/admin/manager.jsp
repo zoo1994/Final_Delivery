@@ -35,5 +35,6 @@
 	<!-- <div style="height: 1500px; width: 4000px;"></div> -->
 <!-- <div style="margin-bottom: 200px;"></div> -->
 <c:import url="../temp/footer.jsp"></c:import>
+<script src="../resources/js/footerNoMargin.js"></script>
 </body>
 </html>

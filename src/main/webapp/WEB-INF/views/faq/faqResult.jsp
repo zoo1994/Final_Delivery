@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 					<input hidden id="cate_count" value="${count}">
-					<div class="accordion" id="accordionExample" style="border-top: 1px solid black;">
+					<div class="accordion" id="accordionExample" style="border-top: 1px solid black;  border-radius: 7px;">
 						<c:forEach items="${list}" var="vo" varStatus="i">
 			  				<div class="accordion-item" style="border-bottom: 1px solid black;">
 						    <h2 class="accordion-header" id="headingOne">
@@ -50,7 +50,7 @@
 							  </span> 
 							  <span class="col-2" style="display: inline-block; text-align: end; width: 15%;">
 							  	<c:if test="${member.userType == 0}">
-							  		<a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a>
+							  		<a href="./add" class="btn btn-primary" style="display: inline-block; ">글쓰기</a>
 							  	</c:if>
 							  </span>
 							</nav>

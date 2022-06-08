@@ -28,9 +28,9 @@
 					</div>
 					<div class="mb-3">
 						<label for="exampleFormControlInput2" class="form-label">Writer</label>
-						<form:input path="id" cssClass="form-control" id="id" readonly="readonly" value="${member.id}"/> 
+						<input name="id" class="form-control" id="id" readonly="readonly" value="${member.id}">
 						<div>
-							<form:errors path="id"></form:errors>
+<%-- 							<form:errors path="id"></form:errors> --%>
 						</div>
 					</div>
 
@@ -80,7 +80,7 @@
 						    </tr>
 						  </tbody>
 						</table>
-						<input id="faqCategoryBtnResult" class="form-control">
+						<input id="faqCategoryBtnResult" readonly="readonly" class="form-control">
 					</div>
 
 					
@@ -104,7 +104,7 @@
 	
 				<div class="row justify-content-end">
 					<c:if test="${member.userType == 0}">
-						<button type="button" id="addBtn" class="col-1 btn btn-outline-success">수정</button>
+						<button type="button" id="addBtn" class="col-1 btn btn-outline-success" style="margin-right: 10px;">수정</button>
 					</c:if>
 				</div>
 			</form:form>

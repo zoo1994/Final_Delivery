@@ -481,6 +481,6 @@
 </div>
 
 <c:import url="../temp/footer.jsp"></c:import>
-
+<script src="../resources/js/footerNoMargin.js"></script>
 </body>
 </html>

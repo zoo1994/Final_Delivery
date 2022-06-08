@@ -15,6 +15,7 @@
 	font-weight: bold;
 }
 </style>
+<link rel="stylesheet" href="../css/tableRadius.css" />
 </head>
 <body>
 
@@ -106,5 +107,6 @@
  
 </script>
 <script src="../resources/js/adminMemberList.js"></script>
+<script src="../resources/js/footerNoMargin.js"></script>
 </body>
 </html>

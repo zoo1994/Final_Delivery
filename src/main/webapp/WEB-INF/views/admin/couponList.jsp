@@ -3,14 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 					<input hidden id="admin_coupon_count" value="${count}">
-					<table class="table">
+					<table class="table" style="word-break:break-all;">
 					  <thead class="table-light">
 					    <tr class="row" style="height: 45px;">
 					    	<th class="col-2 text-center d-flex align-items-center" style="padding: 0 auto;">쿠폰ID</th>
 							<th class="col-3 text-center d-flex align-items-center"  style="">쿠폰명</th>
-							<th class="col-3 text-center d-flex align-items-center"  style="">할인가격</th>
-							<th class="col-2 text-center d-flex align-items-center"  style="">쿠폰발급기간</th>
-							<th class="col-2 text-center d-flex align-items-center"  style=""></th>
+							<th class="col-3 text-center d-flex align-items-center"  style="justify-content: center;">할인가격</th>
+							<th class="col-2 text-center d-flex align-items-center"  style="justify-content: center;">사용 가능 일수</th>
+							<th class="col-2 text-center d-flex align-items-center"  style="justify-content: center;">기타</th>
 					    </tr>
 					  </thead>
 					  <tbody class="table-light">
@@ -18,12 +18,12 @@
 								<tr class="row" style="">
 							    	<td class="col-2 text-center d-flex align-items-center" style=" ">${vo.couponId}</td>
 							    	<td class="col-3 text-center d-flex align-items-center" style=" ">${vo.couponName}</td>
-							    	<td class="col-3 text-center d-flex align-items-center" style=" ">${vo.discount}</td>		
-							    	<td class="col-2 text-center d-flex align-items-center" style=" ">${vo.activeDate}</td>
+							    	<td class="col-3 text-center d-flex align-items-center" style=" justify-content: center;">${vo.discount}원</td>		
+							    	<td class="col-2 text-center d-flex align-items-center" style="justify-content: center;">${vo.activeDate}일</td>
 							    	<td class="col-2 text-center d-flex align-items-center" style=" ">
 										<!-- Button trigger modal -->
 										<button style="margin: 0 auto; font-weight: 500;" type="button" id="couponDeleteBtn${vo.couponId}" class="deleteBtn btn btn-danger">
-										  삭제
+											삭제
 										</button>
 							    	</td>
 							    </tr>
@@ -59,7 +59,7 @@
 							  		<!-- <a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a> -->
 							  			<!-- Button trigger modal -->
 										<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn${vo.couponId}" data-name="${vo.couponName}" class="modalBtn btn btn-primary" data-toggle="modal" data-target="#modal">
-										  ADD
+											글쓰기
 										</button>
 							  	</c:if>
 							  </span>

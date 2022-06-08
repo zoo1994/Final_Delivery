@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 					<input hidden id="admin_member_count" value="${count}">
-					<table class="table">
+					<table class="table" style="word-break:break-all;">
 					  <thead class="table-light">
 					    <tr class="row" style="height: 45px;">
 					    	<th class="col-1 text-center d-flex align-items-center" style="padding: 0 auto;">ID</th>
@@ -13,10 +13,11 @@
 							<th class="col-1 text-center d-flex align-items-center"  style="">전화번호</th>
 							<th class="col-1 text-center d-flex align-items-center"  style="">포인트</th>
 							<th class="col-1 text-center d-flex align-items-center"  style="">성별</th>
-							<th class="col-2 text-center d-flex align-items-center"  style="">주소</th>
+							<th class="col-1 text-center d-flex align-items-center"  style="">주소</th>
 							<th class="col-1 text-center d-flex align-items-center"  style="">상세주소</th>
 							<th class="col-1 text-center d-flex align-items-center"  style="">생일</th>
 							<th class="col-1 text-center d-flex align-items-center"  style="">등급</th>  
+							<th class="col-1 text-center d-flex align-items-center"  style="">기타</th> 
 					    </tr>
 					  </thead>
 					  <tbody class="table-light">
@@ -28,14 +29,16 @@
 							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.email}</td>
 							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.phone}</td>
 							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.point}</td>	
-							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.gender}</td>
-							    	<td class="col-2 text-center d-flex align-items-center" style=" ">${vo.roadAddress}</td>
+							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.gender == 0 ? "남성" : "여성"}</td>
+							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.roadAddress}</td>
 							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.detailAddress}</td>
 							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.birth}</td>
-							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.userType}
-							    		<!-- Button trigger modal -->
-										<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn${vo.id}" data-name="${vo.name}" data-type="${vo.userType}" class="modalBtn btn btn-success" data-toggle="modal" data-target="#modal">
-										  변경
+							    	<td class="col-1 text-center d-flex align-items-center" style=" ">
+							    		<c:choose><c:when test="${vo.userType == '0'}">관리자</c:when><c:when test="${vo.userType == '1'}">점주</c:when><c:otherwise>일반회원</c:otherwise></c:choose>
+							    	</td>
+							    	<td class="col-1 text-center d-flex align-items-center" style=" ">
+										<button style="font-weight: 500;" type="button" id="modalBtn${vo.id}" data-name="${vo.name}" data-type="${vo.userType}" class="modalBtn btn btn-success" data-toggle="modal" data-target="#modal">
+											등급수정
 										</button>
 							    	</td>
 							    </tr>

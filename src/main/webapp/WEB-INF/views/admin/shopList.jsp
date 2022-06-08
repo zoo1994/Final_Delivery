@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 					<input hidden id="admin_shop_count" value="${count}">
-					<table class="table">
+					<table class="table" style="word-break:break-all;">
 					  <thead class="table-light">
 					    <tr class="row" style="height: 45px;">
 					    	<th class="col-1 text-center d-flex align-items-center" style="padding: 0 auto;">매장번호</th>
@@ -29,17 +29,16 @@
 							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.shopPhone}</td>
 							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.openTime}</td>
 							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.closeTime}</td>		
-							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.sale}</td>
+							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.sale == 0 ? "판매가능" : "판매종료"}</td>
 							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.distance}</td>
-							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.open}</td>
+							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.open == 0 ? "운영" : "폐업"}</td>
  							    	<td class="col-1 text-center d-flex align-items-center" style=" ">
- 							    		<!-- Button trigger modal -->
-										<button style="margin: 0 auto; font-weight: 500;" type="button" id="shopUpdateBtn${vo.shopNum}" data-id="${vo.id}" data-name="${vo.shopName}" data-location="${vo.location}" data-phone="${vo.shopPhone}" data-sale="${vo.sale}" data-open="${vo.open}" class="modalBtn2 btn btn-success" data-toggle="modal" data-target="#modal2">
-										  변경
+
+										<button style="width:45%; padding: 6px 3px; margin: 0 auto; font-weight: 500;" type="button" id="shopUpdateBtn${vo.shopNum}" data-id="${vo.id}" data-name="${vo.shopName}" data-location="${vo.location}" data-phone="${vo.shopPhone}" data-sale="${vo.sale}" data-open="${vo.open}" class="modalBtn2 btn btn-success" data-toggle="modal" data-target="#modal2">
+											수정
 										</button>
-										<!-- Button trigger modal -->
-										<button style="margin: 0 auto; font-weight: 500;" type="button" id="shopDeleteBtn${vo.shopNum}" class="deleteBtn btn btn-danger">
-										  삭제
+										<button style="width:45%; padding: 6px 3px; margin: 0 auto; font-weight: 500;" type="button" id="shopDeleteBtn${vo.shopNum}" class="deleteBtn btn btn-danger">
+											삭제
 										</button>
 										
 							    	</td>
@@ -73,11 +72,9 @@
 							  </span>
 							  <span class="col-2" style="display: inline-block; text-align: end; width: 15%;">
 							  	<c:if test="${member.userType == 0}">
-							  		<!-- <a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a> -->
-							  			<!-- Button trigger modal -->
-										<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn" class="modalBtn btn btn-primary" data-toggle="modal" data-target="#modal">
-										  ADD
-										</button>
+									<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn" class="modalBtn btn btn-primary" data-toggle="modal" data-target="#modal">
+										글쓰기
+									</button>
 							  	</c:if>
 							  </span>
 							</nav>

@@ -50,18 +50,7 @@ public class FaqController {
 		mv.setViewName("faq/update");
 		mv.addObject("faqVO", faqVO);
 		return mv;
-	}
-	
-	@GetMapping("detail")
-	public ModelAndView getDetail(FaqVO faqVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		System.out.println(faqVO.getNum());
-		mv.setViewName("faq/detail");
-		faqVO = faqService.getDetail(faqVO);
-		
-		mv.addObject("vo", faqVO);
-		return mv;
-	}
+	}	
 	
 	@PostMapping("add")
 	public ModelAndView setAdd(@Valid FaqVO faqVO, ModelAndView mv)throws Exception{

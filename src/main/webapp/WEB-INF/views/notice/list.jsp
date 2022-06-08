@@ -15,8 +15,8 @@
 	color: black;
 	font-weight: bold;
 }
-
 </style>
+<link rel="stylesheet" href="../css/tableRadius_board.css"/>
 <link href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/200px-McDonald%27s_Golden_Arches.svg.png" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
@@ -24,7 +24,7 @@
 
 <div id="container">
 	<div class="content">			
-		<!-- //visualArea -->
+
 		<div class="contArea">
 			<div class="inner">
 				<div class="my-4" style="text-align: center; position: relative;">
@@ -84,7 +84,7 @@
 							  </span> 
 							  <span class="col-2" style="display: inline-block; text-align: end; width: 15%;">
 							  	<c:if test="${member.userType == 0}">
-							  		<a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a>
+							  		<a href="./add" class="btn btn-primary" style="display: inline-block; ">글쓰기</a>
 							  	</c:if>
 							  </span>
 							</nav>
