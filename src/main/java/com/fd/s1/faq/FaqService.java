@@ -31,7 +31,7 @@ public class FaqService {
 			return 0;
 		}
 		
-		if(memberVO.getUserType() == 2L) {
+		if(memberVO.getUserType() == 0L) {
 			return faqMapper.setDelete(faqVO);
 		}else {
 			return 0;

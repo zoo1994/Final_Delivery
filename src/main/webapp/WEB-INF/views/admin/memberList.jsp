@@ -34,7 +34,7 @@
 							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.birth}</td>
 							    	<td class="col-1 text-center d-flex align-items-center" style=" ">${vo.userType}
 							    		<!-- Button trigger modal -->
-										<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn${vo.id}" data-name="${vo.name}" data-type="${vo.userType}" class="modalBtn btn btn-info" data-toggle="modal" data-target="#modal">
+										<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn${vo.id}" data-name="${vo.name}" data-type="${vo.userType}" class="modalBtn btn btn-success" data-toggle="modal" data-target="#modal">
 										  변경
 										</button>
 							    	</td>
@@ -67,8 +67,5 @@
 							  </ul> 
 							  </span> 
 							  <span class="col-2" style="display: inline-block; text-align: end; width: 15%;">
-							  	<c:if test="${member.userType == 0}">
-							  		<a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a>
-							  	</c:if>
 							  </span>
 							</nav>

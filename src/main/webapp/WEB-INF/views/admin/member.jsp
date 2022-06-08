@@ -20,7 +20,7 @@
 
 	<c:import url="../temp/header.jsp"></c:import>
 	<c:import url="../temp/header_script.jsp"></c:import>
-	<div style="margin-top: 200px;"></div>
+<!-- 	<div style="margin-top: 200px;"></div> -->
 	
 	<!-- 사이드바 -->
 	<c:import url="./admin_sidebar.jsp"></c:import>
@@ -32,34 +32,33 @@
 		<div class="" style="position: relative;  width: 100%; border: 1px solid;">
 			<div style="width: 100%; height:100%; background-color: #dee2e6;">
 				<div class="container" style=" margin-bottom: 200px;">
-					<div class="d-flex mb-3">
-						<input hidden name="category" type="text" id="categoryResult" value="1">
-						<span class="col-9  mt-5">
-							<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 명의</span> 회원이 검색되었습니다.</legend>
-						</span>
-						<span class="col-2 mt-5"  style="margin-right:10px;">
-							<input id="admin_member_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {getList();}" placeholder="Search" aria-label="Search">
-						</span>
-						<span class="col-1 mt-5">
-							<button class="btn btn-outline-success rounded-pill" id="admin_member_search_btn"  style="width: 80px;" type="submit">검색</button>
-						</span>
-					</div>
-					<div id="adminMemberListReusult">
-						
+					<div>
+						<p class="" style="padding-bottom: 20px; padding-top: 40px; font-size: 25px; font-weight: bold;"><i style="float: left; margin: 10px 5px; width: 15px; height: 15px; border: 5px solid orange; border-radius: 100%;"></i>
+							회원관리
+						</p>	
+						<div class="d-flex mb-3">
+							<input hidden name="category" type="text" id="categoryResult" value="1">
+							<span class="col-9">
+								<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 명의</span> 회원이 검색되었습니다.</legend>
+							</span>
+							<span class="col-2"  style="margin-right:10px;">
+								<input id="admin_member_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {getList();}" placeholder="Search" aria-label="Search">
+							</span>
+							<span class="col-1">
+								<button class="btn btn-outline-success rounded-pill" id="admin_member_search_btn"  style="width: 80px;" type="submit">검색</button>
+							</span>
+						</div>
+						<div id="adminMemberListReusult">
+							
+						</div>
 					</div>
 				
-				
-
-					
-					
-					
-					
 				</div>
 			</div>
 		</div>
 	</div>
 	<div style=""></div>
-<div style="margin-bottom: 200px;"></div>
+<!-- <div style="margin-bottom: 200px;"></div> -->
 
 
 
@@ -71,7 +70,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">등급 수정</h5>
         <button type="button" id="modalHideX" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -95,7 +94,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="modalHide" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="modalSave" class="btn btn-primary">Save changes</button>
+        <button type="button" id="modalSave" class="btn btn-primary">수정하기</button>
       </div>
     </div>
   </div>

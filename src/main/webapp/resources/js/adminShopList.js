@@ -27,6 +27,8 @@ $('#adminShopListReusult').click(function(event) {
 		$('#modal').modal("show");
 	}
 	if (event.target.classList.contains('modalBtn2')) {
+		id_edit=event.target.getAttribute("data-id");
+		console.log(id_edit);
 		console.log(event.target.getAttribute("id").substr(13));
 		//	let shopNum2 = $("#shopNum2").val();
 		$("#shopNum2").val(event.target.getAttribute("id").substr(13));
@@ -38,6 +40,7 @@ $('#adminShopListReusult').click(function(event) {
 		//		$("#shop_open2").val(event.target.getAttribute("data-open"));
 		$('input:radio[name=shop_sale2]:input[value=' + event.target.getAttribute("data-sale") + ']').attr("checked", true);
 		$('input:radio[name=shop_open2]:input[value=' + event.target.getAttribute("data-open") + ']').attr("checked", true);
+		idCheck2_edit = true;
 		$('#modal2').modal("show");
 	}
 
@@ -110,7 +113,7 @@ $("#modalSave").click(function() {
 	if (shop_name == "") { nameCheck = true; }
 	if (shop_location == "") { locationCheck = true; }
 	if (shop_phone == "") { phoneCheck = true; }
-	if (idCheck && nameCheck && locationCheck && phoneCheck) {
+	if (idCheck || nameCheck || locationCheck || phoneCheck ||!idCheck2) {
 		alert("정보를 입력하세요")
 		return;
 	}
@@ -154,6 +157,7 @@ $("#modalSave").click(function() {
 			});
 		}
 	});
+	idCheck2 = false;
 });
 
 $("#modalSave2").click(function() {
@@ -167,6 +171,24 @@ $("#modalSave2").click(function() {
 	let shop_phone2 = $("#shop_phone2").val();
 	let shop_sale2 = $(":input:radio[name=shop_sale2]:checked").val();
 	let shop_open2 = $(":input:radio[name=shop_open2]:checked").val();
+
+	let idCheck_edit = false;
+	let nameCheck_edit = false;
+	let locationCheck_edit = false;
+	let phoneCheck_edit = false;
+	let shop_sale_edit = false;
+	let shop_open_edit = false;
+	if (shop_id2 == "") { idCheck_edit = true; }
+	if (shop_name2 == "") { nameCheck_edit = true; }
+	if (shop_location2 == "") { locationCheck_edit = true; }
+	if (shop_phone2 == "") { phoneCheck_edit = true; }
+	if (shop_sale2 != 0 && shop_sale2 != 1) { shop_sale_edit = true; }
+	if (shop_open2 != 0 && shop_open2 != 1) { shop_open_edit = true; }
+	if (idCheck_edit || nameCheck_edit || locationCheck_edit || phoneCheck_edit ||!idCheck2_edit || shop_sale_edit ||shop_open_edit) {
+		alert("정보를 입력하세요")
+		return;
+	}
+
 	geocoder.addressSearch($("#shop_location2").val(), function(result, status) {
 		if (status === kakao.maps.services.Status.OK) {
 			let x_1 = result[0].x;
@@ -245,3 +267,82 @@ $('#modalSave').click(function(e){
 admin_shop_search_btn.addEventListener("click", function(event) {
 	getList();
 });
+const shop_id_error = document.querySelector("#shop_id_error");
+const shop_id2_error = document.querySelector("#shop_id2_error");
+
+let idCheck2 = false;
+let idCheck2_edit = false;
+let id_edit ='';
+$("#shop_id2").blur(function() {
+	console.log("hh");
+	
+	if(id_edit==$("#shop_id2").val()){
+		shop_id2_error.innerHTML = "";
+		idCheck2_edit = true;
+		return;
+	}
+
+	$.ajax({
+		type: "POST",
+		url: "./shopId",
+		data: {
+			id : $("#shop_id2").val()
+		},
+		success: function(data) {
+			if (data.trim() == '1') {	
+				shop_id2_error.innerHTML = "";			
+				idCheck2_edit = true;
+			}else if(data.trim() == '-1'){
+				shop_id2_error.innerHTML = "아이디가 존재하지 않습니다.";
+				idCheck2_edit = false;
+			}else if(data.trim() == '-2'){
+				shop_id2_error.innerHTML = "매장이 존재하는 아이디입니다.";
+				idCheck2_edit = false;
+			}else {
+				alert("매장 수정 실패");
+				idCheck2_edit = false;
+			}
+
+		},
+		error: function() {
+			alert("error 발생");
+		}
+	});
+});
+
+$("#shop_id").blur(function() {
+	console.log("hh");
+	$.ajax({
+		type: "POST",
+		url: "./shopId",
+		data: {
+			id : $("#shop_id").val()
+		},
+		success: function(data) {
+			if (data.trim() == '1') {	
+				shop_id_error.innerHTML = "";			
+				idCheck2 = true;
+			}else if(data.trim() == '-1'){
+				shop_id_error.innerHTML = "아이디가 존재하지 않습니다.";
+				idCheck2 = false;
+			}else if(data.trim() == '-2'){
+				shop_id_error.innerHTML = "매장이 존재하는 아이디입니다.";
+				idCheck2 = false;
+			}else {
+				alert("매장 수정 실패");
+				idCheck2 = false;
+			}
+
+		},
+		error: function() {
+			alert("error 발생");
+		}
+	});
+});
+
+function checkNumber(event) {
+	if(event.key >= 0 && event.key <= 9) {
+	  return true;
+	}
+	return false;
+}

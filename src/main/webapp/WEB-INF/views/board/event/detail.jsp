@@ -111,11 +111,11 @@
 					  			<!-- Button trigger modal -->
 					  			<form action="./update" method="get" style="display: inline-block;">
 					  				<input type="hidden" name="eventNum" id="eventNum" value="${vo.eventNum}">
-						  			<button style="margin: 0 auto; font-weight: 500;"  type="submit" id="eventDetailUpdateBtn" class="updateBtn btn btn-primary">
+						  			<button style="margin: 0 auto; font-weight: 500;"  type="submit" id="eventDetailUpdateBtn" class="updateBtn btn btn-success">
 									  	UPDATE
 									</button>					<!--   onclick="javascript:{getDeleteBtn();}" -->
 					  			</form>
-								<button style="margin: 0 auto; font-weight: 500;" type="button" id="eventDetailDeleteBtn" class="deleteBtn btn btn-info">
+								<button style="margin: 0 auto; font-weight: 500;" type="button" id="eventDetailDeleteBtn" class="deleteBtn btn btn-danger">
 								  	DELETE
 								</button>
 						  	</c:if>

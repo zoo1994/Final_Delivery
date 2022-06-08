@@ -14,10 +14,9 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<c:import url="../temp/header_script.jsp"></c:import>
-<h1>hi</h1>
 	<div class="container mt-4">
 		<div class="row mt-4">
-			<form:form modelAttribute="faqVO" method="post" enctype="multipart/form-data">
+			<form:form modelAttribute="faqVO" method="post" id="addForm" enctype="multipart/form-data">
 				<div class="row mt-4">
 					<div class="mb-3">
 						<label for="exampleFormControlInput1" class="form-label">Title</label> 
@@ -100,7 +99,7 @@
 				</div>
 				<div class="row justify-content-end">
 					<c:if test="${member.userType == 0}">
-						<button id="addBtn" type="submit" class="col-1 btn btn-outline-success">Add</button>					
+						<button id="addBtn" type="button" class="col-1 btn btn-outline-success">Add</button>					
 					</c:if>
 				</div>
 			</form:form>
@@ -108,6 +107,7 @@
 	</div>
 	<c:import url="../temp/footer.jsp"></c:import>
 	<script src="../resources/js/faqCategory.js"></script>
+	<script src="../resources/js/addBoard.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>	
 <script type="text/javascript">
 

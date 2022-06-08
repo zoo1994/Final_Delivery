@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fd.s1.coupon.CouponIssuanceLogVO;
 import com.fd.s1.coupon.CouponMapper;
 import com.fd.s1.coupon.CouponVO;
 import com.fd.s1.coupon.UserCouponVO;
@@ -57,6 +58,20 @@ public class AdminService {
 		return adminMapper.setShopAdd(shopVO);
 	}
 	
+	//관리자 shop관리 - shopId 유효검사
+	public int getShopId(MemberVO memberVO) throws Exception{	
+		int result = adminMapper.getShopId(memberVO);
+		if(result!=1) {
+			return -1;
+		}
+		result = adminMapper.getShopExistence(memberVO);
+		if(result!=0) {
+			return -2;
+		}
+		return 1;
+	}
+	
+
 	//관리자 shop관리 - delete
 	public int setShopDelete(ShopVO shopVO) throws Exception{	
 		return adminMapper.setShopDelete(shopVO);
@@ -96,8 +111,7 @@ public class AdminService {
 		
 		return 0;
 	}
-	
-	
+
 	
 	//관리자 쿠폰관리 - 리스트
 	public List<CouponVO> getCoupon(Pager pager, Long count)throws Exception{		
@@ -117,10 +131,33 @@ public class AdminService {
 		return adminMapper.setCouponAdd(couponVO);
 	}
 	
+	//관리자 유저쿠폰발급 - couponId 유효검사
+	public int getCouponId(CouponVO couponVO) throws Exception{	
+		return adminMapper.getCouponId(couponVO);
+	}
+	
 	//관리자 쿠폰관리 - delete
 	public int setCouponDelete(CouponVO couponVO) throws Exception{	
 		return adminMapper.setCouponDelete(couponVO);
 	}
+	
+	
+	//관리자 쿠폰로그 - count
+	public Long getCouponLogCount(Pager pager) throws Exception{	
+		return adminMapper.getCouponLogCount(pager);
+	}
+	
+	//관리자 쿠폰로그 - 리스트
+	public List<CouponIssuanceLogVO> getCouponLog(Pager pager, Long count)throws Exception{		
+		pager.makeRow();
+		pager.makeNum(count);
+		System.out.println(pager.getPerPage());
+		return adminMapper.getCouponLog(pager);
+	}
+	
+	
+	
+	
 	
 	public List<BannerFileVO> getBannerFileList() throws Exception {
 		return adminMapper.getBannerFileList();
@@ -239,7 +276,7 @@ public class AdminService {
 	}
 
 	
-	public Long setCouponCreate(UserCouponVO userCouponVO, int number) throws Exception {
+	public Long setCouponCreate(UserCouponVO userCouponVO, CouponIssuanceLogVO couponLogVO) throws Exception {
 		
 		String [] randCharacter = {	"0","1","2","3","4",
 									"5","6","7","8","9",
@@ -252,22 +289,23 @@ public class AdminService {
 		Random rd = new Random();
 
 		int cpLength = 8;//쿠폰 글자수
-		int cur =number;//생성 쿠폰 갯수
+		Long cur =couponLogVO.getCount();//생성 쿠폰 갯수
 		Long result=-1L;
-
+		StringBuffer couponNumTotal = new StringBuffer();
+		
 		while(0<cur) {
 			StringBuffer sb = new StringBuffer();
 			for(int i=0;i<cpLength;i++) {
 				sb.append(randCharacter[rd.nextInt(36)]);//randCharacter[rd.nextInt(36)]
 			}
-
+			couponNumTotal.append(sb.toString()+",");
 //			System.out.println("couponNUM : "+sb.toString());
 			userCouponVO.setCouponNum(sb.toString());
 			result = couponMapper.getOverlap(userCouponVO);// --여기 바꿔야함
 			if(result==0) {
 				userCouponVO.setCouponNum(sb.toString());				
 				userCouponVO.setActiveDate(30L);//수신한 쿠폰번호는 30일동안 등록가능
-				result = couponMapper.setUserCoupon(userCouponVO);
+				result = couponMapper.setUserCoupon(userCouponVO);				
 //				System.out.println("에러나오는것");				
 				cur--;
 			}
@@ -276,7 +314,26 @@ public class AdminService {
 				System.out.println("실패");
 			}
 		}
+		couponLogVO.setCouponNum(couponNumTotal.toString());
+		adminMapper.setCouponLog(couponLogVO);
+		return result;
+	}
 
+	
+	//관리자 생성유저쿠폰 삭제 + 쿠폰발급로그 삭제 - delete
+	public int setUserCouponDelete(CouponIssuanceLogVO couponLogVO) throws Exception{	
+		
+		couponLogVO = adminMapper.getUserCoupon(couponLogVO);
+		
+		String [] str = couponLogVO.getCouponNum().split(",");
+		int result=0;
+		for(int i =0;i<str.length;i++) {
+			UserCouponVO userCouponVO = new UserCouponVO();
+			userCouponVO.setCouponNum(str[i]);
+			result = adminMapper.setUserCouponDelete(userCouponVO);
+		}
+		
+		result = adminMapper.setCouponLogDelete(couponLogVO);		
 		return result;
 	}
 	

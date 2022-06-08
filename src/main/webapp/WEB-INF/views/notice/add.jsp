@@ -16,10 +16,9 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<c:import url="../temp/header_script.jsp"></c:import>
-<h1>hi</h1>
 	<div class="container mt-4">
 		<div class="row mt-4">
-			<form:form modelAttribute="noticeVO" method="post" enctype="multipart/form-data">
+			<form:form modelAttribute="noticeVO" method="post" id="addForm" enctype="multipart/form-data">
 				<div class="row mt-4">
 					<div class="mb-3">
 						<label for="exampleFormControlInput1" class="form-label">Title</label> 
@@ -51,7 +50,7 @@
 				</div>
 				<div class="row justify-content-end">
 					<c:if test="${member.userType == 0}">
-						<button id="addBtn" type="submit" class="col-1 btn btn-outline-success">Add</button>
+						<button id="addBtn" type="button" class="col-1 btn btn-outline-success">Add</button>
 					</c:if>
 				</div>
 			</form:form>
@@ -59,63 +58,14 @@
 	</div>
 	
 <c:import url="../temp/footer.jsp"></c:import>
-	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>	
-	
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>	
+<script src="../resources/js/addBoard.js"></script>
 <script type="text/javascript">
 	//summernote
 
 		$('#contents').summernote({
 			height : 400
 		});
-		
-/* 		$('#add').click(function(){
-			
-			let formData = new FormData();
-			let id = $('#id').val();
-			let location = $('#location').val();
-			let kind = 0;
-			$('.form-check-input').each(function(idx,item){
-				if(item.checked){
-					kind = $(item).val();
-				}
-			});
-			let email = $('#email').val();
-			let phone = $('#phone').val();
-			let title = $('#title').val();
-			let contents = $('#contents').summernote("code");
-			
-			formData.append("id",id);
-			formData.append("location",location);			
-			formData.append("kind",kind);			
-			formData.append("email",email);			
-			formData.append("phone",phone);			
-			formData.append("title",title);			
-			formData.append("contents",contents);
-			$('.form-control-lg').each(function(idx,item){
-				formData.append("files",item.files[0]);
-			})
-					
-			console.log(formData);
-			
-			$.ajax({
-				method:"POST",
-				url:"./add",
-				processData:false,
-				contentType:false,
-				data:formData,
-				success:function(data){
-					if(data.trim()=='1'){
-						alert("문의를 접수했습니다.");
-						window.location.assign("./addSuccess");
-					}
-				},
-				error:function(){
-					alert("다시 시도해주세요.");
-				}
-			}) */
-			
-
-
 </script>
 
 </body>

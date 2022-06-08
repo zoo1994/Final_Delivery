@@ -90,6 +90,7 @@ public class NoticeService {
 	}
 	
 	public NoticeVO getDetail(NoticeVO noticeVO)throws Exception{
+		noticeMapper.setHit(noticeVO);
 		return noticeMapper.getDetail(noticeVO);
 	}
 	

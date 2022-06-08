@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fd.s1.coupon.CouponIssuanceLogVO;
 import com.fd.s1.coupon.CouponVO;
+import com.fd.s1.coupon.UserCouponVO;
 import com.fd.s1.email.EmailVO;
 import com.fd.s1.member.MemberVO;
 import com.fd.s1.shop.ShopVO;
@@ -21,6 +23,8 @@ public interface AdminMapper {
 	public int setCouponDelete(CouponVO couponVO)throws Exception;
 	public List<ShopVO> getShop(Pager pager)throws Exception;
 	public int setShopAdd(ShopVO shopVO)throws Exception;
+	public int getShopId(MemberVO memberVO)throws Exception;	
+	public int getShopExistence(MemberVO memberVO)throws Exception;	
 	public int setShopDelete(ShopVO shopVO)throws Exception;
 	public int setShopUpdate(ShopVO shopVO)throws Exception;
 	public Long getShopTotalCount(Pager pager)throws Exception;
@@ -42,6 +46,13 @@ public interface AdminMapper {
 	public List<AnalysisVO> getShopSalesTrend()throws Exception;
 	public List<AnalysisVO> getGender()throws Exception;
 	public List<AnalysisVO> getAge()throws Exception;
+	public Long getCouponLogCount(Pager pager)throws Exception;
+	public List<CouponIssuanceLogVO> getCouponLog(Pager pager)throws Exception;
+	public int setCouponLog(CouponIssuanceLogVO couponLogVO)throws Exception;
+	public int getCouponId(CouponVO couponVO)throws Exception;
+	public CouponIssuanceLogVO getUserCoupon(CouponIssuanceLogVO couponLogVO) throws Exception;
+	public int setUserCouponDelete(UserCouponVO userCouponVO)throws Exception;
+	public int setCouponLogDelete(CouponIssuanceLogVO couponLogVO)throws Exception;
 	
 	
 //	public int setCouponDelete(CouponVO couponVO)throws Exception;

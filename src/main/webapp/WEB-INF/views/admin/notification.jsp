@@ -21,7 +21,7 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<c:import url="../temp/header_script.jsp"></c:import>
-	<div style="margin-top: 200px;"></div>
+	<!-- <div style="margin-top: 200px;"></div> -->
 	
 	<!-- 사이드바 -->
 	<c:import url="./admin_sidebar.jsp"></c:import>
@@ -32,37 +32,41 @@
 		<div class="" style="position: relative;  width: 100%; border: 1px solid;">
 			<div style="width: 100%; height:100%; background-color: #dee2e6;">
 				<div class="container" style=" margin-bottom: 200px;">
-					<div class="d-flex mb-3">
-						<input hidden name="category" type="text" id="categoryResult" value="1">
-						<span class="col-7  mt-5">
-							<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 개의</span> 메일이 검색되었습니다.</legend>
-						</span>
-						<span class="col-1 mt-5" style="margin-right:5px;">
-							<c:if test="true"><!-- ${member.userType == 0} -->
-					  			<!-- Button trigger modal -->
-								<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn" data-name="" class="modalBtn btn btn-primary" data-toggle="modal" data-target="#modal">
-								  메일발송
-								</button>
-							</c:if>
-						</span>
-						<span class="col-1 mt-5" style="margin-right:5px;">
-							<select id="admin_email_kind" name="kind" class="form-select" style="display: block;" aria-label="Default select example">
-							  <option selected value="col1">수신자</option>
-							  <option value="col2">제목</option>
-							  <option value="col3">내용</option>
-							</select>
-						</span>
-						<span class="col-2 mt-5"  style="margin-right:10px;">
-							<input id="admin_email_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {getList();}" placeholder="Search" aria-label="Search">
-						</span>
-						<span class="col-1 mt-5">
-							<button class="btn btn-outline-success rounded-pill" id="admin_email_search_btn"  style="width: 80px;" type="submit">검색</button>
-						</span>
+					<div>
+						<p class="" style="padding-bottom: 20px; padding-top: 40px; font-size: 25px; font-weight: bold;"><i style="float: left; margin: 10px 5px; width: 15px; height: 15px; border: 5px solid orange; border-radius: 100%;"></i>
+							이메일 알림
+						</p>	
+						<div class="d-flex mb-3">
+							<input hidden name="category" type="text" id="categoryResult" value="1">
+							<span class="col-7">
+								<legend  style="font-weight: 500; line-height: 38px; font-size: 18px;">총 <span style="font-weight:bold; color: #da0000!important;"><span class="category_count" id="category_count"></span> 개의</span> 메일이 검색되었습니다.</legend>
+							</span>
+							<span class="col-1" style="margin-right:5px;">
+								<c:if test="true"><!-- ${member.userType == 0} -->
+						  			<!-- Button trigger modal -->
+									<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn" data-name="" class="modalBtn btn btn-primary" data-toggle="modal" data-target="#modal">
+									  메일발송
+									</button>
+								</c:if>
+							</span>
+							<span class="col-1" style="margin-right:5px;">
+								<select id="admin_email_kind" name="kind" class="form-select" style="display: block;" aria-label="Default select example">
+								  <option selected value="col1">수신자</option>
+								  <option value="col2">제목</option>
+								  <option value="col3">내용</option>
+								</select>
+							</span>
+							<span class="col-2"  style="margin-right:10px;">
+								<input id="admin_email_search" class="form-control me-2 rounded-pill" type="search" name="search" autocomplete="off" onKeypress="javascript:if(event.keyCode==13) {getList();}" placeholder="Search" aria-label="Search">
+							</span>
+							<span class="col-1">
+								<button class="btn btn-outline-success rounded-pill" id="admin_email_search_btn"  style="width: 80px;" type="submit">검색</button>
+							</span>
+						</div>
+						<div id="adminEmailListReusult">
+							
+						</div>
 					</div>
-					<div id="adminEmailListReusult">
-						
-					</div>
-		
 		
 		
 		
@@ -143,7 +147,7 @@
 		</div>
 	</div>
 	<div style=""></div>
-<div style="margin-bottom: 200px;"></div>
+<!-- <div style="margin-bottom: 200px;"></div> -->
 
 
 

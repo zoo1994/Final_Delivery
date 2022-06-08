@@ -15,6 +15,11 @@
     	</select>
 
     	
+    	
+    	<update id="setHit" parameterType="NoticeVO">
+    		UPDATE NOTICE SET HIT = HIT+1 WHERE NUM =#{num}
+    	</update>
+    	
 		<select id="getDetail" parameterType="NoticeVO" resultMap="noticeDetailResult">
 			SELECT N.*, NF.* FROM NOTICE N
 				 LEFT JOIN 			 

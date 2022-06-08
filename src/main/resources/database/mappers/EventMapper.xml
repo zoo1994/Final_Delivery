@@ -66,6 +66,11 @@
     		F.FILESECTION=1
     	</select>
     		
+    	<update id="setHit" parameterType="EventVO">
+    		UPDATE EVENT SET HIT = HIT+1 WHERE EVENTNUM = #{eventNum}
+    	</update>	
+    	
+    		
     	<select id="getDetail" parameterType="EventVO" resultMap="detailResult">
     		SELECT E.*, F.*, EC.*, C.*, NOW() TIME FROM
 			EVENT E
@@ -109,6 +114,10 @@
 			VALUES (#{eventNum},#{couponId},#{eventSchedule})
     	</insert>
     	
+    	<delete id="setEventCouponDelete" parameterType="EventVO">
+    		DELETE FROM EVENT_COUPON  WHERE EVENTNUM=#{eventNum} 
+    	</delete>
+    	
     	<insert id="setAdd" parameterType="EventVO" useGeneratedKeys="true" keyProperty="eventNum">
     		INSERT INTO EVENT(EVENTNUM, ID, TITLE,CONTENTS,REGDATE,HIT)
 			VALUES (#{eventNum},#{id},#{title},#{contents},now(),0)
@@ -121,6 +130,10 @@
     	<update id="setUpdateCoupon" parameterType="Event_couponVO">
     		UPDATE EVENT_COUPON SET COUPONID = #{couponId} , EVENTSCHEDULE = #{eventSchedule} WHERE EVENTNUM =#{eventNum}
     	</update>
+    	<select id="getUpdateCouponSearch" parameterType="Event_couponVO" resultType="Integer">
+    		SELECT COUNT(EVENTNUM) FROM EVENT_COUPON WHERE EVENTNUM =#{eventNum}
+    	</select>
+    	
     	
     	<delete id="setDelete" parameterType="EventVO">
     		DELETE FROM EVENT  WHERE EVENTNUM=#{eventNum}

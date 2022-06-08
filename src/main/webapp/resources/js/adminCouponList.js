@@ -1,4 +1,3 @@
-console.log("hi");
 const admin_coupon_search_btn = document.querySelector("#admin_coupon_search_btn");
 const admin_coupon_search = document.querySelector("#admin_coupon_search");
 
@@ -84,6 +83,17 @@ $("#modalSave").click(function() {
 	let couponDis = $("#couponDis").val();
 	let couponValiTerm = $("#couponValiTerm").val();
 	
+
+	let couponNameCheck = false;
+	let couponDisCheck = false;
+	let couponValiTermCheck = false;
+	if (couponName == "") { couponNameCheck = true; }
+	if (couponDis == "") { couponDisCheck = true; }
+	if (couponValiTerm == "") { couponValiTermCheck = true; }
+	if (couponNameCheck||couponDisCheck||couponValiTermCheck) {
+		alert("정보를 입력하세요")
+		return;
+	}
 	formData.append("couponName", couponName);
 	formData.append("discount", couponDis);
 	formData.append("activeDate", couponValiTerm);
@@ -146,4 +156,9 @@ admin_coupon_search_btn.addEventListener("click", function(event){
     getList();
 });
 
-
+function checkNumber(event) {
+	if(event.key >= 0 && event.key <= 9) {
+	  return true;
+	}
+	return false;
+};

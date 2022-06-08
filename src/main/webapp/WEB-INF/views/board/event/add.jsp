@@ -20,7 +20,7 @@
 	<c:import url="../../temp/header_script.jsp"></c:import>
 	<div class="container mt-4">
 		<div class="row mt-4">
-			<form:form modelAttribute="eventVO" method="post" enctype="multipart/form-data">
+			<form:form modelAttribute="eventVO" method="post" id="addForm" enctype="multipart/form-data">
 				<div class="row mt-4">
 					<div class="mb-3">
 						<label for="title" class="form-label">Title</label> 
@@ -58,9 +58,9 @@
 						</button>
 						<div style="height: 5px;"></div>
 						<input id="couponName" class="form-control" readonly="readonly" type="text" value=""> 
-				</div>
+				</div>				
 				<input id="couponId" name="couponId" class="form-control" hidden type="text" value=""> 
-				<input id="eventSchedule" name="eventSchedule" class="form-control" hidden type="text">
+				<div id="es"></div>
 				<!-- 썸네일 -->
 				<div id="thumbFileResult"></div>
 				<div style="margin-bottom: 10px;">
@@ -72,7 +72,7 @@
 					<button id="fileAdd" type="button" class="col-2 btn btn-outline-success">내용이미지 추가</button>
 				</div>
 				<div class="row justify-content-end">
-					<button type="submit" class="col-1 btn btn-outline-success">Add</button>
+					<button id="addBtn" type="button" class="col-1 btn btn-outline-success">Add</button>
 				</div>
 			</form:form>
 		</div>
@@ -156,6 +156,7 @@
 	
 	<script type="text/javascript" src="../js/file.js"></script>
 	<script src="../resources/js/eventAdd.js"></script>
+	<script src="../../resources/js/addBoard.js"></script>
 	<c:import url="../../temp/footer.jsp"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>	
 <script>

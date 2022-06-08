@@ -21,7 +21,7 @@
 
 	<c:import url="../temp/header.jsp"></c:import>
 	<c:import url="../temp/header_script.jsp"></c:import>
-	<div style="margin-top: 200px;"></div>
+<!-- 	<div style="margin-top: 200px;"></div> -->
 	
 	<!-- 사이드바 -->
 	<c:import url="./admin_sidebar.jsp"></c:import>
@@ -82,7 +82,7 @@
 			</div>
 		</div>
 		</div>
-		<div style="margin-bottom: 200px;"></div>
+		<!-- <div style="margin-bottom: 200px;"></div> -->
 		<c:import url="../temp/footer.jsp"></c:import>
 <script type="text/javascript">
 

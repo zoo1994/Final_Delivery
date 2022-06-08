@@ -47,6 +47,46 @@
 	    	ORDER BY COUPONID ASC LIMIT #{startRow}, #{perPage}
     	</select>
     	
+    	<select id="getCouponLogCount" parameterType="pager" resultType="Long">
+			SELECT COUNT(LOGNUM) 
+			FROM COUPONISSUANCELOG CL
+			LEFT JOIN COUPON C
+			ON(CL.COUPONID=C.COUPONID)
+	 		WHERE
+	 		(COUPONNUM LIKE concat('%', #{search},'%') or
+	 		DETAIL LIKE concat('%', #{search},'%') or
+	 		C.COUPONNAME LIKE concat('%', #{search},'%'))
+    	</select>
+    	
+    	<select id="getCouponLog" parameterType="Pager" resultType="CouponIssuanceLogVO">
+	 		SELECT CL.*, C.COUPONNAME
+			FROM COUPONISSUANCELOG CL
+			LEFT JOIN COUPON C
+			ON(CL.COUPONID=C.COUPONID)
+	 		WHERE
+	 		(COUPONNUM LIKE concat('%', #{search},'%') or
+	 		DETAIL LIKE concat('%', #{search},'%') or
+	 		C.COUPONNAME LIKE concat('%', #{search},'%'))
+	    	ORDER BY LOGNUM DESC LIMIT #{startRow}, #{perPage}
+    	</select>
+    	
+    	<insert id="setCouponLog" parameterType="CouponIssuanceLogVO" useGeneratedKeys="true" keyProperty="logNum">
+			INSERT INTO COUPONISSUANCELOG (LOGNUM,COUPONID,COUNT,COUPONNUM,DETAIL,ISSUANCEDATE)
+			VALUES (#{logNum},#{couponId},#{count},#{couponNum},#{detail},now())
+		</insert>
+		
+    	<select id="getUserCoupon" parameterType="CouponIssuanceLogVO" resultType="CouponIssuanceLogVO">
+			SELECT LOGNUM, COUPONNUM FROM COUPONISSUANCELOG WHERE LOGNUM=#{logNum}
+    	</select>
+    	   	
+    	<delete id="setUserCouponDelete" parameterType="UserCouponVO">
+			DELETE FROM USERCOUPON WHERE COUPONNUM=#{couponNum}
+		</delete>
+    	
+    	<delete id="setCouponLogDelete" parameterType="UserCouponVO">
+			DELETE FROM COUPONISSUANCELOG WHERE LOGNUM=#{logNum}
+		</delete>
+    	
     	<select id="getSalesTrend" resultType="AnalysisVO">
 			SELECT CONCAT(YEAR(OD.ORDERDATE),'-', MONTH(OD.ORDERDATE)) AS Y_MONTH, (SUM(OD.TOTALPRICE)/100000000) WON, (row_number() over(ORDER BY ORDERDATE ASC)*100) AS USER
 			FROM (SELECT * FROM ORDERS ORDER BY ORDERDATE ASC) OD
@@ -147,6 +187,19 @@
 			INSERT INTO SHOP  (SHOPNUM, ID, SHOPNAME,LOCATION,X_AXIS,Y_AXIS,SHOPPHONE,OPENTIME,CLOSETIME,SALE,DISTANCE,OPEN)
 			VALUE (#{shopNum},#{id},#{shopName},#{location},#{x_axis},#{y_axis},#{shopPhone},9,21,0,5000,0);
 		</insert>
+		
+		<select id="getShopId" parameterType="MemberVO" resultType="Integer">
+			SELECT COUNT(ID) FROM USER WHERE ID = #{id} AND USERTYPE = 1
+    	</select>
+    	
+    	<select id="getCouponId" parameterType="CouponVO" resultType="Integer">
+			SELECT COUNT(COUPONID) FROM COUPON WHERE COUPONID = #{couponId}
+    	</select>
+    	
+    	
+    	<select id="getShopExistence" parameterType="MemberVO" resultType="Integer">
+			SELECT COUNT(SHOPNUM) FROM SHOP WHERE ID = #{id}
+    	</select>
 		
 		<delete id="setShopDelete" parameterType="ShopVO">
 			DELETE FROM SHOP WHERE SHOPNUM=#{shopNum}

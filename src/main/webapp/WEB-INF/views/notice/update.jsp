@@ -16,7 +16,7 @@
 	<c:import url="../temp/header_script.jsp"></c:import>
 	<div class="container mt-4">
 		<div class="row mt-4">
-			<form:form modelAttribute="noticeVO" method="post" enctype="multipart/form-data">
+			<form:form modelAttribute="noticeVO" id="addForm" method="post" enctype="multipart/form-data">
 				<form:hidden path="num" />
 				<div class="row mt-4">
 					<div class="mb-3">
@@ -63,7 +63,7 @@
 				
 		<div class="row justify-content-end">
 			<c:if test="${member.userType == 0}">
-				<button type="submit" class="col-1 btn btn-outline-success">수정</button>
+				<button type="button" id="addBtn" class="col-1 btn btn-outline-success">수정</button>
 			</c:if>
 		</div>
 		</form:form>
@@ -71,6 +71,7 @@
 	</div>
 	<c:import url="../temp/footer.jsp"></c:import>
 <script src="../resources/js/noticeFileAdd.js"></script>
+<script src="../resources/js/addBoard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>	
 <script type="text/javascript">
 
