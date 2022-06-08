@@ -22,8 +22,6 @@ public class MenuService {
 	private MenuMapper menuMapper;
 	@Autowired
 	private FileManager fileManager;
-	@Autowired
-	private AdminMapper adminMapper;
 	
 	public Long getTotalCount(Pager pager) throws Exception {
 		return menuMapper.getTotalCount(pager);
@@ -43,6 +41,10 @@ public class MenuService {
 	
 	public int setUpdateSale(MenuVO menuVO) throws Exception {
 		return menuMapper.setUpdateSale(menuVO);
+	}
+	
+	public int setShopMenuUpdate(ShopMenuVO shopMenuVO) throws Exception {
+		return menuMapper.setShopMenuUpdate(shopMenuVO);
 	}
 	
 	public int setIngredientAdd(IngredientVO ingredientVO) throws Exception {

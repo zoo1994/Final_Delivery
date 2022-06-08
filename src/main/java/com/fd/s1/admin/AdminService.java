@@ -280,6 +280,9 @@ public class AdminService {
 		return result;
 	}
 	
+	public List<ShopVO> getShopList() throws Exception {
+		return adminMapper.getShopList();
+	}
 	
 	
 	

@@ -409,23 +409,22 @@ public class AdminController {
 	public ModelAndView getMenuManage(MenuVO menuVO, Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = menuService.setUpdateSale(menuVO);
-		Long count = adminService.getShopListCount(pager);
-		System.out.println("menuVO : "+menuVO.getMenuNum());
-		System.out.println("count : "+count);
-		System.out.println("menuSale : "+menuVO.getMenuSale());
-		List<ShopVO> ar = adminService.getShop(pager, count);
-		if(menuVO.getMenuSale() != 1) {
+		
+		List<ShopVO> ar = adminService.getShopList();
+		if(menuVO.getMenuSale() == 2) {
 				ShopMenuVO shopMenuVO = new ShopMenuVO();
 				shopMenuVO.setMenuNum(menuVO.getMenuNum());
 				result = menuService.setDeleteMenu(shopMenuVO);
 				System.out.println("result : "+result);				
 		}else {
-			for(int i = 0; i<ar.size();i++) {
-				ShopMenuVO shopMenuVO = new ShopMenuVO();
-				shopMenuVO.setMenuNum(menuVO.getMenuNum());
-				shopMenuVO.setShopNum(ar.get(i).getShopNum());
-				result = menuService.setShopMenuAdd(shopMenuVO);
-				System.out.println("result : "+result);
+			for(int i =0; i<ar.size();i++) {
+			
+			ShopMenuVO shopMenuVO = new ShopMenuVO();
+			shopMenuVO.setMenuNum(menuVO.getMenuNum());
+			shopMenuVO.setSale(menuVO.getMenuSale());
+			shopMenuVO.setShopNum(ar.get(i).getShopNum());
+			result = menuService.setShopMenuUpdate(shopMenuVO);
+			System.out.println("update Sale : "+result);
 			}
 		}
 		mv.setViewName("common/result");
