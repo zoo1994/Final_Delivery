@@ -19,6 +19,7 @@ $("#goBtn").click(function() {
 			$("#location").val($("#roadAddress").val());
 			$("#input_postcode").val($("#postcode").val());
 			$("#detailLocation").val($("#detailAddress").val());
+
 			$("#goDeli").submit();
 		}
 

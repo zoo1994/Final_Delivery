@@ -64,8 +64,8 @@
    </insert>
 
    <insert id="orderAdd" parameterType="OrdersVO">
-   	INSERT INTO ORDERS (DELINUM,PAYNUM,ID,ADDRESS,PHONE,REQUEST,COUPON,ORDERDATE,TOTALPRICE)
-   	VALUES(null,#{payNum},#{id},#{address},#{phone},#{request},#{coupon},now(),#{totalPrice})
+   	INSERT INTO ORDERS (DELINUM,PAYNUM,ID,ADDRESS,PHONE,REQUEST,COUPON,ORDERDATE,TOTALPRICE,SHOPNUM)
+   	VALUES(null,#{payNum},#{id},#{address},#{phone},#{request},#{coupon},now(),#{totalPrice},#{shopNum})
    </insert>
    <insert id="orderDetailAdd" parameterType="OrderDetailVO">
    	INSERT INTO ORDERDETAIL VALUES(null,#{deliNum},#{payNum},#{menuNum},#{shopNum},#{orderCount},#{menuPrice})

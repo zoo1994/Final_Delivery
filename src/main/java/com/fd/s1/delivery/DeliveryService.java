@@ -65,6 +65,7 @@ public class DeliveryService {
 	public int orderAdd(OrdersVO ordersVO)throws Exception{
 		
 		
+		System.out.println(ordersVO);
 		int result = deliveryMapper.orderAdd(ordersVO);
 		ordersVO = deliveryMapper.getOrder(ordersVO);
 		CartVO cartVO = new CartVO();
