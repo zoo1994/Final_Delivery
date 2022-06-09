@@ -22,24 +22,24 @@ public class CouponTest2 {
 	
 	@Test
 	void setAddTest()throws Exception{
-		Random rd = new Random();
-		int result1=0;
-		for(int i=100;i<205;i++) {
-			if(i%10 ==0) {
-				Thread.sleep(1000);
-			}
-//			VALUES (#{id},#{pw},#{name},#{email},#{phone},0,#{gender},#{roadAddress},#{detailAddress},#{birth},0)
-			CouponVO couponVO = new CouponVO();
-			couponVO.setCouponId(null);
-			couponVO.setCouponName("c"+i);
-			Long result = rd.nextLong(1,8);
-			couponVO.setActiveDate(result);
-			Long [] dis = {1000L,2000L,3000L,1000L,2000L,3000L,4000L};
-			couponVO.setDiscount(dis[result.intValue()-1]);
-			result1 += adminMapper.setCouponAdd(couponVO);
-		}
-		System.out.println("Finish");
-		assertEquals(105, result1);
+//		Random rd = new Random();
+//		int result1=0;
+//		for(int i=100;i<205;i++) {
+//			if(i%10 ==0) {
+//				Thread.sleep(1000);
+//			}
+////			VALUES (#{id},#{pw},#{name},#{email},#{phone},0,#{gender},#{roadAddress},#{detailAddress},#{birth},0)
+//			CouponVO couponVO = new CouponVO();
+//			couponVO.setCouponId(null);
+//			couponVO.setCouponName("c"+i);
+//			Long result = rd.nextLong(1,8);
+//			couponVO.setActiveDate(result);
+//			Long [] dis = {1000L,2000L,3000L,1000L,2000L,3000L,4000L};
+//			couponVO.setDiscount(dis[result.intValue()-1]);
+//			result1 += adminMapper.setCouponAdd(couponVO);
+//		}
+//		System.out.println("Finish");
+//		assertEquals(105, result1);
 	}
 	
 	
