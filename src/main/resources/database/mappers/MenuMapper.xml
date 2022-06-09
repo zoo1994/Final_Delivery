@@ -63,18 +63,17 @@
 			COUNT(MENUNUM) 
 		 	FROM MENU
 		 	WHERE MENUNUM>0
-		 	 and 
-			<choose>
-				<when test="kind == 'col1'">
-					MENUNAME
-				</when>
-				<otherwise>
-					MENUDETAIL
-				</otherwise>
-			</choose>
 			<if test="category != null">
 				and CATEGORY = #{category}
 			</if>
+			<choose>
+				<when test="kind == 'col1'">
+					and MENUNAME
+				</when>
+				<otherwise>
+					and MENUDETAIL
+				</otherwise>
+			</choose>
 			LIKE CONCAT('%',#{search},'%')
  	</select>
 	
