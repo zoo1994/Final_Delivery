@@ -5,7 +5,7 @@
  
     <mapper namespace="com.fd.s1.shop.ShopMapper">
     	
-    	<update id="setChaneSale" parameterType="ShopVO">
+    	<update id="setChangeSale" parameterType="ShopVO">
     		UPDATE SHOP SET SALE = #{sale} WHERE SHOPNUM= #{shopNum}
     	</update>
     	

@@ -62,7 +62,7 @@ public class MessageController {
 				return mv;
 			}
 		}
-		//this.sendOne(phone, checkNum);
+		this.sendOne(phone, checkNum);
 		PhoneCheckVO phoneCheckVO = new PhoneCheckVO();
 		LocalDateTime time = LocalDateTime.now();
 		LocalDateTime startTime = LocalDateTime.of(time.getYear(), time.getMonth(),time.getDayOfMonth() , time.getHour(), 0, 0, 0);

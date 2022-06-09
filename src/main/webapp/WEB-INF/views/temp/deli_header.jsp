@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/css/deli_header.css" />
 <header>
-	<div class="head_menuWrap mb-1">
+	<div class="head_menuWrap mb-1" style="display: block; position: static;">
 		<div class="web_container">
 			<a href="./home"> <img alt=""
 				src="https://www.mcdonalds.co.kr/kor/images/common/logo.png">

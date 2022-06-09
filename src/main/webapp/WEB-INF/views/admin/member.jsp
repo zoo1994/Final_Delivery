@@ -86,9 +86,8 @@
 				    <label class="input-group-text" for="inputGroupSelect01">회원등급</label>
 				  </div>			  
 				  <select class="custom-select" id="inputGroupSelect01">
-				    <option>선택하세요</option>
 				    <option name="options" value="2">일반회원</option>
-				    <option name="options" value="1" selected>점주회원</option>
+				    <option name="options" value="1">점주회원</option>
 				    <option name="options" value="0">관리자</option>
 				  </select>
 				</div>

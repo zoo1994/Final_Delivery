@@ -56,6 +56,16 @@ $("#divv").on("click","#checkNumBtn",function(){
 	
 })
 $("#joinBtn").click(function(){
+	console.log(numCheck);
+	console.log(idCheck2);
+	console.log(pwCheck);
+	console.log(chPwCheck);
+	console.log(genderCheck);
+	console.log(yearCheck);
+	console.log(monthCheck);
+	console.log(dayCheck);
+	console.log(emailCheck);
+	console.log(addressCheck);
 	if(numCheck&&idCheck2&&pwCheck&&chPwCheck&&genderCheck&&yearCheck&&monthCheck&&dayCheck&&emailCheck&&addressCheck){
 		$("#joinForm").submit();
 	}else{

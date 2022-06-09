@@ -189,12 +189,12 @@ public class ShopController {
 			//시작시간이 같으면 영업 일시중지
 			if(vo.getStartTime().equals(time)) {
 				shopVO.setSale(1);
-				shopService.setChaneSale(shopVO);
+				shopService.setChangeSale(shopVO);
 			}
 			//끝나는 시간이 같으면 영업일시중지 해제
 			else if(vo.getFinishTime().equals(time)) {
 				shopVO.setSale(0);
-				shopService.setChaneSale(shopVO);
+				shopService.setChangeSale(shopVO);
 				shopService.setStopDel(vo);
 			}
 		}

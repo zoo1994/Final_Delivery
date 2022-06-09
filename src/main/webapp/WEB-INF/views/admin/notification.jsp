@@ -172,7 +172,7 @@
 				  	
 				  	<div id="toDiv" style="cursor:text;" class="mInput_holder mInput_over" onclick="$(this).children().children().last().children().children().children().focus(); console.log('hi'); ">
                 		　전체<input type="radio" class="receiver_type" name="receiver_type" value="all">
-                		셀러<input type="radio" class="receiver_type" name="receiver_type" value="seller">
+                		점주<input type="radio" class="receiver_type" name="receiver_type" value="seller">
                 		일반회원<input type="radio" class="receiver_type" name="receiver_type" value="user">
                 		개별선택<input checked="checked" type="radio" class="receiver_type" name="receiver_type" value="select">
                 		<ul id="toUL" class="list_addrobj _droppable" style="padding: 0;">
@@ -234,8 +234,15 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>	
 	
 <script type="text/javascript">
+$(document).ready(function(){
+	 
+ 	//썸머노트에 값넣기
+   $('#summernote').summernote('code', '<p>가나다</p><p>마바사</p><p>아자차카타파하</p>')
+});
+
 	//summernote
 	$('#contents').summernote({
+		value : '<p>가나다</p><p>마바사</p><p>아자차카타파하</p>',
 		height : 400
 	});
 </script>

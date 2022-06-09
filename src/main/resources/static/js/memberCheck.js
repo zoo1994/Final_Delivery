@@ -45,11 +45,9 @@ $("#phone").blur(function(){
 
 $("#id").change(function(){
 	idCheck2=false;
-	console.log(idCheck2);
 });
 
 $("#id").blur(function(){
-	console.log(idCheck2)
 	idCheck = true;
 	$("#idError").text("")
 	length = $("#id").val().length;

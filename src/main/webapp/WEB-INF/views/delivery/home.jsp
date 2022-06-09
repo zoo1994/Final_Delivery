@@ -12,16 +12,53 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 	<link href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/200px-McDonald%27s_Golden_Arches.svg.png" rel="shortcut icon" type="image/x-icon">
-
+	<c:import url="../temp/header_script.jsp"></c:import>
 </head>
 <body>
 	<c:import url="../temp/deli_header.jsp"></c:import>
-	<div class="wrap">
+	<!-- <div style="height: 1000px; background-color: gray;"></div> -->
+	<div class="d-flex sticky-top mt-5" style=" background: Moccasin; border-radius: 10px; margin:0 auto; height: 250px; width: 220px; position:fixed; top:90px; left: 70px;">
+		<div class="food-menu">
+
+					<ul class="secondary-menu">
+						<li class="secondary-menu-item "><a
+							class="secondary-menu-item-target" href="./home"> <span>전체메뉴</span></a></li>
+							
+						<li class="secondary-menu-item ">
+							<a class="secondary-menu-item-target" href="./home?category=1">
+								<i class="fa fa-circle"></i> 
+									<span>버거</span>
+							</a>
+						</li>
+						
+						<li class="secondary-menu-item "><a
+							class="secondary-menu-item-target" href="./home?category=2"><i
+								class="fa fa-circle"></i> <span>맥런치</span></a></li>
+						<li class="secondary-menu-item "><a
+							class="secondary-menu-item-target" href="./home?category=3"><i
+								class="fa fa-circle"></i> <span>맥모닝</span></a></li>
+						<li class="secondary-menu-item "><a
+							class="secondary-menu-item-target" href="./home?category=4"><i
+								class="fa fa-circle"></i> <span>해피스낵</span></a></li>
+						<li class="secondary-menu-item "><a
+							class="secondary-menu-item-target" href="./home?category=5"><i
+								class="fa fa-circle"></i> <span>사이드 & 디저트</span></a></li>
+						<li class="secondary-menu-item "><a
+							class="secondary-menu-item-target" href="./home?category=6"><i
+								class="fa fa-circle"></i> <span>맥카페 & 음료</span></a></li>
+						<li class="secondary-menu-item "><a
+							class="secondary-menu-item-target" href="./home?category=7"><i
+								class="fa fa-circle"></i> <span>해피밀®</span></a></li>	
+			</ul>
+		</div>
+	</div>
+	<div class="wrap" style="min-height: 1000px;  position: static;">
 
 		<div class="container">
 			<div class="row col-12">
-			<div class="sidebar-menu col-2">
-				<div class="food-menu">
+				<div class="" style="position: relative; width: 20%; min-width:150px; height:500px; top: 250px;"></div>
+<!--			<div class="sidebar-menu col-2 me-5">
+ 				<div class="food-menu">
 
 							<ul class="secondary-menu">
 								<li class="secondary-menu-item "><a
@@ -54,9 +91,9 @@
 										class="fa fa-circle"></i> <span>해피밀®</span></a></li>	
 					</ul>
 				</div>
-			</div>
+			</div> -->
 
-			<div class="row menuResult col-10 col-xs-1" style="margin-top:230px;">
+			<div class="row menuResult col-xs-1" style="margin-top:230px; width: 80%;">
 <%-- 			<div class="row">
 				<h1>Delivery</h1>
 				<p>∘ ${list.size()} Products</p>
@@ -86,9 +123,10 @@
 			</div>
 		</div>
 		</div>
-		<c:import url="../temp/footer.jsp"></c:import>
+		
 	</div>
-	<c:import url="../temp/header_script.jsp"></c:import>
+	<c:import url="../temp/footer.jsp"></c:import>
+	
 	<script type="text/javascript">
 		$('.cartAdd').click(function() {
 			let menuNum = $(this).attr('data-num');

@@ -16,8 +16,8 @@ public class ShopService {
 	@Autowired
 	private ShopMapper shopMapper;
 	
-	public int setChaneSale(ShopVO shopVO) throws Exception{
-		return shopMapper.setChaneSale(shopVO);
+	public int setChangeSale(ShopVO shopVO) throws Exception{
+		return shopMapper.setChangeSale(shopVO);
 	}
 	
 	public List<ShopStopVO> getStopList()throws Exception{

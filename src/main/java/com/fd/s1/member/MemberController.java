@@ -154,7 +154,7 @@ public class MemberController {
 			mv.setViewName("member/pwChange");
 			return mv;
 		}
-		if(session.getAttribute("checkPw").equals("ok")) {
+		if(session.getAttribute("checkPw")!=null&&session.getAttribute("checkPw").equals("ok")) {
 			memberVO.setId((String) session.getAttribute("id"));
 			memberService.setPwChange(memberVO);
 			mv.addObject("path",path);

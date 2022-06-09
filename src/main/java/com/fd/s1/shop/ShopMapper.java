@@ -12,7 +12,7 @@ import com.fd.s1.util.Pager;
 @Mapper
 public interface ShopMapper {
 	
-	public int setChaneSale(ShopVO shopVO) throws Exception;
+	public int setChangeSale(ShopVO shopVO) throws Exception;
 	
 	public List<ShopStopVO> getStopList()throws Exception;
 	

@@ -59,7 +59,7 @@
     	
     	<insert id="join" parameterType="MemberVO">
     		INSERT INTO USER (ID,PW,NAME,EMAIL,PHONE,POINT,GENDER,POSTCODE,ROADADDRESS,DETAILADDRESS,BIRTH,USERTYPE)
-    		VALUES (#{id},#{pw},#{name},#{email},#{phone},0,#{gender},#{postcode},#{roadAddress},#{detailAddress},#{birth},0)
+    		VALUES (#{id},#{pw},#{name},#{email},#{phone},0,#{gender},#{postcode},#{roadAddress},#{detailAddress},#{birth},2)
     	</insert>
     	
     	<select id="login" parameterType="MemberVO" resultType="MemberVO">
