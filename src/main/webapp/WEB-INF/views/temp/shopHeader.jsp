@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-        <div class="col-auto col-md-3 col-xl-1 col-lg-2 px-sm-2 px-0 bg-dark">
+        <div class="col-auto col-md-4 px-0 bg-dark" style="width:170px;">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline">점포 관리</span>
@@ -12,9 +12,7 @@
                         <a href="#submenu1"  class="nav-link px-0 align-middle title">
                             <span class="material-symbols-outlined">storefront</span><span class="ms-1 d-none d-sm-inline">가게</span> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">&nbsp;&nbsp;전체현황</span></a>
-                            </li>
+
                             <li>
                                 <a href="../shop/shopSystem" class="nav-link px-0"> <span class="d-none d-sm-inline">&nbsp;&nbsp;가게관리</span></a>
                             </li>

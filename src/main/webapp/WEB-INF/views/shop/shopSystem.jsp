@@ -13,6 +13,8 @@
 <c:import url="../temp/header_script.jsp"></c:import>
 <title>매장 관리</title>
 <link href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/200px-McDonald%27s_Golden_Arches.svg.png" rel="shortcut icon" type="image/x-icon">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
 <style type="text/css">
 	.flex-nowrap a {
 		color:white;
@@ -37,7 +39,7 @@
 		<div class="row">
 			<h3 class="mt-4">맥도날드 [${vo.shopName}]점</h3>
 			      <div class="row mt-4 col-5" style=" margin:0 auto;">
-				
+					<input type="hidden" id="shopNum" value="${vo.shopNum}" class="form-control" aria-label="Sizing example input">
 				<div class="input-group mb-5">
 				    <label for="id" class="form-label me-2">점주</label>
 				  <input readonly type="text" id="id" value="${vo.id}" class="form-control" aria-label="Sizing example input">
@@ -192,13 +194,16 @@
 				data:formData,
 				success:function(data) {
 					if(data.trim() == '1') {
-						alert("변경 완료되었습니다.");
+						Swal.fire({
+		                    icon: 'success',
+		                    text: '변경되었습니다.',
+		                });
 					}else {
 						alert("변경 실패..");
 					}
 				},
 				error:function() {
-					alert("에러 발생");
+					alert("에러 발생!");
 				}
 			})
 		})

@@ -13,6 +13,8 @@
 <c:import url="../temp/header_script.jsp"></c:import>
 <title>메뉴관리</title>
 <link href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/200px-McDonald%27s_Golden_Arches.svg.png" rel="shortcut icon" type="image/x-icon">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
 <style type="text/css">
 	.flex-nowrap a {
 		color:white;
@@ -100,7 +102,10 @@
 			},
 			success:function(data) {
 				if(data.trim() ==1) {
-					alert("변경되었습니다. ");
+					Swal.fire({
+	                    icon: 'success',
+	                    text: '변경되었습니다.',
+	                });
 				}else {
 					alert("변경에 실패했습니다.");
 				}

@@ -39,12 +39,13 @@ a {
 				<div class="container-fluid"  style=" margin-bottom: 200px;">
 
 					<div class="row">
-						<div class="col-1 mt-4">
-							<button type="button" class="btn btn-primary addBtn" id="fileAdd">새로운
+						<div class="col-3 mt-4">
+							새로운 배너 이미지 추가를 원하시면 클릭하세요.
+							<button type="button" class="btn btn-primary addBtn mt-2" id="fileAdd">새로운
 								배너 이미지 추가</button>
 							<!-- 	<button type="button" class="btn btn-warning" id="fileUpdate">배너 변경</button> -->
 						</div>
-						<div class="col-11 bannerResult mt-4">
+						<div class="col-11 bannerResult">
 							<p class="" style="padding-bottom: 20px; padding-top: 40px; font-size: 25px; font-weight: bold;"><i style="float: left; margin: 10px 5px; width: 15px; height: 15px; border: 5px solid orange; border-radius: 100%;"></i>
 								현재 적용된 배너 이미지
 							</p>
@@ -52,7 +53,7 @@ a {
 								<c:when test="${not empty list}">
 									<div class="imgContainer row">
 										<c:forEach items="${list}" var="vo" varStatus="i">
-											<div class="card col-2 mx-2 my-2" style="width: 18rem;">
+											<div class="card col-2 mx-2 my-2" style="width: 16rem;">
 												<img src="../resources/upload/banner/${vo.fileName}"
 													class="card-img-top" style="height: 120px;">
 												<div class="card-body">
@@ -75,7 +76,7 @@ a {
 								<form action="./bannerAdd" method="post"
 									enctype="multipart/form-data">
 									<div class="fileResult col-4"></div>
-									<button type="submit" class="btn btn-success">INSERT</button>
+									<button type="submit" class="btn btn-success mt-2">파일 INSERT</button>
 								</form>
 							</div>
 						</div>
