@@ -70,6 +70,24 @@ public class EventController {
 		return mv;
 	}
 	
+	//이벤트리스트 ajax
+	@GetMapping("list2")
+	public ModelAndView getList2(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		pager.setPerPage(6);
+		Long count = eventService.getTotal(pager);
+		
+		List<EventVO> ar = eventService.getList(pager, count);
+		mv.addObject("list",ar);
+		
+		mv.addObject("count",count);
+		mv.addObject("pager",pager);
+		mv.setViewName("eventList");
+		System.out.println(pager.getStartRow());
+		System.out.println(pager.getPerPage());
+		return mv;
+	}
+	
 	
 	
 	@GetMapping("add")
