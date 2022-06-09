@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+    pageContext.setAttribute("page", 10);
+%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -69,13 +72,25 @@
     <span class="visually-hidden">Next</span>
   </button>
 	</div>
-	<iframe width="100%" height="600px" src="https://www.youtube.com/embed/8IkkXQZeKeU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	<iframe width="100%" height="600px" class="mt-4" src="https://www.youtube.com/embed/8IkkXQZeKeU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+	<div class="row">
+		<h1 class="fw-bolder">New Event!</h1>
+	</div>
+	<div class="row mt-4" id="eventListResult" style="">
+
+	</div>
+	
 	</div>
 
 		<c:import url="./temp/footer.jsp"></c:import>
 
 	</div>
 	<c:import url="./temp/header_script.jsp"></c:import>
+<script src="../resources/js/homeEvent.js"></script>
+<script type="text/javascript">
+
+
+</script>
 </body>
 </html>

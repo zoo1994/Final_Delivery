@@ -30,9 +30,6 @@
                             <li class="w-100">
                                 <a href="../shop/shopMenu" class="nav-link px-0"> <span class="d-none d-sm-inline">&nbsp;&nbsp;메뉴관리</span></a>
                             </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">&nbsp;&nbsp;품질설정</span></a>
-                            </li>
                         </ul>
                     </li>
                    	

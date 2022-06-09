@@ -10,7 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <c:import url="../temp/header_script.jsp"></c:import>
-<title>메뉴목록</title>
+<title>메뉴</title>
 <link href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/200px-McDonald%27s_Golden_Arches.svg.png" rel="shortcut icon" type="image/x-icon">
 <style type="text/css">
 	.detail {
@@ -39,12 +39,13 @@
 					<div class="" style="width: 1168px; margin: 0 auto;">
 						<div class="mb-4 d-flex">
 								<select name="kind" class="col-1 me-1">
-									<option value="col1">메뉴이름</option>
-									<option value="col2">메뉴설명</option>
+									<option value="col1">이름</option>
+									<option value="col2">설명</option>
 								</select> 
 								<input type="search" class="col-3 me-2" name="search" placeholder="검색어를 입력하세요." id="menu_search" onKeypress="javascript:if(event.keyCode==13) {removeResult(); pageMore=1; getList();}">
 								<button type="submit" class="btn btn-outline-success" id="menu_search_btn" class="col-1">검색</button>
 						</div>
+						
 						<div class="row mt-4" id="menuListResult" style="">
 	
 						</div>
@@ -81,63 +82,6 @@
 	<div style="margin-bottom: 200px;"></div>
 <c:import url="../temp/footer.jsp"></c:import>
 
-
-<script type="text/javascript">
-/* 	$(".detail").click(function() {
-		console.log("click");
-		let num = $(this).attr("data-num");
-		location.href="./detail?menuNum="+num;
-	}); */
-	let select = $("select[name=kind]").val();
-	const menuListResult = document.querySelector("#menuListResult");
-	const menu_search_btn = document.querySelector("#menu_search_btn");
-	const menu_search = document.querySelector("#menu_search");
-	const urlParams = new URL(location.href).searchParams;
-
-	const category = urlParams.get('category');
-	
-	console.log(category);
-	let pageMore = 0;
-	getList();
-	pageMore++;
-	
-	function removeResult(){
-	    menuListResult.innerHTML="";
-	}
-	
-	function getList(){
-		console.log("start");
-		$.ajax({
-			type:"GET",
-			url:"./list1",
-	  		data:{
-	  			search : menu_search.value,
-	  			kind : select,
-	            pn : pageMore,
-				category : category
-	 		},
-			success:function(data){
-				$("#menuListResult").append(data.trim()) ;
-	            console.log("pageMore==>"+pageMore);
-	           /*  category_count.innerText = document.querySelector("#event_count").getAttribute("value"); */
-			}
-		});
-	    
-	}
-	
-	menu_search_btn.addEventListener("click", function(event){
-	    removeResult(); 
-	    pageMore=1; 
-	    getList();
-	});
-	
-	function more(){
-	    pageMore++;
-	    console.log("pageMore==>"+pageMore);
-	    menuListResult.removeChild(document.querySelector("#moreBtn"));
-	    getList();    
-	}
-	
-</script>
+<script type="text/javascript" src="../resources/js/menuList.js"></script>
 </body>
 </html>
