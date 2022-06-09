@@ -7,7 +7,6 @@ target/
 
 ### MY ###
 application-db.properties
-application.properties
 
 ### STS ###
 .apt_generated
