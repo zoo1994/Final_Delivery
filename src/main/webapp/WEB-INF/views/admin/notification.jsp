@@ -234,15 +234,8 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>	
 	
 <script type="text/javascript">
-$(document).ready(function(){
-	 
- 	//썸머노트에 값넣기
-   $('#summernote').summernote('code', '<p>가나다</p><p>마바사</p><p>아자차카타파하</p>')
-});
-
 	//summernote
 	$('#contents').summernote({
-		value : '<p>가나다</p><p>마바사</p><p>아자차카타파하</p>',
 		height : 400
 	});
 </script>
