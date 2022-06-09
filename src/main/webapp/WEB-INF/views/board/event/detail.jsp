@@ -78,7 +78,7 @@
 							    </c:choose>
 							    
 								<c:if test="${vo.ecVO.couponId != null}">
-									<div class="" style="display:inline-block; width: 30%; min-width:300px; height: 180px; border: rgb(224,228,232) solid 2px; line-height: 66px; border-radius :5px; ">
+									<div class="" style=" display:inline-block; width: 30%; min-width:300px; min-height: 180px; border: rgb(224,228,232) solid 2px; line-height: 66px; border-radius :5px; ">
 										<div class="d-flex justify-content-around" style="line-height: 60px;">
 											<input hidden id="couponId" value="${vo.couponVO.couponId}">
 											<strong style="width: 50%; text-align: left; margin: 0 20px; ">${vo.couponVO.couponName}</strong>
