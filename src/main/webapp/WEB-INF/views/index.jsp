@@ -75,10 +75,10 @@
 	<iframe width="100%" height="600px" class="mt-4" src="https://www.youtube.com/embed/8IkkXQZeKeU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 	<div class="row">
-		<h1 class="fw-bolder">New Event!</h1>
+		<h1 class="fw-bolder">New Event !</h1>
 	</div>
 	<div class="row mt-4" id="eventListResult" style="">
-
+		
 	</div>
 	
 	</div>
@@ -89,7 +89,6 @@
 	<c:import url="./temp/header_script.jsp"></c:import>
 <script src="../resources/js/homeEvent.js"></script>
 <script type="text/javascript">
-
 
 </script>
 </body>
