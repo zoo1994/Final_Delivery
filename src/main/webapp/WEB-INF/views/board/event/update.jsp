@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 <title>이벤트 수정하기</title>
 <link href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/200px-McDonald%27s_Golden_Arches.svg.png" rel="shortcut icon" type="image/x-icon">
+<link rel="stylesheet" href="../css/tableRadius.css" />
 </head>
 <body>
 	<c:import url="../../temp/header.jsp"></c:import>
@@ -32,9 +33,9 @@
 					</div>
 					<div class="mb-3">
 						<label for="id" class="form-label">Writer</label> 
-						<form:input path="id" cssClass="form-control" id="id" readonly="readonly" /> 
+						<input name="id" class="form-control" id="id" readonly="readonly" value="${member.id}">
 						<div>
-							<form:errors path="id"></form:errors>
+							<%-- <form:errors path="id"></form:errors> --%>
 						</div>
 					</div>
 					<div class="mb-3">
@@ -51,7 +52,7 @@
 						<!-- Button trigger modal -->
 						<span id="modalStartBtn">
 							<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn" class="modalBtn btn btn-primary" data-toggle="modal" data-target="#modal">
-							  ADD
+							  선택
 							</button>
 						</span>	
 						<button style="margin: 0 auto; font-weight: 500;" type="button" id="resetBtn" class="btn btn-danger">
@@ -95,7 +96,7 @@
 					</div>
 				</div>
 		<div class="row justify-content-end">
-			<button type="button" id="addBtn" class="col-1 btn btn-outline-success">수정</button>
+			<button type="button" id="addBtn" class="col-1 btn btn-outline-success" style="margin-right: 10px;">수정</button>
 		</div>
 		</form:form>
 		</div>
@@ -107,7 +108,7 @@
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">추가하기</h5>
+	        <h5 class="modal-title" id="exampleModalLabel">쿠폰 선택</h5>
 	        <button type="button" id="modalHideX" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -138,7 +139,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" id="modalHide" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" id="modalSave" class="btn btn-primary">Next</button>
+	        <button type="button" id="modalSave" class="btn btn-primary">다음</button>
 	      </div>
 	    </div>
 	  </div>
@@ -148,7 +149,7 @@
 	  <div class="modal-dialog modal-dialog-centered">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">추가하기</h5>
+	        <h5 class="modal-title" id="exampleModalLabel">이벤트 기간</h5>
 	        <button type="button" id="modalHideX2" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -165,7 +166,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" id="modalHide2" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" id="modalSave2" class="btn btn-primary">Add</button>
+	        <button type="button" id="modalSave2" class="btn btn-primary">선택</button>
 	      </div>
 	    </div>
 	  </div>

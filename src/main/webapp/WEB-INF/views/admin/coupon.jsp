@@ -15,6 +15,7 @@
 	font-weight: bold;
 }
 </style>
+<link rel="stylesheet" href="../css/tableRadius.css" />
 </head>
 <body>
 
@@ -99,19 +100,19 @@
       		<div>
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default2">쿠폰명　</span>
+				    <span class="input-group-text" id="inputGroup-sizing-default2">쿠폰명　　　</span>
 				  </div>
 				  <input type="text" id="couponName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default3">할인가격</span>
+				    <span class="input-group-text" id="inputGroup-sizing-default3">할인가격　　</span>
 				  </div>
 				  <input type="text" id="couponDis" onkeypress='return checkNumber(event)' class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				<div class="input-group mb-3">
 				  <div class="input-group-prepend">
-				    <span class="input-group-text" id="inputGroup-sizing-default4">쿠폰기간</span>
+				    <span class="input-group-text" id="inputGroup-sizing-default4">사용가능일수</span>
 				  </div>
 				  <input type="text" id="couponValiTerm" onkeypress='return checkNumber(event)' class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
@@ -182,5 +183,6 @@
 </script>
 <script src="../resources/js/adminCouponList.js"></script>
 <script src="../resources/js/adminCouponIssuanceList.js"></script>
+<script src="../resources/js/footerNoMargin.js"></script>
 </body>
 </html>

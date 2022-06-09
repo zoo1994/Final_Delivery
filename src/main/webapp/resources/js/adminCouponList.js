@@ -91,9 +91,17 @@ $("#modalSave").click(function() {
 	if (couponDis == "") { couponDisCheck = true; }
 	if (couponValiTerm == "") { couponValiTermCheck = true; }
 	if (couponNameCheck||couponDisCheck||couponValiTermCheck) {
-		alert("정보를 입력하세요")
+		alert("정보를 입력하세요.")
 		return;
 	}
+	//9999-12-31 넘기면 오류 대략 2900000일
+	if(couponValiTerm>36500){
+		alert("사용가능일수는 최대 36500일입니다.");
+		$("#couponValiTerm").val("");
+		$("#couponValiTerm").focus();
+		return;
+	}
+
 	formData.append("couponName", couponName);
 	formData.append("discount", couponDis);
 	formData.append("activeDate", couponValiTerm);

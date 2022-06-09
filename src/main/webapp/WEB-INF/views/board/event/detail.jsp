@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ page import="java.util.Date" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +16,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
-<title>${vo.title }</title>
+<title>${vo.title}</title>
 <link href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/200px-McDonald%27s_Golden_Arches.svg.png" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
@@ -80,6 +82,10 @@
 										<div class="d-flex justify-content-around" style="line-height: 60px;">
 											<input hidden id="couponId" value="${vo.couponVO.couponId}">
 											<strong style="width: 50%; text-align: left; margin: 0 20px; ">${vo.couponVO.couponName}</strong>
+<%-- 											<c:set var="oneDayAfter" value="<%=new Date(60*60*24*1000*1)%>"/>
+ 											<fmt:formatDate value="${vo.ecVO.eventSchedule}" pattern="EEE MMM d HH:mm:ss Z yyyy" var="oneDayAfterStr"/>
+											<div style="border: 1px solid;">${oneDayAfterStr},${oneDayAfter}</div>		 
+											<c:if test="${vo.ecVO.eventSchedule != null}"></c:if> --%>									
 											<div>~${vo.ecVO.eventSchedule}</div><!-- 이벤트 스케줄러 -->
 										</div>
 										<div class="d-flex justify-content-start mb-4" style="">
@@ -96,8 +102,10 @@
 									</div>
 								</c:if>	
 								
-								
-							    <li class="list-group-item">${vo.contents}</li>
+								<c:if test="${vo.contents != '　'}">
+									<li class="list-group-item">${vo.contents}</li>
+								</c:if>
+							    
 							</div>
 						</article>
 					</div>
@@ -112,11 +120,11 @@
 					  			<form action="./update" method="get" style="display: inline-block;">
 					  				<input type="hidden" name="eventNum" id="eventNum" value="${vo.eventNum}">
 						  			<button style="margin: 0 auto; font-weight: 500;"  type="submit" id="eventDetailUpdateBtn" class="updateBtn btn btn-success">
-									  	UPDATE
+									  	수정
 									</button>					<!--   onclick="javascript:{getDeleteBtn();}" -->
 					  			</form>
 								<button style="margin: 0 auto; font-weight: 500;" type="button" id="eventDetailDeleteBtn" class="deleteBtn btn btn-danger">
-								  	DELETE
+								  	삭제
 								</button>
 						  	</c:if>
 						</span>
@@ -127,7 +135,6 @@
 																	
 			</div>
 		</div>
-		<!-- //contArea -->
 	</div>			
 </div>  
   

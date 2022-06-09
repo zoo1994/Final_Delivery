@@ -88,6 +88,9 @@ public class DeliveryController {
 		if(ar.size()==0) {
 			String message= "주문가능한 매장이 없습니다";
 			String path = "/";
+			session.removeAttribute("location");
+			session.removeAttribute("detailLocation");
+			session.removeAttribute("postcode");
 			mv.addObject("message",message);
 			mv.addObject("path",path);
 			mv.setViewName("common/joinResult");
@@ -119,6 +122,14 @@ public class DeliveryController {
 			mv.addObject("path",path);
 			mv.setViewName("common/joinResult");
 			return mv;
+		}
+
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		CartVO cartVO = new CartVO();
+		cartVO.setId(memberVO.getId());
+		List<CartVO> list = deliveryService.getCart(cartVO);
+		for(CartVO c:list) {
+			deliveryService.delete(c);
 		}
 		session.setAttribute("shop", ar.get(minName));
 		session.setAttribute("location", location);
@@ -206,11 +217,11 @@ public class DeliveryController {
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		CartVO cartVO = new CartVO();
 		cartVO.setId(memberVO.getId());
-		UserCouponVO userCouponVO = new UserCouponVO();
+		UserCouponVO userCouponVO = new UserCouponVO(); 
 		userCouponVO.setId(memberVO.getId());
 		List<CartVO> ar = deliveryService.getCart(cartVO);
 		List<UserCouponVO> coupon = couponService.getUserCoupon(userCouponVO);
-		for(UserCouponVO vo:coupon) {
+		for(UserCouponVO vo:coupon){
 			CouponVO couponVO = new CouponVO();
 			couponVO.setCouponId(vo.getCouponId());
 			couponVO = couponService.getDetail(couponVO);
@@ -230,8 +241,8 @@ public class DeliveryController {
 		CartVO cartVO = new CartVO();
 		cartVO.setId(memberVO.getId());
 		List<CartVO> ar = deliveryService.getCart(cartVO);
-		int shopNum = ar.get(0).getShopNum();
-		ordersVO.setShopNum(shopNum);
+		ShopVO shopVO = (ShopVO)session.getAttribute("shop");
+		ordersVO.setShopNum(shopVO.getShopNum());
 		int result= deliveryService.orderAdd(ordersVO);
 		mv.addObject("result", result);
 		mv.setViewName("common/result");

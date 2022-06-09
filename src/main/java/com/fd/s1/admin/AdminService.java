@@ -13,6 +13,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -231,11 +232,10 @@ public class AdminService {
 	
 	
 	//관리자 이메일 - send
-	public Long setSend(EmailVO emailVO, MemberVO memberVO)throws Exception{		
+	public Long setSend(EmailVO emailVO, MemberVO memberVO, String user, String password)throws Exception{		
 		System.out.println(222);
-       	String user = memberVO.getEmail(); // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
-        String password = "jgfsxeczynjbxfdc"; // 패스워드
-        
+//       String user = memberVO.getEmail(); // 네이버일 경우 네이버 계정, gmail경우 gmail 계정    	
+//       String password = ""; // 패스워드        
         // SMTP 서버 정보를 설정한다.
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com"); 

@@ -27,13 +27,11 @@
 					</div>
 					<div class="mb-3">
 						<label for="exampleFormControlInput2" class="form-label">Writer</label>
-						<form:input path="id" cssClass="form-control" id="id" readonly="readonly" value="${member.id}"/> 
+						<input name="id" class="form-control" id="id" readonly="readonly" value="${member.id}">
 						<div>
 							<form:errors path="id"></form:errors>
 						</div>
 					</div>
-
-
 
 					  <input class="form-check-input" type="radio" name="category" id="category1" value="1" hidden checked="checked">
 					  <input class="form-check-input" type="radio" name="category" id="category2" value="2" hidden>
@@ -76,7 +74,8 @@
 						    </tr>
 						  </tbody>
 						</table>
-						<input id="faqCategoryBtnResult" class="form-control" placeholder="버튼클릭">
+						<input id="faqCategoryBtnResult" class="form-control" readonly="readonly">
+						
 					</div>
 
 					
@@ -99,7 +98,7 @@
 				</div>
 				<div class="row justify-content-end">
 					<c:if test="${member.userType == 0}">
-						<button id="addBtn" type="button" class="col-1 btn btn-outline-success">Add</button>					
+						<button id="addBtn" type="button" class="col-1 btn btn-outline-success" style="margin-right: 10px;">작성완료</button>					
 					</c:if>
 				</div>
 			</form:form>

@@ -16,6 +16,7 @@
 	font-weight: bold;
 }
 </style>
+<link rel="stylesheet" href="../css/tableRadius.css" />
 </head>
 <body>
 
@@ -123,7 +124,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">수정하기</h5>
+        <h5 class="modal-title" id="exampleModalLabel">점포 수정</h5>
         <button type="button" id="modalHideX2" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -209,7 +210,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" id="modalHide2" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="modalSave2" class="btn btn-primary">수정하기</button>
+        <button type="button" id="modalSave2" class="btn btn-primary">수정</button>
       </div>
     </div>
   </div>
@@ -226,5 +227,6 @@
 <script src="../resources/js/map2.js"></script>
 <script src="../resources/js/map3.js"></script>
 <script src="../resources/js/adminShopList.js"></script>
+<script src="../resources/js/footerNoMargin.js"></script>
 </body>
 </html>

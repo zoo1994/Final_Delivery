@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 					<input hidden id="admin_couponIssuance_count" value="${count}">
-					<table class="table">
+					<table class="table" style="word-break:break-all;">
 					  <thead class="table-light">
 					    <tr class="row" style="height: 45px;">
 					    	<th class="col-1 text-center d-flex align-items-center" style="padding: 0 auto;">NUM</th>
@@ -63,7 +63,7 @@
 							  		<!-- <a href="./add" class="btn btn-primary" style="display: inline-block; ">ADD</a> -->
 							  			<!-- Button trigger modal -->
 										<button style="margin: 0 auto; font-weight: 500;" type="button" id="modalBtn" data-name="" class="modalBtn btn btn-primary" data-toggle="modal2" data-target="#modal2">
-										  ADD
+											글쓰기
 										</button>
 							  	</c:if>
 							  </span>

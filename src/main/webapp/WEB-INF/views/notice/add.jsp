@@ -29,7 +29,7 @@
 					</div>
 					<div class="mb-3">
 						<label for="exampleFormControlInput2" class="form-label">Writer</label>
-						<form:input path="id" cssClass="form-control" id="id" readonly="readonly" value="${member.id}"/> 
+						<input name="id" class="form-control" id="id" readonly="readonly" value="${member.id}">
 						<div>
 							<form:errors path="id"></form:errors>
 						</div>
@@ -50,7 +50,7 @@
 				</div>
 				<div class="row justify-content-end">
 					<c:if test="${member.userType == 0}">
-						<button id="addBtn" type="button" class="col-1 btn btn-outline-success">Add</button>
+						<button id="addBtn" type="button" class="col-1 btn btn-outline-success" style="margin-right: 10px;">작성완료</button>
 					</c:if>
 				</div>
 			</form:form>

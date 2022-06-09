@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 					<input hidden id="event_coupon_count" value="${count}">
-					<table class="table">
+					<table class="table" style="word-break:break-all;">
 					  <thead class="table-light">
 					    <tr class="row" style="height: 45px;">
 					    	<!-- <th class="col-2 text-center d-flex align-items-center" style="padding: 0 auto;">쿠폰ID</th> -->
@@ -43,13 +43,13 @@
 							  <ul class="pagination justify-content-center" style="display: flex; width: 90%; margin: 0 auto;">
 				<%-- 			  	<li class="page-item"><button class="page-link" href="./list?pn=${pager.startNum-1}"><<</button></li> --%>
 							  	<c:if test="${pager.pre}">
-							    	<li class="page-item" style="width: 20px;"><button style="width: 20px; padding: 6px 0px;"" class="page-link" data-page="${pager.startNum-1}" data-search="${pager.search}">prev</button></li>							    	
+							    	<li class="page-item" style="width: 40px;"><button style="width: 40px; padding: 6px 0px;"" class="page-link" data-page="${pager.startNum-1}" data-search="${pager.search}">prev</button></li>							    	
 							    </c:if>
 							   	<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i"><!--  data-page="${pager.startNum-1}" data-kind="${pager.kind}" data-search="=${pager.search} -->
 							   		<li class="page-item" style="width: 20px;"><button style="width: 20px; padding: 6px 0px;"" class="page-link"  data-page="${i}" data-search="${pager.search}">${i}</button></li>
 							   	</c:forEach>
 							    <c:if test="${pager.next}">
-							   		<li class="page-item" style="width: 20px; text-align: center;"><button style="width: 40px; padding: 6px 0px;" class="page-link" data-page="${pager.lastNum+1}" data-search="${pager.search}">next</button></li>
+							   		<li class="page-item" style="width: 40px; text-align: center;"><button style="width: 40px; padding: 6px 0px;" class="page-link" data-page="${pager.lastNum+1}" data-search="${pager.search}">next</button></li>
 							    </c:if>
 				<%-- 			    <li class="page-item"><button class="page-link" href="./list?pn=${pager.lastNum+1}">>></button></li> --%>
 							  </ul> 

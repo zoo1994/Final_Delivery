@@ -18,7 +18,7 @@
 	<script type="text/javascript"
 		src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<div class="container mt-1">
-		<h1>Order</h1>
+		<h1>Order</h1>	
 		<form action="./order" method="post">
 			<div class="row">
 				<div class="col-8 border rounded">

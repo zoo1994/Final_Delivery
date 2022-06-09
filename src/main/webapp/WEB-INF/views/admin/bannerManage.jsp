@@ -44,7 +44,9 @@ a {
 							<!-- 	<button type="button" class="btn btn-warning" id="fileUpdate">배너 변경</button> -->
 						</div>
 						<div class="col-11 bannerResult mt-4">
-							<h4>현재 적용된 배너 이미지</h4>
+							<p class="" style="padding-bottom: 20px; padding-top: 40px; font-size: 25px; font-weight: bold;"><i style="float: left; margin: 10px 5px; width: 15px; height: 15px; border: 5px solid orange; border-radius: 100%;"></i>
+								현재 적용된 배너 이미지
+							</p>
 							<c:choose>
 								<c:when test="${not empty list}">
 									<div class="imgContainer row">
@@ -82,6 +84,7 @@ a {
 			</div>
 		</div>
 	</div>
+<c:import url="../temp/footer.jsp"></c:import>
 <script type="text/javascript">
 	let count = 0;
 	if(${fn:length(list) != 0}) {
@@ -155,5 +158,6 @@ a {
 		}
 	});
 </script>
+<script src="../resources/js/footerNoMargin.js"></script>
 </body>
 </html>

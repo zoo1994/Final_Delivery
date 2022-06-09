@@ -175,12 +175,11 @@ const myChart = new Chart(ctx, {
 
 
 <c:import url="../temp/footer.jsp"></c:import>
-<script src="../resources/js/adminCouponList.js"></script>
 <script src="../resources/js/salesTrend.js"></script>
 <script src="../resources/js/hau.js"></script>
 <script src="../resources/js/shopSalesTrend.js"></script>
 <script src="../resources/js/genderChart.js"></script>
 <script src="../resources/js/ageChart.js"></script>
-
+<script src="../resources/js/footerNoMargin.js"></script>
 </body>
 </html>

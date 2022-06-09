@@ -1,0 +1,14 @@
+tr:first-child td:first-child {
+    border-top-left-radius: 15px;
+}
+ 
+tr:first-child td:last-child {
+	border-top-right-radius: 15px;
+}
+tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+}
+ 
+tr:last-child td:last-child {
+	border-bottom-right-radius: 15px;
+}
