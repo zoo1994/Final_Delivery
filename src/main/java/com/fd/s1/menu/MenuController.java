@@ -45,7 +45,7 @@ public class MenuController {
 		return mv;
 	}
 	
-	//관리자 메뉴 관리용
+	//관리자 메뉴 관리용 and
 	@GetMapping("list")
 	public ModelAndView getList(MenuVO menuVO, Pager pager, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -66,23 +66,14 @@ public class MenuController {
 		return mv;
 	}
 	
-	//전체메뉴용
+	//전체메뉴용(단종, 판매종료 메뉴도 보이게)
 	@GetMapping("list1")
 	public ModelAndView getList1(MenuVO menuVO, Pager pager, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("category : "+pager.getCategory());
 		pager.setPerPage(6);
 		Long count = menuService.getTotalCount(pager);
-		System.out.println("count : "+count);
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		if(memberVO == null) {
-			pager.setUserType(2L);
-		}else if(memberVO.getUserType() == 0L) {
-			pager.setUserType(memberVO.getUserType());			 
-		}else {
-			pager.setUserType(1L);
-		}
-		List<MenuVO> ar = menuService.getList(pager);
+		List<MenuVO> ar = menuService.getList1(pager);
+		System.out.println("ar size : "+ar.size());
 		mv.addObject("list", ar);
 		mv.addObject("count",count);
 		mv.addObject("pager",pager);

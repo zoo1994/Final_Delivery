@@ -72,6 +72,12 @@ public class MenuService {
 		return menuMapper.getList(pager); 
 	}
 	
+	public List<MenuVO> getList1(Pager pager) throws Exception {
+		pager.makeRow();
+		pager.makeNum(menuMapper.getTotalCount(pager));
+		return menuMapper.getList1(pager); 
+	}
+	
 	public int setAdd(MenuVO menuVO, MultipartFile file) throws Exception {
 		int result = menuMapper.setAdd(menuVO);
 		System.out.println("service : "+file.getOriginalFilename()+".");

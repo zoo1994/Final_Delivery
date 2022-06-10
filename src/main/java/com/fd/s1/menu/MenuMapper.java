@@ -25,6 +25,8 @@ public interface MenuMapper {
 	
 	public List<MenuVO> getList(Pager pager) throws Exception;
 	
+	public List<MenuVO> getList1(Pager pager) throws Exception;
+	
 	public int setAdd(MenuVO menuVO) throws Exception;
 	
 	public int setUpdate(MenuVO menuVO) throws Exception;

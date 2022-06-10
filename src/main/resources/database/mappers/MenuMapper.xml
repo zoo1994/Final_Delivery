@@ -58,6 +58,35 @@
 		USING (MENUNUM)
    </select> 
    
+      <select id="getList1" resultMap="joinResult" parameterType="Pager">
+   	   	SELECT M.*, MF.*
+		FROM 
+		(
+			SELECT 
+			* 
+		 	FROM MENU
+		 	WHERE MENUNUM>0 
+		 	<if test="category != null">
+		 		and CATEGORY=#{category}
+		 	</if>		 
+		 	and 	 
+			<choose>
+				<when test="kind == 'col1'">
+					MENUNAME
+				</when>
+				<otherwise>
+					MENUDETAIL
+				</otherwise>
+			</choose>
+			LIKE CONCAT('%',#{search},'%')
+			ORDER BY MENUNUM DESC
+			LIMIT #{startRow}, #{perPage} 	
+		 ) M
+		LEFT OUTER JOIN 
+		MENUFILE MF
+		USING (MENUNUM)
+   </select> 
+   
    	 <select id="getTotalCount" resultType="Long" parameterType="Pager">
  			SELECT 
 			COUNT(MENUNUM) 
