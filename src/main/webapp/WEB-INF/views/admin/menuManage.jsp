@@ -122,7 +122,22 @@ thead tbody {
 		</c:forEach>  
 	</tbody>
 </table>
+			<div class="d-flex justify-content-center">
+               <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                     <li class="page-item"><a class="page-link"
+                        href="./menuManage?pn=${pager.pre?pager.startNum-1:1}&kind=${kind}&search=${search}">&lt;</a></li>
+                     <c:forEach begin="${pager.startNum}" end="${pager.lastNum}"
+                        var="i">
+                        <li class="page-item"><a class="page-link"
+                           href="./menuManage?pn=${i}&kind=${kind}&search=${search}">${i}</a></li>
+                     </c:forEach>
 
+                     <li class="page-item"><a class="page-link"
+                        href="./menuManage?pn=${pager.next? pager.lastNum+1:pager.lastNum}&kind=${kind}&search=${search}">&gt;</a></li>
+                  </ul>
+               </nav>
+            </div>
 	
 		<div class="col-2">
 			<a href="../menu/add" type="button" class="btn btn-primary">메뉴 추가</a>

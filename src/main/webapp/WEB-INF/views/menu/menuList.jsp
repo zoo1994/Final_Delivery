@@ -17,7 +17,7 @@
 
 <c:if test="${pager.pn * pager.perPage < count}">
 	<div class="moreBtn" id="moreBtn" style="text-align: center; margin-top: 50px;">
-		<a href="javascript:more();" class="more" style=""><img style="width: 100px; height: 100px;" alt="" src="../../upload/board/event/더하기.png"></a>
+		<a href="javascript:more();" class="more" style=""><img style="width: 100px; height: 100px;" alt="" src="../../upload/board/event/addImage.png"></a>
 		
 	</div>
 </c:if>
