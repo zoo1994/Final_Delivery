@@ -86,12 +86,7 @@ public class Pager {
 		return this.search;
 	}
 	
-	public Long getUserType() {
-		if(this.userType == null) {
-			this.userType = 2L;
-		}
-		return this.userType;
-	}
+
 	
 	
 

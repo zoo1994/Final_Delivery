@@ -66,6 +66,7 @@ thead tbody {
 	<thead>
 		<tr class="table-warning">
 			<th class="col-1">Num</th>
+			<th class="col-1">카테고리</th>
 			<th class="col-3">메뉴이름</th>
 			<th class="col-1">가격</th>
 			<th class="col-2">판매상태</th>
@@ -76,6 +77,18 @@ thead tbody {
  		 <c:forEach items="${list}" var="vo" varStatus="i">
 			<tr title="자세히 보기" class="menuClick">
 				<td>${vo.menuNum}</td>
+				<td>
+					<c:choose>
+						<c:when test="${vo.category eq 1}">버거</c:when>
+						<c:when test="${vo.category eq 2}">맥런치</c:when>
+						<c:when test="${vo.category eq 3}">맥모닝</c:when>
+						<c:when test="${vo.category eq 4}">해피스낵</c:when>
+						<c:when test="${vo.category eq 5}">사이드&디저트</c:when>
+						<c:when test="${vo.category eq 6}">맥카페&음료</c:when>
+						<c:otherwise>해피밀</c:otherwise>
+					</c:choose>
+				
+				</td>
 				<td class="detail" data-num="${vo.menuNum}">${vo.menuName}</td>
 				<td>${vo.price}원</td>	
 
