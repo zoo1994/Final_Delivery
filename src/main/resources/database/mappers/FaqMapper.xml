@@ -18,7 +18,7 @@
 
     	
 		<select id="getDetail" parameterType="FaqVO" resultType="FaqVO">
-			SELECT * FROM FAQ WHERE NUM=#{num};
+			SELECT * FROM FAQ WHERE NUM=#{num}
 		</select>
     	
 		<insert id="setAdd" parameterType="FaqVO" useGeneratedKeys="true" keyProperty="num">

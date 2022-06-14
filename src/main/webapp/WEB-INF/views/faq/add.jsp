@@ -33,42 +33,35 @@
 						</div>
 					</div>
 
-					  <input class="form-check-input" type="radio" name="category" id="category1" value="1" hidden checked="checked">
-					  <input class="form-check-input" type="radio" name="category" id="category2" value="2" hidden>
-					  <input class="form-check-input" type="radio" name="category" id="category3" value="3" hidden>
-					  <input class="form-check-input" type="radio" name="category" id="category4" value="4" hidden>
-					  <input class="form-check-input" type="radio" name="category" id="category5" value="5" hidden>
-					  <input class="form-check-input" type="radio" name="category" id="category6" value="6" hidden>
-
 					<div class="mb-3" id="faqCategoryBtn">
 						<label for="exampleFormControlInput2" class="form-label" readonly="readonly">Category</label>
 						<table class="table">
 						  <tbody>
 						    <tr style="border: hidden;">
 								<td class="col-4">
-									<input style="width: 100%;" type="radio" class="btn-check" name="category" id="category1" autocomplete="off">
+									<input style="width: 100%;" type="radio" class="btn-check" name="category" id="category1" value="1" autocomplete="off" checked="checked">
 									<label style="width: 100%; font-weight: bold; background-color: rgb(240,145,0);" class="btn btn-warning" id="category11" for="category1">주문접수</label>		
 								</td>
 								<td class="col-4">
-									<input style="width: 100%;" type="radio" class="btn-check" name="category" id="category2" autocomplete="off">
+									<input style="width: 100%;" type="radio" class="btn-check" name="category" id="category2" value="2" autocomplete="off">
 									<label style="width: 100%; font-weight: bold;" class="btn btn-warning" id="category22" for="category2">주문확인</label>		
 								</td>
 								<td class="col-4">
-									<input style="width: 100%;" type="radio" class="btn-check" name="category" id="category3" autocomplete="off">
+									<input style="width: 100%;" type="radio" class="btn-check" name="category" id="category3" value="3" autocomplete="off">
 									<label style="width: 100%; font-weight: bold;" class="btn btn-warning" id="category33" for="category3">주문취소/변경</label>		
 								</td>
 						    </tr>
 						    <tr style="border: hidden;">
 								<td>
-									<input style="width: 100%;" type="radio" class="btn-check" name="categorys" id="category4" autocomplete="off">
+									<input style="width: 100%;" type="radio" class="btn-check" name="category" id="category4" value="4" autocomplete="off">
 									<label style="width: 100%; font-weight: bold;" class="btn btn-warning" id="category44" for="category4">서비스 이용</label>		
 								</td>
 								<td>
-									<input style="width: 100%;" type="radio" class="btn-check" name="categorys" id="category5" autocomplete="off">
+									<input style="width: 100%;" type="radio" class="btn-check" name="category" id="category5" value="5" autocomplete="off">
 									<label style="width: 100%; font-weight: bold;" class="btn btn-warning" id="category55" for="category5">결제</label>			
 								</td>
 								<td>
-									<input style="width: 100%;" type="radio" class="btn-check" name="categorys" id="category6" value="6">
+									<input style="width: 100%;" type="radio" class="btn-check" name="category" id="category6" value="6">
 									<label style="width: 100%; font-weight: bold;" class="btn btn-warning" id="category66" for="category6">가맹 및 기타</label>			
 								</td>				
 						    </tr>

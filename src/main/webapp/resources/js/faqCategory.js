@@ -1,15 +1,18 @@
 const faqCategoryBtn = document.querySelector("#faqCategoryBtn");
 const faqCategoryBtnResult = document.querySelector("#faqCategoryBtnResult");
-const btn_check = document.getElementsByClassName("form-check-input");
+const btn_check = document.getElementsByClassName("btn-check");
 const preCategory= document.querySelector("#preCategory");
 const update_btn_warning = document.getElementsByClassName("btn-warning");
+//$("#category1").checked= true;
+//$("input:checkbox[id='category1']").prop("checked", true);
 getBtnCheckResult();
 
 function getBtnCheckResult(){
 
     if(preCategory ==null){
-
+        console.log('cccc');
     }else if((Number)(preCategory.getAttribute("value")) != 0){
+        console.log("preCategory");
         btn_check[preCategory.getAttribute("value")-1].checked = true;
 
         //시작 컬러 지정
@@ -19,33 +22,41 @@ function getBtnCheckResult(){
         preCategory.setAttribute("value",0);
        
     }
-
+//    console.log(btn_check[0]);
     for(let i=0;i<btn_check.length;i++){
-        if(btn_check[i].checked){   
+//        console.log(i+"번째 : "+btn_check[i].checked);
+        if(btn_check[i].checked){
+//            console.log(i);  
             let result ="";
             if(i==0){
-                result = "주문접수";
+                result = "주문접수";                
             }else if(i==1){
-                result = "주문확인";
+                result = "주문확인";                
             }else if(i==2){
-                result = "주문취소/변경";
+                result = "주문취소/변경";                
             }else if(i==3){
-                result = "서비스 이용";
+                result = "서비스 이용";                
             }else if(i==4){
-                result = "결제";
+                result = "결제";                
             }else if(i==5){
-                result = "가맹 및 기타";
+                result = "가맹 및 기타";                
             }
-            console.log(result);
+//            console.log(result);
             faqCategoryBtnResult.setAttribute("value", result);
-            console.log("hi1");
+//            console.log("hi1");
         }
     }
 }
 
 faqCategoryBtn.addEventListener("click", function(event){
-    console.log(event.target);
-    if(event.target.classList.contains('form-check-input')||event.target.classList.contains('btn-warning')){
+//    console.log(event.target);
+    if(event.target.classList.contains('form-check-input')||event.target.classList.contains('btn-check')){
+//        console.log(event.target.getAttribute("id").substr(8)-1);
+        for(let i=0;i<btn_check.length;i++){
+            if(i!=event.target.getAttribute("id").substr(8)-1){
+                btn_check[i].checked=false;
+            }
+        }
         getBtnCheckResult();
 
 
@@ -53,7 +64,7 @@ faqCategoryBtn.addEventListener("click", function(event){
         for(let i =0;i<update_btn_warning.length;i++){
             update_btn_warning[i].setAttribute("style","width: 100%; font-weight: bold; background-color: #ffc107;");            
         }
-        console.log(event.target.getAttribute("id"));
+//        console.log(event.target.getAttribute("id"));
         update_btn_warning[event.target.getAttribute("id").substr(8,1)-1].setAttribute("style","width: 100%; font-weight: bold; background-color: rgb(240,145,0);");  
         //버튼 클릭시 색바꾸기
     }
